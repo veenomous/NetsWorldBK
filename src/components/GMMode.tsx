@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { topProspects, type DraftProspect } from "@/data/standings";
+import { ShareResultButton } from "@/components/ShareButton";
 
 interface GMDecisions {
   draftPick: DraftProspect | null;
@@ -126,9 +127,9 @@ export default function GMMode() {
         {["Draft", "Trade", "Strategy"].map((label, idx) => (
           <div key={label} className="flex-1">
             <div className={`h-1.5 rounded-full transition-colors ${
-              idx < step ? "bg-nets-green" : idx === step ? "bg-nets-accent" : "bg-nets-gray-light"
+              idx < step ? "bg-nets-green" : idx === step ? "gradient-bg-brand" : "bg-bg-elevated-light"
             }`} />
-            <p className={`text-xs mt-1 ${idx === step ? "text-white font-bold" : "text-nets-silver"}`}>{label}</p>
+            <p className={`text-xs mt-1 ${idx === step ? "text-white font-bold" : "text-text-secondary"}`}>{label}</p>
           </div>
         ))}
       </div>
@@ -137,7 +138,7 @@ export default function GMMode() {
       {step === 0 && (
         <div className="animate-slide-up">
           <h3 className="text-xl font-black mb-1">Who are you drafting?</h3>
-          <p className="text-nets-silver text-sm mb-4">The Nets are on the clock. Make your pick.</p>
+          <p className="text-text-secondary text-sm mb-4">The Nets are on the clock. Make your pick.</p>
           <div className="grid gap-2">
             {topProspects.slice(0, 8).map((prospect) => (
               <button
@@ -148,29 +149,29 @@ export default function GMMode() {
                 }}
                 className={`w-full text-left p-4 rounded-xl border transition-all hover:scale-[1.01] ${
                   decisions.draftPick?.name === prospect.name
-                    ? "border-nets-accent bg-nets-accent/10"
-                    : "border-white/5 bg-nets-gray/40 hover:border-white/20 hover:bg-nets-gray-light/40"
+                    ? "border-nets-accent gradient-bg-brand/10"
+                    : "border-white/5 bg-bg-elevated/40 hover:border-white/20 hover:bg-bg-elevated-light/40"
                 }`}
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <span className="text-nets-accent font-black text-lg w-8">#{prospect.rank}</span>
+                    <span className="text-brand-orange font-black text-lg w-8">#{prospect.rank}</span>
                     <div>
                       <p className="font-bold">{prospect.name}</p>
-                      <p className="text-nets-silver text-xs">
+                      <p className="text-text-secondary text-xs">
                         {prospect.position} · {prospect.school} · {prospect.height}
                       </p>
                     </div>
                   </div>
                   <div className="text-right hidden sm:block">
-                    <p className="text-xs text-nets-silver">{prospect.stats}</p>
-                    <p className="text-xs text-nets-blue">Comp: {prospect.comparison}</p>
+                    <p className="text-xs text-text-secondary">{prospect.stats}</p>
+                    <p className="text-xs text-accent-blue">Comp: {prospect.comparison}</p>
                   </div>
                 </div>
                 {/* Nets fit bar */}
                 <div className="mt-2 flex items-center gap-2">
-                  <span className="text-[10px] text-nets-silver uppercase tracking-wider">Nets Fit</span>
-                  <div className="flex-1 h-1.5 bg-nets-gray rounded-full overflow-hidden">
+                  <span className="text-[10px] text-text-secondary uppercase tracking-wider">Nets Fit</span>
+                  <div className="flex-1 h-1.5 bg-bg-elevated rounded-full overflow-hidden">
                     <div
                       className="h-full rounded-full bg-gradient-to-r from-nets-accent to-nets-gold odds-bar"
                       style={{ width: `${prospect.netsFit}%` }}
@@ -188,7 +189,7 @@ export default function GMMode() {
       {step === 1 && (
         <div className="animate-slide-up">
           <h3 className="text-xl font-black mb-1">Trade or keep the pick?</h3>
-          <p className="text-nets-silver text-sm mb-4">
+          <p className="text-text-secondary text-sm mb-4">
             You selected <span className="text-white font-bold">{decisions.draftPick?.name}</span>. What&apos;s the move?
           </p>
 
@@ -198,13 +199,13 @@ export default function GMMode() {
                 setDecisions({ ...decisions, tradeOrKeep: "keep", tradeTarget: null });
                 setStep(2);
               }}
-              className="w-full text-left p-5 rounded-xl border border-white/5 bg-nets-gray/40 hover:border-nets-green/40 hover:bg-nets-green/5 transition-all"
+              className="w-full text-left p-5 rounded-xl border border-white/5 bg-bg-elevated/40 hover:border-accent-green/40 hover:bg-accent-green/5 transition-all"
             >
               <p className="font-bold text-lg">Keep the pick</p>
-              <p className="text-nets-silver text-sm">Build around {decisions.draftPick?.name}. Trust the process.</p>
+              <p className="text-text-secondary text-sm">Build around {decisions.draftPick?.name}. Trust the process.</p>
             </button>
 
-            <div className="border border-white/5 rounded-xl bg-nets-gray/40 p-5">
+            <div className="border border-white/5 rounded-xl bg-bg-elevated/40 p-5">
               <p className="font-bold text-lg mb-3">Trade the pick</p>
               <div className="grid gap-2">
                 {tradeTargets.map((target) => (
@@ -214,7 +215,7 @@ export default function GMMode() {
                       setDecisions({ ...decisions, tradeOrKeep: "trade", tradeTarget: target.name });
                       setStep(2);
                     }}
-                    className="w-full text-left px-4 py-3 rounded-lg border border-white/5 hover:border-nets-accent/40 hover:bg-nets-accent/5 transition-all text-sm"
+                    className="w-full text-left px-4 py-3 rounded-lg border border-white/5 hover:border-brand-orange/40 hover:gradient-bg-brand/5 transition-all text-sm"
                   >
                     {target.name}
                   </button>
@@ -223,7 +224,7 @@ export default function GMMode() {
             </div>
           </div>
 
-          <button onClick={() => setStep(0)} className="text-sm text-nets-silver hover:text-white transition-colors">
+          <button onClick={() => setStep(0)} className="text-sm text-text-secondary hover:text-white transition-colors">
             &larr; Go back
           </button>
         </div>
@@ -233,7 +234,7 @@ export default function GMMode() {
       {step === 2 && (
         <div className="animate-slide-up">
           <h3 className="text-xl font-black mb-1">What&apos;s your rebuild strategy?</h3>
-          <p className="text-nets-silver text-sm mb-4">How do you build a contender in Brooklyn?</p>
+          <p className="text-text-secondary text-sm mb-4">How do you build a contender in Brooklyn?</p>
 
           <div className="grid gap-2">
             {buildStrategies.map((strat) => (
@@ -244,8 +245,8 @@ export default function GMMode() {
                 }}
                 className={`w-full text-left p-4 rounded-xl border transition-all ${
                   decisions.buildStrategy === strat.name
-                    ? "border-nets-accent bg-nets-accent/10"
-                    : "border-white/5 bg-nets-gray/40 hover:border-white/20"
+                    ? "border-nets-accent gradient-bg-brand/10"
+                    : "border-white/5 bg-bg-elevated/40 hover:border-white/20"
                 }`}
               >
                 <p className="font-medium">{strat.name}</p>
@@ -254,13 +255,13 @@ export default function GMMode() {
           </div>
 
           <div className="flex items-center justify-between mt-6">
-            <button onClick={() => setStep(1)} className="text-sm text-nets-silver hover:text-white transition-colors">
+            <button onClick={() => setStep(1)} className="text-sm text-text-secondary hover:text-white transition-colors">
               &larr; Go back
             </button>
             <button
               onClick={handleSubmit}
               disabled={!decisions.buildStrategy}
-              className="px-6 py-3 rounded-xl bg-nets-accent hover:bg-red-700 font-bold transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+              className="px-6 py-3 rounded-xl gradient-bg-brand hover:opacity-90 font-bold transition-all disabled:opacity-30 disabled:cursor-not-allowed"
             >
               Get My GM Score
             </button>
@@ -284,45 +285,45 @@ function GMResults({
     <div className="animate-slide-up space-y-6">
       {/* Score Hero */}
       <div className="text-center py-8">
-        <p className="text-nets-silver text-sm uppercase tracking-widest mb-2">Your GM Score</p>
+        <p className="text-text-secondary text-sm uppercase tracking-widest mb-2">Your GM Score</p>
         <div className="inline-flex items-baseline gap-2">
           <span className={`text-8xl font-black ${
-            score.total >= 80 ? "text-nets-green" :
-            score.total >= 60 ? "text-nets-gold" :
-            "text-nets-accent"
+            score.total >= 80 ? "text-accent-green" :
+            score.total >= 60 ? "text-accent-gold" :
+            "text-brand-orange"
           }`}>
             {score.total}
           </span>
-          <span className="text-3xl text-nets-silver">/100</span>
+          <span className="text-3xl text-text-secondary">/100</span>
         </div>
         <div className="mt-2">
           <span className={`text-xl font-black px-4 py-1 rounded-full ${
-            score.total >= 80 ? "bg-nets-green/15 text-nets-green" :
-            score.total >= 60 ? "bg-nets-gold/15 text-nets-gold" :
-            "bg-nets-accent/15 text-nets-accent"
+            score.total >= 80 ? "bg-accent-green/15 text-accent-green" :
+            score.total >= 60 ? "bg-accent-gold/15 text-accent-gold" :
+            "gradient-bg-brand/15 text-brand-orange"
           }`}>
             Grade: {score.grade}
           </span>
         </div>
-        <p className="text-nets-silver mt-3">
+        <p className="text-text-secondary mt-3">
           Better than <span className="text-white font-bold">{score.percentile}%</span> of Nets fans
         </p>
       </div>
 
       {/* Decisions Summary */}
-      <div className="glass-card rounded-xl p-5">
+      <div className="card rounded-xl p-5">
         <h4 className="font-bold mb-3">Your Decisions</h4>
         <div className="space-y-2 text-sm">
           <div className="flex justify-between">
-            <span className="text-nets-silver">Draft Pick</span>
+            <span className="text-text-secondary">Draft Pick</span>
             <span className="font-bold">{decisions.draftPick?.name}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-nets-silver">Trade Decision</span>
+            <span className="text-text-secondary">Trade Decision</span>
             <span className="font-bold capitalize">{decisions.tradeOrKeep === "keep" ? "Keep the pick" : decisions.tradeTarget}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-nets-silver">Strategy</span>
+            <span className="text-text-secondary">Strategy</span>
             <span className="font-bold">{decisions.buildStrategy}</span>
           </div>
         </div>
@@ -331,28 +332,28 @@ function GMResults({
       {/* Breakdown */}
       <div className="space-y-3">
         {score.breakdown.map((item) => (
-          <div key={item.label} className="glass-card rounded-xl p-4">
+          <div key={item.label} className="card rounded-xl p-4">
             <div className="flex items-center justify-between mb-2">
               <span className="font-bold text-sm">{item.label}</span>
               <span className={`font-black ${
-                item.score >= 80 ? "text-nets-green" :
-                item.score >= 60 ? "text-nets-gold" :
-                "text-nets-accent"
+                item.score >= 80 ? "text-accent-green" :
+                item.score >= 60 ? "text-accent-gold" :
+                "text-brand-orange"
               }`}>
                 {item.score}/{item.max}
               </span>
             </div>
-            <div className="w-full h-2 bg-nets-gray rounded-full overflow-hidden mb-2">
+            <div className="w-full h-2 bg-bg-elevated rounded-full overflow-hidden mb-2">
               <div
                 className={`h-full rounded-full odds-bar ${
                   item.score >= 80 ? "bg-nets-green" :
                   item.score >= 60 ? "bg-nets-gold" :
-                  "bg-nets-accent"
+                  "gradient-bg-brand"
                 }`}
                 style={{ width: `${item.score}%` }}
               />
             </div>
-            <p className="text-nets-silver text-xs">{item.reason}</p>
+            <p className="text-text-secondary text-xs">{item.reason}</p>
           </div>
         ))}
       </div>
@@ -361,10 +362,15 @@ function GMResults({
       <div className="flex gap-3">
         <button
           onClick={onReset}
-          className="flex-1 py-3 rounded-xl bg-nets-accent hover:bg-red-700 font-bold transition-all"
+          className="flex-1 py-3 rounded-xl gradient-bg-brand hover:opacity-90 font-bold transition-all"
         >
           Try Again
         </button>
+        <div className="flex items-center">
+          <ShareResultButton
+            text={`My BK Grit GM Score: ${score.total}/100 (Grade: ${score.grade}) — I drafted ${decisions.draftPick?.name} for the Nets! Better than ${score.percentile}% of fans.`}
+          />
+        </div>
       </div>
     </div>
   );

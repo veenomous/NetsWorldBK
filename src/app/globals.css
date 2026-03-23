@@ -1,16 +1,38 @@
 @import "tailwindcss";
 
 @theme {
-  --color-nets-black: #000000;
-  --color-nets-dark: #0a0a0a;
-  --color-nets-gray: #1a1a1a;
-  --color-nets-gray-light: #2a2a2a;
+  /* Core palette — dark base but ALIVE */
+  --color-bg-primary: #0c0c0f;
+  --color-bg-card: #16161a;
+  --color-bg-card-hover: #1e1e24;
+  --color-bg-elevated: #222228;
+  --color-bg-input: #1a1a20;
+
+  /* Text */
+  --color-text-primary: #ffffffee;
+  --color-text-secondary: #94949e;
+  --color-text-muted: #5c5c66;
+
+  /* BK Grit brand — orange/black energy from the logo */
   --color-nets-white: #ffffff;
-  --color-nets-accent: #c8102e;
-  --color-nets-silver: #a0a0a0;
-  --color-nets-gold: #ffd700;
-  --color-nets-green: #00c853;
-  --color-nets-blue: #4fc3f7;
+  --color-nets-black: #0c0c0f;
+  --color-brand-orange: #e87a2e;
+  --color-brand-orange-glow: #ff9f43;
+  --color-brand-dark: #1a1a1a;
+
+  /* Accent palette — energy colors */
+  --color-accent-green: #00d68f;
+  --color-accent-red: #ff4757;
+  --color-accent-gold: #ffc312;
+  --color-accent-blue: #54a0ff;
+  --color-accent-purple: #a55eea;
+  --color-accent-orange: #e87a2e;
+  --color-accent-cyan: #0abde3;
+
+  /* Gradients as colors */
+  --color-grad-start: #e87a2e;
+  --color-grad-end: #ff9f43;
+
   --font-display: "Inter", system-ui, sans-serif;
 }
 
@@ -19,83 +41,118 @@ html {
 }
 
 body {
-  background: var(--color-nets-black);
-  color: var(--color-nets-white);
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
   font-family: var(--font-display);
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-nets-dark);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--color-nets-gray-light);
-  border-radius: 3px;
-}
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
 
-/* Lottery ball animation */
-@keyframes bounce-ball {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 5px rgba(200, 16, 46, 0.3); }
-  50% { box-shadow: 0 0 25px rgba(200, 16, 46, 0.6); }
-}
-
+/* ===== ANIMATIONS ===== */
 @keyframes slide-up {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+@keyframes ticker-up {
+  from { color: var(--color-accent-green); transform: translateY(4px); opacity: 0; }
+  to { color: var(--color-accent-green); transform: translateY(0); opacity: 1; }
+}
+@keyframes ticker-down {
+  from { color: var(--color-accent-red); transform: translateY(-4px); opacity: 0; }
+  to { color: var(--color-accent-red); transform: translateY(0); opacity: 1; }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes bounce-in {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
+}
 @keyframes count-up {
   from { opacity: 0; transform: scale(0.5); }
   to { opacity: 1; transform: scale(1); }
 }
 
-.animate-bounce-ball {
-  animation: bounce-ball 0.6s ease-in-out;
+.animate-slide-up { animation: slide-up 0.4s ease-out forwards; }
+.animate-fade-in { animation: fade-in 0.3s ease-out forwards; }
+.animate-pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }
+.animate-ticker-up { animation: ticker-up 0.4s ease-out forwards; }
+.animate-ticker-down { animation: ticker-down 0.4s ease-out forwards; }
+.animate-bounce-in { animation: bounce-in 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; }
+.animate-count-up { animation: count-up 0.3s ease-out forwards; }
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--color-bg-card);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 16px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.card:hover {
+  border-color: rgba(255,255,255,0.1);
+}
+.card-interactive:hover {
+  border-color: rgba(232, 122, 46, 0.3);
+  transform: translateY(-2px);
 }
 
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+/* ===== GRADIENTS ===== */
+.gradient-text {
+  background: linear-gradient(135deg, #fff 0%, #b0b0b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-brand {
+  background: linear-gradient(135deg, #e87a2e 0%, #ff9f43 50%, #ffc312 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-bg-brand {
+  background: linear-gradient(135deg, #e87a2e 0%, #ff9f43 100%);
+}
+.gradient-bg-subtle {
+  background: linear-gradient(135deg, rgba(232,122,46,0.08) 0%, rgba(255,159,67,0.03) 100%);
 }
 
-.animate-slide-up {
-  animation: slide-up 0.5s ease-out forwards;
-}
-
-.animate-count-up {
-  animation: count-up 0.3s ease-out forwards;
-}
-
-/* Odds bar animation */
+/* ===== UTILITY ===== */
 .odds-bar {
   transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-/* Glass morphism card */
-.glass-card {
-  background: rgba(26, 26, 26, 0.8);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
 }
 
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Tag pills */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
-
-.gradient-text-accent {
-  background: linear-gradient(135deg, #c8102e 0%, #ff4444 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+.tag-red { background: rgba(232,35,58,0.12); color: #ff6b81; }
+.tag-green { background: rgba(0,214,143,0.12); color: #00d68f; }
+.tag-gold { background: rgba(255,195,18,0.12); color: #ffc312; }
+.tag-blue { background: rgba(84,160,255,0.12); color: #54a0ff; }
+.tag-purple { background: rgba(165,94,234,0.12); color: #a55eea; }

@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { runLotterySimulation, type SimulationResult } from "@/lib/lottery";
+import { ShareResultButton } from "@/components/ShareButton";
 
 interface Props {
   compact?: boolean;
@@ -16,57 +17,59 @@ export default function LotterySimulator({ compact = false }: Props) {
 
   const runSim = useCallback(() => {
     setIsSpinning(true);
-
-    // Dramatic delay
     setTimeout(() => {
       const sim = runLotterySimulation();
       setResult(sim);
       setSimCount((c) => c + 1);
       setHistory((h) => [...h.slice(-49), sim.netsResult.lotteryPick]);
-
       if (bestResult === null || sim.netsResult.lotteryPick < bestResult) {
         setBestResult(sim.netsResult.lotteryPick);
       }
-
       setIsSpinning(false);
     }, 800);
   }, [bestResult]);
 
   const getResultColor = (pick: number) => {
-    if (pick === 1) return "text-nets-gold";
-    if (pick <= 3) return "text-nets-green";
-    if (pick <= 6) return "text-nets-blue";
-    return "text-nets-silver";
+    if (pick === 1) return "text-accent-gold";
+    if (pick <= 3) return "text-accent-green";
+    if (pick <= 6) return "text-accent-blue";
+    return "text-text-muted";
   };
 
   const getResultEmoji = (pick: number) => {
     if (pick === 1) return "JACKPOT";
     if (pick === 2) return "SO CLOSE";
     if (pick <= 4) return "W";
-    if (pick <= 6) return "Expected";
+    if (pick <= 6) return "Solid";
     return "Pain";
   };
 
   const getResultBg = (pick: number) => {
-    if (pick === 1) return "from-yellow-500/20 to-yellow-500/5 border-yellow-500/30";
-    if (pick <= 3) return "from-green-500/20 to-green-500/5 border-green-500/30";
-    if (pick <= 6) return "from-blue-400/20 to-blue-400/5 border-blue-400/30";
-    return "from-gray-500/20 to-gray-500/5 border-gray-500/30";
+    if (pick === 1) return "from-accent-gold/15 to-accent-gold/5 border-accent-gold/25";
+    if (pick <= 3) return "from-accent-green/15 to-accent-green/5 border-accent-green/25";
+    if (pick <= 6) return "from-accent-blue/15 to-accent-blue/5 border-accent-blue/25";
+    return "from-white/5 to-transparent border-white/10";
   };
 
+  const shareText = result
+    ? `I just ran the NBA Draft Lottery and the Nets got the #${result.netsResult.lotteryPick} pick! ${
+        result.netsResult.lotteryPick === 1 ? "JACKPOT!" : result.netsResult.lotteryPick <= 3 ? "Top 3 baby!" : ""
+      }`
+    : "";
+
   return (
-    <div className={compact ? "" : "glass-card rounded-2xl p-6 sm:p-8"}>
+    <div className={compact ? "" : "card p-5 sm:p-6"}>
       {!compact && (
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-5">
           <div>
-            <h2 className="text-2xl font-black">Lottery Simulator</h2>
-            <p className="text-nets-silver text-sm">Test your luck. Run the NBA Draft Lottery.</p>
+            <h2 className="text-xl font-black">Lottery Simulator</h2>
+            <p className="text-text-muted text-xs mt-0.5">Test your luck. How high do the Nets land?</p>
           </div>
           {simCount > 0 && (
             <div className="text-right">
-              <p className="text-xs text-nets-silver">Simulations: {simCount}</p>
+              <p className="text-[11px] text-text-muted">Runs: {simCount}</p>
               {bestResult && (
-                <p className="text-sm font-bold">
+                <p className="text-xs font-bold">
                   Best: <span className={getResultColor(bestResult)}>#{bestResult}</span>
                 </p>
               )}
@@ -75,23 +78,23 @@ export default function LotterySimulator({ compact = false }: Props) {
         </div>
       )}
 
-      {/* Big button */}
-      <div className="text-center mb-6">
+      {/* Run button */}
+      <div className="text-center mb-5">
         <button
           onClick={runSim}
           disabled={isSpinning}
           className={`
-            relative px-8 py-4 rounded-2xl font-black text-lg uppercase tracking-wider
+            relative px-6 py-3 rounded-xl font-black text-sm uppercase tracking-wider
             transition-all duration-300 transform
             ${isSpinning
-              ? "bg-nets-gray-light text-nets-silver scale-95 cursor-wait"
-              : "bg-nets-accent hover:bg-red-700 hover:scale-105 active:scale-95 text-white shadow-lg shadow-nets-accent/20"
+              ? "bg-bg-elevated text-text-muted scale-95 cursor-wait"
+              : "gradient-bg-brand hover:opacity-90 hover:scale-105 active:scale-95 text-white shadow-lg shadow-brand-orange/20"
             }
           `}
         >
           {isSpinning ? (
             <span className="flex items-center gap-2">
-              <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+              <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
               </svg>
@@ -103,82 +106,81 @@ export default function LotterySimulator({ compact = false }: Props) {
         </button>
       </div>
 
-      {/* Result Display */}
+      {/* Result */}
       {result && !isSpinning && (
         <div className="animate-slide-up">
           {/* Nets Result Hero */}
-          <div className={`rounded-2xl p-6 mb-6 bg-gradient-to-r ${getResultBg(result.netsResult.lotteryPick)} border`}>
+          <div className={`rounded-xl p-5 mb-4 bg-gradient-to-r ${getResultBg(result.netsResult.lotteryPick)} border`}>
             <div className="text-center">
-              <p className="text-nets-silver text-sm uppercase tracking-widest mb-1">Brooklyn Nets</p>
-              <div className="flex items-center justify-center gap-3">
-                <span className={`text-6xl sm:text-7xl font-black animate-count-up ${getResultColor(result.netsResult.lotteryPick)}`}>
-                  #{result.netsResult.lotteryPick}
-                </span>
-              </div>
-              <p className={`text-lg font-bold mt-2 ${getResultColor(result.netsResult.lotteryPick)}`}>
+              <p className="text-text-muted text-xs uppercase tracking-widest mb-1">Brooklyn Nets</p>
+              <span className={`text-5xl sm:text-6xl font-black animate-count-up ${getResultColor(result.netsResult.lotteryPick)}`}>
+                #{result.netsResult.lotteryPick}
+              </span>
+              <p className={`text-sm font-bold mt-1.5 ${getResultColor(result.netsResult.lotteryPick)}`}>
                 {getResultEmoji(result.netsResult.lotteryPick)}
               </p>
               {result.netsResult.movedUp && (
-                <p className="text-nets-green text-sm mt-1">
-                  Moved up from #{result.netsResult.originalSlot}!
-                </p>
+                <p className="text-accent-green text-xs mt-1">Moved up from #{result.netsResult.originalSlot}!</p>
               )}
               {result.netsResult.movedDown && (
-                <p className="text-nets-accent text-sm mt-1">
-                  Dropped from #{result.netsResult.originalSlot}
-                </p>
+                <p className="text-accent-red text-xs mt-1">Dropped from #{result.netsResult.originalSlot}</p>
               )}
+
+              {/* Share button */}
+              <div className="mt-3">
+                <ShareResultButton text={shareText} size="sm" />
+              </div>
             </div>
           </div>
 
           {/* Full Results Table */}
           {!compact && (
-            <div className="space-y-1">
-              <p className="text-sm font-bold text-nets-silver mb-2">Full Lottery Results</p>
+            <div className="space-y-0.5 mb-4">
+              <p className="text-xs font-bold text-text-muted mb-2">Full Lottery Results</p>
               {result.results.map((r) => (
                 <div
                   key={r.abbrev}
-                  className={`flex items-center justify-between px-3 py-2 rounded-lg text-sm ${
+                  className={`flex items-center justify-between px-3 py-1.5 rounded-lg text-xs ${
                     r.abbrev === "BKN"
-                      ? "bg-nets-accent/15 border border-nets-accent/30 font-bold"
-                      : "hover:bg-nets-gray-light/30"
+                      ? "bg-brand-orange/10 border border-brand-orange/20 font-bold"
+                      : "hover:bg-white/[0.02]"
                   }`}
                 >
-                  <div className="flex items-center gap-3">
-                    <span className={`w-8 text-center font-bold ${
-                      r.lotteryPick <= 4 ? "text-nets-gold" : "text-nets-silver"
+                  <div className="flex items-center gap-2.5">
+                    <span className={`w-6 text-center font-bold ${
+                      r.lotteryPick <= 4 ? "text-accent-gold" : "text-text-muted"
                     }`}>
                       #{r.lotteryPick}
                     </span>
-                    <span>{r.team}</span>
+                    <span className={r.abbrev === "BKN" ? "" : "text-text-secondary"}>{r.team}</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    {r.movedUp && <span className="text-nets-green text-xs">&#9650; {r.originalSlot - r.lotteryPick}</span>}
-                    {r.movedDown && <span className="text-nets-accent text-xs">&#9660; {r.lotteryPick - r.originalSlot}</span>}
-                    {!r.movedUp && !r.movedDown && <span className="text-nets-silver text-xs">&#8212;</span>}
+                  <div>
+                    {r.movedUp && <span className="text-accent-green text-[11px]">&#9650;{r.originalSlot - r.lotteryPick}</span>}
+                    {r.movedDown && <span className="text-accent-red text-[11px]">&#9660;{r.lotteryPick - r.originalSlot}</span>}
+                    {!r.movedUp && !r.movedDown && <span className="text-text-muted text-[11px]">—</span>}
                   </div>
                 </div>
               ))}
             </div>
           )}
 
-          {/* Distribution bar from history */}
+          {/* History chart */}
           {history.length > 1 && (
-            <div className="mt-6 pt-4 border-t border-white/5">
-              <p className="text-xs text-nets-silver mb-2">Your simulation history ({history.length} runs)</p>
-              <div className="flex gap-0.5 items-end h-12">
+            <div className="pt-3 border-t border-white/[0.04]">
+              <p className="text-[11px] text-text-muted mb-2">Your history ({history.length} runs)</p>
+              <div className="flex gap-0.5 items-end h-10">
                 {Array.from({ length: 14 }, (_, i) => i + 1).map((pick) => {
                   const count = history.filter((h) => h === pick).length;
                   const pct = (count / history.length) * 100;
                   return (
-                    <div key={pick} className="flex-1 flex flex-col items-center gap-1">
+                    <div key={pick} className="flex-1 flex flex-col items-center gap-0.5">
                       <div
                         className={`w-full rounded-sm transition-all ${
-                          pick <= 4 ? "bg-nets-gold/60" : "bg-nets-gray-light"
+                          pick <= 4 ? "bg-accent-gold/50" : "bg-white/10"
                         }`}
-                        style={{ height: `${Math.max(pct * 2, 2)}px` }}
+                        style={{ height: `${Math.max(pct * 1.5, 2)}px` }}
                       />
-                      <span className="text-[9px] text-nets-silver">{pick}</span>
+                      <span className="text-[8px] text-text-muted">{pick}</span>
                     </div>
                   );
                 })}

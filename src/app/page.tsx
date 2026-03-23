@@ -1,52 +1,68 @@
-import PickTracker from "@/components/PickTracker";
-import LotterySimulator from "@/components/LotterySimulator";
-import DailyPoll from "@/components/DailyPoll";
+import Image from "next/image";
+import DraftWidget from "@/components/DraftWidget";
+import VibeCheck from "@/components/VibeCheck";
+import StockTicker from "@/components/StockTicker";
+import HotTakes from "@/components/HotTakes";
+import DailyPrediction from "@/components/DailyPrediction";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="space-y-8">
-      {/* Page Header */}
-      <div className="text-center py-6">
-        <h1 className="text-4xl sm:text-5xl font-black tracking-tight gradient-text">
-          Brooklyn Nets Draft HQ 2026
-        </h1>
-        <p className="text-nets-silver mt-2 text-lg">
-          Track the pick. Simulate the lottery. Play GM.
-        </p>
-      </div>
-
-      {/* Pick Tracker - Hero Section */}
-      <PickTracker />
-
-      {/* Two column: Lottery Sim + Poll */}
-      <div className="grid lg:grid-cols-2 gap-6">
-        <LotterySimulator compact />
-        <DailyPoll />
-      </div>
-
-      {/* CTA Cards */}
-      <div className="grid sm:grid-cols-2 gap-4">
-        <Link href="/simulator" className="glass-card rounded-2xl p-6 hover:border-nets-accent/30 border border-transparent transition-all group">
-          <h3 className="text-lg font-bold group-hover:text-nets-accent transition-colors">Full Lottery Simulator</h3>
-          <p className="text-nets-silver text-sm mt-1">
-            Run unlimited simulations. See full results. Track your history.
+    <div className="space-y-6">
+      {/* Hero — logo + tagline */}
+      <section className="py-4 sm:py-6 flex items-center gap-4">
+        <Image
+          src="/BKGrit.png"
+          alt="Brooklyn Grit"
+          width={72}
+          height={72}
+          className="rounded-xl hidden sm:block"
+        />
+        <div>
+          <h1 className="text-3xl sm:text-4xl font-black tracking-tight">
+            <span className="gradient-text-brand">Brooklyn Grit</span>
+          </h1>
+          <p className="text-text-secondary mt-1 text-sm sm:text-base max-w-lg">
+            The fan HQ. Track the draft. Vote on takes. Play GM. Built for Brooklyn.
           </p>
-          <span className="text-nets-accent text-sm font-bold mt-3 inline-block group-hover:translate-x-1 transition-transform">
-            Launch Simulator &rarr;
-          </span>
+        </div>
+      </section>
+
+      {/* Row 1: Draft Widget + Vibe Check + Predictions */}
+      <section className="grid md:grid-cols-3 gap-4">
+        <DraftWidget />
+        <VibeCheck />
+        <DailyPrediction />
+      </section>
+
+      {/* Row 2: Stock Ticker + Hot Takes */}
+      <section className="grid lg:grid-cols-2 gap-4">
+        <StockTicker />
+        <HotTakes />
+      </section>
+
+      {/* CTA Row */}
+      <section className="grid sm:grid-cols-2 gap-4">
+        <Link href="/simulator" className="card card-interactive p-5 block group">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="font-bold text-[15px] group-hover:text-brand-orange-glow transition-colors">Lottery Simulator</h3>
+              <p className="text-text-muted text-xs mt-1">Run unlimited sims. See full results. Share your luck.</p>
+            </div>
+            <span className="text-2xl opacity-40 group-hover:opacity-80 transition-opacity">&#127920;</span>
+          </div>
         </Link>
 
-        <Link href="/gm-mode" className="glass-card rounded-2xl p-6 hover:border-nets-gold/30 border border-transparent transition-all group">
-          <h3 className="text-lg font-bold group-hover:text-nets-gold transition-colors">GM Mode</h3>
-          <p className="text-nets-silver text-sm mt-1">
-            Draft a player. Make trades. Build your roster. Get scored.
-          </p>
-          <span className="text-nets-gold text-sm font-bold mt-3 inline-block group-hover:translate-x-1 transition-transform">
-            Play GM &rarr;
-          </span>
+        <Link href="/gm-mode" className="card card-interactive p-5 block group">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="font-bold text-[15px] group-hover:text-accent-gold transition-colors">Draft War Room</h3>
+              <p className="text-text-muted text-xs mt-1">Pick your prospect. Set the strategy. Get your GM score.</p>
+            </div>
+            <span className="text-2xl opacity-40 group-hover:opacity-80 transition-opacity">&#129504;</span>
+          </div>
         </Link>
-      </div>
+      </section>
     </div>
   );
 }
