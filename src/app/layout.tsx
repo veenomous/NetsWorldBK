@@ -3,9 +3,9 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
-  title: "NetsWorld — Brooklyn Nets Draft HQ 2025",
+  title: "NetsWorld — Brooklyn Nets Draft HQ 2026",
   description: "Live draft pick tracker, lottery simulator, GM mode, and more. The ultimate interactive hub for Brooklyn Nets fans.",
-  keywords: ["Brooklyn Nets", "NBA Draft 2025", "Lottery Simulator", "Draft Pick Tracker", "Nets Fans"],
+  keywords: ["Brooklyn Nets", "NBA Draft 2026", "Lottery Simulator", "Draft Pick Tracker", "Nets Fans"],
 };
 
 export default function RootLayout({

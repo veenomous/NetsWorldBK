@@ -94,15 +94,15 @@ export default function PickTracker() {
           <div className="mt-6 p-4 rounded-xl bg-gradient-to-r from-nets-accent/10 to-transparent border border-nets-accent/20">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-bold">Fan Confidence Meter</span>
-              <span className="text-nets-gold font-bold">37%</span>
+              <span className="text-nets-gold font-bold">44%</span>
             </div>
             <div className="w-full h-3 bg-nets-gray rounded-full overflow-hidden">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-nets-accent to-nets-gold odds-bar"
-                style={{ width: "37%" }}
+                style={{ width: "44%" }}
               />
             </div>
-            <p className="text-nets-silver text-xs mt-2">Tank Status: Elite Commander Mode</p>
+            <p className="text-nets-silver text-xs mt-2">Tank Status: Top 3 Lock — Lottery Night Will Be Huge</p>
           </div>
         </div>
       </div>

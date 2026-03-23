@@ -9,7 +9,7 @@ export default function Home() {
       {/* Page Header */}
       <div className="text-center py-6">
         <h1 className="text-4xl sm:text-5xl font-black tracking-tight gradient-text">
-          Brooklyn Nets Draft HQ
+          Brooklyn Nets Draft HQ 2026
         </h1>
         <p className="text-nets-silver mt-2 text-lg">
           Track the pick. Simulate the lottery. Play GM.

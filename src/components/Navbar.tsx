@@ -17,7 +17,7 @@ export default function Navbar() {
             </div>
             <div className="hidden sm:block">
               <span className="text-lg font-bold tracking-tight">NetsWorld</span>
-              <span className="text-nets-silver text-xs block -mt-1">Draft HQ 2025</span>
+              <span className="text-nets-silver text-xs block -mt-1">Draft HQ 2026</span>
             </div>
           </Link>
 
