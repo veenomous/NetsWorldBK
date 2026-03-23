@@ -9,23 +9,22 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="space-y-6">
-      {/* Hero — logo + tagline */}
-      <section className="py-4 sm:py-6 flex items-center gap-4">
+      {/* Hero — big logo centered */}
+      <section className="py-8 sm:py-12 flex flex-col items-center text-center">
         <Image
           src="/BKGrit.png"
           alt="Brooklyn Grit"
-          width={72}
-          height={72}
-          className="rounded-xl hidden sm:block"
+          width={280}
+          height={280}
+          priority
+          className="rounded-2xl mb-5 sm:w-[320px] sm:h-auto"
         />
-        <div>
-          <h1 className="text-3xl sm:text-4xl font-black tracking-tight">
-            <span className="gradient-text-brand">Brooklyn Grit</span>
-          </h1>
-          <p className="text-text-secondary mt-1 text-sm sm:text-base max-w-lg">
-            The fan HQ. Track the draft. Vote on takes. Play GM. Built for Brooklyn.
-          </p>
-        </div>
+        <h1 className="text-3xl sm:text-4xl font-black tracking-tight">
+          <span className="gradient-text-brand">Brooklyn Grit</span>
+        </h1>
+        <p className="text-text-secondary mt-2 text-sm sm:text-base max-w-md">
+          The fan HQ. Track the draft. Vote on takes. Play GM. Built for Brooklyn.
+        </p>
       </section>
 
       {/* Row 1: Draft Widget + Vibe Check + Predictions */}
