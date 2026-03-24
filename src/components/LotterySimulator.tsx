@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { runLotterySimulation, type SimulationResult } from "@/lib/lottery";
-import { ShareResultButton } from "@/components/ShareButton";
+import { ShareLotteryResult } from "@/components/ShareButton";
 
 interface Props {
   compact?: boolean;
@@ -51,11 +51,7 @@ export default function LotterySimulator({ compact = false }: Props) {
     return "from-white/5 to-transparent border-white/10";
   };
 
-  const shareText = result
-    ? `I just ran the NBA Draft Lottery and the Nets got the #${result.netsResult.lotteryPick} pick! ${
-        result.netsResult.lotteryPick === 1 ? "JACKPOT!" : result.netsResult.lotteryPick <= 3 ? "Top 3 baby!" : ""
-      }`
-    : "";
+  // shareText removed — using ShareLotteryResult component with OG images now
 
   return (
     <div className={compact ? "" : "card p-5 sm:p-6"}>
@@ -126,9 +122,9 @@ export default function LotterySimulator({ compact = false }: Props) {
                 <p className="text-accent-red text-xs mt-1">Dropped from #{result.netsResult.originalSlot}</p>
               )}
 
-              {/* Share button */}
+              {/* Share button — links to shareable page with dynamic OG image */}
               <div className="mt-3">
-                <ShareResultButton text={shareText} size="sm" />
+                <ShareLotteryResult pick={result.netsResult.lotteryPick} />
               </div>
             </div>
           </div>

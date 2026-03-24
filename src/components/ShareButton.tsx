@@ -7,8 +7,13 @@ interface ShareButtonProps {
   size?: "sm" | "md";
 }
 
-export default function ShareButton({ text, url = "https://bkgrit.com", hashtags = "BKGrit,Nets,NBADraft", size = "sm" }: ShareButtonProps) {
-  const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}&hashtags=${encodeURIComponent(hashtags)}`;
+const SITE_URL = typeof window !== "undefined" && window.location.hostname !== "localhost"
+  ? `https://${window.location.hostname}`
+  : "https://netsworld.vercel.app";
+
+export default function ShareButton({ text, url, hashtags = "BKGrit,Nets,NBADraft", size = "sm" }: ShareButtonProps) {
+  const shareUrl = url || "https://netsworld.vercel.app";
+  const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}&hashtags=${encodeURIComponent(hashtags)}`;
 
   return (
     <a
@@ -21,32 +26,69 @@ export default function ShareButton({ text, url = "https://bkgrit.com", hashtags
           : "px-4 py-2 text-[13px] bg-[#1d9bf0]/15 text-[#1d9bf0] hover:bg-[#1d9bf0]/25"
         }`}
     >
-      <svg className={size === "sm" ? "w-3 h-3" : "w-4 h-4"} viewBox="0 0 24 24" fill="currentColor">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-      </svg>
+      <XIcon size={size === "sm" ? 12 : 16} />
       Share
     </a>
   );
 }
 
-export function ShareResultButton({ text, size = "md" }: { text: string; size?: "sm" | "md" }) {
-  const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text + "\n\nTry it yourself at bkgrit.com")}&hashtags=${encodeURIComponent("BKGrit,Nets,NBADraft")}`;
+// Lottery result share — uses shareable URL with OG image
+export function ShareLotteryResult({ pick }: { pick: number }) {
+  const text = pick === 1
+    ? "I just got the Nets the #1 PICK in the lottery sim!"
+    : pick <= 3
+      ? `Nets got the #${pick} pick in my lottery sim! Top 3 baby!`
+      : `Nets landed at #${pick} in my lottery sim.`;
+
+  const sharePageUrl = `https://netsworld.vercel.app/share/lottery?pick=${pick}`;
+  const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(sharePageUrl)}&hashtags=${encodeURIComponent("BKGrit,Nets,NBADraft")}`;
 
   return (
     <a
       href={tweetUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center gap-2 font-bold rounded-xl transition-all hover:scale-105
-        ${size === "sm"
-          ? "px-4 py-2 text-[12px]"
-          : "px-5 py-2.5 text-[13px]"
-        } bg-[#1d9bf0] text-white hover:bg-[#1a8cd8]`}
+      className="inline-flex items-center justify-center gap-2 font-bold rounded-xl transition-all hover:scale-105 px-5 py-2.5 text-[13px] bg-[#1d9bf0] text-white hover:bg-[#1a8cd8]"
     >
-      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-      </svg>
+      <XIcon size={16} />
       Share on X
     </a>
+  );
+}
+
+// GM score share — uses shareable URL with OG image
+export function ShareGMResult({
+  score,
+  grade,
+  player,
+  percentile,
+}: {
+  score: number;
+  grade: string;
+  player: string;
+  percentile: number;
+}) {
+  const text = `My BK Grit GM Score: ${score}/100 (Grade: ${grade}) — I drafted ${player} for the Nets! Better than ${percentile}% of fans.`;
+  const sharePageUrl = `https://netsworld.vercel.app/share/gm?score=${score}&grade=${encodeURIComponent(grade)}&player=${encodeURIComponent(player)}&percentile=${percentile}`;
+  const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(sharePageUrl)}&hashtags=${encodeURIComponent("BKGrit,Nets,NBADraft")}`;
+
+  return (
+    <a
+      href={tweetUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center justify-center gap-2 font-bold rounded-xl transition-all hover:scale-105 px-5 py-2.5 text-[13px] bg-[#1d9bf0] text-white hover:bg-[#1a8cd8]"
+    >
+      <XIcon size={16} />
+      Share on X
+    </a>
+  );
+}
+
+function XIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
   );
 }

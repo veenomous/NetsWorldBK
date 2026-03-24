@@ -6,6 +6,19 @@ export const metadata: Metadata = {
   title: "BK Grit — Brooklyn Nets Fan HQ",
   description: "The interactive hub for Brooklyn Nets fans. Draft tracker, lottery simulator, hot takes, player stocks, and more. Built for Brooklyn.",
   keywords: ["Brooklyn Nets", "BK Grit", "NBA Draft 2026", "Lottery Simulator", "Nets Fans", "Brooklyn Grit"],
+  openGraph: {
+    title: "BK Grit — Brooklyn Nets Fan HQ",
+    description: "Track the draft. Run the lottery. Play GM. Vote on hot takes. Built for Brooklyn.",
+    images: ["/api/og"],
+    type: "website",
+    siteName: "BK Grit",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BK Grit — Brooklyn Nets Fan HQ",
+    description: "Track the draft. Run the lottery. Play GM. Vote on hot takes. Built for Brooklyn.",
+    images: ["/api/og"],
+  },
 };
 
 export default function RootLayout({

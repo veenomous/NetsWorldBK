@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { topProspects, type DraftProspect } from "@/data/standings";
-import { ShareResultButton } from "@/components/ShareButton";
+import { ShareGMResult } from "@/components/ShareButton";
 
 interface GMDecisions {
   draftPick: DraftProspect | null;
@@ -367,8 +367,11 @@ function GMResults({
           Try Again
         </button>
         <div className="flex items-center">
-          <ShareResultButton
-            text={`My BK Grit GM Score: ${score.total}/100 (Grade: ${score.grade}) — I drafted ${decisions.draftPick?.name} for the Nets! Better than ${score.percentile}% of fans.`}
+          <ShareGMResult
+            score={score.total}
+            grade={score.grade}
+            player={decisions.draftPick?.name || ""}
+            percentile={score.percentile}
           />
         </div>
       </div>
