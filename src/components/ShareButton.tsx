@@ -7,20 +7,18 @@ interface ShareButtonProps {
   size?: "sm" | "md";
 }
 
-const SITE_URL = typeof window !== "undefined" && window.location.hostname !== "localhost"
-  ? `https://${window.location.hostname}`
-  : "https://bkgrit.com";
+function openTwitterPopup(tweetUrl: string) {
+  window.open(tweetUrl, "twitter-share", "width=550,height=420,menubar=no,toolbar=no");
+}
 
 export default function ShareButton({ text, url, hashtags = "BKGrit,Nets,NBADraft", size = "sm" }: ShareButtonProps) {
   const shareUrl = url || "https://bkgrit.com";
   const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}&hashtags=${encodeURIComponent(hashtags)}`;
 
   return (
-    <a
-      href={tweetUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`inline-flex items-center gap-1.5 font-semibold rounded-lg transition-all hover:scale-105
+    <button
+      onClick={() => openTwitterPopup(tweetUrl)}
+      className={`inline-flex items-center gap-1.5 font-semibold rounded-lg transition-all hover:scale-105 cursor-pointer
         ${size === "sm"
           ? "px-3 py-1.5 text-[11px] bg-white/[0.06] text-text-secondary hover:bg-[#1d9bf0]/15 hover:text-[#1d9bf0]"
           : "px-4 py-2 text-[13px] bg-[#1d9bf0]/15 text-[#1d9bf0] hover:bg-[#1d9bf0]/25"
@@ -28,11 +26,10 @@ export default function ShareButton({ text, url, hashtags = "BKGrit,Nets,NBADraf
     >
       <XIcon size={size === "sm" ? 12 : 16} />
       Share
-    </a>
+    </button>
   );
 }
 
-// Lottery result share — uses shareable URL with OG image
 export function ShareLotteryResult({ pick }: { pick: number }) {
   const text = pick === 1
     ? "I just got the Nets the #1 PICK in the lottery sim!"
@@ -44,19 +41,16 @@ export function ShareLotteryResult({ pick }: { pick: number }) {
   const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(sharePageUrl)}&hashtags=${encodeURIComponent("BKGrit,Nets,NBADraft")}`;
 
   return (
-    <a
-      href={tweetUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center justify-center gap-2 font-bold rounded-xl transition-all hover:scale-105 px-5 py-2.5 text-[13px] bg-[#1d9bf0] text-white hover:bg-[#1a8cd8]"
+    <button
+      onClick={() => openTwitterPopup(tweetUrl)}
+      className="inline-flex items-center justify-center gap-2 font-bold rounded-xl transition-all hover:scale-105 px-5 py-2.5 text-[13px] bg-[#1d9bf0] text-white hover:bg-[#1a8cd8] cursor-pointer"
     >
       <XIcon size={16} />
       Share on X
-    </a>
+    </button>
   );
 }
 
-// GM score share — uses shareable URL with OG image
 export function ShareGMResult({
   score,
   grade,
@@ -73,15 +67,13 @@ export function ShareGMResult({
   const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(sharePageUrl)}&hashtags=${encodeURIComponent("BKGrit,Nets,NBADraft")}`;
 
   return (
-    <a
-      href={tweetUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center justify-center gap-2 font-bold rounded-xl transition-all hover:scale-105 px-5 py-2.5 text-[13px] bg-[#1d9bf0] text-white hover:bg-[#1a8cd8]"
+    <button
+      onClick={() => openTwitterPopup(tweetUrl)}
+      className="inline-flex items-center justify-center gap-2 font-bold rounded-xl transition-all hover:scale-105 px-5 py-2.5 text-[13px] bg-[#1d9bf0] text-white hover:bg-[#1a8cd8] cursor-pointer"
     >
       <XIcon size={16} />
       Share on X
-    </a>
+    </button>
   );
 }
 
