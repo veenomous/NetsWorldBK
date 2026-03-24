@@ -18,7 +18,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     ? `I drafted ${player} for the Nets and scored ${score}/100 — better than ${percentile}% of fans. Think you can do better?`
     : `I scored ${score}/100 as Nets GM — better than ${percentile}% of fans. Play the War Room at BK Grit.`;
 
-  const ogImage = `https://bkgrit.com/api/og?type=gm&score=${score}&grade=${encodeURIComponent(grade)}&player=${encodeURIComponent(player)}&percentile=${percentile}`;
+  const ogImage = `https://bkgrit.com/api/og?v=2&type=gm&score=${score}&grade=${encodeURIComponent(grade)}&player=${encodeURIComponent(player)}&percentile=${percentile}`;
 
   return {
     title,

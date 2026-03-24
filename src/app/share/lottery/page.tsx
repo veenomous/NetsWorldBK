@@ -19,7 +19,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 
   const description = `I just ran the NBA Draft Lottery on BK Grit and the Nets got the #${pick} pick. Can you do better? Try the simulator now.`;
 
-  const ogImage = `https://bkgrit.com/api/og?type=lottery&pick=${pick}`;
+  const ogImage = `https://bkgrit.com/api/og?v=2&type=lottery&pick=${pick}`;
 
   return {
     title,

@@ -1,9 +1,20 @@
 import { ImageResponse } from "next/og";
-import { LOGO_BASE64 } from "@/lib/og-logo";
 
 export const runtime = "edge";
 
 /* eslint-disable @next/next/no-img-element, jsx-a11y/alt-text */
+
+async function loadLogo(requestUrl: string): Promise<string> {
+  const base = new URL(requestUrl).origin;
+  const res = await fetch(`${base}/og-logo.png`);
+  const buf = await res.arrayBuffer();
+  const bytes = new Uint8Array(buf);
+  let binary = "";
+  for (let i = 0; i < bytes.length; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return `data:image/png;base64,${btoa(binary)}`;
+}
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
@@ -14,8 +25,22 @@ export async function GET(request: Request) {
   const player = url.searchParams.get("player") || "";
   const percentile = url.searchParams.get("percentile") || "65";
 
-  const logo = <img src={LOGO_BASE64} width={200} height={200} />;
-  const logoSmall = <img src={LOGO_BASE64} width={300} height={300} />;
+  let logoSrc = "";
+  try {
+    logoSrc = await loadLogo(request.url);
+  } catch {
+    // Will fall back to text
+  }
+
+  const logo = logoSrc
+    ? <img src={logoSrc} width={200} height={200} />
+    : <div style={{ display: "flex", marginBottom: 16 }}><span style={{ fontSize: 36, fontWeight: 900, color: "#fff", marginRight: 8 }}>BK</span><span style={{ fontSize: 36, fontWeight: 900, color: "#e87a2e" }}>GRIT</span></div>;
+
+  const bigLogo = logoSrc
+    ? <img src={logoSrc} width={300} height={300} />
+    : <div style={{ display: "flex", marginBottom: 20 }}><span style={{ fontSize: 56, fontWeight: 900, color: "#fff", marginRight: 12 }}>BK</span><span style={{ fontSize: 56, fontWeight: 900, color: "#e87a2e" }}>GRIT</span></div>;
+
+  const cacheHeaders = { "Cache-Control": "public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400" };
 
   if (type === "lottery") {
     const pickNum = parseInt(pick);
@@ -34,7 +59,7 @@ export async function GET(request: Request) {
           <div style={{ display: "flex", fontSize: 18, color: "#5c5c66", marginTop: 20 }}>Can you beat this? Try at bkgrit.com</div>
         </div>
       </div>,
-      { width: 1200, height: 630 },
+      { width: 1200, height: 630, headers: cacheHeaders },
     );
   }
 
@@ -60,17 +85,16 @@ export async function GET(request: Request) {
           <div style={{ display: "flex", fontSize: 18, color: "#94949e", marginTop: 8 }}>Better than {percentile}% of Nets fans</div>
         </div>
       </div>,
-      { width: 1200, height: 630 },
+      { width: 1200, height: 630, headers: cacheHeaders },
     );
   }
 
-  // Default — big centered logo
   return new ImageResponse(
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", backgroundColor: "#0c0c0f" }}>
-      {logoSmall}
+      {bigLogo}
       <div style={{ display: "flex", fontSize: 28, color: "#94949e", marginTop: 16 }}>Brooklyn Grit — Nets Fanatic</div>
       <div style={{ display: "flex", fontSize: 18, color: "#5c5c66", marginTop: 8 }}>Draft Tracker · Lottery Sim · War Room · Hot Takes</div>
     </div>,
-    { width: 1200, height: 630 },
+    { width: 1200, height: 630, headers: cacheHeaders },
   );
 }
