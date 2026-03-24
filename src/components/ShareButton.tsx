@@ -9,10 +9,10 @@ interface ShareButtonProps {
 
 const SITE_URL = typeof window !== "undefined" && window.location.hostname !== "localhost"
   ? `https://${window.location.hostname}`
-  : "https://netsworld.vercel.app";
+  : "https://bkgrit.com";
 
 export default function ShareButton({ text, url, hashtags = "BKGrit,Nets,NBADraft", size = "sm" }: ShareButtonProps) {
-  const shareUrl = url || "https://netsworld.vercel.app";
+  const shareUrl = url || "https://bkgrit.com";
   const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}&hashtags=${encodeURIComponent(hashtags)}`;
 
   return (
@@ -40,7 +40,7 @@ export function ShareLotteryResult({ pick }: { pick: number }) {
       ? `Nets got the #${pick} pick in my lottery sim! Top 3 baby!`
       : `Nets landed at #${pick} in my lottery sim.`;
 
-  const sharePageUrl = `https://netsworld.vercel.app/share/lottery?pick=${pick}`;
+  const sharePageUrl = `https://bkgrit.com/share/lottery?pick=${pick}`;
   const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(sharePageUrl)}&hashtags=${encodeURIComponent("BKGrit,Nets,NBADraft")}`;
 
   return (
@@ -69,7 +69,7 @@ export function ShareGMResult({
   percentile: number;
 }) {
   const text = `My BK Grit GM Score: ${score}/100 (Grade: ${grade}) — I drafted ${player} for the Nets! Better than ${percentile}% of fans.`;
-  const sharePageUrl = `https://netsworld.vercel.app/share/gm?score=${score}&grade=${encodeURIComponent(grade)}&player=${encodeURIComponent(player)}&percentile=${percentile}`;
+  const sharePageUrl = `https://bkgrit.com/share/gm?score=${score}&grade=${encodeURIComponent(grade)}&player=${encodeURIComponent(player)}&percentile=${percentile}`;
   const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(sharePageUrl)}&hashtags=${encodeURIComponent("BKGrit,Nets,NBADraft")}`;
 
   return (
