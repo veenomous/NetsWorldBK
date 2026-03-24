@@ -43,12 +43,10 @@ export default function Home() {
 
       <div className="section-divider" />
 
-      {/* Main row: Draft + Race stacked left, Poll right */}
-      <section className="grid md:grid-cols-[1fr_320px] gap-5 items-start">
-        <div className="space-y-5 stagger-children">
-          <DraftWidget />
-          <LotteryRace />
-        </div>
+      {/* Row 1: Draft Widget + Lottery Race + Daily Poll */}
+      <section className="grid md:grid-cols-3 gap-5 items-start stagger-children">
+        <DraftWidget />
+        <LotteryRace />
         <DailyPoll />
       </section>
 
