@@ -25,7 +25,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     openGraph: {
       title,
       description,
-      images: [`/api/og?type=lottery&pick=${pick}`],
+      images: [`https://bkgrit.com/api/og?type=lottery&pick=${pick}`],
       type: "website",
       siteName: "BK Grit",
     },
@@ -33,7 +33,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
       card: "summary_large_image",
       title,
       description,
-      images: [`/api/og?type=lottery&pick=${pick}`],
+      images: [`https://bkgrit.com/api/og?type=lottery&pick=${pick}`],
     },
   };
 }
