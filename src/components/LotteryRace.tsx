@@ -164,7 +164,7 @@ export default function LotteryRace() {
                   <span className={`font-bold w-10 ${isNets ? "text-brand-orange" : ""}`}>
                     {row.abbrev}
                   </span>
-                  <span className="text-text-muted text-xs w-12">{row.record}</span>
+                  <span className="text-text-data text-xs w-12">{row.record}</span>
 
                   <div className="ml-auto flex items-center gap-2">
                     {noGame ? (

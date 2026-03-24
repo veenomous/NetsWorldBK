@@ -57,11 +57,11 @@ export default function LotteryOddsTable() {
                   isNets ? "bg-brand-orange/8" : "hover:bg-white/[0.02]"
                 }`}
               >
-                <td className="py-2.5 pr-3 text-text-muted">{slot}</td>
-                <td className={`py-2.5 pr-3 font-semibold ${isNets ? "text-brand-orange" : ""}`}>
+                <td className="py-2.5 pr-3 text-text-secondary">{slot}</td>
+                <td className={`py-2.5 pr-3 font-bold ${isNets ? "text-brand-orange" : "text-text-primary"}`}>
                   {team.abbrev}
                 </td>
-                <td className="py-2.5 pr-2 text-text-muted">
+                <td className="py-2.5 pr-2 text-text-data font-medium">
                   {team.wins}-{team.losses}
                 </td>
                 {[0,1,2,3,4,5,6,7].map(pickIdx => {
@@ -79,9 +79,9 @@ export default function LotteryOddsTable() {
                       className={`text-center py-2.5 px-1.5 font-bold ${
                         isHigh && isTop4 ? "text-accent-gold" :
                         isMed && isTop4 ? "text-accent-green" :
-                        isTop4 ? "text-text-secondary" :
-                        isHigh ? "text-text-secondary" :
-                        "text-text-muted"
+                        isTop4 ? "text-text-data" :
+                        isHigh ? "text-text-data" :
+                        "text-text-secondary"
                       }`}
                     >
                       {val.toFixed(1)}

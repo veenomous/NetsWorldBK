@@ -40,7 +40,7 @@ export default function DraftWidget() {
         {/* Record */}
         <div className="flex items-center justify-between p-2 rounded-lg bg-white/[0.04] mb-2">
           <span className="text-text-secondary text-sm">Record</span>
-          <span className="font-bold text-sm">{nets.wins}-{nets.losses}</span>
+          <span className="font-bold text-base">{nets.wins}-{nets.losses}</span>
         </div>
 
         {/* Mini standings — compact */}
@@ -60,7 +60,7 @@ export default function DraftWidget() {
                   {team.abbrev}
                 </span>
               </div>
-              <span className="text-text-muted text-sm">{team.wins}-{team.losses}</span>
+              <span className="text-text-data text-sm font-medium">{team.wins}-{team.losses}</span>
             </div>
           ))}
         </div>
