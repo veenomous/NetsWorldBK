@@ -72,15 +72,14 @@ export default function LotteryRace() {
 
   const fetchData = useCallback(async () => {
     try {
-      // Fetch scores + schedule in parallel
-      const [scoresRes, schedRes] = await Promise.all([
+      const [scoresRes, nextRes] = await Promise.all([
         fetch("/api/scores"),
-        fetch("/api/schedule"),
+        fetch("/api/next-games"),
       ]);
       const scoresData = await scoresRes.json();
-      const schedData = await schedRes.json();
+      const nextData = await nextRes.json();
       const games: LiveGame[] = scoresData.games || [];
-      const upcoming = schedData.upcomingGames || [];
+      const nextGames: Record<string, { opponent: string; isHome: boolean; dayLabel: string }> = nextData.nextGames || {};
 
       const built: TeamRow[] = top5.map((team) => {
         const game = games.find(
@@ -92,15 +91,12 @@ export default function LotteryRace() {
         const teamScore = game ? (isHome ? game.homeTeam.score : game.awayTeam.score) : 0;
         const opponentScore = game ? (isHome ? game.awayTeam.score : game.homeTeam.score) : 0;
 
-        // Find next scheduled game for this team if not playing today
         let nextGame = "";
         if (!game) {
-          const next = upcoming.find((g: any) =>
-            g.homeTeam?.abbrev === team.abbrev || g.awayTeam?.abbrev === team.abbrev ||
-            g.opponent?.includes(team.abbrev) || g.opponentAbbrev === team.abbrev
-          );
-          // Fallback: just show "No game today"
-          nextGame = "";
+          const ng = nextGames[team.abbrev];
+          if (ng) {
+            nextGame = `${ng.isHome ? "vs" : "@"} ${ng.opponent} — ${ng.dayLabel}`;
+          }
         }
 
         return {
@@ -172,7 +168,9 @@ export default function LotteryRace() {
 
                   <div className="ml-auto flex items-center gap-2">
                     {noGame ? (
-                      <span className="text-text-muted text-xs">Off today</span>
+                      <span className="text-text-muted text-xs">
+                        {row.nextGame ? `Next: ${row.nextGame}` : "Off today"}
+                      </span>
                     ) : isScheduled ? (
                       <div className="flex items-center gap-1.5">
                         <span className="text-text-muted text-xs">{row.game!.statusText}</span>
