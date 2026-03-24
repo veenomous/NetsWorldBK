@@ -16,34 +16,15 @@ export async function GET(request: Request) {
     const pickColor = pickNum === 1 ? "#ffc312" : pickNum <= 3 ? "#00d68f" : "#94949e";
 
     return new ImageResponse(
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "100%",
-          height: "100%",
-          backgroundColor: "#0c0c0f",
-          padding: "40px",
-        }}
-      >
-        <div style={{ display: "flex", gap: "8px", marginBottom: "24px" }}>
-          <span style={{ fontSize: "28px", fontWeight: 900, color: "#fff" }}>BK</span>
-          <span style={{ fontSize: "28px", fontWeight: 900, color: "#e87a2e" }}>GRIT</span>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", backgroundColor: "#0c0c0f" }}>
+        <div style={{ display: "flex", marginBottom: 24 }}>
+          <span style={{ fontSize: 28, fontWeight: 900, color: "#fff", marginRight: 8 }}>BK</span>
+          <span style={{ fontSize: 28, fontWeight: 900, color: "#e87a2e" }}>GRIT</span>
         </div>
-        <div style={{ fontSize: "16px", color: "#94949e", letterSpacing: "6px", marginBottom: "20px" }}>
-          NBA DRAFT LOTTERY RESULT
-        </div>
-        <div style={{ fontSize: "180px", fontWeight: 900, color: pickColor, lineHeight: 1 }}>
-          #{pick}
-        </div>
-        <div style={{ fontSize: "32px", fontWeight: 700, color: "#fff", marginTop: "12px" }}>
-          BROOKLYN NETS
-        </div>
-        <div style={{ fontSize: "18px", color: "#5c5c66", marginTop: "32px" }}>
-          Can you beat this? Try at bkgrit.com
-        </div>
+        <div style={{ display: "flex", fontSize: 16, color: "#94949e", marginBottom: 20 }}>NBA DRAFT LOTTERY RESULT</div>
+        <div style={{ display: "flex", fontSize: 140, fontWeight: 900, color: pickColor }}>#{pick}</div>
+        <div style={{ display: "flex", fontSize: 32, fontWeight: 700, color: "#fff", marginTop: 12 }}>BROOKLYN NETS</div>
+        <div style={{ display: "flex", fontSize: 18, color: "#5c5c66", marginTop: 32 }}>Can you beat this? Try at bkgrit.com</div>
       </div>,
       { width: 1200, height: 630 },
     );
@@ -52,73 +33,36 @@ export async function GET(request: Request) {
   if (type === "gm") {
     const scoreNum = parseInt(score);
     const scoreColor = scoreNum >= 80 ? "#00d68f" : scoreNum >= 60 ? "#ffc312" : "#ff4757";
+    const playerText = player ? "Drafted: " + player : "";
 
     return new ImageResponse(
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "100%",
-          height: "100%",
-          backgroundColor: "#0c0c0f",
-          padding: "40px",
-        }}
-      >
-        <div style={{ display: "flex", gap: "8px", marginBottom: "24px" }}>
-          <span style={{ fontSize: "28px", fontWeight: 900, color: "#fff" }}>BK</span>
-          <span style={{ fontSize: "28px", fontWeight: 900, color: "#e87a2e" }}>GRIT</span>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", backgroundColor: "#0c0c0f" }}>
+        <div style={{ display: "flex", marginBottom: 24 }}>
+          <span style={{ fontSize: 28, fontWeight: 900, color: "#fff", marginRight: 8 }}>BK</span>
+          <span style={{ fontSize: 28, fontWeight: 900, color: "#e87a2e" }}>GRIT</span>
         </div>
-        <div style={{ fontSize: "16px", color: "#94949e", letterSpacing: "6px", marginBottom: "20px" }}>
-          DRAFT WAR ROOM SCORE
+        <div style={{ display: "flex", fontSize: 16, color: "#94949e", marginBottom: 20 }}>DRAFT WAR ROOM SCORE</div>
+        <div style={{ display: "flex", alignItems: "baseline" }}>
+          <span style={{ fontSize: 120, fontWeight: 900, color: scoreColor, marginRight: 8 }}>{score}</span>
+          <span style={{ fontSize: 40, color: "#5c5c66", fontWeight: 700 }}>/100</span>
         </div>
-        <div style={{ display: "flex", alignItems: "baseline", gap: "8px" }}>
-          <span style={{ fontSize: "160px", fontWeight: 900, color: scoreColor, lineHeight: 1 }}>
-            {score}
-          </span>
-          <span style={{ fontSize: "48px", color: "#5c5c66", fontWeight: 700 }}>/100</span>
-        </div>
-        <div style={{ fontSize: "28px", fontWeight: 900, color: scoreColor, marginTop: "16px" }}>
-          Grade: {grade}
-        </div>
-        {player ? (
-          <div style={{ fontSize: "24px", color: "#fff", marginTop: "16px", fontWeight: 600 }}>
-            Drafted: {player}
-          </div>
-        ) : null}
-        <div style={{ fontSize: "20px", color: "#94949e", marginTop: "12px" }}>
-          Better than {percentile}% of Nets fans
-        </div>
-        <div style={{ fontSize: "18px", color: "#5c5c66", marginTop: "28px" }}>
-          Play GM at bkgrit.com
-        </div>
+        <div style={{ display: "flex", fontSize: 28, fontWeight: 900, color: scoreColor, marginTop: 16 }}>Grade: {grade}</div>
+        <div style={{ display: "flex", fontSize: 22, color: "#fff", marginTop: 16 }}>{playerText}</div>
+        <div style={{ display: "flex", fontSize: 20, color: "#94949e", marginTop: 12 }}>Better than {percentile}% of Nets fans</div>
+        <div style={{ display: "flex", fontSize: 18, color: "#5c5c66", marginTop: 28 }}>Play GM at bkgrit.com</div>
       </div>,
       { width: 1200, height: 630 },
     );
   }
 
   return new ImageResponse(
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "100%",
-        height: "100%",
-        backgroundColor: "#0c0c0f",
-        padding: "40px",
-      }}
-    >
-      <div style={{ display: "flex", gap: "12px", marginBottom: "20px" }}>
-        <span style={{ fontSize: "56px", fontWeight: 900, color: "#fff" }}>BK</span>
-        <span style={{ fontSize: "56px", fontWeight: 900, color: "#e87a2e" }}>GRIT</span>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", backgroundColor: "#0c0c0f" }}>
+      <div style={{ display: "flex", marginBottom: 20 }}>
+        <span style={{ fontSize: 56, fontWeight: 900, color: "#fff", marginRight: 12 }}>BK</span>
+        <span style={{ fontSize: 56, fontWeight: 900, color: "#e87a2e" }}>GRIT</span>
       </div>
-      <div style={{ fontSize: "24px", color: "#94949e" }}>Brooklyn Grit — Nets Fanatic</div>
-      <div style={{ fontSize: "18px", color: "#5c5c66", marginTop: "8px" }}>
-        Draft Tracker · Lottery Sim · War Room · Hot Takes
-      </div>
+      <div style={{ display: "flex", fontSize: 24, color: "#94949e" }}>Brooklyn Grit — Nets Fanatic</div>
+      <div style={{ display: "flex", fontSize: 18, color: "#5c5c66", marginTop: 8 }}>Draft Tracker · Lottery Sim · War Room · Hot Takes</div>
     </div>,
     { width: 1200, height: 630 },
   );
