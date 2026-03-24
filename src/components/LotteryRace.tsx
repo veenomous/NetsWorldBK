@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { useStandings, type LiveTeam } from "@/lib/useStandings";
 
 interface TeamScore {
   abbrev: string;
@@ -30,11 +31,6 @@ interface TeamRow {
   teamScore: number;
 }
 
-const TOP5 = ["IND", "WAS", "BKN", "SAC", "UTA"];
-const TOP5_RECORDS: Record<string, string> = {
-  IND: "15-56", WAS: "16-55", BKN: "17-54", SAC: "19-53", UTA: "21-50",
-};
-
 function periodLabel(p: number): string {
   if (p <= 4) return `Q${p}`;
   return `OT${p - 4}`;
@@ -48,6 +44,9 @@ function formatClock(raw: string): string {
 }
 
 export default function LotteryRace() {
+  const { lottery } = useStandings();
+  const top5 = lottery.slice(0, 5);
+
   const [rows, setRows] = useState<TeamRow[]>([]);
   const [hasLive, setHasLive] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -58,21 +57,20 @@ export default function LotteryRace() {
       const data = await res.json();
       const games: LiveGame[] = data.games || [];
 
-      const built: TeamRow[] = TOP5.map((abbrev, idx) => {
-        // Find game involving this team
+      const built: TeamRow[] = top5.map((team) => {
         const game = games.find(
-          (g: LiveGame) => g.homeTeam.abbrev === abbrev || g.awayTeam.abbrev === abbrev
+          (g: LiveGame) => g.homeTeam.abbrev === team.abbrev || g.awayTeam.abbrev === team.abbrev
         ) || null;
 
-        const isHome = game?.homeTeam.abbrev === abbrev;
+        const isHome = game?.homeTeam.abbrev === team.abbrev;
         const opponent = game ? (isHome ? game.awayTeam.abbrev : game.homeTeam.abbrev) : "";
         const teamScore = game ? (isHome ? game.homeTeam.score : game.awayTeam.score) : 0;
         const opponentScore = game ? (isHome ? game.awayTeam.score : game.homeTeam.score) : 0;
 
         return {
-          rank: idx + 1,
-          abbrev,
-          record: TOP5_RECORDS[abbrev] || "",
+          rank: team.lotteryRank,
+          abbrev: team.abbrev,
+          record: `${team.wins}-${team.losses}`,
           game,
           isHome: !!isHome,
           opponent,
@@ -88,7 +86,7 @@ export default function LotteryRace() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [top5]);
 
   useEffect(() => {
     fetchData();

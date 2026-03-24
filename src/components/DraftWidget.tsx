@@ -1,26 +1,31 @@
 "use client";
 
-import { getNetsData, lotteryTeams } from "@/data/standings";
+import { useStandings, getNetsFromStandings } from "@/lib/useStandings";
 import Link from "next/link";
 
 export default function DraftWidget() {
-  const nets = getNetsData();
+  const { lottery, isLive } = useStandings();
+  const nets = getNetsFromStandings(lottery);
+
+  if (!nets) return null;
 
   return (
     <div className="card overflow-hidden">
-      {/* Top accent bar */}
       <div className="h-1 gradient-bg-brand" />
 
       <div className="p-5">
         <div className="flex items-center justify-between mb-4">
           <h3 className="font-bold text-[15px]">Draft Position</h3>
-          <span className="tag tag-gold">2026 NBA Draft</span>
+          <div className="flex items-center gap-2">
+            {isLive && <span className="text-[9px] text-accent-green font-bold">LIVE</span>}
+            <span className="tag tag-gold">2026 NBA Draft</span>
+          </div>
         </div>
 
         {/* Big number */}
         <div className="flex items-center gap-4 mb-4">
           <div className="text-center">
-            <span className="text-5xl font-black gradient-text-brand leading-none">#{nets.currentPick}</span>
+            <span className="text-5xl font-black gradient-text-brand leading-none">#{nets.lotteryRank}</span>
             <p className="text-text-muted text-[11px] mt-1">current slot</p>
           </div>
 
@@ -38,7 +43,7 @@ export default function DraftWidget() {
 
         {/* Mini standings */}
         <div className="space-y-1 mb-3">
-          {lotteryTeams.slice(0, 5).map((team, idx) => (
+          {lottery.slice(0, 5).map((team) => (
             <div
               key={team.abbrev}
               className={`flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs ${
@@ -48,7 +53,7 @@ export default function DraftWidget() {
               }`}
             >
               <div className="flex items-center gap-2">
-                <span className="text-text-muted w-4 text-right">{idx + 1}</span>
+                <span className="text-text-muted w-4 text-right">{team.lotteryRank}</span>
                 <span className={team.abbrev === "BKN" ? "font-bold" : "text-text-secondary"}>
                   {team.abbrev}
                 </span>
