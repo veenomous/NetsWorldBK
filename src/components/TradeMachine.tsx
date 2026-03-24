@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getNetsTeam, getOtherTeams, formatSalary, type NBAPlayer, type NBATeam } from "@/data/rosters";
+import { getNetsTeam, getOtherTeams, formatSalary, type NBAPlayer, type NBATeam, type DraftPick } from "@/data/rosters";
 import { checkTradeValidity } from "@/lib/tradeRules";
 import { supabase, getVisitorId } from "@/lib/supabase";
 
@@ -25,6 +25,8 @@ export default function TradeMachine() {
   const [otherTeam, setOtherTeam] = useState<NBATeam | null>(null);
   const [netsSend, setNetsSend] = useState<NBAPlayer[]>([]);
   const [netsReceive, setNetsReceive] = useState<NBAPlayer[]>([]);
+  const [picksSend, setPicksSend] = useState<DraftPick[]>([]);
+  const [picksReceive, setPicksReceive] = useState<DraftPick[]>([]);
   const [author, setAuthor] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -55,6 +57,18 @@ export default function TradeMachine() {
   const inSalary = netsReceive.reduce((a, p) => a + p.salary, 0);
   const validity = checkTradeValidity(outSalary, inSalary);
 
+  const togglePick = (pick: DraftPick, side: "send" | "receive") => {
+    if (side === "send") {
+      setPicksSend((prev) =>
+        prev.find((p) => p.label === pick.label) ? prev.filter((p) => p.label !== pick.label) : [...prev, pick]
+      );
+    } else {
+      setPicksReceive((prev) =>
+        prev.find((p) => p.label === pick.label) ? prev.filter((p) => p.label !== pick.label) : [...prev, pick]
+      );
+    }
+  };
+
   const togglePlayer = (player: NBAPlayer, side: "send" | "receive") => {
     if (side === "send") {
       setNetsSend((prev) =>
@@ -76,9 +90,18 @@ export default function TradeMachine() {
     setSubmitting(true);
     const visitorId = getVisitorId();
 
+    const sendData = [
+      ...netsSend.map((p) => ({ name: p.name, salary: p.salary, type: "player" })),
+      ...picksSend.map((p) => ({ name: p.label, salary: 0, type: "pick" })),
+    ];
+    const receiveData = [
+      ...netsReceive.map((p) => ({ name: p.name, salary: p.salary, type: "player" })),
+      ...picksReceive.map((p) => ({ name: p.label, salary: 0, type: "pick" })),
+    ];
+
     const { data } = await supabase.from("trades").insert({
-      nets_send: netsSend.map((p) => ({ name: p.name, salary: p.salary })),
-      nets_receive: netsReceive.map((p) => ({ name: p.name, salary: p.salary })),
+      nets_send: sendData,
+      nets_receive: receiveData,
       other_team: otherTeam?.abbrev || "",
       nets_salary_out: outSalary,
       nets_salary_in: inSalary,
@@ -120,6 +143,8 @@ export default function TradeMachine() {
     setOtherTeam(null);
     setNetsSend([]);
     setNetsReceive([]);
+    setPicksSend([]);
+    setPicksReceive([]);
     setAuthor("");
     setSubmitted(false);
   };
@@ -166,12 +191,18 @@ export default function TradeMachine() {
           <h3 className="text-lg font-black mb-1">Nets are sending...</h3>
           <p className="text-text-muted text-xs mb-4">Select players to trade away</p>
           <PlayerList players={nets.players} selected={netsSend} onToggle={(p) => togglePlayer(p, "send")} />
-          <SalaryBar label="Outgoing" amount={outSalary} />
+          {nets.picks && nets.picks.length > 0 && (
+            <PickList picks={nets.picks} selected={picksSend} onToggle={(p) => togglePick(p, "send")} />
+          )}
+          <SalaryBar label="Outgoing salary" amount={outSalary} />
+          {picksSend.length > 0 && (
+            <div className="text-[11px] text-accent-gold mt-1">+ {picksSend.length} draft pick{picksSend.length > 1 ? "s" : ""}</div>
+          )}
           <div className="flex justify-between mt-4">
             <button onClick={() => setStep(0)} className="text-sm text-text-muted hover:text-white transition-colors cursor-pointer">&larr; Back</button>
             <button
               onClick={() => setStep(2)}
-              disabled={netsSend.length === 0}
+              disabled={netsSend.length === 0 && picksSend.length === 0}
               className="px-5 py-2 rounded-xl gradient-bg-brand font-bold text-sm disabled:opacity-30 transition-all cursor-pointer"
             >
               Next
@@ -186,7 +217,13 @@ export default function TradeMachine() {
           <h3 className="text-lg font-black mb-1">{otherTeam.name} are sending...</h3>
           <p className="text-text-muted text-xs mb-4">Select players Nets receive</p>
           <PlayerList players={otherTeam.players} selected={netsReceive} onToggle={(p) => togglePlayer(p, "receive")} />
-          <SalaryBar label="Incoming" amount={inSalary} />
+          {otherTeam.picks && otherTeam.picks.length > 0 && (
+            <PickList picks={otherTeam.picks} selected={picksReceive} onToggle={(p) => togglePick(p, "receive")} />
+          )}
+          <SalaryBar label="Incoming salary" amount={inSalary} />
+          {picksReceive.length > 0 && (
+            <div className="text-[11px] text-accent-gold mt-1">+ {picksReceive.length} draft pick{picksReceive.length > 1 ? "s" : ""}</div>
+          )}
 
           {/* Live validity check */}
           {netsSend.length > 0 && netsReceive.length > 0 && (
@@ -225,8 +262,14 @@ export default function TradeMachine() {
                   <span className="text-text-muted">{formatSalary(p.salary)}</span>
                 </div>
               ))}
+              {picksSend.map((p) => (
+                <div key={p.label} className="flex justify-between text-sm mb-1">
+                  <span className="text-accent-gold">{p.label}</span>
+                  <span className="text-accent-gold text-[10px]">PICK</span>
+                </div>
+              ))}
               <div className="border-t border-white/[0.06] mt-2 pt-2 flex justify-between text-sm font-bold">
-                <span>Total</span>
+                <span>Salary</span>
                 <span>{formatSalary(outSalary)}</span>
               </div>
             </div>
@@ -240,8 +283,14 @@ export default function TradeMachine() {
                   <span className="text-text-muted">{formatSalary(p.salary)}</span>
                 </div>
               ))}
+              {picksReceive.map((p) => (
+                <div key={p.label} className="flex justify-between text-sm mb-1">
+                  <span className="text-accent-gold">{p.label}</span>
+                  <span className="text-accent-gold text-[10px]">PICK</span>
+                </div>
+              ))}
               <div className="border-t border-white/[0.06] mt-2 pt-2 flex justify-between text-sm font-bold">
-                <span>Total</span>
+                <span>Salary</span>
                 <span>{formatSalary(inSalary)}</span>
               </div>
             </div>
@@ -392,6 +441,43 @@ function PlayerList({ players, selected, onToggle }: { players: NBAPlayer[]; sel
           </button>
         );
       })}
+    </div>
+  );
+}
+
+function PickList({ picks, selected, onToggle }: { picks: DraftPick[]; selected: DraftPick[]; onToggle: (p: DraftPick) => void }) {
+  return (
+    <div className="mt-3">
+      <p className="text-[11px] text-accent-gold font-bold uppercase tracking-wider mb-1.5">Draft Picks</p>
+      <div className="space-y-1">
+        {picks.map((p) => {
+          const isSelected = selected.some((s) => s.label === p.label);
+          return (
+            <button
+              key={p.label}
+              onClick={() => onToggle(p)}
+              className={`w-full flex items-center justify-between p-2.5 rounded-xl text-left transition-all cursor-pointer ${
+                isSelected
+                  ? "bg-accent-gold/10 border border-accent-gold/30"
+                  : "bg-white/[0.02] border border-transparent hover:bg-white/[0.04]"
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <div className={`w-5 h-5 rounded border-2 flex items-center justify-center text-[10px] ${
+                  isSelected ? "border-accent-gold bg-accent-gold text-white" : "border-white/20"
+                }`}>
+                  {isSelected && "✓"}
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-accent-gold">{p.label}</p>
+                  {p.protection && <p className="text-text-muted text-[10px]">{p.protection}</p>}
+                </div>
+              </div>
+              <span className="tag tag-gold text-[9px]">{p.round === 1 ? "1st" : "2nd"} Round</span>
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
