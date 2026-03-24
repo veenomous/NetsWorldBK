@@ -19,13 +19,22 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 
   const description = `I just ran the NBA Draft Lottery on BK Grit and the Nets got the #${pick} pick. Can you do better? Try the simulator now.`;
 
+  const ogImage = `https://bkgrit.com/api/og?type=lottery&pick=${pick}`;
+
   return {
     title,
     description,
     openGraph: {
       title,
       description,
-      images: [`https://bkgrit.com/api/og?type=lottery&pick=${pick}`],
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `Nets got the #${pick} pick`,
+        },
+      ],
       type: "website",
       siteName: "BK Grit",
     },
@@ -33,7 +42,10 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
       card: "summary_large_image",
       title,
       description,
-      images: [`https://bkgrit.com/api/og?type=lottery&pick=${pick}`],
+      images: [ogImage],
+    },
+    other: {
+      "og:image:type": "image/png",
     },
   };
 }

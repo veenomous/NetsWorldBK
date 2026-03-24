@@ -18,13 +18,22 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     ? `I drafted ${player} for the Nets and scored ${score}/100 — better than ${percentile}% of fans. Think you can do better?`
     : `I scored ${score}/100 as Nets GM — better than ${percentile}% of fans. Play the War Room at BK Grit.`;
 
+  const ogImage = `https://bkgrit.com/api/og?type=gm&score=${score}&grade=${encodeURIComponent(grade)}&player=${encodeURIComponent(player)}&percentile=${percentile}`;
+
   return {
     title,
     description,
     openGraph: {
       title,
       description,
-      images: [`https://bkgrit.com/api/og?type=gm&score=${score}&grade=${grade}&player=${encodeURIComponent(player)}&percentile=${percentile}`],
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `GM Score: ${score}/100`,
+        },
+      ],
       type: "website",
       siteName: "BK Grit",
     },
@@ -32,7 +41,10 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
       card: "summary_large_image",
       title,
       description,
-      images: [`https://bkgrit.com/api/og?type=gm&score=${score}&grade=${grade}&player=${encodeURIComponent(player)}&percentile=${percentile}`],
+      images: [ogImage],
+    },
+    other: {
+      "og:image:type": "image/png",
     },
   };
 }
