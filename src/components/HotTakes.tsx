@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { supabase, getVisitorId } from "@/lib/supabase";
 import ShareButton from "@/components/ShareButton";
 
 interface Take {
@@ -9,18 +10,9 @@ interface Take {
   author: string;
   agrees: number;
   disagrees: number;
-  timeAgo: string;
   tag: string;
+  created_at: string;
 }
-
-const seedTakes: Take[] = [
-  { id: "1", text: "Cameron Boozer is the perfect pick for this team. We don't need another guard.", author: "BrooklynMike", agrees: 342, disagrees: 87, timeAgo: "2h", tag: "Draft" },
-  { id: "2", text: "We should trade this pick for an established star. Enough rebuilding.", author: "NetsLifer", agrees: 156, disagrees: 298, timeAgo: "4h", tag: "Hot Take" },
-  { id: "3", text: "MPJ trade was a steal. 24 PPG and a future first? Denver got fleeced.", author: "BKScouting", agrees: 421, disagrees: 134, timeAgo: "5h", tag: "Roster" },
-  { id: "4", text: "AJ Dybantsa at 3 would be the steal of the draft. 25 PPG as a freshman.", author: "DraftNerd42", agrees: 267, disagrees: 52, timeAgo: "6h", tag: "Draft" },
-  { id: "5", text: "This front office has no plan. We're just tanking with no vision.", author: "BarclaysSad", agrees: 198, disagrees: 245, timeAgo: "8h", tag: "Spicy" },
-  { id: "6", text: "The Pacers being worse than us is actually bad. We need the #1 slot.", author: "TankCommander", agrees: 312, disagrees: 88, timeAgo: "10h", tag: "Strategy" },
-];
 
 const tagColors: Record<string, string> = {
   "Draft": "tag-blue",
@@ -28,35 +20,97 @@ const tagColors: Record<string, string> = {
   "Roster": "tag-green",
   "Spicy": "tag-red",
   "Strategy": "tag-purple",
+  "Trade": "tag-gold",
 };
 
-export default function HotTakes() {
-  const [takes, setTakes] = useState(seedTakes);
-  const [userReactions, setUserReactions] = useState<Record<string, "agree" | "disagree">>({});
+const TAG_OPTIONS = ["Hot Take", "Draft", "Roster", "Strategy", "Spicy"];
 
+export default function HotTakes() {
+  const [takes, setTakes] = useState<Take[]>([]);
+  const [userVotes, setUserVotes] = useState<Record<string, string>>({});
+  const [loading, setLoading] = useState(true);
+  const [showForm, setShowForm] = useState(false);
+  const [newTake, setNewTake] = useState("");
+  const [newAuthor, setNewAuthor] = useState("");
+  const [newTag, setNewTag] = useState("Hot Take");
+  const [submitting, setSubmitting] = useState(false);
+
+  // Fetch takes + user's existing votes
   useEffect(() => {
-    const saved = localStorage.getItem("nw-take-reactions");
-    if (saved) setUserReactions(JSON.parse(saved));
+    async function load() {
+      const visitorId = getVisitorId();
+
+      const [takesRes, votesRes] = await Promise.all([
+        supabase.from("hot_takes").select("*").order("created_at", { ascending: false }).limit(20),
+        supabase.from("take_votes").select("take_id, vote_type").eq("visitor_id", visitorId),
+      ]);
+
+      if (takesRes.data) setTakes(takesRes.data);
+      if (votesRes.data) {
+        const map: Record<string, string> = {};
+        votesRes.data.forEach((v: any) => { map[v.take_id] = v.vote_type; });
+        setUserVotes(map);
+      }
+      setLoading(false);
+    }
+    load();
   }, []);
 
-  const handleReaction = (id: string, type: "agree" | "disagree") => {
-    if (userReactions[id]) return;
-    const newReactions = { ...userReactions, [id]: type };
-    setUserReactions(newReactions);
-    localStorage.setItem("nw-take-reactions", JSON.stringify(newReactions));
+  const handleVote = async (takeId: string, voteType: "agree" | "disagree") => {
+    if (userVotes[takeId]) return;
+    const visitorId = getVisitorId();
 
+    // Optimistic update
+    setUserVotes((prev) => ({ ...prev, [takeId]: voteType }));
     setTakes((prev) =>
       prev.map((t) =>
-        t.id === id
-          ? {
-              ...t,
-              agrees: t.agrees + (type === "agree" ? 1 : 0),
-              disagrees: t.disagrees + (type === "disagree" ? 1 : 0),
-            }
+        t.id === takeId
+          ? { ...t, agrees: t.agrees + (voteType === "agree" ? 1 : 0), disagrees: t.disagrees + (voteType === "disagree" ? 1 : 0) }
           : t
       )
     );
+
+    // Save vote
+    await supabase.from("take_votes").insert({ take_id: takeId, vote_type: voteType, visitor_id: visitorId });
+
+    // Update count on the take
+    const take = takes.find((t) => t.id === takeId);
+    if (take) {
+      const field = voteType === "agree" ? "agrees" : "disagrees";
+      await supabase.from("hot_takes").update({ [field]: (take[field] || 0) + 1 }).eq("id", takeId);
+    }
   };
+
+  const handleSubmit = async () => {
+    if (!newTake.trim() || newTake.length < 10) return;
+    setSubmitting(true);
+
+    const visitorId = getVisitorId();
+    const author = newAuthor.trim() || "Anonymous";
+
+    const { data, error } = await supabase
+      .from("hot_takes")
+      .insert({ text: newTake.trim(), author, tag: newTag, ip_hash: visitorId })
+      .select()
+      .single();
+
+    if (data && !error) {
+      setTakes((prev) => [data, ...prev]);
+      setNewTake("");
+      setNewAuthor("");
+      setShowForm(false);
+    }
+    setSubmitting(false);
+  };
+
+  function timeAgo(dateStr: string): string {
+    const diff = Date.now() - new Date(dateStr).getTime();
+    const mins = Math.floor(diff / 60000);
+    if (mins < 60) return `${mins}m`;
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return `${hrs}h`;
+    return `${Math.floor(hrs / 24)}d`;
+  }
 
   return (
     <div className="card p-5">
@@ -65,82 +119,127 @@ export default function HotTakes() {
           <h3 className="font-bold text-[15px]">Hot Takes</h3>
           <p className="text-text-muted text-xs mt-0.5">What Nets fans are saying</p>
         </div>
-        <span className="tag tag-gold">Today</span>
+        <button
+          onClick={() => setShowForm(!showForm)}
+          className="tag tag-gold cursor-pointer hover:opacity-80 transition-opacity"
+        >
+          {showForm ? "Cancel" : "+ Add Take"}
+        </button>
       </div>
 
-      <div className="space-y-3">
-        {takes.map((take) => {
-          const total = take.agrees + take.disagrees;
-          const agreePercent = Math.round((take.agrees / total) * 100);
-          const userReaction = userReactions[take.id];
+      {/* Submit form */}
+      {showForm && (
+        <div className="mb-4 p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] animate-slide-up">
+          <textarea
+            value={newTake}
+            onChange={(e) => setNewTake(e.target.value)}
+            placeholder="Drop your take..."
+            maxLength={280}
+            rows={2}
+            className="w-full bg-transparent text-[13px] text-white placeholder:text-text-muted outline-none resize-none mb-2"
+          />
+          <div className="flex items-center gap-2 mb-2">
+            <input
+              value={newAuthor}
+              onChange={(e) => setNewAuthor(e.target.value)}
+              placeholder="Your name (optional)"
+              maxLength={20}
+              className="flex-1 bg-white/[0.04] rounded-lg px-3 py-1.5 text-[12px] text-white placeholder:text-text-muted outline-none"
+            />
+            <select
+              value={newTag}
+              onChange={(e) => setNewTag(e.target.value)}
+              className="bg-white/[0.04] rounded-lg px-3 py-1.5 text-[12px] text-white outline-none"
+            >
+              {TAG_OPTIONS.map((t) => (
+                <option key={t} value={t}>{t}</option>
+              ))}
+            </select>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] text-text-muted">{newTake.length}/280</span>
+            <button
+              onClick={handleSubmit}
+              disabled={submitting || newTake.trim().length < 10}
+              className="px-4 py-1.5 rounded-lg gradient-bg-brand text-white text-[12px] font-bold disabled:opacity-30 transition-all hover:opacity-90"
+            >
+              {submitting ? "Posting..." : "Post Take"}
+            </button>
+          </div>
+        </div>
+      )}
 
-          return (
-            <div key={take.id} className="p-3.5 rounded-xl bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
-              {/* Header */}
-              <div className="flex items-center gap-2 mb-2">
-                <span className={`tag ${tagColors[take.tag] || "tag-blue"}`}>{take.tag}</span>
-                <span className="text-text-muted text-[11px]">@{take.author}</span>
-                <span className="text-text-muted text-[11px] ml-auto">{take.timeAgo} ago</span>
-              </div>
+      {loading ? (
+        <div className="space-y-3">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="h-20 rounded-xl bg-white/[0.02] animate-pulse-soft" />
+          ))}
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {takes.map((take) => {
+            const total = take.agrees + take.disagrees;
+            const agreePercent = total > 0 ? Math.round((take.agrees / total) * 100) : 50;
+            const userVote = userVotes[take.id];
 
-              {/* Take text */}
-              <p className="text-[13px] font-medium leading-snug mb-3">{take.text}</p>
-
-              {/* Reaction bar */}
-              {userReaction && (
-                <div className="mb-2.5">
-                  <div className="h-1.5 rounded-full overflow-hidden flex bg-white/[0.04]">
-                    <div
-                      className="h-full bg-accent-green rounded-l-full odds-bar"
-                      style={{ width: `${agreePercent}%` }}
-                    />
-                    <div
-                      className="h-full bg-accent-red rounded-r-full odds-bar"
-                      style={{ width: `${100 - agreePercent}%` }}
-                    />
-                  </div>
+            return (
+              <div key={take.id} className="p-3.5 rounded-xl bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className={`tag ${tagColors[take.tag] || "tag-blue"}`}>{take.tag}</span>
+                  <span className="text-text-muted text-[11px]">@{take.author}</span>
+                  <span className="text-text-muted text-[11px] ml-auto">{timeAgo(take.created_at)}</span>
                 </div>
-              )}
 
-              {/* Buttons */}
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => handleReaction(take.id, "agree")}
-                  disabled={!!userReaction}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-semibold transition-all ${
-                    userReaction === "agree"
-                      ? "bg-accent-green/15 text-accent-green"
-                      : "bg-white/[0.04] text-text-secondary hover:bg-accent-green/10 hover:text-accent-green"
-                  } ${userReaction ? "cursor-default" : "cursor-pointer"}`}
-                >
-                  <span>&#128077;</span>
-                  <span>{take.agrees}</span>
-                </button>
-                <button
-                  onClick={() => handleReaction(take.id, "disagree")}
-                  disabled={!!userReaction}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-semibold transition-all ${
-                    userReaction === "disagree"
-                      ? "bg-accent-red/15 text-accent-red"
-                      : "bg-white/[0.04] text-text-secondary hover:bg-accent-red/10 hover:text-accent-red"
-                  } ${userReaction ? "cursor-default" : "cursor-pointer"}`}
-                >
-                  <span>&#128078;</span>
-                  <span>{take.disagrees}</span>
-                </button>
-                {userReaction && (
-                  <>
-                    <span className="text-[11px] text-text-muted ml-auto mr-2">
-                      {agreePercent}% agree
-                    </span>
-                    <ShareButton text={`"${take.text}" — ${agreePercent}% of Nets fans agree. What do you think?`} />
-                  </>
+                <p className="text-[13px] font-medium leading-snug mb-3">{take.text}</p>
+
+                {userVote && (
+                  <div className="mb-2.5">
+                    <div className="h-1.5 rounded-full overflow-hidden flex bg-white/[0.04]">
+                      <div className="h-full bg-accent-green rounded-l-full odds-bar" style={{ width: `${agreePercent}%` }} />
+                      <div className="h-full bg-accent-red rounded-r-full odds-bar" style={{ width: `${100 - agreePercent}%` }} />
+                    </div>
+                  </div>
                 )}
+
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => handleVote(take.id, "agree")}
+                    disabled={!!userVote}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-semibold transition-all ${
+                      userVote === "agree"
+                        ? "bg-accent-green/15 text-accent-green"
+                        : "bg-white/[0.04] text-text-secondary hover:bg-accent-green/10 hover:text-accent-green"
+                    } ${userVote ? "cursor-default" : "cursor-pointer"}`}
+                  >
+                    <span>&#128077;</span>
+                    <span>{take.agrees}</span>
+                  </button>
+                  <button
+                    onClick={() => handleVote(take.id, "disagree")}
+                    disabled={!!userVote}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-semibold transition-all ${
+                      userVote === "disagree"
+                        ? "bg-accent-red/15 text-accent-red"
+                        : "bg-white/[0.04] text-text-secondary hover:bg-accent-red/10 hover:text-accent-red"
+                    } ${userVote ? "cursor-default" : "cursor-pointer"}`}
+                  >
+                    <span>&#128078;</span>
+                    <span>{take.disagrees}</span>
+                  </button>
+                  {userVote && (
+                    <>
+                      <span className="text-[11px] text-text-muted ml-auto mr-2">
+                        {agreePercent}% agree
+                      </span>
+                      <ShareButton text={`"${take.text}" — ${agreePercent}% of Nets fans agree. What do you think?`} />
+                    </>
+                  )}
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
