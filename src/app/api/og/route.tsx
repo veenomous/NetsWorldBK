@@ -1,8 +1,9 @@
 import { ImageResponse } from "next/og";
+import { LOGO_BASE64 } from "@/lib/og-logo";
 
 export const runtime = "edge";
 
-const LOGO_URL = "https://bkgrit.com/og-logo.png";
+/* eslint-disable @next/next/no-img-element, jsx-a11y/alt-text */
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
@@ -13,7 +14,8 @@ export async function GET(request: Request) {
   const player = url.searchParams.get("player") || "";
   const percentile = url.searchParams.get("percentile") || "65";
 
-  /* eslint-disable @next/next/no-img-element, jsx-a11y/alt-text */
+  const logo = <img src={LOGO_BASE64} width={200} height={200} />;
+  const logoSmall = <img src={LOGO_BASE64} width={300} height={300} />;
 
   if (type === "lottery") {
     const pickNum = parseInt(pick);
@@ -22,7 +24,7 @@ export async function GET(request: Request) {
     return new ImageResponse(
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", backgroundColor: "#0c0c0f", padding: 60 }}>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: 60 }}>
-          <img src={LOGO_URL} width={200} height={200} />
+          {logo}
           <div style={{ display: "flex", fontSize: 16, color: "#5c5c66", marginTop: 16 }}>bkgrit.com</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -44,7 +46,7 @@ export async function GET(request: Request) {
     return new ImageResponse(
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", backgroundColor: "#0c0c0f", padding: 60 }}>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: 60 }}>
-          <img src={LOGO_URL} width={200} height={200} />
+          {logo}
           <div style={{ display: "flex", fontSize: 16, color: "#5c5c66", marginTop: 16 }}>bkgrit.com</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -65,8 +67,8 @@ export async function GET(request: Request) {
   // Default — big centered logo
   return new ImageResponse(
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", backgroundColor: "#0c0c0f" }}>
-      <img src={LOGO_URL} width={300} height={300} style={{ marginBottom: 20 }} />
-      <div style={{ display: "flex", fontSize: 28, color: "#94949e", marginTop: 8 }}>Brooklyn Grit — Nets Fanatic</div>
+      {logoSmall}
+      <div style={{ display: "flex", fontSize: 28, color: "#94949e", marginTop: 16 }}>Brooklyn Grit — Nets Fanatic</div>
       <div style={{ display: "flex", fontSize: 18, color: "#5c5c66", marginTop: 8 }}>Draft Tracker · Lottery Sim · War Room · Hot Takes</div>
     </div>,
     { width: 1200, height: 630 },
