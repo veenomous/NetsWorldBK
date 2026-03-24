@@ -8,8 +8,12 @@ export const metadata: Metadata = {
   description: "The interactive hub for Brooklyn Nets fans. Draft tracker, lottery simulator, hot takes, player stocks, and more. Built for Brooklyn.",
   keywords: ["Brooklyn Nets", "BK Grit", "NBA Draft 2026", "Lottery Simulator", "Nets Fans", "Brooklyn Grit"],
   icons: {
-    icon: "/BKFavicon.png",
-    apple: "/BKFavicon.png",
+    icon: [
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: "/apple-icon.png",
   },
   openGraph: {
     title: "BK Grit — Brooklyn Nets Fan HQ",
