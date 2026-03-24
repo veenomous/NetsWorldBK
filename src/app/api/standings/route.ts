@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export const revalidate = 3600; // Cache 1 hour
+export const dynamic = "force-dynamic"; // Don't pre-render at build time
 
 export interface StandingsTeam {
   team: string;
@@ -22,7 +22,7 @@ export async function GET() {
           "Accept-Language": "en-US,en;q=0.9",
           Origin: "https://www.nba.com",
         },
-        next: { revalidate: 3600 },
+        cache: "no-store",
       }
     );
 
