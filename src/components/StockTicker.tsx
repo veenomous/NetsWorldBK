@@ -12,16 +12,22 @@ interface PlayerStock {
   tagline: string;
 }
 
+// Actual Nets roster as of March 23, 2026 (post-deadline)
+// Cam Thomas waived Feb 5, signed w/ Bucks
+// Cam Johnson traded to Denver for MPJ + pick
 const initialStocks: PlayerStock[] = [
-  // Actual 2025-26 Nets roster
-  { name: "Michael Porter Jr.", role: "SF", category: "roster", trend: 22, prevTrend: 15, hot: true, tagline: "24.2 PPG — leading scorer. Best version of MPJ." },
-  { name: "Cam Thomas", role: "SG", category: "roster", trend: 12, prevTrend: 18, hot: false, tagline: "15.6 PPG — bucket getter but role unclear." },
-  { name: "Nic Claxton", role: "C", category: "roster", trend: -6, prevTrend: 2, hot: false, tagline: "11.8 PPG / 7.1 RPG — trade rumors won't stop." },
-  { name: "Egor Demin", role: "PG", category: "roster", trend: 16, prevTrend: 10, hot: true, tagline: "10.3 PPG as a rookie. Playmaking improving fast." },
-  { name: "Noah Clowney", role: "PF", category: "roster", trend: 20, prevTrend: 12, hot: true, tagline: "12.5 PPG — breakout year. Young core piece." },
+  // Key roster players
+  { name: "Michael Porter Jr.", role: "SF", category: "roster", trend: 22, prevTrend: 15, hot: true, tagline: "24.2 PPG — trade deadline pickup. Best scorer on the team." },
+  { name: "Nic Claxton", role: "C", category: "roster", trend: -6, prevTrend: 2, hot: false, tagline: "11.8 PPG / 7.1 RPG — trade value? Or long-term piece?" },
+  { name: "Noah Clowney", role: "PF", category: "roster", trend: 20, prevTrend: 12, hot: true, tagline: "12.5 PPG — breakout sophomore year. Young core lock." },
+  { name: "Egor Demin", role: "PG", category: "roster", trend: 16, prevTrend: 10, hot: true, tagline: "10.3 PPG / 3.3 APG as a rookie. #8 pick looking good." },
   { name: "Nolan Traore", role: "PG", category: "roster", trend: 8, prevTrend: 5, hot: false, tagline: "8.5 PPG / 3.7 APG — raw but flashes are real." },
   { name: "Danny Wolf", role: "PF", category: "roster", trend: 10, prevTrend: 4, hot: false, tagline: "8.9 PPG / 4.9 RPG — solid rookie production." },
   { name: "Day'Ron Sharpe", role: "C", category: "roster", trend: 3, prevTrend: 6, hot: false, tagline: "8.7 PPG / 6.7 RPG — steady backup big." },
+  { name: "Ziaire Williams", role: "SF", category: "roster", trend: 5, prevTrend: 3, hot: false, tagline: "9.9 PPG — re-signed in the offseason. Flashes potential." },
+  { name: "Josh Minott", role: "SF", category: "roster", trend: 7, prevTrend: 2, hot: false, tagline: "9.2 PPG — deadline pickup from Boston. Athletic wing." },
+  { name: "Ben Saraf", role: "SG", category: "roster", trend: 4, prevTrend: 1, hot: false, tagline: "6.3 PPG / 3.1 APG — crafty intl guard. #26 pick." },
+  { name: "Drake Powell", role: "SG", category: "roster", trend: 2, prevTrend: 4, hot: false, tagline: "6.0 PPG — still developing. #22 pick." },
   // Draft prospects
   { name: "Cameron Boozer", role: "PF — Duke", category: "prospect", trend: 32, prevTrend: 24, hot: true, tagline: "22.4/10.3/4.2 — ACC POY. Dream fit at the 4." },
   { name: "AJ Dybantsa", role: "SF — BYU", category: "prospect", trend: 25, prevTrend: 30, hot: true, tagline: "25.5 PPG. Exactly the wing BKN needs." },

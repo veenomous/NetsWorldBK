@@ -16,7 +16,7 @@ interface Take {
 const seedTakes: Take[] = [
   { id: "1", text: "Cameron Boozer is the perfect pick for this team. We don't need another guard.", author: "BrooklynMike", agrees: 342, disagrees: 87, timeAgo: "2h", tag: "Draft" },
   { id: "2", text: "We should trade this pick for an established star. Enough rebuilding.", author: "NetsLifer", agrees: 156, disagrees: 298, timeAgo: "4h", tag: "Hot Take" },
-  { id: "3", text: "Cam Thomas is the best pure scorer we've had since KD. Build around him.", author: "BKScouting", agrees: 421, disagrees: 134, timeAgo: "5h", tag: "Roster" },
+  { id: "3", text: "MPJ trade was a steal. 24 PPG and a future first? Denver got fleeced.", author: "BKScouting", agrees: 421, disagrees: 134, timeAgo: "5h", tag: "Roster" },
   { id: "4", text: "AJ Dybantsa at 3 would be the steal of the draft. 25 PPG as a freshman.", author: "DraftNerd42", agrees: 267, disagrees: 52, timeAgo: "6h", tag: "Draft" },
   { id: "5", text: "This front office has no plan. We're just tanking with no vision.", author: "BarclaysSad", agrees: 198, disagrees: 245, timeAgo: "8h", tag: "Spicy" },
   { id: "6", text: "The Pacers being worse than us is actually bad. We need the #1 slot.", author: "TankCommander", agrees: 312, disagrees: 88, timeAgo: "10h", tag: "Strategy" },
