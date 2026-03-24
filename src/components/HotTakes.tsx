@@ -231,7 +231,10 @@ export default function HotTakes() {
                       <span className="text-[11px] text-text-muted ml-auto mr-2">
                         {agreePercent}% agree
                       </span>
-                      <ShareButton text={`"${take.text}" — ${agreePercent}% of Nets fans agree. What do you think?`} />
+                      <ShareButton
+                        text={`"${take.text}" — ${agreePercent}% of Nets fans agree. What do you think?`}
+                        url={`https://bkgrit.com/share/take?text=${encodeURIComponent(take.text.slice(0, 100))}&pct=${agreePercent}`}
+                      />
                     </>
                   )}
                 </div>
