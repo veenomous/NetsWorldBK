@@ -19,7 +19,7 @@ export default function Home() {
           width={500}
           height={250}
           priority
-          className="w-full max-w-[480px] h-auto relative z-10 animate-float"
+          className="w-full max-w-[320px] sm:max-w-[480px] h-auto relative z-10 animate-float"
         />
         <p className="text-text-secondary mt-3 text-sm max-w-md relative z-10 font-body">
           The fan HQ. Track the draft. Vote on takes. Play GM. Built for Brooklyn.

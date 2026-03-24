@@ -94,11 +94,11 @@ export default function DailyPoll() {
   const answeredCount = ALL_POLLS.filter((p) => picks[p.id]).length;
 
   return (
-    <div className="card p-5">
+    <div className="card p-4 sm:p-5">
       <div className="flex items-center justify-between mb-3">
         <div>
           <h3 className="heading-md">Polls</h3>
-          <p className="text-text-muted text-[11px] mt-0.5">Vote daily. See what fans think.</p>
+          <p className="text-text-muted text-xs mt-0.5">Vote daily. See what fans think.</p>
         </div>
         <span className="text-[11px] text-text-muted">{answeredCount}/{ALL_POLLS.length}</span>
       </div>
@@ -147,7 +147,7 @@ function PollCard({
     <div className={`rounded-xl p-3 ${featured ? "bg-brand-orange/[0.04] border border-brand-orange/10" : "bg-white/[0.02]"}`}>
       <div className="flex items-center gap-2 mb-2">
         <span className={`tag ${categoryColors[poll.category] || "tag-blue"}`}>{poll.category}</span>
-        <span className="text-[12px] font-semibold">{poll.question}</span>
+        <span className="text-sm font-semibold">{poll.question}</span>
       </div>
 
       {/* Vote result bar */}
@@ -162,7 +162,7 @@ function PollCard({
         <button
           onClick={() => onVote(poll.id, poll.optionA)}
           disabled={!!picked}
-          className={`py-2 rounded-lg text-[12px] font-bold transition-all ${
+          className={`py-2 rounded-lg text-sm font-bold transition-all ${
             picked === poll.optionA
               ? "bg-brand-orange/15 text-brand-orange border border-brand-orange/25"
               : picked
@@ -176,7 +176,7 @@ function PollCard({
         <button
           onClick={() => onVote(poll.id, poll.optionB)}
           disabled={!!picked}
-          className={`py-2 rounded-lg text-[12px] font-bold transition-all ${
+          className={`py-2 rounded-lg text-sm font-bold transition-all ${
             picked === poll.optionB
               ? "bg-accent-red/15 text-accent-red border border-accent-red/25"
               : picked

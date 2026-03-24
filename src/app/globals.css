@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  /* Core palette — dark with depth */
+  /* Core palette — dark with lifted cards */
   --color-bg-primary: #08080b;
-  --color-bg-card: #111116;
-  --color-bg-card-hover: #18181f;
-  --color-bg-elevated: #1c1c24;
-  --color-bg-input: #14141a;
-  --color-bg-surface: #0e0e12;
+  --color-bg-card: #151519;
+  --color-bg-card-hover: #1c1c22;
+  --color-bg-elevated: #222229;
+  --color-bg-input: #18181e;
+  --color-bg-surface: #101014;
 
   /* Text — sharper contrast */
   --color-text-primary: #f0f0f2;
@@ -146,8 +146,8 @@ body {
 /* ===== CARDS ===== */
 .card {
   background: var(--color-bg-card);
-  border: 1px solid rgba(255,255,255,0.04);
-  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;

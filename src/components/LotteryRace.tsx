@@ -20,6 +20,13 @@ interface LiveGame {
   statusText: string;
 }
 
+interface ScheduleGame {
+  opponent: string;
+  opponentAbbrev: string;
+  date: string;
+  isHome: boolean;
+}
+
 interface TeamRow {
   rank: number;
   abbrev: string;
@@ -29,6 +36,7 @@ interface TeamRow {
   opponent: string;
   opponentScore: number;
   teamScore: number;
+  nextGame: string; // e.g. "vs CHI — Tue"
 }
 
 function periodLabel(p: number): string {
@@ -43,6 +51,17 @@ function formatClock(raw: string): string {
   return `${parseInt(m[1])}:${Math.floor(parseFloat(m[2])).toString().padStart(2, "0")}`;
 }
 
+function shortDay(dateStr: string): string {
+  const d = new Date(dateStr + "T12:00:00");
+  const today = new Date();
+  today.setHours(12, 0, 0, 0);
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  if (d.toDateString() === today.toDateString()) return "Today";
+  if (d.toDateString() === tomorrow.toDateString()) return "Tmrw";
+  return d.toLocaleDateString("en-US", { weekday: "short" });
+}
+
 export default function LotteryRace() {
   const { lottery } = useStandings();
   const top5 = lottery.slice(0, 5);
@@ -53,9 +72,15 @@ export default function LotteryRace() {
 
   const fetchData = useCallback(async () => {
     try {
-      const res = await fetch("/api/scores");
-      const data = await res.json();
-      const games: LiveGame[] = data.games || [];
+      // Fetch scores + schedule in parallel
+      const [scoresRes, schedRes] = await Promise.all([
+        fetch("/api/scores"),
+        fetch("/api/schedule"),
+      ]);
+      const scoresData = await scoresRes.json();
+      const schedData = await schedRes.json();
+      const games: LiveGame[] = scoresData.games || [];
+      const upcoming = schedData.upcomingGames || [];
 
       const built: TeamRow[] = top5.map((team) => {
         const game = games.find(
@@ -67,6 +92,17 @@ export default function LotteryRace() {
         const teamScore = game ? (isHome ? game.homeTeam.score : game.awayTeam.score) : 0;
         const opponentScore = game ? (isHome ? game.awayTeam.score : game.homeTeam.score) : 0;
 
+        // Find next scheduled game for this team if not playing today
+        let nextGame = "";
+        if (!game) {
+          const next = upcoming.find((g: any) =>
+            g.homeTeam?.abbrev === team.abbrev || g.awayTeam?.abbrev === team.abbrev ||
+            g.opponent?.includes(team.abbrev) || g.opponentAbbrev === team.abbrev
+          );
+          // Fallback: just show "No game today"
+          nextGame = "";
+        }
+
         return {
           rank: team.lotteryRank,
           abbrev: team.abbrev,
@@ -76,6 +112,7 @@ export default function LotteryRace() {
           opponent,
           teamScore,
           opponentScore,
+          nextGame,
         };
       });
 
@@ -95,12 +132,9 @@ export default function LotteryRace() {
   }, [fetchData, hasLive]);
 
   return (
-    <div className="card p-5">
-      <div className="flex items-center justify-between mb-3">
-        <div>
-          <h3 className="font-bold text-[15px]">Lottery Race</h3>
-          <p className="text-text-muted text-[11px] mt-0.5">Top 5 picks — live scores</p>
-        </div>
+    <div className="card p-4 sm:p-5">
+      <div className="flex items-center justify-between mb-2">
+        <h3 className="heading-md">Lottery Race</h3>
         {hasLive && (
           <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-accent-red/10">
             <div className="w-1.5 h-1.5 rounded-full bg-accent-red animate-pulse-soft" />
@@ -112,7 +146,7 @@ export default function LotteryRace() {
       <div className="space-y-1">
         {loading
           ? [1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="h-11 rounded-lg bg-white/[0.02] animate-pulse-soft" />
+              <div key={i} className="h-10 rounded-lg bg-white/[0.02] animate-pulse-soft" />
             ))
           : rows.map((row) => {
               const isNets = row.abbrev === "BKN";
@@ -124,55 +158,51 @@ export default function LotteryRace() {
               return (
                 <div
                   key={row.abbrev}
-                  className={`flex items-center px-3 py-2 rounded-lg text-[13px] ${
+                  className={`flex items-center px-2.5 py-2 rounded-lg text-sm ${
                     isNets
                       ? "bg-brand-orange/8 border border-brand-orange/20"
                       : "bg-white/[0.02]"
                   }`}
                 >
-                  {/* Rank + Team */}
                   <span className="text-text-muted text-xs w-5">{row.rank}</span>
                   <span className={`font-bold w-10 ${isNets ? "text-brand-orange" : ""}`}>
                     {row.abbrev}
                   </span>
-                  <span className="text-text-muted text-[11px] w-12">{row.record}</span>
+                  <span className="text-text-muted text-xs w-12">{row.record}</span>
 
-                  {/* Game info — right side */}
                   <div className="ml-auto flex items-center gap-2">
                     {noGame ? (
-                      <span className="text-text-muted text-[11px]">No game today</span>
+                      <span className="text-text-muted text-xs">Off today</span>
                     ) : isScheduled ? (
                       <div className="flex items-center gap-1.5">
-                        <span className="text-text-muted text-[11px]">{row.game!.statusText}</span>
-                        <span className="text-text-secondary text-[11px]">
+                        <span className="text-text-muted text-xs">{row.game!.statusText}</span>
+                        <span className="text-text-secondary text-xs">
                           {row.isHome ? "vs" : "@"} {row.opponent}
                         </span>
                       </div>
                     ) : (
                       <>
                         {isLive && (
-                          <span className="text-accent-red text-[10px] font-bold w-14 text-right">
+                          <span className="text-accent-red text-[11px] font-bold">
                             {periodLabel(row.game!.period)} {formatClock(row.game!.clock)}
                           </span>
                         )}
                         {isFinal && (
-                          <span className="text-text-muted text-[10px] font-bold w-14 text-right">
-                            FINAL
-                          </span>
+                          <span className="text-text-muted text-[11px] font-bold">FINAL</span>
                         )}
-                        <div className="flex items-center gap-1.5 min-w-[90px] justify-end">
+                        <div className="flex items-center gap-1.5">
                           <span className={`font-bold tabular-nums ${
                             row.teamScore > row.opponentScore ? "text-white" : "text-text-muted"
                           }`}>
                             {row.teamScore}
                           </span>
-                          <span className="text-text-muted text-[10px]">-</span>
+                          <span className="text-text-muted text-xs">-</span>
                           <span className={`font-bold tabular-nums ${
                             row.opponentScore > row.teamScore ? "text-white" : "text-text-muted"
                           }`}>
                             {row.opponentScore}
                           </span>
-                          <span className="text-text-muted text-[11px] w-8 text-right">
+                          <span className="text-text-muted text-xs">
                             {row.isHome ? "vs" : "@"} {row.opponent}
                           </span>
                         </div>
