@@ -14,13 +14,13 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-bg-primary/80 backdrop-blur-xl border-b border-white/[0.04]">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-bg-primary/70 backdrop-blur-2xl border-b border-white/[0.03]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-14">
-          {/* Text-only brand */}
-          <Link href="/" className="group">
-            <span className="text-base font-black tracking-tight">BK</span>
-            <span className="text-base font-black tracking-tight text-brand-orange"> Grit</span>
+          {/* Logo text */}
+          <Link href="/" className="group flex items-center gap-1">
+            <span className="font-display text-xl tracking-wider text-text-primary">BK</span>
+            <span className="font-display text-xl tracking-wider text-brand-orange">GRIT</span>
           </Link>
 
           {/* Desktop Nav */}
@@ -29,7 +29,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-3.5 py-1.5 rounded-lg text-[13px] font-semibold text-text-secondary hover:text-white hover:bg-white/[0.04] transition-all"
+                className="px-3.5 py-1.5 rounded-lg text-[12px] font-semibold text-text-muted hover:text-text-primary hover:bg-white/[0.04] transition-all tracking-wide uppercase"
               >
                 {link.label}
               </Link>
@@ -38,9 +38,9 @@ export default function Navbar() {
 
           {/* Right side */}
           <div className="hidden md:flex items-center gap-3">
-            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-green/10">
+            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent-green/8 border border-accent-green/15">
               <div className="w-1.5 h-1.5 rounded-full bg-accent-green animate-pulse-soft" />
-              <span className="text-[11px] font-semibold text-accent-green">LIVE</span>
+              <span className="text-[10px] font-bold text-accent-green tracking-wider">LIVE</span>
             </div>
           </div>
 
@@ -61,14 +61,14 @@ export default function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden border-t border-white/[0.04] bg-bg-primary/95 backdrop-blur-xl">
-          <div className="px-4 py-2 space-y-0.5">
+        <div className="md:hidden border-t border-white/[0.03] bg-bg-primary/95 backdrop-blur-2xl">
+          <div className="px-4 py-3 space-y-0.5">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="block px-3 py-2.5 rounded-lg text-sm font-medium text-text-secondary hover:text-white hover:bg-white/[0.04] transition-all"
+                className="block px-3 py-2.5 rounded-lg text-sm font-medium text-text-muted hover:text-text-primary hover:bg-white/[0.04] transition-all"
               >
                 {link.label}
               </Link>

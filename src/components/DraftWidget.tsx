@@ -11,11 +11,11 @@ export default function DraftWidget() {
 
   return (
     <div className="card overflow-hidden">
-      <div className="h-1 gradient-bg-brand" />
+      <div className="h-[2px] gradient-bg-brand" />
 
       <div className="p-5">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="font-bold text-[15px]">Draft Position</h3>
+          <h3 className="heading-md">Draft Position</h3>
           <div className="flex items-center gap-2">
             {isLive && <span className="text-[9px] text-accent-green font-bold">LIVE</span>}
             <span className="tag tag-gold">2026 NBA Draft</span>
@@ -25,7 +25,7 @@ export default function DraftWidget() {
         {/* Big number */}
         <div className="flex items-center gap-4 mb-4">
           <div className="text-center">
-            <span className="text-5xl font-black gradient-text-brand leading-none">#{nets.lotteryRank}</span>
+            <span className="font-display text-6xl gradient-text-brand leading-none tracking-wider">#{nets.lotteryRank}</span>
             <p className="text-text-muted text-[11px] mt-1">current slot</p>
           </div>
 

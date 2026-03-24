@@ -9,24 +9,46 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="space-y-6">
-      {/* Hero — big logo flush against header, no gap */}
-      <section className="-mt-4 flex flex-col items-center text-center">
+    <div className="space-y-8">
+      {/* Hero — logo + atmosphere */}
+      <section className="-mt-4 flex flex-col items-center text-center relative">
+        {/* Background glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-orange/[0.04] rounded-full blur-[100px] pointer-events-none" />
+
         <Image
           src="/BKGrit.png"
           alt="Brooklyn Grit"
           width={500}
           height={250}
           priority
-          className="w-full max-w-[520px] h-auto"
+          className="w-full max-w-[480px] h-auto relative z-10 animate-float"
         />
-        <p className="text-text-secondary mt-2 text-sm sm:text-base max-w-md">
+        <p className="text-text-secondary mt-3 text-sm max-w-md relative z-10 font-body">
           The fan HQ. Track the draft. Vote on takes. Play GM. Built for Brooklyn.
         </p>
+
+        {/* Quick nav pills */}
+        <div className="flex flex-wrap justify-center gap-2 mt-5 relative z-10">
+          {[
+            { href: "/simulator", label: "Lottery Sim" },
+            { href: "/gm-mode", label: "War Room" },
+            { href: "/trade-machine", label: "Trade Machine" },
+          ].map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="px-4 py-1.5 rounded-full text-[12px] font-semibold bg-white/[0.04] text-text-secondary hover:bg-brand-orange/15 hover:text-brand-orange-glow border border-white/[0.04] hover:border-brand-orange/20 transition-all"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
       </section>
 
+      <div className="section-divider" />
+
       {/* Row 1: Draft Widget + Lottery Race + Predictions */}
-      <section className="grid md:grid-cols-3 gap-4">
+      <section className="grid md:grid-cols-3 gap-5 stagger-children">
         <DraftWidget />
         <LotteryRace />
         <DailyPrediction />
@@ -37,42 +59,37 @@ export default function Home() {
         <LotteryOddsTable />
       </section>
 
+      <div className="section-divider" />
+
+      {/* Section label */}
+      <div className="flex items-center gap-3">
+        <h2 className="heading-md text-text-secondary">Community</h2>
+        <div className="flex-1 h-px bg-white/[0.04]" />
+      </div>
+
       {/* Row 2: Stock Ticker + Hot Takes */}
-      <section className="grid lg:grid-cols-2 gap-4">
+      <section className="grid lg:grid-cols-2 gap-5 stagger-children">
         <StockTicker />
         <HotTakes />
       </section>
 
-      {/* CTA Row */}
-      <section className="grid sm:grid-cols-3 gap-4">
-        <Link href="/simulator" className="card card-interactive p-5 block group">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="font-bold text-[15px] group-hover:text-brand-orange-glow transition-colors">Lottery Simulator</h3>
-              <p className="text-text-muted text-xs mt-1">Run unlimited sims. See full results. Share your luck.</p>
-            </div>
-            <span className="text-2xl opacity-40 group-hover:opacity-80 transition-opacity">&#127920;</span>
-          </div>
+      <div className="section-divider" />
+
+      {/* CTA Row — bigger, bolder */}
+      <section className="grid sm:grid-cols-3 gap-4 stagger-children">
+        <Link href="/simulator" className="card card-interactive p-6 block group">
+          <span className="heading-md gradient-text-brand group-hover:glow-text-orange transition-all block mb-2">Lottery Sim</span>
+          <p className="text-text-muted text-xs font-body">Run unlimited sims. Share your luck on X.</p>
         </Link>
 
-        <Link href="/gm-mode" className="card card-interactive p-5 block group">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="font-bold text-[15px] group-hover:text-accent-gold transition-colors">Draft War Room</h3>
-              <p className="text-text-muted text-xs mt-1">Pick your prospect. Set the strategy. Get your GM score.</p>
-            </div>
-            <span className="text-2xl opacity-40 group-hover:opacity-80 transition-opacity">&#129504;</span>
-          </div>
+        <Link href="/gm-mode" className="card card-interactive p-6 block group">
+          <span className="heading-md text-accent-gold group-hover:glow-text-orange transition-all block mb-2">War Room</span>
+          <p className="text-text-muted text-xs font-body">Draft your guy. Get scored against other fans.</p>
         </Link>
 
-        <Link href="/trade-machine" className="card card-interactive p-5 block group">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="font-bold text-[15px] group-hover:text-accent-green transition-colors">Trade Machine</h3>
-              <p className="text-text-muted text-xs mt-1">Build trades. Check salaries. Vote on fan proposals.</p>
-            </div>
-            <span className="text-2xl opacity-40 group-hover:opacity-80 transition-opacity">&#9878;</span>
-          </div>
+        <Link href="/trade-machine" className="card card-interactive p-6 block group">
+          <span className="heading-md text-accent-green group-hover:glow-text-orange transition-all block mb-2">Trade Machine</span>
+          <p className="text-text-muted text-xs font-body">Build trades. Check salaries. See what fans think.</p>
         </Link>
       </section>
     </div>
