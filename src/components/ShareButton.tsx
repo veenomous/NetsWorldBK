@@ -12,7 +12,7 @@ function openTwitterPopup(tweetUrl: string) {
 }
 
 export default function ShareButton({ text, url, hashtags = "BKGrit,Nets,NBADraft", size = "sm" }: ShareButtonProps) {
-  const shareUrl = url || "https://bkgrit.com";
+  const shareUrl = url || "https://bkgrit.com?ref=share";
   const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}&hashtags=${encodeURIComponent(hashtags)}`;
 
   return (
