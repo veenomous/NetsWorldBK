@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "BK Grit — Brooklyn Nets Fan HQ",
     description: "Track the draft. Run the lottery. Play GM. Vote on hot takes. Built for Brooklyn.",
-    images: ["https://bkgrit.com/api/og"],
+    images: ["https://bkgrit.com/api/og?v=2"],
     type: "website",
     siteName: "BK Grit",
   },
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "BK Grit — Brooklyn Nets Fan HQ",
     description: "Track the draft. Run the lottery. Play GM. Vote on hot takes. Built for Brooklyn.",
-    images: ["https://bkgrit.com/api/og"],
+    images: ["https://bkgrit.com/api/og?v=2"],
   },
 };
 

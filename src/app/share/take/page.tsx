@@ -12,7 +12,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 
   const title = `"${text.slice(0, 60)}${text.length > 60 ? "..." : ""}" — BK Grit`;
   const description = `${pct}% of Nets fans agree. Drop your take at BK Grit.`;
-  const ogImage = "https://bkgrit.com/api/og";
+  const ogImage = "https://bkgrit.com/api/og?v=2";
 
   return {
     title,

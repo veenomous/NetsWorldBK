@@ -33,11 +33,11 @@ export async function GET(request: Request) {
   }
 
   const logo = logoSrc
-    ? <img src={logoSrc} width={200} height={200} />
+    ? <img src={logoSrc} width={150} height={150} />
     : <div style={{ display: "flex", marginBottom: 16 }}><span style={{ fontSize: 36, fontWeight: 900, color: "#fff", marginRight: 8 }}>BK</span><span style={{ fontSize: 36, fontWeight: 900, color: "#e87a2e" }}>GRIT</span></div>;
 
   const bigLogo = logoSrc
-    ? <img src={logoSrc} width={300} height={300} />
+    ? <img src={logoSrc} width={250} height={250} />
     : <div style={{ display: "flex", marginBottom: 20 }}><span style={{ fontSize: 56, fontWeight: 900, color: "#fff", marginRight: 12 }}>BK</span><span style={{ fontSize: 56, fontWeight: 900, color: "#e87a2e" }}>GRIT</span></div>;
 
   const cacheHeaders = { "Cache-Control": "public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400" };
