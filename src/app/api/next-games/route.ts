@@ -24,7 +24,8 @@ interface NextGame {
 }
 
 function getDayLabel(dateStr: string): string {
-  const d = new Date(dateStr + "T12:00:00");
+  // dateStr is "YYYY-MM-DD"
+  const d = new Date(dateStr + "T12:00:00Z");
   const today = new Date();
   today.setHours(12, 0, 0, 0);
   const tomorrow = new Date(today);
@@ -45,14 +46,25 @@ export async function GET() {
 
     const data = await res.json();
     const gameDates = data?.leagueSchedule?.gameDates || [];
-    const today = new Date().toISOString().split("T")[0];
+    const now = new Date();
+    const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
 
     const nextGames: Record<string, NextGame> = {};
     const teamIds = new Set(Object.values(TEAM_IDS));
 
+    function parseNBADate(raw: string): string {
+      // Format: "MM/DD/YYYY HH:MM:SS" → "YYYY-MM-DD"
+      const parts = raw.split(" ")[0].split("/");
+      if (parts.length === 3) {
+        return `${parts[2]}-${parts[0].padStart(2, "0")}-${parts[1].padStart(2, "0")}`;
+      }
+      // Fallback: try ISO
+      return raw.split("T")[0];
+    }
+
     for (const gd of gameDates) {
-      const gdDate = (gd.gameDate || "").split("T")[0];
-      if (gdDate < today) continue;
+      const gdDate = parseNBADate(gd.gameDate || "");
+      if (gdDate < todayStr) continue;
 
       for (const game of gd.games || []) {
         const homeId = game.homeTeam?.teamId;
@@ -66,8 +78,9 @@ export async function GET() {
           if (teamIds.has(checkId)) {
             const abbrev = TEAM_ABBREVS[checkId];
             if (!nextGames[abbrev]) {
+              const opponentTeam = isHome ? game.awayTeam : game.homeTeam;
               const opponentAbbrev = TEAM_ABBREVS[opponentId] ||
-                (game[isHome ? "awayTeam" : "homeTeam"]?.teamTricode) ||
+                opponentTeam?.teamTricode ||
                 "???";
               nextGames[abbrev] = {
                 opponent: opponentAbbrev,
