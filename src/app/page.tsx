@@ -1,6 +1,6 @@
 import Image from "next/image";
 import DraftWidget from "@/components/DraftWidget";
-import VibeCheck from "@/components/VibeCheck";
+import LiveScoreboard from "@/components/LiveScoreboard";
 import StockTicker from "@/components/StockTicker";
 import HotTakes from "@/components/HotTakes";
 import DailyPrediction from "@/components/DailyPrediction";
@@ -25,10 +25,14 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Row 1: Draft Widget + Vibe Check + Predictions */}
-      <section className="grid md:grid-cols-3 gap-4">
+      {/* Row 1: Live Scoreboard spans full width when games are on */}
+      <section>
+        <LiveScoreboard />
+      </section>
+
+      {/* Row 2: Draft Widget + Predictions */}
+      <section className="grid md:grid-cols-2 gap-4">
         <DraftWidget />
-        <VibeCheck />
         <DailyPrediction />
       </section>
 
