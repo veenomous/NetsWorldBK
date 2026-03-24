@@ -2,12 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
-async function fetchLogo(): Promise<string> {
-  const res = await fetch("https://bkgrit.com/og-logo.png");
-  const buf = await res.arrayBuffer();
-  const base64 = btoa(String.fromCharCode(...new Uint8Array(buf)));
-  return `data:image/png;base64,${base64}`;
-}
+const LOGO_URL = "https://bkgrit.com/og-logo.png";
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
@@ -18,22 +13,8 @@ export async function GET(request: Request) {
   const player = url.searchParams.get("player") || "";
   const percentile = url.searchParams.get("percentile") || "65";
 
-  let logoSrc: string;
-  try {
-    logoSrc = await fetchLogo();
-  } catch {
-    logoSrc = "";
-  }
-
-  const logoImg = logoSrc ? (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img src={logoSrc} alt="BK Grit" width={180} height={180} style={{ marginBottom: 16 }} />
-  ) : (
-    <div style={{ display: "flex", marginBottom: 16 }}>
-      <span style={{ fontSize: 36, fontWeight: 900, color: "#fff", marginRight: 8 }}>BK</span>
-      <span style={{ fontSize: 36, fontWeight: 900, color: "#e87a2e" }}>GRIT</span>
-    </div>
-  );
+  // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
+  const logoImg = <img src={LOGO_URL} width={150} height={150} style={{ marginBottom: 12 }} />;
 
   if (type === "lottery") {
     const pickNum = parseInt(pick);
@@ -76,15 +57,8 @@ export async function GET(request: Request) {
   // Default — big logo
   return new ImageResponse(
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", backgroundColor: "#0c0c0f" }}>
-      {logoSrc ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={logoSrc} alt="BK Grit" width={280} height={280} style={{ marginBottom: 16 }} />
-      ) : (
-        <div style={{ display: "flex", marginBottom: 20 }}>
-          <span style={{ fontSize: 56, fontWeight: 900, color: "#fff", marginRight: 12 }}>BK</span>
-          <span style={{ fontSize: 56, fontWeight: 900, color: "#e87a2e" }}>GRIT</span>
-        </div>
-      )}
+      {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
+      <img src={LOGO_URL} width={240} height={240} style={{ marginBottom: 16 }} />
       <div style={{ display: "flex", fontSize: 22, color: "#94949e" }}>Brooklyn Grit — Nets Fanatic</div>
       <div style={{ display: "flex", fontSize: 16, color: "#5c5c66", marginTop: 8 }}>Draft Tracker · Lottery Sim · War Room · Hot Takes</div>
     </div>,
