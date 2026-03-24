@@ -13,18 +13,20 @@ interface PlayerStock {
 }
 
 const initialStocks: PlayerStock[] = [
-  // Current Nets roster
-  { name: "Cam Thomas", role: "SG", category: "roster", trend: 18, prevTrend: 12, hot: true, tagline: "30-piece again. Trade value climbing." },
-  { name: "Nic Claxton", role: "C", category: "roster", trend: -8, prevTrend: 2, hot: false, tagline: "Trade rumors swirling. Where does he fit?" },
-  { name: "Ben Simmons", role: "PF", category: "roster", trend: -42, prevTrend: -38, hot: false, tagline: "Barely playing. End of the road?" },
-  { name: "Cam Johnson", role: "SF", category: "roster", trend: 6, prevTrend: 10, hot: false, tagline: "Solid vet presence. Valuable trade chip." },
-  { name: "D'Angelo Russell", role: "PG", category: "roster", trend: -15, prevTrend: -10, hot: false, tagline: "Back in Brooklyn but for how long?" },
+  // Actual 2025-26 Nets roster
+  { name: "Michael Porter Jr.", role: "SF", category: "roster", trend: 22, prevTrend: 15, hot: true, tagline: "24.2 PPG — leading scorer. Best version of MPJ." },
+  { name: "Cam Thomas", role: "SG", category: "roster", trend: 12, prevTrend: 18, hot: false, tagline: "15.6 PPG — bucket getter but role unclear." },
+  { name: "Nic Claxton", role: "C", category: "roster", trend: -6, prevTrend: 2, hot: false, tagline: "11.8 PPG / 7.1 RPG — trade rumors won't stop." },
+  { name: "Egor Demin", role: "PG", category: "roster", trend: 16, prevTrend: 10, hot: true, tagline: "10.3 PPG as a rookie. Playmaking improving fast." },
+  { name: "Noah Clowney", role: "PF", category: "roster", trend: 20, prevTrend: 12, hot: true, tagline: "12.5 PPG — breakout year. Young core piece." },
+  { name: "Nolan Traore", role: "PG", category: "roster", trend: 8, prevTrend: 5, hot: false, tagline: "8.5 PPG / 3.7 APG — raw but flashes are real." },
+  { name: "Danny Wolf", role: "PF", category: "roster", trend: 10, prevTrend: 4, hot: false, tagline: "8.9 PPG / 4.9 RPG — solid rookie production." },
+  { name: "Day'Ron Sharpe", role: "C", category: "roster", trend: 3, prevTrend: 6, hot: false, tagline: "8.7 PPG / 6.7 RPG — steady backup big." },
   // Draft prospects
-  { name: "Cameron Boozer", role: "PF — Duke", category: "prospect", trend: 32, prevTrend: 24, hot: true, tagline: "ACC POY. Dream fit at the 4." },
-  { name: "AJ Dybantsa", role: "SF — BYU", category: "prospect", trend: 25, prevTrend: 30, hot: true, tagline: "25 PPG scorer. Exactly what BKN needs." },
+  { name: "Cameron Boozer", role: "PF — Duke", category: "prospect", trend: 32, prevTrend: 24, hot: true, tagline: "22.4/10.3/4.2 — ACC POY. Dream fit at the 4." },
+  { name: "AJ Dybantsa", role: "SF — BYU", category: "prospect", trend: 25, prevTrend: 30, hot: true, tagline: "25.5 PPG. Exactly the wing BKN needs." },
   { name: "Darryn Peterson", role: "SG — Kansas", category: "prospect", trend: 14, prevTrend: 22, hot: false, tagline: "Guard-heavy already. Fit concern." },
-  { name: "Caleb Wilson", role: "PF — UNC", category: "prospect", trend: -5, prevTrend: 8, hot: false, tagline: "Thumb surgery ended his season." },
-  { name: "Darius Acuff Jr.", role: "PG — Arkansas", category: "prospect", trend: 20, prevTrend: 10, hot: true, tagline: "SEC POY. Most NBA-ready guard." },
+  { name: "Caleb Wilson", role: "PF — UNC", category: "prospect", trend: -5, prevTrend: 8, hot: false, tagline: "Thumb surgery ended his season early." },
 ];
 
 export default function StockTicker() {

@@ -4,24 +4,22 @@ import VibeCheck from "@/components/VibeCheck";
 import StockTicker from "@/components/StockTicker";
 import HotTakes from "@/components/HotTakes";
 import DailyPrediction from "@/components/DailyPrediction";
+import LotteryOddsTable from "@/components/LotteryOddsTable";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="space-y-6">
-      {/* Hero — big logo centered */}
-      <section className="py-8 sm:py-12 flex flex-col items-center text-center">
+      {/* Hero — big logo flush against header, no gap */}
+      <section className="-mt-4 flex flex-col items-center text-center">
         <Image
           src="/BKGrit.png"
           alt="Brooklyn Grit"
-          width={280}
-          height={280}
+          width={500}
+          height={250}
           priority
-          className="rounded-2xl mb-5 sm:w-[320px] sm:h-auto"
+          className="w-full max-w-[520px] h-auto"
         />
-        <h1 className="text-3xl sm:text-4xl font-black tracking-tight">
-          <span className="gradient-text-brand">Brooklyn Grit</span>
-        </h1>
         <p className="text-text-secondary mt-2 text-sm sm:text-base max-w-md">
           The fan HQ. Track the draft. Vote on takes. Play GM. Built for Brooklyn.
         </p>
@@ -32,6 +30,11 @@ export default function Home() {
         <DraftWidget />
         <VibeCheck />
         <DailyPrediction />
+      </section>
+
+      {/* Lottery Odds Table */}
+      <section>
+        <LotteryOddsTable />
       </section>
 
       {/* Row 2: Stock Ticker + Hot Takes */}

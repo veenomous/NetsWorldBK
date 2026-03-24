@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 
 const navLinks = [
@@ -17,19 +16,10 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-bg-primary/80 backdrop-blur-xl border-b border-white/[0.04]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-14">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <Image
-              src="/BKGrit.png"
-              alt="Brooklyn Grit"
-              width={36}
-              height={36}
-              className="rounded-lg group-hover:scale-110 transition-transform"
-            />
-            <div className="hidden sm:block">
-              <span className="text-base font-black tracking-tight">BK</span>
-              <span className="text-base font-black tracking-tight text-brand-orange"> Grit</span>
-            </div>
+          {/* Text-only brand */}
+          <Link href="/" className="group">
+            <span className="text-base font-black tracking-tight">BK</span>
+            <span className="text-base font-black tracking-tight text-brand-orange"> Grit</span>
           </Link>
 
           {/* Desktop Nav */}
