@@ -44,7 +44,7 @@ export default function Home() {
       </section>
 
       {/* CTA Row */}
-      <section className="grid sm:grid-cols-2 gap-4">
+      <section className="grid sm:grid-cols-3 gap-4">
         <Link href="/simulator" className="card card-interactive p-5 block group">
           <div className="flex items-center justify-between">
             <div>
@@ -62,6 +62,16 @@ export default function Home() {
               <p className="text-text-muted text-xs mt-1">Pick your prospect. Set the strategy. Get your GM score.</p>
             </div>
             <span className="text-2xl opacity-40 group-hover:opacity-80 transition-opacity">&#129504;</span>
+          </div>
+        </Link>
+
+        <Link href="/trade-machine" className="card card-interactive p-5 block group">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="font-bold text-[15px] group-hover:text-accent-green transition-colors">Trade Machine</h3>
+              <p className="text-text-muted text-xs mt-1">Build trades. Check salaries. Vote on fan proposals.</p>
+            </div>
+            <span className="text-2xl opacity-40 group-hover:opacity-80 transition-opacity">&#9878;</span>
           </div>
         </Link>
       </section>

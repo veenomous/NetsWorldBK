@@ -118,7 +118,8 @@ export default function LotteryRace() {
               const isNets = row.abbrev === "BKN";
               const isLive = row.game?.status === 2;
               const isFinal = row.game?.status === 3;
-              const noGame = !row.game || row.game.status === 1;
+              const isScheduled = row.game?.status === 1;
+              const noGame = !row.game;
 
               return (
                 <div
@@ -139,12 +140,16 @@ export default function LotteryRace() {
                   {/* Game info — right side */}
                   <div className="ml-auto flex items-center gap-2">
                     {noGame ? (
-                      <span className="text-text-muted text-[11px]">
-                        {row.game ? row.game.statusText : "No game today"}
-                      </span>
+                      <span className="text-text-muted text-[11px]">No game today</span>
+                    ) : isScheduled ? (
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-text-muted text-[11px]">{row.game!.statusText}</span>
+                        <span className="text-text-secondary text-[11px]">
+                          {row.isHome ? "vs" : "@"} {row.opponent}
+                        </span>
+                      </div>
                     ) : (
                       <>
-                        {/* Status */}
                         {isLive && (
                           <span className="text-accent-red text-[10px] font-bold w-14 text-right">
                             {periodLabel(row.game!.period)} {formatClock(row.game!.clock)}
@@ -155,8 +160,6 @@ export default function LotteryRace() {
                             FINAL
                           </span>
                         )}
-
-                        {/* Score */}
                         <div className="flex items-center gap-1.5 min-w-[90px] justify-end">
                           <span className={`font-bold tabular-nums ${
                             row.teamScore > row.opponentScore ? "text-white" : "text-text-muted"
