@@ -8,6 +8,7 @@ const navLinks = [
   { href: "/simulator", label: "Lottery Sim" },
   { href: "/gm-mode", label: "War Room" },
   { href: "/trade-machine", label: "Trade Machine" },
+  { href: "/tiebreaker", label: "Tiebreaker" },
 ];
 
 export default function Navbar() {
