@@ -67,9 +67,7 @@ export default function TiebreakerScenarios() {
   const { lottery, isLive, isLoading } = useStandings();
   const top5 = lottery.slice(0, 5);
 
-  if (isLoading) return <LoadingSkeleton />;
-
-  // What-If sliders: how many more wins each team gets
+  // All hooks must be before any early return
   const [netsExtraWins, setNetsExtraWins] = useState(0);
   const nets = top5.find((t) => t.abbrev === "BKN");
   const netsRemaining = nets?.gamesRemaining || 11;
@@ -100,6 +98,7 @@ export default function TiebreakerScenarios() {
 
   // Find tiebreaker groups
   const tieGroups = useMemo(() => {
+    if (simulated.length === 0) return [];
     const groups: SimTeam[][] = [];
     let current: SimTeam[] = [simulated[0]];
 
@@ -188,6 +187,8 @@ export default function TiebreakerScenarios() {
     }
     return results;
   }, [top5, nets, netsRemaining]);
+
+  if (isLoading) return <LoadingSkeleton />;
 
   return (
     <div className="space-y-8">
