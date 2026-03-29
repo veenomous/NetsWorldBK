@@ -2,24 +2,33 @@ import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-// NBA team IDs for the 14 lottery teams (sorted by expected worst record)
-// We pull their current records from the live scoreboard which always works
-const LOTTERY_TEAM_IDS = new Set([
-  1610612754, // IND
-  1610612764, // WAS
-  1610612751, // BKN
-  1610612758, // SAC
-  1610612762, // UTA
-  1610612742, // DAL
-  1610612763, // MEM
-  1610612740, // NOP
-  1610612741, // CHI
-  1610612749, // MIL
-  1610612744, // GSW
-  1610612757, // POR
-  1610612766, // CHA
-  1610612748, // MIA
+const LOTTERY_ABBREVS = new Set([
+  "IND", "WAS", "BKN", "SAC", "UTA", "DAL", "MEM", "NOP",
+  "CHI", "MIL", "GSW", "POR", "CHA", "MIA",
 ]);
+
+const CONF_MAP: Record<string, string> = {
+  IND: "East", WAS: "East", BKN: "East", SAC: "West", UTA: "West",
+  DAL: "West", MEM: "West", NOP: "West", CHI: "East", MIL: "East",
+  GSW: "West", POR: "West", CHA: "East", MIA: "East",
+};
+
+const STATIC_FALLBACK: Record<string, { team: string; wins: number; losses: number }> = {
+  IND: { team: "Indiana Pacers", wins: 16, losses: 58 },
+  WAS: { team: "Washington Wizards", wins: 16, losses: 55 },
+  BKN: { team: "Brooklyn Nets", wins: 17, losses: 57 },
+  SAC: { team: "Sacramento Kings", wins: 19, losses: 56 },
+  UTA: { team: "Utah Jazz", wins: 21, losses: 50 },
+  DAL: { team: "Dallas Mavericks", wins: 23, losses: 48 },
+  MEM: { team: "Memphis Grizzlies", wins: 24, losses: 46 },
+  NOP: { team: "New Orleans Pelicans", wins: 25, losses: 47 },
+  CHI: { team: "Chicago Bulls", wins: 28, losses: 42 },
+  MIL: { team: "Milwaukee Bucks", wins: 29, losses: 41 },
+  GSW: { team: "Golden State Warriors", wins: 33, losses: 38 },
+  POR: { team: "Portland Trail Blazers", wins: 35, losses: 37 },
+  CHA: { team: "Charlotte Hornets", wins: 37, losses: 34 },
+  MIA: { team: "Miami Heat", wins: 38, losses: 33 },
+};
 
 interface StandingsTeam {
   team: string;
@@ -31,77 +40,98 @@ interface StandingsTeam {
   gamesRemaining: number;
 }
 
-export async function GET() {
+// ESPN public standings API — returns all 30 teams with current records
+async function fetchFromESPN(): Promise<Record<string, { team: string; abbrev: string; wins: number; losses: number }> | null> {
   try {
-    // Use NBA's public scoreboard — it includes team records and ALWAYS works
     const res = await fetch(
-      "https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json",
+      "https://site.api.espn.com/apis/v2/sports/basketball/nba/standings",
       { cache: "no-store" }
     );
-
-    if (!res.ok) throw new Error("Scoreboard unavailable");
+    if (!res.ok) return null;
 
     const data = await res.json();
-    const games = data?.scoreboard?.games || [];
+    const records: Record<string, { team: string; abbrev: string; wins: number; losses: number }> = {};
 
-    // Collect team records from today's games
-    const teamRecords: Record<string, { team: string; abbrev: string; wins: number; losses: number }> = {};
+    for (const conf of data?.children || []) {
+      for (const entry of conf?.standings?.entries || []) {
+        const team = entry?.team || {};
+        const abbrev = team.abbreviation;
+        if (!abbrev || !LOTTERY_ABBREVS.has(abbrev)) continue;
 
-    for (const g of games) {
-      const home = g.homeTeam;
-      const away = g.awayTeam;
+        const stats: Record<string, number> = {};
+        for (const s of entry?.stats || []) {
+          if (s.name && typeof s.value === "number") {
+            stats[s.name] = s.value;
+          }
+        }
 
-      if (home?.teamTricode) {
-        teamRecords[home.teamTricode] = {
-          team: `${home.teamCity} ${home.teamName}`,
-          abbrev: home.teamTricode,
-          wins: home.wins || 0,
-          losses: home.losses || 0,
-        };
-      }
-      if (away?.teamTricode) {
-        teamRecords[away.teamTricode] = {
-          team: `${away.teamCity} ${away.teamName}`,
-          abbrev: away.teamTricode,
-          wins: away.wins || 0,
-          losses: away.losses || 0,
+        records[abbrev] = {
+          team: team.displayName || team.name || abbrev,
+          abbrev,
+          wins: stats.wins || 0,
+          losses: stats.losses || 0,
         };
       }
     }
 
-    // If we got team records from today's scoreboard, merge with our known lottery teams
-    // For teams NOT playing today, we'll use static fallback values
-    const STATIC_FALLBACK: Record<string, { team: string; wins: number; losses: number; conf: string }> = {
-      IND: { team: "Indiana Pacers", wins: 15, losses: 56, conf: "East" },
-      WAS: { team: "Washington Wizards", wins: 16, losses: 55, conf: "East" },
-      BKN: { team: "Brooklyn Nets", wins: 17, losses: 54, conf: "East" },
-      SAC: { team: "Sacramento Kings", wins: 19, losses: 53, conf: "West" },
-      UTA: { team: "Utah Jazz", wins: 21, losses: 50, conf: "West" },
-      DAL: { team: "Dallas Mavericks", wins: 23, losses: 48, conf: "West" },
-      MEM: { team: "Memphis Grizzlies", wins: 24, losses: 46, conf: "West" },
-      NOP: { team: "New Orleans Pelicans", wins: 25, losses: 47, conf: "West" },
-      CHI: { team: "Chicago Bulls", wins: 28, losses: 42, conf: "East" },
-      MIL: { team: "Milwaukee Bucks", wins: 29, losses: 41, conf: "East" },
-      GSW: { team: "Golden State Warriors", wins: 33, losses: 38, conf: "West" },
-      POR: { team: "Portland Trail Blazers", wins: 35, losses: 37, conf: "West" },
-      CHA: { team: "Charlotte Hornets", wins: 37, losses: 34, conf: "East" },
-      MIA: { team: "Miami Heat", wins: 38, losses: 33, conf: "East" },
-    };
+    return Object.keys(records).length >= 10 ? records : null;
+  } catch {
+    return null;
+  }
+}
+
+// Fallback: today's NBA scoreboard (only has teams playing today)
+async function fetchFromScoreboard(): Promise<Record<string, { team: string; abbrev: string; wins: number; losses: number }> | null> {
+  try {
+    const res = await fetch(
+      "https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json",
+      { cache: "no-store" }
+    );
+    if (!res.ok) return null;
+
+    const data = await res.json();
+    const records: Record<string, { team: string; abbrev: string; wins: number; losses: number }> = {};
+
+    for (const g of data?.scoreboard?.games || []) {
+      for (const side of [g.homeTeam, g.awayTeam]) {
+        if (side?.teamTricode && LOTTERY_ABBREVS.has(side.teamTricode)) {
+          records[side.teamTricode] = {
+            team: `${side.teamCity} ${side.teamName}`,
+            abbrev: side.teamTricode,
+            wins: side.wins || 0,
+            losses: side.losses || 0,
+          };
+        }
+      }
+    }
+
+    return Object.keys(records).length > 0 ? records : null;
+  } catch {
+    return null;
+  }
+}
+
+export async function GET() {
+  try {
+    // Try ESPN first (all teams), fall back to NBA scoreboard (partial)
+    const liveRecords = await fetchFromESPN() || await fetchFromScoreboard();
 
     const allTeams: StandingsTeam[] = Object.entries(STATIC_FALLBACK).map(([abbrev, fallback]) => {
-      const live = teamRecords[abbrev];
+      const live = liveRecords?.[abbrev];
+      const wins = live?.wins ?? fallback.wins;
+      const losses = live?.losses ?? fallback.losses;
       return {
         team: live?.team || fallback.team,
         abbrev,
-        wins: live?.wins ?? fallback.wins,
-        losses: live?.losses ?? fallback.losses,
-        conference: fallback.conf,
+        wins,
+        losses,
+        conference: CONF_MAP[abbrev] || "East",
         lotteryRank: 0,
-        gamesRemaining: 82 - (live?.wins ?? fallback.wins) - (live?.losses ?? fallback.losses),
+        gamesRemaining: 82 - wins - losses,
       };
     });
 
-    // Sort by worst record
+    // Sort by worst record (most losses first, then fewest wins)
     allTeams.sort((a, b) => {
       if (b.losses !== a.losses) return b.losses - a.losses;
       return a.wins - b.wins;
@@ -112,7 +142,7 @@ export async function GET() {
 
     return NextResponse.json({
       lottery: allTeams,
-      teamsFromLive: Object.keys(teamRecords).length,
+      teamsFromLive: liveRecords ? Object.keys(liveRecords).length : 0,
       lastUpdated: new Date().toISOString(),
     });
   } catch {

@@ -1,4 +1,5 @@
-// 2025-26 NBA Standings data (updated March 23, 2026)
+// 2025-26 NBA Standings data (static fallback, updated March 29, 2026)
+// Live data fetched from ESPN via /api/standings — this is the offline fallback
 // Bottom teams relevant for lottery
 
 export interface TeamStanding {
@@ -11,23 +12,23 @@ export interface TeamStanding {
   conference: string;
 }
 
-// Current standings as of March 23, 2026 (bottom 14 teams for lottery)
-// Source: Tankathon / Basketball Reference
+// Current standings as of March 29, 2026 (bottom 14 teams for lottery)
+// Source: ESPN standings API
 export const lotteryTeams: TeamStanding[] = [
-  { team: "Indiana Pacers", abbrev: "IND", wins: 15, losses: 56, gamesRemaining: 11, currentPick: 1, conference: "East" },
-  { team: "Washington Wizards", abbrev: "WAS", wins: 16, losses: 55, gamesRemaining: 11, currentPick: 2, conference: "East" },
-  { team: "Brooklyn Nets", abbrev: "BKN", wins: 17, losses: 54, gamesRemaining: 11, currentPick: 3, conference: "East" },
-  { team: "Sacramento Kings", abbrev: "SAC", wins: 19, losses: 53, gamesRemaining: 10, currentPick: 4, conference: "West" },
-  { team: "Utah Jazz", abbrev: "UTA", wins: 21, losses: 50, gamesRemaining: 11, currentPick: 5, conference: "West" },
+  { team: "Indiana Pacers", abbrev: "IND", wins: 16, losses: 58, gamesRemaining: 8, currentPick: 1, conference: "East" },
+  { team: "Washington Wizards", abbrev: "WAS", wins: 16, losses: 57, gamesRemaining: 9, currentPick: 2, conference: "East" },
+  { team: "Brooklyn Nets", abbrev: "BKN", wins: 17, losses: 57, gamesRemaining: 8, currentPick: 3, conference: "East" },
+  { team: "Sacramento Kings", abbrev: "SAC", wins: 19, losses: 56, gamesRemaining: 7, currentPick: 4, conference: "West" },
+  { team: "Utah Jazz", abbrev: "UTA", wins: 21, losses: 53, gamesRemaining: 8, currentPick: 5, conference: "West" },
   { team: "Dallas Mavericks", abbrev: "DAL", wins: 23, losses: 48, gamesRemaining: 11, currentPick: 6, conference: "West" },
-  { team: "Memphis Grizzlies", abbrev: "MEM", wins: 24, losses: 46, gamesRemaining: 12, currentPick: 7, conference: "West" },
-  { team: "New Orleans Pelicans", abbrev: "NOP", wins: 25, losses: 47, gamesRemaining: 10, currentPick: 8, conference: "West" },
-  { team: "Chicago Bulls", abbrev: "CHI", wins: 28, losses: 42, gamesRemaining: 12, currentPick: 9, conference: "East" },
-  { team: "Milwaukee Bucks", abbrev: "MIL", wins: 29, losses: 41, gamesRemaining: 12, currentPick: 10, conference: "East" },
-  { team: "Golden State Warriors", abbrev: "GSW", wins: 33, losses: 38, gamesRemaining: 11, currentPick: 11, conference: "West" },
-  { team: "Portland Trail Blazers", abbrev: "POR", wins: 35, losses: 37, gamesRemaining: 10, currentPick: 12, conference: "West" },
-  { team: "Charlotte Hornets", abbrev: "CHA", wins: 37, losses: 34, gamesRemaining: 11, currentPick: 13, conference: "East" },
-  { team: "Miami Heat", abbrev: "MIA", wins: 38, losses: 33, gamesRemaining: 11, currentPick: 14, conference: "East" },
+  { team: "Memphis Grizzlies", abbrev: "MEM", wins: 24, losses: 49, gamesRemaining: 9, currentPick: 7, conference: "West" },
+  { team: "New Orleans Pelicans", abbrev: "NOP", wins: 25, losses: 49, gamesRemaining: 8, currentPick: 8, conference: "West" },
+  { team: "Chicago Bulls", abbrev: "CHI", wins: 28, losses: 45, gamesRemaining: 9, currentPick: 9, conference: "East" },
+  { team: "Milwaukee Bucks", abbrev: "MIL", wins: 29, losses: 44, gamesRemaining: 9, currentPick: 10, conference: "East" },
+  { team: "Golden State Warriors", abbrev: "GSW", wins: 33, losses: 40, gamesRemaining: 9, currentPick: 11, conference: "West" },
+  { team: "Portland Trail Blazers", abbrev: "POR", wins: 35, losses: 39, gamesRemaining: 8, currentPick: 12, conference: "West" },
+  { team: "Charlotte Hornets", abbrev: "CHA", wins: 37, losses: 37, gamesRemaining: 8, currentPick: 13, conference: "East" },
+  { team: "Miami Heat", abbrev: "MIA", wins: 38, losses: 35, gamesRemaining: 9, currentPick: 14, conference: "East" },
 ];
 
 // NBA Lottery odds by worst record (2019-present system)
