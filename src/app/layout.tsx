@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import AuthProvider from "@/components/AuthProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bkgrit.com"),
@@ -44,21 +45,23 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased min-h-screen bg-bg-primary">
-        <Navbar />
-        <main className="pt-16 pb-10 px-3 sm:px-6 max-w-6xl mx-auto">
-          {children}
-        </main>
-        <footer className="border-t border-white/[0.03] py-10 px-4">
-          <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <span className="font-display text-lg tracking-wider">BK</span>
-              <span className="font-display text-lg tracking-wider text-brand-orange">GRIT</span>
+        <AuthProvider>
+          <Navbar />
+          <main className="pt-16 pb-10 px-3 sm:px-6 max-w-6xl mx-auto">
+            {children}
+          </main>
+          <footer className="border-t border-white/[0.03] py-10 px-4">
+            <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-2">
+                <span className="font-display text-lg tracking-wider">BK</span>
+                <span className="font-display text-lg tracking-wider text-brand-orange">GRIT</span>
+              </div>
+              <p className="text-text-muted text-xs text-center sm:text-right">
+                Not affiliated with the Brooklyn Nets or NBA. A fan project built for Brooklyn.
+              </p>
             </div>
-            <p className="text-text-muted text-xs text-center sm:text-right">
-              Not affiliated with the Brooklyn Nets or NBA. A fan project built for Brooklyn.
-            </p>
-          </div>
-        </footer>
+          </footer>
+        </AuthProvider>
       </body>
     </html>
   );

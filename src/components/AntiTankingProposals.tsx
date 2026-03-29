@@ -3,6 +3,8 @@
 import { useState, useMemo } from "react";
 import { useStandings, type LiveTeam } from "@/lib/useStandings";
 import { lotteryOdds } from "@/data/standings";
+import CommentSection from "@/components/CommentSection";
+import ShareOnX from "@/components/ShareOnX";
 
 // ─── Current system odds ───
 function getCurrentOdds(rank: number): number[] {
@@ -498,8 +500,15 @@ export default function AntiTankingProposals() {
           <p className="text-text-muted text-xs font-body mt-2">
             Source: Yahoo Sports / Chris Haynes, March 2026
           </p>
+          <div className="mt-4">
+            <ShareOnX text="The NBA wants to kill tanking. Here's how each proposal would change the Nets' odds." url="https://bkgrit.com/anti-tanking" />
+          </div>
         </div>
       </section>
+
+      <div className="section-divider" />
+
+      <CommentSection page="anti-tanking" />
     </div>
   );
 }

@@ -2,6 +2,8 @@
 
 import { useState, useMemo } from "react";
 import { useStandings, type LiveTeam } from "@/lib/useStandings";
+import CommentSection from "@/components/CommentSection";
+import ShareOnX from "@/components/ShareOnX";
 
 // NBA lottery odds by worst-record rank
 const ODDS: Record<number, number[]> = {
@@ -458,7 +460,14 @@ export default function TiebreakerScenarios() {
         <p className="text-text-muted text-xs mt-3 font-body">
           TL;DR — Finishing with the same record as IND or WAS doesn&apos;t hurt Nets lottery odds one bit.
         </p>
+        <div className="mt-4">
+          <ShareOnX text="The top 3 worst NBA records all get identical 14% lottery odds. Tiebreakers don't matter for the Nets." url="https://bkgrit.com/tiebreaker" />
+        </div>
       </section>
+
+      <div className="section-divider" />
+
+      <CommentSection page="tiebreaker" />
     </div>
   );
 }

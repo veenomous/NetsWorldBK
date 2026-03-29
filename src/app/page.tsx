@@ -5,6 +5,7 @@ import StockTicker from "@/components/StockTicker";
 import HotTakes from "@/components/HotTakes";
 import DailyPoll from "@/components/DailyPoll";
 import LotteryOddsTable from "@/components/LotteryOddsTable";
+import CommentSection from "@/components/CommentSection";
 import Link from "next/link";
 
 export default function Home() {
@@ -69,6 +70,11 @@ export default function Home() {
         <StockTicker />
         <HotTakes />
       </section>
+
+      <div className="section-divider" />
+
+      {/* Discussion */}
+      <CommentSection page="home" />
 
       <div className="section-divider" />
 
