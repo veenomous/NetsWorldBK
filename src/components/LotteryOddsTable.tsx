@@ -14,9 +14,22 @@ const fullOdds: Record<number, number[]> = {
 };
 
 export default function LotteryOddsTable() {
-  const { lottery, isLive } = useStandings();
+  const { lottery, isLive, isLoading } = useStandings();
   const top8 = lottery.slice(0, 8);
   const nets = getNetsFromStandings(lottery);
+
+  if (isLoading) {
+    return (
+      <div className="card p-5">
+        <div className="h-5 w-40 rounded bg-white/[0.04] animate-pulse-soft mb-4" />
+        <div className="space-y-2">
+          {[1,2,3,4,5,6,7,8].map(i => (
+            <div key={i} className="h-8 rounded bg-white/[0.02] animate-pulse-soft" />
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="card p-5 overflow-x-auto">

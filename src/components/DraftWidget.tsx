@@ -4,10 +4,24 @@ import { useStandings, getNetsFromStandings } from "@/lib/useStandings";
 import Link from "next/link";
 
 export default function DraftWidget() {
-  const { lottery, isLive } = useStandings();
+  const { lottery, isLive, isLoading } = useStandings();
   const nets = getNetsFromStandings(lottery);
 
-  if (!nets) return null;
+  if (isLoading || !nets) {
+    return (
+      <div className="card overflow-hidden">
+        <div className="h-[2px] gradient-bg-brand" />
+        <div className="p-4 sm:p-5 space-y-3">
+          <div className="h-5 w-32 rounded bg-white/[0.04] animate-pulse-soft" />
+          <div className="h-14 rounded-lg bg-white/[0.04] animate-pulse-soft" />
+          <div className="h-8 rounded-lg bg-white/[0.04] animate-pulse-soft" />
+          {[1,2,3,4,5].map(i => (
+            <div key={i} className="h-8 rounded-lg bg-white/[0.02] animate-pulse-soft" />
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="card overflow-hidden">

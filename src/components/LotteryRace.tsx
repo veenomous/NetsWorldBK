@@ -63,7 +63,7 @@ function shortDay(dateStr: string): string {
 }
 
 export default function LotteryRace() {
-  const { lottery } = useStandings();
+  const { lottery, isLoading: standingsLoading } = useStandings();
   const top5 = lottery.slice(0, 5);
 
   const [rows, setRows] = useState<TeamRow[]>([]);
@@ -140,7 +140,7 @@ export default function LotteryRace() {
       </div>
 
       <div className="space-y-1">
-        {loading
+        {(loading || standingsLoading)
           ? [1, 2, 3, 4, 5].map((i) => (
               <div key={i} className="h-10 rounded-lg bg-white/[0.02] animate-pulse-soft" />
             ))

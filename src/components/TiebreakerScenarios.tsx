@@ -45,9 +45,29 @@ function getTiedOdds(positions: number[], metric: "no1" | "top4"): number {
   return sum / positions.length;
 }
 
+function LoadingSkeleton() {
+  return (
+    <div className="space-y-8">
+      <section className="text-center">
+        <div className="h-6 w-32 rounded bg-white/[0.04] animate-pulse-soft mx-auto mb-4" />
+        <div className="h-16 w-64 rounded bg-white/[0.04] animate-pulse-soft mx-auto mb-3" />
+        <div className="h-4 w-80 rounded bg-white/[0.04] animate-pulse-soft mx-auto" />
+      </section>
+      <div className="section-divider" />
+      <div className="space-y-2">
+        {[1,2,3,4,5].map(i => (
+          <div key={i} className="h-16 rounded-xl bg-white/[0.03] animate-pulse-soft" />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function TiebreakerScenarios() {
-  const { lottery, isLive } = useStandings();
+  const { lottery, isLive, isLoading } = useStandings();
   const top5 = lottery.slice(0, 5);
+
+  if (isLoading) return <LoadingSkeleton />;
 
   // What-If sliders: how many more wins each team gets
   const [netsExtraWins, setNetsExtraWins] = useState(0);
@@ -65,12 +85,14 @@ export default function TiebreakerScenarios() {
       conference: t.conference,
     }));
 
-    // Sort by worst record
+    // Sort by win percentage (lowest first) — matches ESPN/NBA method
     teams.sort((a, b) => {
-      const aLosses = a.losses;
-      const bLosses = b.losses;
-      if (bLosses !== aLosses) return bLosses - aLosses;
-      return a.wins - b.wins;
+      const aGames = a.wins + a.losses;
+      const bGames = b.wins + b.losses;
+      const aPct = aGames > 0 ? a.wins / aGames : 0;
+      const bPct = bGames > 0 ? b.wins / bGames : 0;
+      if (aPct !== bPct) return aPct - bPct;
+      return b.losses - a.losses;
     });
 
     return teams;
@@ -137,7 +159,12 @@ export default function TiebreakerScenarios() {
         losses: t.abbrev === "BKN" ? nL : t.losses + Math.round(t.gamesRemaining * (t.losses / (t.wins + t.losses))),
       }));
 
-      allTeams.sort((a, b) => b.losses !== a.losses ? b.losses - a.losses : a.wins - b.wins);
+      allTeams.sort((a, b) => {
+        const aPct = a.wins / (a.wins + a.losses);
+        const bPct = b.wins / (b.wins + b.losses);
+        if (aPct !== bPct) return aPct - bPct;
+        return b.losses - a.losses;
+      });
       const netsRank = allTeams.findIndex((t) => t.abbrev === "BKN") + 1;
       const tiedWith = allTeams.filter((t) => t.abbrev !== "BKN" && t.wins === nW && t.losses === nL).map((t) => t.abbrev);
 

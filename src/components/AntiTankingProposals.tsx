@@ -134,9 +134,27 @@ const PROPOSAL_DETAILS: Record<Exclude<ProposalId, "current">, ProposalDetail> =
 };
 
 export default function AntiTankingProposals() {
-  const { lottery, isLive } = useStandings();
+  const { lottery, isLive, isLoading } = useStandings();
   const [activeProposal, setActiveProposal] = useState<ProposalId>("current");
   const [compareMode, setCompareMode] = useState(false);
+
+  if (isLoading) {
+    return (
+      <div className="space-y-8">
+        <section className="text-center">
+          <div className="h-6 w-32 rounded bg-white/[0.04] animate-pulse-soft mx-auto mb-4" />
+          <div className="h-16 w-64 rounded bg-white/[0.04] animate-pulse-soft mx-auto mb-3" />
+          <div className="h-4 w-80 rounded bg-white/[0.04] animate-pulse-soft mx-auto" />
+        </section>
+        <div className="section-divider" />
+        <div className="space-y-2">
+          {[1,2,3,4,5,6,7,8].map(i => (
+            <div key={i} className="h-12 rounded-xl bg-white/[0.03] animate-pulse-soft" />
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   // Build comparison data for all teams
   const teamComparisons = useMemo(() => {

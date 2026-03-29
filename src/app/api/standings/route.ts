@@ -7,6 +7,17 @@ const LOTTERY_ABBREVS = new Set([
   "CHI", "MIL", "GSW", "POR", "CHA", "MIA",
 ]);
 
+// ESPN uses different abbreviations than NBA.com — map them to our standard
+const ESPN_ABBREV_MAP: Record<string, string> = {
+  WSH: "WAS",
+  UTAH: "UTA",
+  NO: "NOP",
+  GS: "GSW",
+  NY: "NYK",
+  SA: "SAS",
+  PHX: "PHO",
+};
+
 const CONF_MAP: Record<string, string> = {
   IND: "East", WAS: "East", BKN: "East", SAC: "West", UTA: "West",
   DAL: "West", MEM: "West", NOP: "West", CHI: "East", MIL: "East",
@@ -15,19 +26,19 @@ const CONF_MAP: Record<string, string> = {
 
 const STATIC_FALLBACK: Record<string, { team: string; wins: number; losses: number }> = {
   IND: { team: "Indiana Pacers", wins: 16, losses: 58 },
-  WAS: { team: "Washington Wizards", wins: 16, losses: 55 },
+  WAS: { team: "Washington Wizards", wins: 17, losses: 56 },
   BKN: { team: "Brooklyn Nets", wins: 17, losses: 57 },
   SAC: { team: "Sacramento Kings", wins: 19, losses: 56 },
-  UTA: { team: "Utah Jazz", wins: 21, losses: 50 },
+  UTA: { team: "Utah Jazz", wins: 21, losses: 53 },
   DAL: { team: "Dallas Mavericks", wins: 23, losses: 48 },
-  MEM: { team: "Memphis Grizzlies", wins: 24, losses: 46 },
-  NOP: { team: "New Orleans Pelicans", wins: 25, losses: 47 },
-  CHI: { team: "Chicago Bulls", wins: 28, losses: 42 },
-  MIL: { team: "Milwaukee Bucks", wins: 29, losses: 41 },
-  GSW: { team: "Golden State Warriors", wins: 33, losses: 38 },
-  POR: { team: "Portland Trail Blazers", wins: 35, losses: 37 },
-  CHA: { team: "Charlotte Hornets", wins: 37, losses: 34 },
-  MIA: { team: "Miami Heat", wins: 38, losses: 33 },
+  MEM: { team: "Memphis Grizzlies", wins: 24, losses: 49 },
+  NOP: { team: "New Orleans Pelicans", wins: 25, losses: 49 },
+  CHI: { team: "Chicago Bulls", wins: 28, losses: 45 },
+  MIL: { team: "Milwaukee Bucks", wins: 29, losses: 44 },
+  GSW: { team: "Golden State Warriors", wins: 33, losses: 40 },
+  POR: { team: "Portland Trail Blazers", wins: 35, losses: 39 },
+  CHA: { team: "Charlotte Hornets", wins: 37, losses: 37 },
+  MIA: { team: "Miami Heat", wins: 38, losses: 35 },
 };
 
 interface StandingsTeam {
@@ -55,8 +66,12 @@ async function fetchFromESPN(): Promise<Record<string, { team: string; abbrev: s
     for (const conf of data?.children || []) {
       for (const entry of conf?.standings?.entries || []) {
         const team = entry?.team || {};
-        const abbrev = team.abbreviation;
-        if (!abbrev || !LOTTERY_ABBREVS.has(abbrev)) continue;
+        const rawAbbrev = team.abbreviation;
+        if (!rawAbbrev) continue;
+
+        // Normalize ESPN abbreviations to our standard
+        const abbrev = ESPN_ABBREV_MAP[rawAbbrev] || rawAbbrev;
+        if (!LOTTERY_ABBREVS.has(abbrev)) continue;
 
         const stats: Record<string, number> = {};
         for (const s of entry?.stats || []) {
@@ -131,10 +146,16 @@ export async function GET() {
       };
     });
 
-    // Sort by worst record (most losses first, then fewest wins)
+    // Sort by win percentage (lowest first) — matches ESPN's method
+    // This handles teams with different games played correctly
     allTeams.sort((a, b) => {
-      if (b.losses !== a.losses) return b.losses - a.losses;
-      return a.wins - b.wins;
+      const aGames = a.wins + a.losses;
+      const bGames = b.wins + b.losses;
+      const aPct = aGames > 0 ? a.wins / aGames : 0;
+      const bPct = bGames > 0 ? b.wins / bGames : 0;
+      if (aPct !== bPct) return aPct - bPct;
+      // If same win%, more losses = worse record
+      return b.losses - a.losses;
     });
 
     // Assign lottery rank

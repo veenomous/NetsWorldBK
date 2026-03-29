@@ -16,6 +16,7 @@ export interface LiveTeam {
 export interface StandingsData {
   lottery: LiveTeam[];
   isLive: boolean;
+  isLoading: boolean;
 }
 
 // Merge static data with live lottery rank
@@ -32,9 +33,11 @@ function staticFallback(): LiveTeam[] {
 }
 
 export function useStandings(): StandingsData {
+  // Start in loading state — don't render stale static data first
   const [data, setData] = useState<StandingsData>({
-    lottery: staticFallback(),
+    lottery: [],
     isLive: false,
+    isLoading: true,
   });
 
   useEffect(() => {
@@ -43,11 +46,14 @@ export function useStandings(): StandingsData {
         const res = await fetch("/api/standings");
         const json = await res.json();
         if (json.lottery && json.lottery.length > 0) {
-          setData({ lottery: json.lottery, isLive: true });
+          setData({ lottery: json.lottery, isLive: true, isLoading: false });
+          return;
         }
       } catch {
-        // Keep static fallback
+        // Fall through to static
       }
+      // Only use static if API failed
+      setData({ lottery: staticFallback(), isLive: false, isLoading: false });
     }
     fetchStandings();
   }, []);
