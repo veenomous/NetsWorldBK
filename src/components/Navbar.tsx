@@ -9,6 +9,7 @@ const navLinks = [
   { href: "/gm-mode", label: "War Room" },
   { href: "/trade-machine", label: "Trade Machine" },
   { href: "/tiebreaker", label: "Tiebreaker" },
+  { href: "/anti-tanking", label: "Anti-Tank" },
 ];
 
 export default function Navbar() {
