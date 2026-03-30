@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { supabase, getVisitorId } from "@/lib/supabase";
 import ShareButton from "@/components/ShareButton";
+import CommentSection from "@/components/CommentSection";
 
 interface Take {
   id: string;
@@ -29,6 +30,7 @@ const TAG_OPTIONS = ["Hot Take", "Draft", "Roster", "Strategy", "Spicy"];
 export default function HotTakes() {
   const { data: session } = useSession();
   const xHandle = (session?.user as { xHandle?: string })?.xHandle;
+  const [expandedReplies, setExpandedReplies] = useState<string | null>(null);
 
   const [takes, setTakes] = useState<Take[]>([]);
   const [userVotes, setUserVotes] = useState<Record<string, string>>({});
@@ -235,17 +237,28 @@ export default function HotTakes() {
                     <span>{take.disagrees}</span>
                   </button>
                   {userVote && (
-                    <>
-                      <span className="text-[11px] text-text-muted ml-auto mr-2">
-                        {agreePercent}% agree
-                      </span>
-                      <ShareButton
-                        text={`"${take.text}" — ${agreePercent}% of Nets fans agree. What do you think?`}
-                        url={`https://bkgrit.com/share/take?text=${encodeURIComponent(take.text.slice(0, 100))}&pct=${agreePercent}`}
-                      />
-                    </>
+                    <span className="text-[11px] text-text-muted ml-auto mr-2">
+                      {agreePercent}% agree
+                    </span>
+                  )}
+                  <button
+                    onClick={() => setExpandedReplies(expandedReplies === take.id ? null : take.id)}
+                    className="text-text-muted text-[11px] font-semibold uppercase tracking-wider hover:text-brand-orange transition-colors ml-auto"
+                  >
+                    {expandedReplies === take.id ? "Hide" : "Reply"}
+                  </button>
+                  {userVote && (
+                    <ShareButton
+                      text={`"${take.text}" — ${agreePercent}% of Nets fans agree. What do you think?`}
+                      url={`https://bkgrit.com/share/take?text=${encodeURIComponent(take.text.slice(0, 100))}&pct=${agreePercent}`}
+                    />
                   )}
                 </div>
+
+                {/* Inline replies */}
+                {expandedReplies === take.id && (
+                  <CommentSection page={`take-${take.id}`} compact />
+                )}
               </div>
             );
           })}

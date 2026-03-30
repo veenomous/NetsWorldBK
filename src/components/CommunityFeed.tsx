@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useSession, signIn } from "next-auth/react";
 import { supabase } from "@/lib/supabase";
+import CommentSection from "@/components/CommentSection";
 import Link from "next/link";
 
 interface Article {
@@ -99,6 +100,7 @@ export default function CommunityFeed() {
     setSubmitting(false);
   }
 
+  const [expandedComments, setExpandedComments] = useState<string | null>(null);
   const filtered = filter === "All" ? articles : articles.filter((a) => a.tag === filter);
 
   return (
@@ -204,22 +206,20 @@ export default function CommunityFeed() {
       ) : (
         <div className="space-y-3">
           {filtered.map((article) => (
-            <Link
-              key={article.id}
-              href={`/community/${article.id}`}
-              className="card p-5 block hover:border-brand-orange/30 transition-all group"
-            >
+            <div key={article.id} className="card p-5">
               <div className="flex items-center gap-2 mb-2">
                 <span className={`tag ${tagColors[article.tag] || "tag-blue"}`}>{article.tag}</span>
                 <span className="text-text-muted text-[11px]">{timeAgo(article.created_at)}</span>
               </div>
-              <h2 className="text-lg font-bold text-text-primary group-hover:text-brand-orange transition-colors mb-1.5">
-                {article.title}
-              </h2>
-              <p className="text-text-secondary text-sm line-clamp-2 leading-relaxed">
+              <Link href={`/community/${article.id}`} className="group">
+                <h2 className="text-lg font-bold text-text-primary group-hover:text-brand-orange transition-colors mb-1.5">
+                  {article.title}
+                </h2>
+              </Link>
+              <p className="text-text-secondary text-sm line-clamp-3 leading-relaxed">
                 {article.body}
               </p>
-              <div className="flex items-center gap-2 mt-3">
+              <div className="flex items-center gap-3 mt-3">
                 {article.user.x_avatar ? (
                   <img src={article.user.x_avatar} alt="" className="w-5 h-5 rounded-full" />
                 ) : (
@@ -228,8 +228,26 @@ export default function CommunityFeed() {
                   </div>
                 )}
                 <span className="text-text-muted text-xs font-medium">@{article.user.x_handle}</span>
+                <div className="ml-auto flex items-center gap-3">
+                  <button
+                    onClick={() => setExpandedComments(expandedComments === article.id ? null : article.id)}
+                    className="text-text-muted text-[11px] font-semibold uppercase tracking-wider hover:text-brand-orange transition-colors"
+                  >
+                    {expandedComments === article.id ? "Hide" : "Discuss"}
+                  </button>
+                  <Link
+                    href={`/community/${article.id}`}
+                    className="text-brand-orange text-[11px] font-semibold uppercase tracking-wider hover:underline"
+                  >
+                    Read More
+                  </Link>
+                </div>
               </div>
-            </Link>
+
+              {expandedComments === article.id && (
+                <CommentSection page={`article-${article.id}`} compact />
+              )}
+            </div>
           ))}
         </div>
       )}
