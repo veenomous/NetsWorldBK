@@ -1,4 +1,3 @@
-import Image from "next/image";
 import DraftWidget from "@/components/DraftWidget";
 import StockTicker from "@/components/StockTicker";
 import HotTakes from "@/components/HotTakes";
@@ -10,38 +9,6 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="space-y-8">
-      {/* Hero */}
-      <section className="-mt-4 flex flex-col items-center text-center relative">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-orange/[0.04] rounded-full blur-[100px] pointer-events-none" />
-        <Image
-          src="/BKGrit.png"
-          alt="Brooklyn Grit"
-          width={500}
-          height={250}
-          priority
-          className="w-full max-w-[320px] sm:max-w-[480px] h-auto relative z-10 animate-float"
-        />
-        <p className="text-text-secondary mt-3 text-sm max-w-md relative z-10 font-body">
-          The fan HQ. Track the draft. Vote on takes. Play GM. Built for Brooklyn.
-        </p>
-        <div className="flex flex-wrap justify-center gap-2 mt-5 relative z-10">
-          {[
-            { href: "/simulator", label: "Lottery Sim" },
-            { href: "/gm-mode", label: "War Room" },
-            { href: "/trade-machine", label: "Trade Machine" },
-          ].map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="px-4 py-1.5 rounded-full text-[12px] font-semibold bg-gray-100 text-text-secondary hover:bg-brand-orange/15 hover:text-brand-orange-glow border border-gray-200 hover:border-brand-orange/20 transition-all"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <div className="section-divider" />
 
       {/* Row 1: Draft left, Polls right */}
       <section className="grid md:grid-cols-[1fr_1fr] gap-5 items-start stagger-children">

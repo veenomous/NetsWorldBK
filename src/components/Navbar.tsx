@@ -24,7 +24,6 @@ interface ScoreGame {
   lotteryTeams: string[];
 }
 
-// Only show games involving these 5 teams
 const TOP5 = new Set(["IND", "WAS", "BKN", "SAC", "UTA"]);
 
 function periodLabel(p: number): string {
@@ -38,19 +37,19 @@ function UserButton() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   if (status === "loading") {
-    return <div className="w-6 h-6 rounded-full bg-white/[0.1] animate-pulse-soft" />;
+    return <div className="w-8 h-8 rounded-full bg-white/[0.1] animate-pulse-soft" />;
   }
 
   if (!session) {
     return (
       <button
         onClick={() => signIn("twitter")}
-        className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.08] border border-white/[0.1] hover:bg-brand-orange/20 hover:border-brand-orange/30 hover:text-brand-orange transition-all text-gray-400"
+        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-orange hover:bg-brand-orange-glow transition-all text-white font-bold text-[12px] uppercase tracking-wider"
       >
-        <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
         </svg>
-        <span className="text-[10px] font-bold uppercase tracking-wider hidden sm:inline">Sign In</span>
+        Sign In
       </button>
     );
   }
@@ -62,29 +61,29 @@ function UserButton() {
     <div className="relative">
       <button
         onClick={() => setDropdownOpen(!dropdownOpen)}
-        className="flex items-center gap-1.5 px-1.5 py-0.5 rounded-full hover:bg-white/[0.06] transition-all"
+        className="flex items-center gap-2 px-2 py-1 rounded-lg hover:bg-white/[0.06] transition-all"
       >
         {user.image ? (
-          <img src={user.image} alt={handle} className="w-6 h-6 rounded-full border border-white/[0.15]" />
+          <img src={user.image} alt={handle} className="w-8 h-8 rounded-full border-2 border-white/[0.15]" />
         ) : (
-          <div className="w-6 h-6 rounded-full bg-brand-orange/20 flex items-center justify-center text-brand-orange text-[10px] font-bold">
+          <div className="w-8 h-8 rounded-full bg-brand-orange/20 flex items-center justify-center text-brand-orange text-sm font-bold">
             {handle[0]?.toUpperCase()}
           </div>
         )}
-        <span className="text-gray-300 text-[11px] font-semibold hidden sm:inline">@{handle}</span>
+        <span className="text-gray-300 text-[12px] font-semibold hidden sm:inline">@{handle}</span>
       </button>
 
       {dropdownOpen && (
         <>
           <div className="fixed inset-0 z-40" onClick={() => setDropdownOpen(false)} />
-          <div className="absolute right-0 top-full mt-1 z-50 w-48 rounded-xl bg-[#1c2128] border border-white/[0.1] shadow-xl overflow-hidden">
-            <div className="px-3 py-2.5 border-b border-white/[0.06]">
+          <div className="absolute right-0 top-full mt-2 z-50 w-52 rounded-xl bg-[#1c2128] border border-white/[0.1] shadow-2xl overflow-hidden">
+            <div className="px-4 py-3 border-b border-white/[0.06]">
               <p className="text-sm font-bold text-white">@{handle}</p>
-              <p className="text-[10px] text-gray-500">Signed in via X</p>
+              <p className="text-[11px] text-gray-500">Signed in via X</p>
             </div>
             <button
               onClick={() => { setDropdownOpen(false); signOut(); }}
-              className="w-full text-left px-3 py-2.5 text-sm text-red-400 hover:bg-white/[0.04] transition-colors"
+              className="w-full text-left px-4 py-3 text-sm text-red-400 hover:bg-white/[0.04] transition-colors"
             >
               Sign Out
             </button>
@@ -106,12 +105,10 @@ export default function Navbar() {
     try {
       const res = await fetch("/api/scores");
       const data = await res.json();
-      // Only top 5 lottery team games
       const allGames: ScoreGame[] = data.games || [];
-      const filtered = allGames.filter(
+      setGames(allGames.filter(
         (g) => TOP5.has(g.homeTeam.abbrev) || TOP5.has(g.awayTeam.abbrev)
-      );
-      setGames(filtered);
+      ));
       setHasLive(data.hasLiveGames || false);
     } catch { /* silent */ }
   }, []);
@@ -124,27 +121,28 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0f1419]">
-      {/* Single header row: Logo | Scores | Auth */}
-      <div className="border-b border-white/[0.08]">
-        <div className="flex items-center h-14 px-4 sm:px-6 max-w-[1400px] mx-auto">
-          {/* Logo — left side */}
-          <Link href="/" className="flex items-center gap-1.5 shrink-0 mr-4">
+      {/* Main header: Logo | Scores | Auth */}
+      <div className="border-b border-white/[0.1]">
+        <div className="flex items-center px-5 sm:px-8 h-[72px]">
+          {/* Logo */}
+          <Link href="/" className="shrink-0 mr-6 sm:mr-10">
             <Image
               src="/BKGrit.png"
               alt="BK Grit"
-              width={80}
-              height={40}
-              className="h-9 w-auto"
+              width={160}
+              height={60}
+              priority
+              className="h-12 sm:h-14 w-auto"
             />
           </Link>
 
-          {/* Scores ticker — center, scrollable */}
-          <div className="flex-1 overflow-hidden mx-2">
+          {/* Divider */}
+          <div className="w-px h-10 bg-white/[0.1] shrink-0 mr-5 hidden sm:block" />
+
+          {/* Scores */}
+          <div className="flex-1 overflow-hidden">
             {games.length > 0 ? (
-              <div
-                ref={scrollRef}
-                className="flex overflow-x-auto scrollbar-hide gap-0"
-              >
+              <div ref={scrollRef} className="flex overflow-x-auto scrollbar-hide">
                 {games.map((g, i) => {
                   const isLive = g.status === 2;
                   const isFinal = g.status === 3;
@@ -155,48 +153,51 @@ export default function Navbar() {
                   return (
                     <div
                       key={i}
-                      className={`flex-shrink-0 px-4 py-1.5 border-r border-white/[0.06] last:border-r-0 ${
-                        isBKN ? "bg-brand-orange/[0.08]" : ""
+                      className={`flex-shrink-0 px-5 py-2 border-r border-white/[0.06] last:border-r-0 ${
+                        isBKN ? "bg-brand-orange/[0.06]" : ""
                       }`}
                     >
                       {/* Status */}
-                      <div className="mb-0.5">
+                      <div className="mb-1 h-3.5 flex items-center">
                         {isLive ? (
-                          <span className="text-[9px] font-bold text-red-400">
-                            {periodLabel(g.period)} {g.clock}
-                          </span>
+                          <div className="flex items-center gap-1.5">
+                            <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse-soft" />
+                            <span className="text-[10px] font-bold text-red-400">
+                              {periodLabel(g.period)} {g.clock}
+                            </span>
+                          </div>
                         ) : isFinal ? (
-                          <span className="text-[9px] font-bold text-gray-500">Final</span>
+                          <span className="text-[10px] font-bold text-gray-500 uppercase">Final</span>
                         ) : (
-                          <span className="text-[9px] text-gray-500">{g.statusText}</span>
+                          <span className="text-[10px] text-gray-500">{g.statusText}</span>
                         )}
                       </div>
 
-                      {/* Away */}
-                      <div className="flex items-center justify-between gap-4 leading-tight">
-                        <span className={`text-[11px] font-bold ${
+                      {/* Away team */}
+                      <div className="flex items-center justify-between gap-6 h-5">
+                        <span className={`text-[13px] font-bold tracking-wide ${
                           TOP5.has(g.awayTeam.abbrev) ? "text-brand-orange" : "text-gray-300"
                         }`}>
                           {g.awayTeam.abbrev}
                         </span>
-                        <span className={`text-[12px] tabular-nums font-bold ${
+                        <span className={`text-[15px] tabular-nums font-extrabold ${
                           (isFinal || isLive) && awayWinning ? "text-white" : "text-gray-500"
                         }`}>
-                          {g.status > 1 ? g.awayTeam.score : ""}
+                          {g.status > 1 ? g.awayTeam.score : "-"}
                         </span>
                       </div>
 
-                      {/* Home */}
-                      <div className="flex items-center justify-between gap-4 leading-tight">
-                        <span className={`text-[11px] font-bold ${
+                      {/* Home team */}
+                      <div className="flex items-center justify-between gap-6 h-5">
+                        <span className={`text-[13px] font-bold tracking-wide ${
                           TOP5.has(g.homeTeam.abbrev) ? "text-brand-orange" : "text-gray-300"
                         }`}>
                           {g.homeTeam.abbrev}
                         </span>
-                        <span className={`text-[12px] tabular-nums font-bold ${
+                        <span className={`text-[15px] tabular-nums font-extrabold ${
                           (isFinal || isLive) && homeWinning ? "text-white" : "text-gray-500"
                         }`}>
-                          {g.status > 1 ? g.homeTeam.score : ""}
+                          {g.status > 1 ? g.homeTeam.score : "-"}
                         </span>
                       </div>
                     </div>
@@ -204,29 +205,27 @@ export default function Navbar() {
                 })}
               </div>
             ) : (
-              <div className="flex items-center justify-center h-full">
-                <span className="text-gray-600 text-[11px]">No lottery team games today</span>
-              </div>
+              <p className="text-gray-600 text-[12px] italic">No lottery team games today</p>
             )}
           </div>
 
-          {/* Auth — right side */}
-          <div className="shrink-0 ml-2">
+          {/* Auth */}
+          <div className="shrink-0 ml-4 sm:ml-6">
             <UserButton />
           </div>
         </div>
       </div>
 
-      {/* Row 2: Navigation links */}
-      <div className="border-b border-white/[0.06]">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+      {/* Nav links row */}
+      <div className="bg-[#161d25] border-b border-white/[0.06]">
+        <div className="px-5 sm:px-8">
           {/* Desktop */}
-          <div className="hidden md:flex items-center h-9 gap-0.5">
+          <div className="hidden md:flex items-center h-10 gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-3 py-1 rounded-md text-[11px] font-semibold text-gray-400 hover:text-white hover:bg-white/[0.06] transition-all tracking-wide uppercase"
+                className="px-3.5 py-1.5 rounded-md text-[12px] font-semibold text-gray-400 hover:text-white hover:bg-white/[0.06] transition-all tracking-wide uppercase"
               >
                 {link.label}
               </Link>
@@ -234,10 +233,10 @@ export default function Navbar() {
           </div>
 
           {/* Mobile */}
-          <div className="flex md:hidden items-center h-9">
+          <div className="flex md:hidden items-center h-10">
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="flex items-center gap-1.5 text-gray-400 hover:text-white transition-colors"
+              className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {mobileOpen ? (
@@ -246,7 +245,7 @@ export default function Navbar() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 )}
               </svg>
-              <span className="text-[11px] font-semibold uppercase tracking-wider">Menu</span>
+              <span className="text-[12px] font-semibold uppercase tracking-wider">Menu</span>
             </button>
           </div>
         </div>
@@ -254,14 +253,14 @@ export default function Navbar() {
 
       {/* Mobile nav dropdown */}
       {mobileOpen && (
-        <div className="md:hidden bg-[#0f1419] border-b border-white/[0.06]">
-          <div className="px-4 py-2 space-y-0.5">
+        <div className="md:hidden bg-[#161d25] border-b border-white/[0.06]">
+          <div className="px-5 py-2 space-y-0.5">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="block px-3 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-white/[0.06] transition-all"
+                className="block px-3 py-2.5 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-white/[0.06] transition-all"
               >
                 {link.label}
               </Link>
