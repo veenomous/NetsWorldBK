@@ -123,21 +123,21 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0f1419]">
       {/* Main header: Logo | Scores | Auth */}
       <div className="border-b border-white/[0.1]">
-        <div className="flex items-center px-5 sm:px-8 h-[72px]">
+        <div className="flex items-center px-5 sm:px-8 h-[90px]">
           {/* Logo */}
           <Link href="/" className="shrink-0 mr-6 sm:mr-10">
             <Image
               src="/BKGrit.png"
               alt="BK Grit"
-              width={160}
-              height={60}
+              width={220}
+              height={80}
               priority
-              className="h-12 sm:h-14 w-auto"
+              className="h-16 sm:h-[72px] w-auto"
             />
           </Link>
 
           {/* Divider */}
-          <div className="w-px h-10 bg-white/[0.1] shrink-0 mr-5 hidden sm:block" />
+          <div className="w-px h-14 bg-white/[0.1] shrink-0 mr-6 hidden sm:block" />
 
           {/* Scores */}
           <div className="flex-1 overflow-hidden">
