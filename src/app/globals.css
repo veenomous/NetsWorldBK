@@ -55,6 +55,10 @@ body {
 ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.25); }
 
+/* Hide scrollbar on ticker */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
 /* ===== TYPOGRAPHY ===== */
 .font-display { font-family: var(--font-display); }
 .font-body { font-family: var(--font-body); }

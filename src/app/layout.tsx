@@ -47,7 +47,7 @@ export default function RootLayout({
       <body className="antialiased min-h-screen bg-bg-primary">
         <AuthProvider>
           <Navbar />
-          <main className="pt-16 pb-10 px-3 sm:px-6 max-w-6xl mx-auto">
+          <main className="pt-24 pb-10 px-3 sm:px-6 max-w-6xl mx-auto">
             {children}
           </main>
           <footer className="border-t border-gray-200 py-10 px-4">
