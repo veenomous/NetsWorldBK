@@ -1,8 +1,40 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
 import { useSession, signIn } from "next-auth/react";
 import { supabase } from "@/lib/supabase";
+import { Tweet } from "react-tweet";
+
+// Extract tweet ID from a URL like https://twitter.com/user/status/123 or https://x.com/user/status/123
+function extractTweetId(text: string): string | null {
+  const match = text.match(/(?:twitter\.com|x\.com)\/\w+\/status\/(\d+)/);
+  return match ? match[1] : null;
+}
+
+// Render comment body with inline tweet embeds
+function CommentBody({ body }: { body: string }) {
+  const tweetId = extractTweetId(body);
+
+  if (tweetId) {
+    // Split text around the tweet URL
+    const textWithoutUrl = body.replace(/https?:\/\/(?:twitter\.com|x\.com)\/\w+\/status\/\d+\S*/g, "").trim();
+
+    return (
+      <div>
+        {textWithoutUrl && (
+          <p className="text-text-secondary text-sm leading-relaxed break-words mb-2">{textWithoutUrl}</p>
+        )}
+        <div className="rounded-xl overflow-hidden border border-gray-200 not-prose" data-theme="light">
+          <Suspense fallback={<div className="h-20 bg-gray-50 animate-pulse-soft rounded-xl" />}>
+            <Tweet id={tweetId} />
+          </Suspense>
+        </div>
+      </div>
+    );
+  }
+
+  return <p className="text-text-secondary text-sm leading-relaxed break-words">{body}</p>;
+}
 
 interface Comment {
   id: string;
@@ -57,7 +89,7 @@ function CommentBubble({
             <span className="text-sm font-bold text-text-primary">@{comment.user.x_handle}</span>
             <span className="text-text-muted text-[10px]">{timeAgo(comment.created_at)}</span>
           </div>
-          <p className="text-text-secondary text-sm leading-relaxed break-words">{comment.body}</p>
+          <CommentBody body={comment.body} />
           {depth === 0 && (
             <button
               onClick={() => onReply(comment.id)}

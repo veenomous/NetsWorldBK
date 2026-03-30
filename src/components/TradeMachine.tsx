@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { getNetsTeam, getOtherTeams, formatSalary, type NBAPlayer, type NBATeam, type DraftPick } from "@/data/rosters";
 import { checkTradeValidity } from "@/lib/tradeRules";
 import { supabase, getVisitorId } from "@/lib/supabase";
+import ShareOnX from "@/components/ShareOnX";
 
 interface SavedTrade {
   id: string;
@@ -332,9 +333,15 @@ export default function TradeMachine() {
         <div className="animate-slide-up text-center py-6">
           <p className="text-2xl font-black gradient-text-brand">Trade Submitted!</p>
           <p className="text-text-muted text-sm mt-2">See how other fans vote on your trade below.</p>
-          <button onClick={reset} className="mt-4 px-5 py-2 rounded-xl gradient-bg-brand font-bold text-sm transition-all cursor-pointer">
-            Build Another Trade
-          </button>
+          <div className="flex items-center justify-center gap-3 mt-4">
+            <button onClick={reset} className="px-5 py-2 rounded-xl gradient-bg-brand font-bold text-sm transition-all cursor-pointer text-white">
+              Build Another Trade
+            </button>
+            <ShareOnX
+              text={`I just built a Nets trade on BK Grit: sending ${netsSend.map(p => p.name.split(" ").pop()).join(", ")} to ${otherTeam?.abbrev || "?"} for ${netsReceive.map(p => p.name.split(" ").pop()).join(", ")}. What do you think?`}
+              url="https://bkgrit.com/trade-machine"
+            />
+          </div>
         </div>
       )}
 
