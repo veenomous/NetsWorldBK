@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 import { supabase, getVisitorId } from "@/lib/supabase";
 import ShareButton from "@/components/ShareButton";
 
@@ -26,6 +27,9 @@ const tagColors: Record<string, string> = {
 const TAG_OPTIONS = ["Hot Take", "Draft", "Roster", "Strategy", "Spicy"];
 
 export default function HotTakes() {
+  const { data: session } = useSession();
+  const xHandle = (session?.user as { xHandle?: string })?.xHandle;
+
   const [takes, setTakes] = useState<Take[]>([]);
   const [userVotes, setUserVotes] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(true);
@@ -86,7 +90,7 @@ export default function HotTakes() {
     setSubmitting(true);
 
     const visitorId = getVisitorId();
-    const author = newAuthor.trim() || "Anonymous";
+    const author = xHandle || newAuthor.trim() || "Anonymous";
 
     const { data, error } = await supabase
       .from("hot_takes")
@@ -139,13 +143,17 @@ export default function HotTakes() {
             className="w-full bg-transparent text-[13px] text-white placeholder:text-text-muted outline-none resize-none mb-2"
           />
           <div className="flex items-center gap-2 mb-2">
-            <input
-              value={newAuthor}
-              onChange={(e) => setNewAuthor(e.target.value)}
-              placeholder="Your name (optional)"
-              maxLength={20}
-              className="flex-1 bg-white/[0.04] rounded-lg px-3 py-1.5 text-[12px] text-white placeholder:text-text-muted outline-none"
-            />
+            {xHandle ? (
+              <span className="flex-1 text-[12px] text-brand-orange font-semibold">@{xHandle}</span>
+            ) : (
+              <input
+                value={newAuthor}
+                onChange={(e) => setNewAuthor(e.target.value)}
+                placeholder="Your name (optional)"
+                maxLength={20}
+                className="flex-1 bg-white/[0.04] rounded-lg px-3 py-1.5 text-[12px] text-white placeholder:text-text-muted outline-none"
+              />
+            )}
             <select
               value={newTag}
               onChange={(e) => setNewTag(e.target.value)}

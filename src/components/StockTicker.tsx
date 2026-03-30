@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 import { supabase, getVisitorId } from "@/lib/supabase";
 
 interface RosterPlayer {
@@ -62,6 +63,9 @@ const trendIcon = { up: "▲", down: "▼", steady: "—" };
 const trendColor = { up: "text-accent-green", down: "text-accent-red", steady: "text-text-muted" };
 
 export default function StockTicker() {
+  const { data: session } = useSession();
+  const xHandle = (session?.user as { xHandle?: string })?.xHandle;
+
   const [filter, setFilter] = useState("all");
   const [ratings, setRatings] = useState<Record<string, RatingCounts>>({});
   const [myRatings, setMyRatings] = useState<Record<string, string>>({});
@@ -127,7 +131,7 @@ export default function StockTicker() {
     if (!newTake.trim() || newTake.length < 5 || submitting) return;
     setSubmitting(true);
     const visitorId = getVisitorId();
-    const author = newAuthor.trim() || "Anonymous";
+    const author = xHandle || newAuthor.trim() || "Anonymous";
 
     const { data } = await supabase
       .from("player_takes")
@@ -307,14 +311,18 @@ export default function StockTicker() {
                         maxLength={140}
                         className="flex-1 bg-white/[0.04] rounded-lg px-3 py-2 text-xs text-white placeholder:text-text-muted outline-none"
                       />
-                      <input
-                        value={newAuthor}
-                        onChange={(e) => setNewAuthor(e.target.value)}
-                        onClick={(e) => e.stopPropagation()}
-                        placeholder="Name"
-                        maxLength={15}
-                        className="w-20 bg-white/[0.04] rounded-lg px-2 py-2 text-xs text-white placeholder:text-text-muted outline-none"
-                      />
+                      {xHandle ? (
+                        <span className="flex items-center px-2 text-[11px] text-brand-orange font-semibold">@{xHandle}</span>
+                      ) : (
+                        <input
+                          value={newAuthor}
+                          onChange={(e) => setNewAuthor(e.target.value)}
+                          onClick={(e) => e.stopPropagation()}
+                          placeholder="Name"
+                          maxLength={15}
+                          className="w-20 bg-white/[0.04] rounded-lg px-2 py-2 text-xs text-white placeholder:text-text-muted outline-none"
+                        />
+                      )}
                       <button
                         onClick={(e) => { e.stopPropagation(); handleSubmitTake(player.name); }}
                         disabled={submitting || newTake.trim().length < 5}
