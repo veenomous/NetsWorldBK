@@ -34,7 +34,7 @@ export default function Home() {
             <Link
               key={link.href}
               href={link.href}
-              className="px-4 py-1.5 rounded-full text-[12px] font-semibold bg-white/[0.04] text-text-secondary hover:bg-brand-orange/15 hover:text-brand-orange-glow border border-white/[0.04] hover:border-brand-orange/20 transition-all"
+              className="px-4 py-1.5 rounded-full text-[12px] font-semibold bg-gray-100 text-text-secondary hover:bg-brand-orange/15 hover:text-brand-orange-glow border border-gray-200 hover:border-brand-orange/20 transition-all"
             >
               {link.label}
             </Link>
@@ -62,7 +62,7 @@ export default function Home() {
 
       <div className="flex items-center gap-3">
         <h2 className="heading-md text-text-secondary">Community</h2>
-        <div className="flex-1 h-px bg-white/[0.04]" />
+        <div className="flex-1 h-px bg-gray-100" />
       </div>
 
       {/* Stock Ticker + Hot Takes */}

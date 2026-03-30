@@ -142,7 +142,7 @@ export default function LotteryRace() {
       <div className="space-y-1">
         {(loading || standingsLoading)
           ? [1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="h-10 rounded-lg bg-white/[0.02] animate-pulse-soft" />
+              <div key={i} className="h-10 rounded-lg bg-gray-50 animate-pulse-soft" />
             ))
           : rows.map((row) => {
               const isNets = row.abbrev === "BKN";
@@ -157,7 +157,7 @@ export default function LotteryRace() {
                   className={`flex items-center px-2.5 py-2 rounded-lg text-sm ${
                     isNets
                       ? "bg-brand-orange/8 border border-brand-orange/20"
-                      : "bg-white/[0.02]"
+                      : "bg-gray-50"
                   }`}
                 >
                   <span className="text-text-muted text-xs w-5">{row.rank}</span>

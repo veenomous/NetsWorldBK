@@ -21,7 +21,7 @@ export default function ShareButton({ text, url, hashtags = "BKGrit,Nets,NBADraf
       rel="noopener noreferrer"
       className={`inline-flex items-center gap-1.5 font-semibold rounded-lg transition-all hover:scale-105
         ${size === "sm"
-          ? "px-3 py-1.5 text-[11px] bg-white/[0.06] text-text-secondary hover:bg-[#1d9bf0]/15 hover:text-[#1d9bf0]"
+          ? "px-3 py-1.5 text-[11px] bg-gray-100 text-text-secondary hover:bg-[#1d9bf0]/15 hover:text-[#1d9bf0]"
           : "px-4 py-2 text-[13px] bg-[#1d9bf0]/15 text-[#1d9bf0] hover:bg-[#1d9bf0]/25"
         }`}
     >

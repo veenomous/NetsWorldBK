@@ -12,11 +12,11 @@ export default function DraftWidget() {
       <div className="card overflow-hidden">
         <div className="h-[2px] gradient-bg-brand" />
         <div className="p-4 sm:p-5 space-y-3">
-          <div className="h-5 w-32 rounded bg-white/[0.04] animate-pulse-soft" />
-          <div className="h-14 rounded-lg bg-white/[0.04] animate-pulse-soft" />
-          <div className="h-8 rounded-lg bg-white/[0.04] animate-pulse-soft" />
+          <div className="h-5 w-32 rounded bg-gray-100 animate-pulse-soft" />
+          <div className="h-14 rounded-lg bg-gray-100 animate-pulse-soft" />
+          <div className="h-8 rounded-lg bg-gray-100 animate-pulse-soft" />
           {[1,2,3,4,5].map(i => (
-            <div key={i} className="h-8 rounded-lg bg-white/[0.02] animate-pulse-soft" />
+            <div key={i} className="h-8 rounded-lg bg-gray-50 animate-pulse-soft" />
           ))}
         </div>
       </div>
@@ -40,11 +40,11 @@ export default function DraftWidget() {
         <div className="flex items-center gap-4 mb-3">
           <span className="font-display text-5xl sm:text-6xl gradient-text-brand leading-none tracking-wider">#{nets.lotteryRank}</span>
           <div className="flex-1 flex gap-2">
-            <div className="flex-1 bg-white/[0.04] rounded-lg p-2 text-center">
+            <div className="flex-1 bg-gray-100 rounded-lg p-2 text-center">
               <p className="text-text-muted text-[10px] uppercase">#1 Pick</p>
               <p className="text-base sm:text-lg font-black">{nets.top1Odds.toFixed(1)}%</p>
             </div>
-            <div className="flex-1 bg-white/[0.04] rounded-lg p-2 text-center">
+            <div className="flex-1 bg-gray-100 rounded-lg p-2 text-center">
               <p className="text-text-muted text-[10px] uppercase">Top 4</p>
               <p className="text-base sm:text-lg font-black">{nets.top4Odds.toFixed(1)}%</p>
             </div>
@@ -52,7 +52,7 @@ export default function DraftWidget() {
         </div>
 
         {/* Record */}
-        <div className="flex items-center justify-between p-2 rounded-lg bg-white/[0.04] mb-2">
+        <div className="flex items-center justify-between p-2 rounded-lg bg-gray-100 mb-2">
           <span className="text-text-secondary text-sm">Record</span>
           <span className="font-bold text-base">{nets.wins}-{nets.losses}</span>
         </div>

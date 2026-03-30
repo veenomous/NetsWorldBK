@@ -190,7 +190,7 @@ export default function StockTicker() {
             key={c.key}
             onClick={() => setFilter(c.key)}
             className={`px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
-              filter === c.key ? "bg-white/10 text-white" : "text-text-muted hover:text-text-secondary hover:bg-white/[0.03]"
+              filter === c.key ? "bg-gray-900 text-white" : "text-text-muted hover:text-text-secondary hover:bg-gray-100"
             }`}
           >
             {c.label}
@@ -200,7 +200,7 @@ export default function StockTicker() {
 
       {loading ? (
         <div className="space-y-2">
-          {[1, 2, 3, 4].map((i) => <div key={i} className="h-24 rounded-xl bg-white/[0.02] animate-pulse-soft" />)}
+          {[1, 2, 3, 4].map((i) => <div key={i} className="h-24 rounded-xl bg-gray-50 animate-pulse-soft" />)}
         </div>
       ) : (
         <div className="space-y-2">
@@ -213,7 +213,7 @@ export default function StockTicker() {
             const r = ratings[player.name];
 
             return (
-              <div key={player.name} className="rounded-xl bg-white/[0.02] hover:bg-white/[0.03] transition-colors overflow-hidden">
+              <div key={player.name} className="rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors overflow-hidden">
                 {/* Main card — always visible */}
                 <div
                   className="p-3 cursor-pointer"
@@ -254,7 +254,7 @@ export default function StockTicker() {
 
                 {/* Expanded section */}
                 {isExpanded && (
-                  <div className="px-3 pb-3 pt-1 border-t border-white/[0.04] animate-slide-up">
+                  <div className="px-3 pb-3 pt-1 border-t border-gray-200 animate-slide-up">
                     {/* Rating buttons */}
                     <p className="text-text-muted text-[11px] uppercase tracking-wider font-bold mb-2">
                       {myRating ? "You rated" : "What's their role on a contending Nets team?"}
@@ -274,8 +274,8 @@ export default function StockTicker() {
                               isMyRating
                                 ? "bg-brand-orange/15 border border-brand-orange/30 text-brand-orange"
                                 : myRating
-                                  ? "bg-white/[0.02] border border-transparent text-text-muted"
-                                  : "bg-white/[0.04] border border-transparent text-text-secondary hover:border-brand-orange/20 hover:text-brand-orange cursor-pointer"
+                                  ? "bg-gray-50 border border-transparent text-text-muted"
+                                  : "bg-gray-100 border border-transparent text-text-secondary hover:border-brand-orange/20 hover:text-brand-orange cursor-pointer"
                             }`}
                           >
                             <span className="text-sm">{opt.emoji}</span>
@@ -309,7 +309,7 @@ export default function StockTicker() {
                         onClick={(e) => e.stopPropagation()}
                         placeholder={`Your take on ${player.name.split(" ").pop()}...`}
                         maxLength={140}
-                        className="flex-1 bg-white/[0.04] rounded-lg px-3 py-2 text-xs text-white placeholder:text-text-muted outline-none"
+                        className="flex-1 bg-gray-100 rounded-lg px-3 py-2 text-xs text-text-primary placeholder:text-text-muted outline-none"
                       />
                       {xHandle ? (
                         <span className="flex items-center px-2 text-[11px] text-brand-orange font-semibold">@{xHandle}</span>
@@ -320,7 +320,7 @@ export default function StockTicker() {
                           onClick={(e) => e.stopPropagation()}
                           placeholder="Name"
                           maxLength={15}
-                          className="w-20 bg-white/[0.04] rounded-lg px-2 py-2 text-xs text-white placeholder:text-text-muted outline-none"
+                          className="w-20 bg-gray-100 rounded-lg px-2 py-2 text-xs text-text-primary placeholder:text-text-muted outline-none"
                         />
                       )}
                       <button

@@ -180,14 +180,14 @@ export default function AntiTankingProposals() {
     return (
       <div className="space-y-8">
         <section className="text-center">
-          <div className="h-6 w-32 rounded bg-white/[0.04] animate-pulse-soft mx-auto mb-4" />
-          <div className="h-16 w-64 rounded bg-white/[0.04] animate-pulse-soft mx-auto mb-3" />
-          <div className="h-4 w-80 rounded bg-white/[0.04] animate-pulse-soft mx-auto" />
+          <div className="h-6 w-32 rounded bg-gray-100 animate-pulse-soft mx-auto mb-4" />
+          <div className="h-16 w-64 rounded bg-gray-100 animate-pulse-soft mx-auto mb-3" />
+          <div className="h-4 w-80 rounded bg-gray-100 animate-pulse-soft mx-auto" />
         </section>
         <div className="section-divider" />
         <div className="space-y-2">
           {[1,2,3,4,5,6,7,8].map(i => (
-            <div key={i} className="h-12 rounded-xl bg-white/[0.03] animate-pulse-soft" />
+            <div key={i} className="h-12 rounded-xl bg-gray-100 animate-pulse-soft" />
           ))}
         </div>
       </div>
@@ -221,7 +221,7 @@ export default function AntiTankingProposals() {
               className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
                 activeProposal === p.id
                   ? "bg-brand-orange/20 text-brand-orange border border-brand-orange/30"
-                  : "bg-white/[0.04] text-text-muted border border-white/[0.06] hover:bg-white/[0.06] hover:text-text-secondary"
+                  : "bg-gray-100 text-text-muted border border-gray-200 hover:bg-gray-100 hover:text-text-secondary"
               }`}
             >
               {p.shortName}
@@ -233,7 +233,7 @@ export default function AntiTankingProposals() {
             className={`px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
               compareMode
                 ? "bg-accent-cyan/15 text-accent-cyan border border-accent-cyan/25"
-                : "bg-white/[0.04] text-text-muted border border-white/[0.06] hover:text-text-secondary"
+                : "bg-gray-100 text-text-muted border border-gray-200 hover:text-text-secondary"
             }`}
           >
             Compare All
@@ -255,7 +255,7 @@ export default function AntiTankingProposals() {
                   const top4 = p.id === "current" ? netsData.current.top4 : netsData[p.id].top4;
                   const diff = no1 - netsData.current.no1;
                   return (
-                    <div key={p.id} className="rounded-xl bg-white/[0.03] p-3 text-center">
+                    <div key={p.id} className="rounded-xl bg-gray-100 p-3 text-center">
                       <span className={`tag ${p.tagColor} text-[9px] mb-2`}>{p.shortName}</span>
                       <div className="mt-2">
                         <span className="font-display text-2xl text-text-primary block">{no1.toFixed(1)}%</span>
@@ -276,7 +276,7 @@ export default function AntiTankingProposals() {
               </div>
             ) : (
               <div className="grid grid-cols-3 gap-4 text-center">
-                <div className="rounded-xl bg-white/[0.03] p-4">
+                <div className="rounded-xl bg-gray-100 p-4">
                   <span className="text-text-muted text-[10px] uppercase block mb-1">No. 1 Pick</span>
                   <span className="font-display text-3xl text-brand-orange">
                     {getActiveNo1(netsData).toFixed(1)}%
@@ -291,7 +291,7 @@ export default function AntiTankingProposals() {
                     </span>
                   )}
                 </div>
-                <div className="rounded-xl bg-white/[0.03] p-4">
+                <div className="rounded-xl bg-gray-100 p-4">
                   <span className="text-text-muted text-[10px] uppercase block mb-1">Top 4</span>
                   <span className="font-display text-3xl text-accent-gold">
                     {getActiveTop4(netsData).toFixed(1)}%
@@ -306,7 +306,7 @@ export default function AntiTankingProposals() {
                     </span>
                   )}
                 </div>
-                <div className="rounded-xl bg-white/[0.03] p-4">
+                <div className="rounded-xl bg-gray-100 p-4">
                   <span className="text-text-muted text-[10px] uppercase block mb-1">Position</span>
                   <span className="font-display text-3xl text-accent-green">#{netsRank}</span>
                   {activeProposal === "double" && netsRank <= 5 && (
@@ -320,7 +320,7 @@ export default function AntiTankingProposals() {
 
         {/* Full Standings Table */}
         <div className="card overflow-hidden">
-          <div className={`grid ${compareMode ? "grid-cols-[40px_1fr_70px_70px_70px_70px_70px_70px_70px_70px]" : "grid-cols-[40px_1fr_80px_80px_80px_80px]"} gap-0 px-3 py-2.5 border-b border-white/[0.04] bg-white/[0.02] overflow-x-auto`}>
+          <div className={`grid ${compareMode ? "grid-cols-[40px_1fr_70px_70px_70px_70px_70px_70px_70px_70px]" : "grid-cols-[40px_1fr_80px_80px_80px_80px]"} gap-0 px-3 py-2.5 border-b border-gray-200 bg-gray-50 overflow-x-auto`}>
             <span className="text-text-muted text-[9px] uppercase font-bold">#</span>
             <span className="text-text-muted text-[9px] uppercase font-bold">Team</span>
             {compareMode ? (
@@ -350,7 +350,7 @@ export default function AntiTankingProposals() {
               <div
                 key={team.abbrev}
                 className={`grid ${compareMode ? "grid-cols-[40px_1fr_70px_70px_70px_70px_70px_70px_70px_70px]" : "grid-cols-[40px_1fr_80px_80px_80px_80px]"} gap-0 px-3 py-2.5 border-b border-white/[0.02] transition-all ${
-                  isNets ? "bg-brand-orange/[0.06] border-l-2 border-l-brand-orange" : idx % 2 === 0 ? "" : "bg-white/[0.01]"
+                  isNets ? "bg-brand-orange/[0.06] border-l-2 border-l-brand-orange" : idx % 2 === 0 ? "" : "bg-gray-50"
                 }`}
               >
                 <span className={`text-sm font-bold tabular-nums ${isNets ? "text-brand-orange" : "text-text-muted"}`}>

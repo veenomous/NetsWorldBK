@@ -50,7 +50,7 @@ export default function RootLayout({
           <main className="pt-16 pb-10 px-3 sm:px-6 max-w-6xl mx-auto">
             {children}
           </main>
-          <footer className="border-t border-white/[0.03] py-10 px-4">
+          <footer className="border-t border-gray-200 py-10 px-4">
             <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-2">
                 <span className="font-display text-lg tracking-wider">BK</span>

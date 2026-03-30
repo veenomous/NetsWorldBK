@@ -21,10 +21,10 @@ export default function LotteryOddsTable() {
   if (isLoading) {
     return (
       <div className="card p-5">
-        <div className="h-5 w-40 rounded bg-white/[0.04] animate-pulse-soft mb-4" />
+        <div className="h-5 w-40 rounded bg-gray-100 animate-pulse-soft mb-4" />
         <div className="space-y-2">
           {[1,2,3,4,5,6,7,8].map(i => (
-            <div key={i} className="h-8 rounded bg-white/[0.02] animate-pulse-soft" />
+            <div key={i} className="h-8 rounded bg-gray-50 animate-pulse-soft" />
           ))}
         </div>
       </div>
@@ -46,7 +46,7 @@ export default function LotteryOddsTable() {
 
       <table className="w-full text-xs">
         <thead>
-          <tr className="border-b border-white/[0.06]">
+          <tr className="border-b border-gray-200">
             <th className="text-left py-2 pr-3 text-text-muted font-semibold">#</th>
             <th className="text-left py-2 pr-3 text-text-muted font-semibold">Team</th>
             <th className="text-left py-2 pr-2 text-text-muted font-semibold">Record</th>
@@ -66,8 +66,8 @@ export default function LotteryOddsTable() {
             return (
               <tr
                 key={team.abbrev}
-                className={`border-b border-white/[0.03] ${
-                  isNets ? "bg-brand-orange/8" : "hover:bg-white/[0.02]"
+                className={`border-b border-gray-100 ${
+                  isNets ? "bg-brand-orange/8" : "hover:bg-gray-50"
                 }`}
               >
                 <td className="py-2.5 pr-3 text-text-secondary">{slot}</td>
@@ -108,7 +108,7 @@ export default function LotteryOddsTable() {
       </table>
 
       {nets && (
-        <div className="mt-3 pt-3 border-t border-white/[0.04] flex flex-wrap items-center gap-3">
+        <div className="mt-3 pt-3 border-t border-gray-200 flex flex-wrap items-center gap-3">
           <span className="text-[11px] text-text-muted">Nets odds:</span>
           <span className="tag tag-gold">#1 — {nets.top1Odds.toFixed(1)}%</span>
           <span className="tag tag-green">Top 4 — {nets.top4Odds.toFixed(1)}%</span>

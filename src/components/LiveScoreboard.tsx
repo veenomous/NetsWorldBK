@@ -87,7 +87,7 @@ export default function LiveScoreboard() {
         </div>
         <div className="space-y-3">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="h-16 rounded-xl bg-white/[0.02] animate-pulse-soft" />
+            <div key={i} className="h-16 rounded-xl bg-gray-50 animate-pulse-soft" />
           ))}
         </div>
       </div>
@@ -183,7 +183,7 @@ function GameCard({ game, isNets = false, compact = false }: { game: LiveGame; i
       className={`rounded-xl p-3 transition-colors ${
         isNets
           ? "bg-brand-orange/8 border border-brand-orange/20"
-          : "bg-white/[0.02] hover:bg-white/[0.03]"
+          : "bg-gray-50 hover:bg-gray-100"
       }`}
     >
       <div className="flex items-center justify-between">
@@ -287,7 +287,7 @@ function TankImpact({ game }: { game: LiveGame }) {
   }
 
   return (
-    <div className={`mt-2 pt-2 border-t border-white/[0.04] flex items-center justify-between text-[10px] ${
+    <div className={`mt-2 pt-2 border-t border-gray-200 flex items-center justify-between text-[10px] ${
       (isBKN && !isWinning) || (!isBKN && isWinning) ? "text-accent-green" : "text-accent-red"
     }`}>
       <span>{lotteryTeam} {verb}</span>

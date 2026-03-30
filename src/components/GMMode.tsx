@@ -129,7 +129,7 @@ export default function GMMode() {
             <div className={`h-1.5 rounded-full transition-colors ${
               idx < step ? "bg-nets-green" : idx === step ? "gradient-bg-brand" : "bg-bg-elevated-light"
             }`} />
-            <p className={`text-xs mt-1 ${idx === step ? "text-white font-bold" : "text-text-secondary"}`}>{label}</p>
+            <p className={`text-xs mt-1 ${idx === step ? "text-text-primary font-bold" : "text-text-secondary"}`}>{label}</p>
           </div>
         ))}
       </div>
@@ -150,7 +150,7 @@ export default function GMMode() {
                 className={`w-full text-left p-4 rounded-xl border transition-all hover:scale-[1.01] ${
                   decisions.draftPick?.name === prospect.name
                     ? "border-nets-accent gradient-bg-brand/10"
-                    : "border-white/5 bg-bg-elevated/40 hover:border-white/20 hover:bg-bg-elevated-light/40"
+                    : "border-gray-200 bg-bg-elevated/40 hover:border-gray-300 hover:bg-bg-elevated-light/40"
                 }`}
               >
                 <div className="flex items-center justify-between">
@@ -190,7 +190,7 @@ export default function GMMode() {
         <div className="animate-slide-up">
           <h3 className="text-xl font-black mb-1">Trade or keep the pick?</h3>
           <p className="text-text-secondary text-sm mb-4">
-            You selected <span className="text-white font-bold">{decisions.draftPick?.name}</span>. What&apos;s the move?
+            You selected <span className="text-text-primary font-bold">{decisions.draftPick?.name}</span>. What&apos;s the move?
           </p>
 
           <div className="grid gap-3 mb-4">
@@ -199,13 +199,13 @@ export default function GMMode() {
                 setDecisions({ ...decisions, tradeOrKeep: "keep", tradeTarget: null });
                 setStep(2);
               }}
-              className="w-full text-left p-5 rounded-xl border border-white/5 bg-bg-elevated/40 hover:border-accent-green/40 hover:bg-accent-green/5 transition-all"
+              className="w-full text-left p-5 rounded-xl border border-gray-200 bg-bg-elevated/40 hover:border-accent-green/40 hover:bg-accent-green/5 transition-all"
             >
               <p className="font-bold text-lg">Keep the pick</p>
               <p className="text-text-secondary text-sm">Build around {decisions.draftPick?.name}. Trust the process.</p>
             </button>
 
-            <div className="border border-white/5 rounded-xl bg-bg-elevated/40 p-5">
+            <div className="border border-gray-200 rounded-xl bg-bg-elevated/40 p-5">
               <p className="font-bold text-lg mb-3">Trade the pick</p>
               <div className="grid gap-2">
                 {tradeTargets.map((target) => (
@@ -215,7 +215,7 @@ export default function GMMode() {
                       setDecisions({ ...decisions, tradeOrKeep: "trade", tradeTarget: target.name });
                       setStep(2);
                     }}
-                    className="w-full text-left px-4 py-3 rounded-lg border border-white/5 hover:border-brand-orange/40 hover:gradient-bg-brand/5 transition-all text-sm"
+                    className="w-full text-left px-4 py-3 rounded-lg border border-gray-200 hover:border-brand-orange/40 hover:gradient-bg-brand/5 transition-all text-sm"
                   >
                     {target.name}
                   </button>
@@ -246,7 +246,7 @@ export default function GMMode() {
                 className={`w-full text-left p-4 rounded-xl border transition-all ${
                   decisions.buildStrategy === strat.name
                     ? "border-nets-accent gradient-bg-brand/10"
-                    : "border-white/5 bg-bg-elevated/40 hover:border-white/20"
+                    : "border-gray-200 bg-bg-elevated/40 hover:border-gray-300"
                 }`}
               >
                 <p className="font-medium">{strat.name}</p>
@@ -306,7 +306,7 @@ function GMResults({
           </span>
         </div>
         <p className="text-text-secondary mt-3">
-          Better than <span className="text-white font-bold">{score.percentile}%</span> of Nets fans
+          Better than <span className="text-text-primary font-bold">{score.percentile}%</span> of Nets fans
         </p>
       </div>
 

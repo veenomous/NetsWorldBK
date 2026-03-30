@@ -39,13 +39,13 @@ function CommentBubble({
   depth?: number;
 }) {
   return (
-    <div className={depth > 0 ? "ml-6 sm:ml-10 border-l border-white/[0.04] pl-3 sm:pl-4" : ""}>
+    <div className={depth > 0 ? "ml-6 sm:ml-10 border-l border-gray-200 pl-3 sm:pl-4" : ""}>
       <div className="flex gap-2.5 py-2.5">
         {comment.user.x_avatar ? (
           <img
             src={comment.user.x_avatar}
             alt={comment.user.x_handle}
-            className="w-8 h-8 rounded-full border border-white/[0.08] shrink-0"
+            className="w-8 h-8 rounded-full border border-gray-200 shrink-0"
           />
         ) : (
           <div className="w-8 h-8 rounded-full bg-brand-orange/20 flex items-center justify-center text-brand-orange text-xs font-bold shrink-0">
@@ -171,7 +171,7 @@ export default function CommentSection({ page }: { page: string }) {
       {session ? (
         <form onSubmit={handleSubmit} className="mb-4">
           {replyTo && replyComment && (
-            <div className="flex items-center gap-2 mb-2 px-2 py-1.5 rounded-lg bg-white/[0.03]">
+            <div className="flex items-center gap-2 mb-2 px-2 py-1.5 rounded-lg bg-gray-100">
               <span className="text-text-muted text-xs">Replying to</span>
               <span className="text-brand-orange text-xs font-bold">@{replyComment.user.x_handle}</span>
               <button
@@ -188,7 +188,7 @@ export default function CommentSection({ page }: { page: string }) {
               value={body}
               onChange={(e) => setBody(e.target.value)}
               placeholder={replyTo ? "Write a reply..." : "Drop a comment..."}
-              className="flex-1 bg-bg-input border border-white/[0.06] rounded-xl px-3 py-2.5 text-sm text-text-primary placeholder:text-text-muted/50 resize-none focus:outline-none focus:border-brand-orange/30 transition-colors"
+              className="flex-1 bg-bg-input border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-text-primary placeholder:text-text-muted/50 resize-none focus:outline-none focus:border-brand-orange/30 transition-colors"
               rows={2}
               maxLength={500}
             />
@@ -204,7 +204,7 @@ export default function CommentSection({ page }: { page: string }) {
       ) : (
         <button
           onClick={() => signIn("twitter")}
-          className="w-full mb-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.06] hover:bg-brand-orange/10 hover:border-brand-orange/20 transition-all flex items-center justify-center gap-2"
+          className="w-full mb-4 py-3 rounded-xl bg-gray-100 border border-gray-200 hover:bg-brand-orange/10 hover:border-brand-orange/20 transition-all flex items-center justify-center gap-2"
         >
           <svg className="w-4 h-4 text-text-secondary" viewBox="0 0 24 24" fill="currentColor">
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -218,10 +218,10 @@ export default function CommentSection({ page }: { page: string }) {
         <div className="space-y-3">
           {[1, 2, 3].map((i) => (
             <div key={i} className="flex gap-2.5">
-              <div className="w-8 h-8 rounded-full bg-white/[0.04] animate-pulse-soft shrink-0" />
+              <div className="w-8 h-8 rounded-full bg-gray-100 animate-pulse-soft shrink-0" />
               <div className="flex-1 space-y-1.5">
-                <div className="h-3 w-24 rounded bg-white/[0.04] animate-pulse-soft" />
-                <div className="h-4 w-full rounded bg-white/[0.03] animate-pulse-soft" />
+                <div className="h-3 w-24 rounded bg-gray-100 animate-pulse-soft" />
+                <div className="h-4 w-full rounded bg-gray-100 animate-pulse-soft" />
               </div>
             </div>
           ))}
@@ -229,7 +229,7 @@ export default function CommentSection({ page }: { page: string }) {
       ) : comments.length === 0 ? (
         <p className="text-text-muted text-sm text-center py-6">No comments yet. Be the first.</p>
       ) : (
-        <div className="divide-y divide-white/[0.03]">
+        <div className="divide-y divide-gray-100">
           {comments.map((comment) => (
             <CommentBubble
               key={comment.id}

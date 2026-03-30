@@ -141,7 +141,7 @@ export default function DailyPrediction() {
       {loading ? (
         <div className="space-y-3">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="p-3.5 rounded-xl bg-white/[0.02] animate-pulse-soft h-20" />
+            <div key={i} className="p-3.5 rounded-xl bg-gray-50 animate-pulse-soft h-20" />
           ))}
         </div>
       ) : (
@@ -155,7 +155,7 @@ export default function DailyPrediction() {
               <div
                 key={pred.id}
                 className={`p-3.5 rounded-xl transition-all ${
-                  picked ? "bg-white/[0.02]" : "bg-white/[0.03] border border-white/[0.04]"
+                  picked ? "bg-gray-50" : "bg-gray-100 border border-gray-200"
                 }`}
               >
                 <div className="flex items-center gap-2 mb-2">
@@ -166,7 +166,7 @@ export default function DailyPrediction() {
                 {/* Vote bar (shown after voting) */}
                 {picked && pred.totalVotes > 0 && (
                   <div className="mb-2">
-                    <div className="h-1.5 rounded-full overflow-hidden flex bg-white/[0.04]">
+                    <div className="h-1.5 rounded-full overflow-hidden flex bg-gray-100">
                       <div className="h-full bg-accent-green rounded-l-full odds-bar" style={{ width: `${pctA}%` }} />
                       <div className="h-full bg-accent-red rounded-r-full odds-bar" style={{ width: `${100 - pctA}%` }} />
                     </div>
@@ -181,8 +181,8 @@ export default function DailyPrediction() {
                       picked === pred.optionA
                         ? "bg-accent-green/15 text-accent-green border border-accent-green/30"
                         : picked
-                          ? "bg-white/[0.02] text-text-muted border border-transparent"
-                          : "bg-white/[0.04] text-text-secondary hover:bg-accent-green/10 hover:text-accent-green border border-transparent hover:border-accent-green/20 cursor-pointer"
+                          ? "bg-gray-50 text-text-muted border border-transparent"
+                          : "bg-gray-100 text-text-secondary hover:bg-accent-green/10 hover:text-accent-green border border-transparent hover:border-accent-green/20 cursor-pointer"
                     }`}
                   >
                     {pred.optionA}
@@ -197,8 +197,8 @@ export default function DailyPrediction() {
                       picked === pred.optionB
                         ? "bg-accent-red/15 text-accent-red border border-accent-red/30"
                         : picked
-                          ? "bg-white/[0.02] text-text-muted border border-transparent"
-                          : "bg-white/[0.04] text-text-secondary hover:bg-accent-red/10 hover:text-accent-red border border-transparent hover:border-accent-red/20 cursor-pointer"
+                          ? "bg-gray-50 text-text-muted border border-transparent"
+                          : "bg-gray-100 text-text-secondary hover:bg-accent-red/10 hover:text-accent-red border border-transparent hover:border-accent-red/20 cursor-pointer"
                     }`}
                   >
                     {pred.optionB}

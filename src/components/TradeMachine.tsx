@@ -157,9 +157,9 @@ export default function TradeMachine() {
           {["Pick Team", "Nets Send", "They Send", "Review"].map((label, idx) => (
             <div key={label} className="flex-1">
               <div className={`h-1.5 rounded-full transition-colors ${
-                idx < step ? "bg-accent-green" : idx === step ? "gradient-bg-brand" : "bg-white/10"
+                idx < step ? "bg-accent-green" : idx === step ? "gradient-bg-brand" : "bg-gray-200"
               }`} />
-              <p className={`text-[10px] mt-1 ${idx === step ? "text-white font-bold" : "text-text-muted"}`}>{label}</p>
+              <p className={`text-[10px] mt-1 ${idx === step ? "text-text-primary font-bold" : "text-text-muted"}`}>{label}</p>
             </div>
           ))}
         </div>
@@ -175,7 +175,7 @@ export default function TradeMachine() {
               <button
                 key={team.abbrev}
                 onClick={() => { setOtherTeam(team); setStep(1); }}
-                className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.04] hover:border-brand-orange/30 hover:bg-white/[0.06] transition-all text-center cursor-pointer"
+                className="p-3 rounded-xl bg-gray-100 border border-gray-200 hover:border-brand-orange/30 hover:bg-gray-100 transition-all text-center cursor-pointer"
               >
                 <p className="font-bold text-sm">{team.abbrev}</p>
                 <p className="text-text-muted text-[10px]">{team.name.split(" ").pop()}</p>
@@ -268,7 +268,7 @@ export default function TradeMachine() {
                   <span className="text-accent-gold text-[10px]">PICK</span>
                 </div>
               ))}
-              <div className="border-t border-white/[0.06] mt-2 pt-2 flex justify-between text-sm font-bold">
+              <div className="border-t border-gray-200 mt-2 pt-2 flex justify-between text-sm font-bold">
                 <span>Salary</span>
                 <span>{formatSalary(outSalary)}</span>
               </div>
@@ -289,7 +289,7 @@ export default function TradeMachine() {
                   <span className="text-accent-gold text-[10px]">PICK</span>
                 </div>
               ))}
-              <div className="border-t border-white/[0.06] mt-2 pt-2 flex justify-between text-sm font-bold">
+              <div className="border-t border-gray-200 mt-2 pt-2 flex justify-between text-sm font-bold">
                 <span>Salary</span>
                 <span>{formatSalary(inSalary)}</span>
               </div>
@@ -310,7 +310,7 @@ export default function TradeMachine() {
               onChange={(e) => setAuthor(e.target.value)}
               placeholder="Your name (optional)"
               maxLength={20}
-              className="flex-1 bg-white/[0.04] rounded-lg px-3 py-2 text-[13px] text-white placeholder:text-text-muted outline-none"
+              className="flex-1 bg-gray-100 rounded-lg px-3 py-2 text-[13px] text-text-primary placeholder:text-text-muted outline-none"
             />
             <button
               onClick={handleSubmit}
@@ -349,7 +349,7 @@ export default function TradeMachine() {
               const pct = total > 0 ? Math.round((trade.upvotes / total) * 100) : 50;
 
               return (
-                <div key={trade.id} className="p-4 rounded-xl bg-white/[0.02] hover:bg-white/[0.03] transition-colors">
+                <div key={trade.id} className="p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <span className="text-[11px] text-text-muted">@{trade.author}</span>
@@ -381,7 +381,7 @@ export default function TradeMachine() {
                       onClick={() => voteTrade(trade.id, "up")}
                       disabled={!!vote}
                       className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-[12px] font-semibold transition-all ${
-                        vote === "up" ? "bg-accent-green/15 text-accent-green" : "bg-white/[0.04] text-text-secondary hover:bg-accent-green/10 hover:text-accent-green"
+                        vote === "up" ? "bg-accent-green/15 text-accent-green" : "bg-gray-100 text-text-secondary hover:bg-accent-green/10 hover:text-accent-green"
                       } ${vote ? "cursor-default" : "cursor-pointer"}`}
                     >
                       &#128077; {trade.upvotes}
@@ -390,7 +390,7 @@ export default function TradeMachine() {
                       onClick={() => voteTrade(trade.id, "down")}
                       disabled={!!vote}
                       className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-[12px] font-semibold transition-all ${
-                        vote === "down" ? "bg-accent-red/15 text-accent-red" : "bg-white/[0.04] text-text-secondary hover:bg-accent-red/10 hover:text-accent-red"
+                        vote === "down" ? "bg-accent-red/15 text-accent-red" : "bg-gray-100 text-text-secondary hover:bg-accent-red/10 hover:text-accent-red"
                       } ${vote ? "cursor-default" : "cursor-pointer"}`}
                     >
                       &#128078; {trade.downvotes}
@@ -423,12 +423,12 @@ function PlayerList({ players, selected, onToggle }: { players: NBAPlayer[]; sel
             className={`w-full flex items-center justify-between p-2.5 rounded-xl text-left transition-all cursor-pointer ${
               isSelected
                 ? "bg-brand-orange/10 border border-brand-orange/30"
-                : "bg-white/[0.02] border border-transparent hover:bg-white/[0.04]"
+                : "bg-gray-50 border border-transparent hover:bg-gray-100"
             }`}
           >
             <div className="flex items-center gap-2">
               <div className={`w-5 h-5 rounded border-2 flex items-center justify-center text-[10px] ${
-                isSelected ? "border-brand-orange bg-brand-orange text-white" : "border-white/20"
+                isSelected ? "border-brand-orange bg-brand-orange text-white" : "border-gray-300"
               }`}>
                 {isSelected && "✓"}
               </div>
@@ -459,12 +459,12 @@ function PickList({ picks, selected, onToggle }: { picks: DraftPick[]; selected:
               className={`w-full flex items-center justify-between p-2.5 rounded-xl text-left transition-all cursor-pointer ${
                 isSelected
                   ? "bg-accent-gold/10 border border-accent-gold/30"
-                  : "bg-white/[0.02] border border-transparent hover:bg-white/[0.04]"
+                  : "bg-gray-50 border border-transparent hover:bg-gray-100"
               }`}
             >
               <div className="flex items-center gap-2">
                 <div className={`w-5 h-5 rounded border-2 flex items-center justify-center text-[10px] ${
-                  isSelected ? "border-accent-gold bg-accent-gold text-white" : "border-white/20"
+                  isSelected ? "border-accent-gold bg-accent-gold text-white" : "border-gray-300"
                 }`}>
                   {isSelected && "✓"}
                 </div>
@@ -484,7 +484,7 @@ function PickList({ picks, selected, onToggle }: { picks: DraftPick[]; selected:
 
 function SalaryBar({ label, amount }: { label: string; amount: number }) {
   return (
-    <div className="flex items-center justify-between mt-3 p-2.5 rounded-lg bg-white/[0.03]">
+    <div className="flex items-center justify-between mt-3 p-2.5 rounded-lg bg-gray-100">
       <span className="text-text-muted text-xs">{label}</span>
       <span className="font-bold text-sm">{formatSalary(amount)}</span>
     </div>

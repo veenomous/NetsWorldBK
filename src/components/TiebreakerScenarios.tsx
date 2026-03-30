@@ -51,14 +51,14 @@ function LoadingSkeleton() {
   return (
     <div className="space-y-8">
       <section className="text-center">
-        <div className="h-6 w-32 rounded bg-white/[0.04] animate-pulse-soft mx-auto mb-4" />
-        <div className="h-16 w-64 rounded bg-white/[0.04] animate-pulse-soft mx-auto mb-3" />
-        <div className="h-4 w-80 rounded bg-white/[0.04] animate-pulse-soft mx-auto" />
+        <div className="h-6 w-32 rounded bg-gray-100 animate-pulse-soft mx-auto mb-4" />
+        <div className="h-16 w-64 rounded bg-gray-100 animate-pulse-soft mx-auto mb-3" />
+        <div className="h-4 w-80 rounded bg-gray-100 animate-pulse-soft mx-auto" />
       </section>
       <div className="section-divider" />
       <div className="space-y-2">
         {[1,2,3,4,5].map(i => (
-          <div key={i} className="h-16 rounded-xl bg-white/[0.03] animate-pulse-soft" />
+          <div key={i} className="h-16 rounded-xl bg-gray-100 animate-pulse-soft" />
         ))}
       </div>
     </div>
@@ -231,7 +231,7 @@ export default function TiebreakerScenarios() {
                 {/* Rank badge */}
                 <div className="flex items-center gap-4">
                   <div className={`w-10 h-10 rounded-lg flex items-center justify-center font-display text-xl ${
-                    isNets ? "bg-brand-orange/20 text-brand-orange" : "bg-white/[0.04] text-text-muted"
+                    isNets ? "bg-brand-orange/20 text-brand-orange" : "bg-gray-100 text-text-muted"
                   }`}>
                     {pos?.rank || idx + 1}
                   </div>
@@ -256,7 +256,7 @@ export default function TiebreakerScenarios() {
 
                     {/* Odds bar */}
                     <div className="flex items-center gap-3">
-                      <div className="flex-1 h-2.5 rounded-full bg-white/[0.04] overflow-hidden">
+                      <div className="flex-1 h-2.5 rounded-full bg-gray-100 overflow-hidden">
                         <div
                           className="h-full rounded-full odds-bar"
                           style={{
@@ -327,15 +327,15 @@ export default function TiebreakerScenarios() {
 
           {/* Result */}
           <div className="grid grid-cols-3 gap-4 text-center">
-            <div className="rounded-xl bg-white/[0.03] p-4">
+            <div className="rounded-xl bg-gray-100 p-4">
               <span className="text-text-muted text-[10px] uppercase block mb-1">Position</span>
               <span className="font-display text-3xl text-brand-orange">#{netsPos?.rank || "?"}</span>
             </div>
-            <div className="rounded-xl bg-white/[0.03] p-4">
+            <div className="rounded-xl bg-gray-100 p-4">
               <span className="text-text-muted text-[10px] uppercase block mb-1">No. 1 Pick</span>
               <span className="font-display text-3xl text-accent-gold">{netsPos?.no1.toFixed(1)}%</span>
             </div>
-            <div className="rounded-xl bg-white/[0.03] p-4">
+            <div className="rounded-xl bg-gray-100 p-4">
               <span className="text-text-muted text-[10px] uppercase block mb-1">Top 4</span>
               <span className="font-display text-3xl text-accent-green">{netsPos?.top4.toFixed(1)}%</span>
             </div>
@@ -362,7 +362,7 @@ export default function TiebreakerScenarios() {
 
         <div className="card overflow-hidden">
           {/* Header */}
-          <div className="grid grid-cols-[1fr_60px_60px_60px_1fr] gap-0 px-4 py-2.5 border-b border-white/[0.04] bg-white/[0.02]">
+          <div className="grid grid-cols-[1fr_60px_60px_60px_1fr] gap-0 px-4 py-2.5 border-b border-gray-200 bg-gray-50">
             <span className="text-text-muted text-[10px] uppercase font-bold">Scenario</span>
             <span className="text-text-muted text-[10px] uppercase font-bold text-center">Rank</span>
             <span className="text-text-muted text-[10px] uppercase font-bold text-center">No.1 %</span>
@@ -381,7 +381,7 @@ export default function TiebreakerScenarios() {
                 className={`grid grid-cols-[1fr_60px_60px_60px_1fr] gap-0 px-4 py-2.5 border-b border-white/[0.02] transition-all ${
                   isHighlight
                     ? "bg-brand-orange/[0.06] border-l-2 border-l-brand-orange"
-                    : idx % 2 === 0 ? "" : "bg-white/[0.01]"
+                    : idx % 2 === 0 ? "" : "bg-gray-50"
                 }`}
               >
                 <span className={`text-sm font-medium ${isHighlight ? "text-brand-orange font-semibold" : "text-text-secondary"}`}>

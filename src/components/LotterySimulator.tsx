@@ -139,7 +139,7 @@ export default function LotterySimulator({ compact = false }: Props) {
                   className={`flex items-center justify-between px-3 py-1.5 rounded-lg text-xs ${
                     r.abbrev === "BKN"
                       ? "bg-brand-orange/10 border border-brand-orange/20 font-bold"
-                      : "hover:bg-white/[0.02]"
+                      : "hover:bg-gray-50"
                   }`}
                 >
                   <div className="flex items-center gap-2.5">
@@ -162,7 +162,7 @@ export default function LotterySimulator({ compact = false }: Props) {
 
           {/* History chart */}
           {history.length > 1 && (
-            <div className="pt-3 border-t border-white/[0.04]">
+            <div className="pt-3 border-t border-gray-200">
               <p className="text-[11px] text-text-muted mb-2">Your history ({history.length} runs)</p>
               <div className="flex gap-0.5 items-end h-10">
                 {Array.from({ length: 14 }, (_, i) => i + 1).map((pick) => {
@@ -172,7 +172,7 @@ export default function LotterySimulator({ compact = false }: Props) {
                     <div key={pick} className="flex-1 flex flex-col items-center gap-0.5">
                       <div
                         className={`w-full rounded-sm transition-all ${
-                          pick <= 4 ? "bg-accent-gold/50" : "bg-white/10"
+                          pick <= 4 ? "bg-accent-gold/50" : "bg-gray-200"
                         }`}
                         style={{ height: `${Math.max(pct * 1.5, 2)}px` }}
                       />

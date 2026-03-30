@@ -71,10 +71,10 @@ export default function VibeCheck() {
               className={`
                 relative flex flex-col items-center gap-1 py-3 px-2 rounded-xl transition-all
                 ${isSelected
-                  ? "bg-white/[0.08] border border-white/20 scale-105"
+                  ? "bg-gray-100 border border-gray-300 scale-105"
                   : userVote
-                    ? "bg-white/[0.02] border border-transparent opacity-60"
-                    : "bg-white/[0.03] border border-transparent hover:bg-white/[0.06] hover:scale-105 cursor-pointer"
+                    ? "bg-gray-50 border border-transparent opacity-60"
+                    : "bg-gray-100 border border-transparent hover:bg-gray-100 hover:scale-105 cursor-pointer"
                 }
               `}
             >
@@ -94,7 +94,7 @@ export default function VibeCheck() {
 
       {/* Result banner */}
       {userVote && (
-        <div className="animate-slide-up rounded-xl bg-white/[0.03] p-3 flex items-center justify-between">
+        <div className="animate-slide-up rounded-xl bg-gray-100 p-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="text-lg">{moods.find(m => m.label === topMood[0])?.emoji}</span>
             <div>

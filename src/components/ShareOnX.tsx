@@ -18,7 +18,7 @@ export default function ShareOnX({ text, url, className = "", compact = false }:
       className={`inline-flex items-center gap-1.5 transition-all ${
         compact
           ? "text-text-muted hover:text-text-secondary text-xs"
-          : "px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.06] hover:bg-white/[0.08] hover:border-white/[0.1] text-text-secondary text-xs font-semibold"
+          : "px-3 py-1.5 rounded-full bg-gray-100 border border-gray-200 hover:bg-gray-100 hover:border-white/[0.1] text-text-secondary text-xs font-semibold"
       } ${className}`}
     >
       <svg className={compact ? "w-3 h-3" : "w-3.5 h-3.5"} viewBox="0 0 24 24" fill="currentColor">

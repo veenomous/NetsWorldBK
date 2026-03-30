@@ -105,7 +105,7 @@ export default function DailyPoll() {
 
       {loading ? (
         <div className="space-y-2">
-          {[1, 2, 3].map((i) => <div key={i} className="h-16 rounded-xl bg-white/[0.02] animate-pulse-soft" />)}
+          {[1, 2, 3].map((i) => <div key={i} className="h-16 rounded-xl bg-gray-50 animate-pulse-soft" />)}
         </div>
       ) : (
         <div className="space-y-3">
@@ -144,7 +144,7 @@ function PollCard({
   const pctB = 100 - pctA;
 
   return (
-    <div className={`rounded-xl p-3 ${featured ? "bg-brand-orange/[0.04] border border-brand-orange/10" : "bg-white/[0.02]"}`}>
+    <div className={`rounded-xl p-3 ${featured ? "bg-brand-orange/[0.04] border border-brand-orange/10" : "bg-gray-50"}`}>
       <div className="flex items-center gap-2 mb-2">
         <span className={`tag ${categoryColors[poll.category] || "tag-blue"}`}>{poll.category}</span>
         <span className="text-sm font-semibold">{poll.question}</span>
@@ -152,9 +152,9 @@ function PollCard({
 
       {/* Vote result bar */}
       {picked && total > 0 && (
-        <div className="h-1 rounded-full overflow-hidden flex bg-white/[0.04] mb-2">
+        <div className="h-1 rounded-full overflow-hidden flex bg-gray-100 mb-2">
           <div className="h-full bg-brand-orange/40 rounded-l-full odds-bar" style={{ width: `${pctA}%` }} />
-          <div className="h-full bg-white/10 rounded-r-full odds-bar" style={{ width: `${pctB}%` }} />
+          <div className="h-full bg-gray-200 rounded-r-full odds-bar" style={{ width: `${pctB}%` }} />
         </div>
       )}
 
@@ -166,8 +166,8 @@ function PollCard({
             picked === poll.optionA
               ? "bg-brand-orange/15 text-brand-orange border border-brand-orange/25"
               : picked
-                ? "bg-white/[0.02] text-text-muted border border-transparent"
-                : "bg-white/[0.04] text-text-secondary hover:bg-brand-orange/10 hover:text-brand-orange border border-transparent hover:border-brand-orange/15 cursor-pointer"
+                ? "bg-gray-50 text-text-muted border border-transparent"
+                : "bg-gray-100 text-text-secondary hover:bg-brand-orange/10 hover:text-brand-orange border border-transparent hover:border-brand-orange/15 cursor-pointer"
           }`}
         >
           {poll.optionA}
@@ -180,8 +180,8 @@ function PollCard({
             picked === poll.optionB
               ? "bg-accent-red/15 text-accent-red border border-accent-red/25"
               : picked
-                ? "bg-white/[0.02] text-text-muted border border-transparent"
-                : "bg-white/[0.04] text-text-secondary hover:bg-accent-red/10 hover:text-accent-red border border-transparent hover:border-accent-red/15 cursor-pointer"
+                ? "bg-gray-50 text-text-muted border border-transparent"
+                : "bg-gray-100 text-text-secondary hover:bg-accent-red/10 hover:text-accent-red border border-transparent hover:border-accent-red/15 cursor-pointer"
           }`}
         >
           {poll.optionB}

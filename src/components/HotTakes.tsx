@@ -133,14 +133,14 @@ export default function HotTakes() {
 
       {/* Submit form */}
       {showForm && (
-        <div className="mb-4 p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] animate-slide-up">
+        <div className="mb-4 p-3.5 rounded-xl bg-gray-100 border border-gray-200 animate-slide-up">
           <textarea
             value={newTake}
             onChange={(e) => setNewTake(e.target.value)}
             placeholder="Drop your take..."
             maxLength={280}
             rows={2}
-            className="w-full bg-transparent text-[13px] text-white placeholder:text-text-muted outline-none resize-none mb-2"
+            className="w-full bg-transparent text-[13px] text-text-primary placeholder:text-text-muted outline-none resize-none mb-2"
           />
           <div className="flex items-center gap-2 mb-2">
             {xHandle ? (
@@ -151,13 +151,13 @@ export default function HotTakes() {
                 onChange={(e) => setNewAuthor(e.target.value)}
                 placeholder="Your name (optional)"
                 maxLength={20}
-                className="flex-1 bg-white/[0.04] rounded-lg px-3 py-1.5 text-[12px] text-white placeholder:text-text-muted outline-none"
+                className="flex-1 bg-gray-100 rounded-lg px-3 py-1.5 text-[12px] text-text-primary placeholder:text-text-muted outline-none"
               />
             )}
             <select
               value={newTag}
               onChange={(e) => setNewTag(e.target.value)}
-              className="bg-white/[0.04] rounded-lg px-3 py-1.5 text-[12px] text-white outline-none"
+              className="bg-gray-100 rounded-lg px-3 py-1.5 text-[12px] text-text-primary outline-none"
             >
               {TAG_OPTIONS.map((t) => (
                 <option key={t} value={t}>{t}</option>
@@ -180,7 +180,7 @@ export default function HotTakes() {
       {loading ? (
         <div className="space-y-3">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="h-20 rounded-xl bg-white/[0.02] animate-pulse-soft" />
+            <div key={i} className="h-20 rounded-xl bg-gray-50 animate-pulse-soft" />
           ))}
         </div>
       ) : (
@@ -191,7 +191,7 @@ export default function HotTakes() {
             const userVote = userVotes[take.id];
 
             return (
-              <div key={take.id} className="p-3.5 rounded-xl bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
+              <div key={take.id} className="p-3.5 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors">
                 <div className="flex items-center gap-2 mb-2">
                   <span className={`tag ${tagColors[take.tag] || "tag-blue"}`}>{take.tag}</span>
                   <span className="text-text-muted text-[11px]">@{take.author}</span>
@@ -202,7 +202,7 @@ export default function HotTakes() {
 
                 {userVote && (
                   <div className="mb-2.5">
-                    <div className="h-1.5 rounded-full overflow-hidden flex bg-white/[0.04]">
+                    <div className="h-1.5 rounded-full overflow-hidden flex bg-gray-100">
                       <div className="h-full bg-accent-green rounded-l-full odds-bar" style={{ width: `${agreePercent}%` }} />
                       <div className="h-full bg-accent-red rounded-r-full odds-bar" style={{ width: `${100 - agreePercent}%` }} />
                     </div>
@@ -216,7 +216,7 @@ export default function HotTakes() {
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-semibold transition-all ${
                       userVote === "agree"
                         ? "bg-accent-green/15 text-accent-green"
-                        : "bg-white/[0.04] text-text-secondary hover:bg-accent-green/10 hover:text-accent-green"
+                        : "bg-gray-100 text-text-secondary hover:bg-accent-green/10 hover:text-accent-green"
                     } ${userVote ? "cursor-default" : "cursor-pointer"}`}
                   >
                     <span>&#128077;</span>
@@ -228,7 +228,7 @@ export default function HotTakes() {
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-semibold transition-all ${
                       userVote === "disagree"
                         ? "bg-accent-red/15 text-accent-red"
-                        : "bg-white/[0.04] text-text-secondary hover:bg-accent-red/10 hover:text-accent-red"
+                        : "bg-gray-100 text-text-secondary hover:bg-accent-red/10 hover:text-accent-red"
                     } ${userVote ? "cursor-default" : "cursor-pointer"}`}
                   >
                     <span>&#128078;</span>
