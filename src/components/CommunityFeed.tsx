@@ -55,6 +55,8 @@ export default function CommunityFeed() {
   const [tag, setTag] = useState("General");
   const [submitting, setSubmitting] = useState(false);
 
+  const [commentCounts, setCommentCounts] = useState<Record<string, number>>({});
+
   const fetchArticles = useCallback(async () => {
     const { data } = await supabase
       .from("articles")
@@ -62,7 +64,23 @@ export default function CommunityFeed() {
       .order("created_at", { ascending: false })
       .limit(50);
 
-    if (data) setArticles(data as unknown as Article[]);
+    if (data) {
+      setArticles(data as unknown as Article[]);
+      // Fetch comment counts for all articles
+      const ids = (data as unknown as Article[]).map((a) => `article-${a.id}`);
+      const { data: countData } = await supabase
+        .from("comments")
+        .select("page")
+        .in("page", ids);
+      if (countData) {
+        const counts: Record<string, number> = {};
+        for (const c of countData) {
+          const articleId = (c as { page: string }).page.replace("article-", "");
+          counts[articleId] = (counts[articleId] || 0) + 1;
+        }
+        setCommentCounts(counts);
+      }
+    }
     setLoading(false);
   }, []);
 
@@ -231,9 +249,14 @@ export default function CommunityFeed() {
                 <div className="ml-auto flex items-center gap-3">
                   <button
                     onClick={() => setExpandedComments(expandedComments === article.id ? null : article.id)}
-                    className="text-text-muted text-[11px] font-semibold uppercase tracking-wider hover:text-brand-orange transition-colors"
+                    className={`flex items-center gap-1.5 text-[12px] font-semibold transition-colors ${
+                      expandedComments === article.id ? "text-brand-orange" : "text-text-muted hover:text-brand-orange"
+                    }`}
                   >
-                    {expandedComments === article.id ? "Hide" : "Discuss"}
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                    {commentCounts[article.id] || 0}
                   </button>
                   <Link
                     href={`/community/${article.id}`}

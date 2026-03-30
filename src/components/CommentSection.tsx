@@ -123,9 +123,14 @@ function CommentBubble({
 }) {
   const [editing, setEditing] = useState(false);
   const [editBody, setEditBody] = useState(comment.body);
+  const [showAllReplies, setShowAllReplies] = useState(false);
   const isOwner = currentUserHandle === comment.user.x_handle;
   const isReplying = replyingToId === comment.id;
-  const replyCount = comment.replies?.length || 0;
+  const replies = comment.replies || [];
+  const replyCount = replies.length;
+  const REPLY_LIMIT = 3;
+  const visibleReplies = showAllReplies ? replies : replies.slice(0, REPLY_LIMIT);
+  const hiddenCount = replyCount - REPLY_LIMIT;
 
   return (
     <div className={depth > 0 ? "ml-8 sm:ml-12 pl-3 sm:pl-4 border-l-2 border-gray-100" : ""}>
@@ -175,7 +180,7 @@ function CommentBubble({
                       isReplying ? "text-brand-orange" : "text-text-muted hover:text-brand-orange"
                     }`}
                   >
-                    Reply{replyCount > 0 && depth === 0 ? ` (${replyCount})` : ""}
+                    Reply{replyCount > 0 ? ` (${replyCount})` : ""}
                   </button>
                 )}
                 {isOwner && (
@@ -203,9 +208,9 @@ function CommentBubble({
       </div>
 
       {/* Nested replies */}
-      {comment.replies && comment.replies.length > 0 && (
+      {replyCount > 0 && (
         <div>
-          {comment.replies.map((reply) => (
+          {visibleReplies.map((reply) => (
             <CommentBubble
               key={reply.id}
               comment={reply}
@@ -218,6 +223,22 @@ function CommentBubble({
               depth={depth + 1}
             />
           ))}
+          {!showAllReplies && hiddenCount > 0 && (
+            <button
+              onClick={() => setShowAllReplies(true)}
+              className="ml-8 sm:ml-12 pl-3 sm:pl-4 py-2 text-brand-orange text-[12px] font-semibold hover:underline"
+            >
+              Show {hiddenCount} more {hiddenCount === 1 ? "reply" : "replies"}
+            </button>
+          )}
+          {showAllReplies && replyCount > REPLY_LIMIT && (
+            <button
+              onClick={() => setShowAllReplies(false)}
+              className="ml-8 sm:ml-12 pl-3 sm:pl-4 py-2 text-text-muted text-[12px] font-semibold hover:underline"
+            >
+              Show less
+            </button>
+          )}
         </div>
       )}
     </div>
