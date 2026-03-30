@@ -1,6 +1,5 @@
 import Image from "next/image";
 import DraftWidget from "@/components/DraftWidget";
-import LotteryRace from "@/components/LotteryRace";
 import StockTicker from "@/components/StockTicker";
 import HotTakes from "@/components/HotTakes";
 import DailyPoll from "@/components/DailyPoll";
@@ -44,12 +43,9 @@ export default function Home() {
 
       <div className="section-divider" />
 
-      {/* Row 1: Draft+Race stacked left, Polls right */}
+      {/* Row 1: Draft left, Polls right */}
       <section className="grid md:grid-cols-[1fr_1fr] gap-5 items-start stagger-children">
-        <div className="space-y-5">
-          <DraftWidget />
-          <LotteryRace />
-        </div>
+        <DraftWidget />
         <DailyPoll />
       </section>
 
