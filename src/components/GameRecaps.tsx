@@ -111,7 +111,7 @@ export default function GameRecaps() {
     const { data: userData } = await supabase.from("users").select("id").eq("x_id", xId).single();
     if (!userData) { setSubmitting(false); return; }
 
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("game_recaps")
       .insert({
         opponent, game_date: gameDate,
@@ -121,6 +121,12 @@ export default function GameRecaps() {
       })
       .select("*, user:users(x_handle, x_name, x_avatar)")
       .single();
+
+    if (error) {
+      alert(`Error: ${error.message}`);
+      setSubmitting(false);
+      return;
+    }
 
     if (data) {
       setRecaps((prev) => [data as unknown as Recap, ...prev]);
@@ -247,7 +253,7 @@ export default function GameRecaps() {
           <button
             type="submit"
             disabled={!headline.trim() || !summary.trim() || !netsScore || !oppScore || submitting}
-            className="w-full py-3 rounded-lg gradient-bg-brand text-white font-bold disabled:opacity-40 hover:opacity-90 transition-opacity"
+            className="w-full py-3 rounded-lg gradient-bg-brand text-white font-bold text-base disabled:opacity-30 hover:opacity-90 transition-opacity cursor-pointer disabled:cursor-not-allowed"
           >
             {submitting ? "Posting..." : "Publish Recap"}
           </button>
