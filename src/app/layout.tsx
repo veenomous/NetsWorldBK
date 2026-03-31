@@ -40,25 +40,28 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link
-          href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="stylesheet"
         />
       </head>
       <body className="antialiased min-h-screen bg-bg-primary">
         <AuthProvider>
           <Navbar />
-          <main className="pt-[140px] pb-10 px-3 sm:px-6 max-w-6xl mx-auto">
+          <main>
             {children}
           </main>
-          <footer className="border-t border-gray-200 py-10 px-4">
-            <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-2">
-                <span className="font-display text-lg tracking-wider">BK</span>
-                <span className="font-display text-lg tracking-wider text-brand-orange">GRIT</span>
-              </div>
-              <p className="text-text-muted text-xs text-center sm:text-right">
-                Not affiliated with the Brooklyn Nets or NBA. A fan project built for Brooklyn.
-              </p>
+          <footer className="bg-black text-white flex flex-col md:flex-row justify-between items-center w-full px-8 py-12 border-t border-white/10">
+            <div className="text-[10px] uppercase tracking-[0.2em] font-medium mb-6 md:mb-0">
+              © 2026 BK GRIT. NOT AFFILIATED WITH THE BROOKLYN NETS OR NBA.
+            </div>
+            <div className="flex gap-8">
+              <a className="text-[10px] uppercase tracking-[0.2em] font-medium text-white/50 hover:text-brand-red transition-colors" href="#">Terms</a>
+              <a className="text-[10px] uppercase tracking-[0.2em] font-medium text-white/50 hover:text-brand-red transition-colors" href="#">Privacy</a>
+              <a className="text-[10px] uppercase tracking-[0.2em] font-medium text-white/50 hover:text-brand-red transition-colors" href="#">Contact</a>
             </div>
           </footer>
         </AuthProvider>
