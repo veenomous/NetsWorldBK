@@ -126,11 +126,13 @@ function CommentBubble({
   const [showAllReplies, setShowAllReplies] = useState(false);
   const isOwner = currentUserHandle === comment.user.x_handle;
   const isReplying = replyingToId === comment.id;
+  const MAX_DEPTH = 2; // Cap nesting: original → reply → one more
   const replies = comment.replies || [];
   const replyCount = replies.length;
   const REPLY_LIMIT = 3;
   const visibleReplies = showAllReplies ? replies : replies.slice(0, REPLY_LIMIT);
   const hiddenCount = replyCount - REPLY_LIMIT;
+  const canReply = depth < MAX_DEPTH;
 
   return (
     <div className={depth > 0 ? "ml-8 sm:ml-12 pl-3 sm:pl-4 border-l-2 border-gray-100" : ""}>
@@ -173,7 +175,7 @@ function CommentBubble({
             {/* Actions */}
             {!editing && (
               <div className="flex items-center gap-3 mt-1.5">
-                {currentUserHandle && (
+                {currentUserHandle && canReply && (
                   <button
                     onClick={() => setReplyingToId(isReplying ? null : comment.id)}
                     className={`text-[11px] font-semibold uppercase tracking-wider transition-colors ${
@@ -186,7 +188,7 @@ function CommentBubble({
                 {isOwner && (
                   <>
                     <button onClick={() => setEditing(true)} className="text-text-muted text-[11px] font-semibold uppercase tracking-wider hover:text-accent-blue transition-colors">Edit</button>
-                    <button onClick={() => onDelete(comment.id)} className="text-text-muted text-[11px] font-semibold uppercase tracking-wider hover:text-accent-red transition-colors">Delete</button>
+                    <button onClick={() => { if (confirm("Delete this comment?")) onDelete(comment.id); }} className="text-text-muted text-[11px] font-semibold uppercase tracking-wider hover:text-accent-red transition-colors">Delete</button>
                   </>
                 )}
               </div>
