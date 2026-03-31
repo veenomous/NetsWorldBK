@@ -11,7 +11,7 @@ const navLinks = [
   { href: "/gm-mode", label: "War Room" },
   { href: "/trade-machine", label: "Trade Machine" },
   { href: "/recaps", label: "Recap Studio" },
-  { href: "/community", label: "Community" },
+  { href: "/community", label: "The Wire" },
 ];
 
 function UserButton() {
