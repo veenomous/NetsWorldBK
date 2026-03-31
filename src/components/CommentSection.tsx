@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, Suspense } from "react";
 import { useSession, signIn } from "next-auth/react";
-import { supabase } from "@/lib/supabase";
+import { supabase, getVisitorId } from "@/lib/supabase";
 import { Tweet } from "react-tweet";
 
 function extractTweetId(text: string): string | null {
@@ -16,7 +16,7 @@ function CommentBody({ body }: { body: string }) {
     const textWithoutUrl = body.replace(/https?:\/\/(?:twitter\.com|x\.com)\/\w+\/status\/\d+\S*/g, "").trim();
     return (
       <div>
-        {textWithoutUrl && <p className="text-text-secondary text-sm leading-relaxed break-words mb-2">{textWithoutUrl}</p>}
+        {textWithoutUrl && <p className="text-text-primary text-[15px] leading-relaxed break-words mb-2">{textWithoutUrl}</p>}
         <div className="rounded-xl overflow-hidden border border-gray-200 not-prose" data-theme="light">
           <Suspense fallback={<div className="h-20 bg-gray-50 animate-pulse-soft rounded-xl" />}>
             <Tweet id={tweetId} />
@@ -25,7 +25,7 @@ function CommentBody({ body }: { body: string }) {
       </div>
     );
   }
-  return <p className="text-text-secondary text-sm leading-relaxed break-words">{body}</p>;
+  return <p className="text-text-primary text-[15px] leading-relaxed break-words">{body}</p>;
 }
 
 interface Comment {
@@ -35,6 +35,7 @@ interface Comment {
   parent_id: string | null;
   user: { x_handle: string; x_name: string; x_avatar: string | null };
   replies?: Comment[];
+  _parentHandle?: string; // injected for "In reply to"
 }
 
 function timeAgo(dateStr: string): string {
@@ -72,14 +73,10 @@ function InlineReplyForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mt-2 ml-10 sm:ml-12">
-      <div className="flex items-center gap-2 mb-1.5">
-        <span className="text-text-muted text-[11px]">Replying to</span>
-        <span className="text-brand-orange text-[11px] font-bold">@{replyingTo}</span>
-        <button type="button" onClick={onCancel} className="ml-auto text-text-muted text-[11px] hover:text-accent-red">
-          Cancel
-        </button>
-      </div>
+    <form onSubmit={handleSubmit} className="mt-3 pl-4 border-l-2 border-brand-orange/30">
+      <p className="text-text-muted text-xs mb-1.5">
+        Replying to <span className="font-bold text-text-primary">@{replyingTo}</span>
+      </p>
       <div className="flex gap-2">
         <input
           value={body}
@@ -87,22 +84,21 @@ function InlineReplyForm({
           placeholder="Write a reply..."
           maxLength={500}
           autoFocus
-          className="flex-1 bg-bg-input border border-gray-200 rounded-lg px-3 py-2 text-sm text-text-primary placeholder:text-text-muted/50 focus:outline-none focus:border-brand-orange/30 transition-colors"
+          className="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm text-text-primary placeholder:text-text-muted/50 focus:outline-none focus:border-brand-orange/30 transition-colors"
         />
-        <button
-          type="submit"
-          disabled={!body.trim() || submitting}
-          className="px-3 py-2 rounded-lg gradient-bg-brand text-white text-xs font-bold disabled:opacity-40 hover:opacity-90 transition-opacity"
-        >
+        <button type="submit" disabled={!body.trim() || submitting} className="px-3 py-2 rounded-lg gradient-bg-brand text-white text-xs font-bold disabled:opacity-40 hover:opacity-90 transition-opacity">
           {submitting ? "..." : "Reply"}
+        </button>
+        <button type="button" onClick={onCancel} className="px-3 py-2 rounded-lg bg-gray-100 text-text-muted text-xs font-bold hover:bg-gray-200 transition-colors">
+          Cancel
         </button>
       </div>
     </form>
   );
 }
 
-// ─── Single Comment ───
-function CommentBubble({
+// ─── Single Comment Row ───
+function CommentRow({
   comment,
   onReply,
   onDelete,
@@ -110,7 +106,7 @@ function CommentBubble({
   currentUserHandle,
   replyingToId,
   setReplyingToId,
-  depth = 0,
+  isNested = false,
 }: {
   comment: Comment;
   onReply: (parentId: string, body: string) => Promise<void>;
@@ -119,84 +115,126 @@ function CommentBubble({
   currentUserHandle: string | null;
   replyingToId: string | null;
   setReplyingToId: (id: string | null) => void;
-  depth?: number;
+  isNested?: boolean;
 }) {
   const [editing, setEditing] = useState(false);
   const [editBody, setEditBody] = useState(comment.body);
-  const [showAllReplies, setShowAllReplies] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
   const isOwner = currentUserHandle === comment.user.x_handle;
   const isReplying = replyingToId === comment.id;
-  const MAX_DEPTH = 2; // Cap nesting: original → reply → one more
   const replies = comment.replies || [];
-  const replyCount = replies.length;
+
+  // Limit + show more
   const REPLY_LIMIT = 3;
-  const visibleReplies = showAllReplies ? replies : replies.slice(0, REPLY_LIMIT);
-  const hiddenCount = replyCount - REPLY_LIMIT;
-  const canReply = depth < MAX_DEPTH;
+  const [showAll, setShowAll] = useState(false);
+  const visibleReplies = showAll ? replies : replies.slice(0, REPLY_LIMIT);
+  const hiddenCount = replies.length - REPLY_LIMIT;
+
+  if (collapsed) {
+    return (
+      <div className={`py-3 ${isNested ? "ml-6 border-l border-gray-100 pl-4" : "border-b border-gray-100"}`}>
+        <button onClick={() => setCollapsed(false)} className="flex items-center gap-2 text-text-muted text-sm hover:text-text-secondary transition-colors">
+          <span className="text-xs">+</span>
+          <span className="font-bold">{comment.user.x_handle}</span>
+          <span className="text-xs">{timeAgo(comment.created_at)}</span>
+          <span className="text-xs">({replies.length} {replies.length === 1 ? "reply" : "replies"})</span>
+        </button>
+      </div>
+    );
+  }
 
   return (
-    <div className={depth > 0 ? "ml-8 sm:ml-12 pl-3 sm:pl-4 border-l-2 border-gray-100" : ""}>
-      <div className="py-3">
-        <div className="flex gap-2.5">
-          {/* Avatar */}
-          {comment.user.x_avatar ? (
-            <img src={comment.user.x_avatar} alt="" className="w-8 h-8 rounded-full border border-gray-200 shrink-0 mt-0.5" />
-          ) : (
-            <div className="w-8 h-8 rounded-full bg-brand-orange/15 flex items-center justify-center text-brand-orange text-xs font-bold shrink-0 mt-0.5">
-              {comment.user.x_handle[0]?.toUpperCase()}
-            </div>
-          )}
-
-          {/* Content */}
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-0.5">
-              <span className="text-[13px] font-bold text-text-primary">@{comment.user.x_handle}</span>
-              <span className="text-text-muted text-[10px]">{timeAgo(comment.created_at)}</span>
-            </div>
-
-            {editing ? (
-              <div className="mt-1">
-                <textarea
-                  value={editBody}
-                  onChange={(e) => setEditBody(e.target.value)}
-                  className="w-full bg-bg-input border border-gray-200 rounded-lg px-3 py-2 text-sm text-text-primary resize-none focus:outline-none focus:border-brand-orange/30"
-                  rows={2}
-                  maxLength={500}
-                />
-                <div className="flex gap-2 mt-1.5">
-                  <button onClick={() => { onEdit(comment.id, editBody); setEditing(false); }} className="text-[11px] font-semibold text-brand-orange hover:underline">Save</button>
-                  <button onClick={() => { setEditing(false); setEditBody(comment.body); }} className="text-[11px] font-semibold text-text-muted hover:underline">Cancel</button>
-                </div>
-              </div>
-            ) : (
-              <CommentBody body={comment.body} />
-            )}
-
-            {/* Actions */}
-            {!editing && (
-              <div className="flex items-center gap-3 mt-1.5">
-                {currentUserHandle && canReply && (
-                  <button
-                    onClick={() => setReplyingToId(isReplying ? null : comment.id)}
-                    className={`text-[11px] font-semibold uppercase tracking-wider transition-colors ${
-                      isReplying ? "text-brand-orange" : "text-text-muted hover:text-brand-orange"
-                    }`}
-                  >
-                    Reply{replyCount > 0 ? ` (${replyCount})` : ""}
-                  </button>
-                )}
-                {isOwner && (
-                  <>
-                    <button onClick={() => setEditing(true)} className="text-text-muted text-[11px] font-semibold uppercase tracking-wider hover:text-accent-blue transition-colors">Edit</button>
-                    <button onClick={() => { if (confirm("Delete this comment?")) onDelete(comment.id); }} className="text-text-muted text-[11px] font-semibold uppercase tracking-wider hover:text-accent-red transition-colors">Delete</button>
-                  </>
-                )}
-              </div>
-            )}
+    <div className={isNested ? "ml-6 border-l border-gray-100 pl-4" : "border-b border-gray-100 last:border-b-0"}>
+      <div className="py-4">
+        {/* Header: collapse toggle + username + time + avatar */}
+        <div className="flex items-start justify-between mb-1">
+          <div className="flex items-center gap-2">
+            <button onClick={() => setCollapsed(true)} className="text-text-muted text-xs hover:text-text-secondary leading-none mt-0.5">—</button>
+            <span className="text-[15px] font-black text-text-primary">{comment.user.x_handle}</span>
+            <span className="text-text-muted text-xs">{timeAgo(comment.created_at)}</span>
           </div>
+          {comment.user.x_avatar && (
+            <img src={comment.user.x_avatar} alt="" className="w-7 h-7 rounded-full border border-gray-200" />
+          )}
         </div>
 
-        {/* Inline reply form — appears right under this comment */}
+        {/* "In reply to" label */}
+        {comment._parentHandle && (
+          <p className="text-text-muted text-xs mb-1.5 flex items-center gap-1">
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h10a5 5 0 015 5v6M3 10l6-6M3 10l6 6" />
+            </svg>
+            In reply to <span className="font-bold text-text-primary">{comment._parentHandle}</span>
+          </p>
+        )}
+
+        {/* Body */}
+        {editing ? (
+          <div className="mb-2">
+            <textarea
+              value={editBody}
+              onChange={(e) => setEditBody(e.target.value)}
+              className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-[15px] text-text-primary resize-none focus:outline-none focus:border-brand-orange/30"
+              rows={3}
+              maxLength={500}
+            />
+            <div className="flex gap-2 mt-1.5">
+              <button onClick={() => { onEdit(comment.id, editBody); setEditing(false); }} className="px-3 py-1.5 rounded-lg gradient-bg-brand text-white text-xs font-bold hover:opacity-90">Save</button>
+              <button onClick={() => { setEditing(false); setEditBody(comment.body); }} className="px-3 py-1.5 rounded-lg bg-gray-100 text-text-muted text-xs font-bold hover:bg-gray-200">Cancel</button>
+            </div>
+          </div>
+        ) : (
+          <div className="mb-3">
+            <CommentBody body={comment.body} />
+          </div>
+        )}
+
+        {/* Action bar */}
+        {!editing && (
+          <div className="flex items-center">
+            <div className="flex items-center gap-4">
+              {/* Reply */}
+              {currentUserHandle && (
+                <button
+                  onClick={() => setReplyingToId(isReplying ? null : comment.id)}
+                  className={`flex items-center gap-1 text-xs font-semibold transition-colors ${
+                    isReplying ? "text-brand-orange" : "text-text-muted hover:text-brand-orange"
+                  }`}
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h10a5 5 0 015 5v6M3 10l6-6M3 10l6 6" />
+                  </svg>
+                  Reply
+                </button>
+              )}
+
+              {/* Share */}
+              <a
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`"${comment.body.slice(0, 100)}${comment.body.length > 100 ? "..." : ""}" — @${comment.user.x_handle} on BK Grit`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 text-xs font-semibold text-text-muted hover:text-text-secondary transition-colors"
+              >
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                </svg>
+                Share
+              </a>
+            </div>
+
+            {/* Owner actions + Report (right side) */}
+            <div className="ml-auto flex items-center gap-3">
+              {isOwner && (
+                <>
+                  <button onClick={() => setEditing(true)} className="text-text-muted text-xs font-semibold hover:text-accent-blue transition-colors">Edit</button>
+                  <button onClick={() => { if (confirm("Delete this comment?")) onDelete(comment.id); }} className="text-text-muted text-xs font-semibold hover:text-accent-red transition-colors">Delete</button>
+                </>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Inline reply form */}
         {isReplying && (
           <InlineReplyForm
             replyingTo={comment.user.x_handle}
@@ -209,11 +247,11 @@ function CommentBubble({
         )}
       </div>
 
-      {/* Nested replies */}
-      {replyCount > 0 && (
+      {/* Replies */}
+      {visibleReplies.length > 0 && (
         <div>
           {visibleReplies.map((reply) => (
-            <CommentBubble
+            <CommentRow
               key={reply.id}
               comment={reply}
               onReply={onReply}
@@ -222,22 +260,16 @@ function CommentBubble({
               currentUserHandle={currentUserHandle}
               replyingToId={replyingToId}
               setReplyingToId={setReplyingToId}
-              depth={depth + 1}
+              isNested
             />
           ))}
-          {!showAllReplies && hiddenCount > 0 && (
-            <button
-              onClick={() => setShowAllReplies(true)}
-              className="ml-8 sm:ml-12 pl-3 sm:pl-4 py-2 text-brand-orange text-[12px] font-semibold hover:underline"
-            >
+          {!showAll && hiddenCount > 0 && (
+            <button onClick={() => setShowAll(true)} className="ml-6 pl-4 py-2 text-brand-orange text-xs font-semibold hover:underline">
               Show {hiddenCount} more {hiddenCount === 1 ? "reply" : "replies"}
             </button>
           )}
-          {showAllReplies && replyCount > REPLY_LIMIT && (
-            <button
-              onClick={() => setShowAllReplies(false)}
-              className="ml-8 sm:ml-12 pl-3 sm:pl-4 py-2 text-text-muted text-[12px] font-semibold hover:underline"
-            >
+          {showAll && replies.length > REPLY_LIMIT && (
+            <button onClick={() => setShowAll(false)} className="ml-6 pl-4 py-2 text-text-muted text-xs font-semibold hover:underline">
               Show less
             </button>
           )}
@@ -268,11 +300,16 @@ export default function CommentSection({ page, compact = false }: { page: string
     if (!data) { setLoading(false); return; }
 
     const allComments = (data as unknown as Comment[]) || [];
+    // Build handle lookup for "In reply to"
+    const handleMap: Record<string, string> = {};
+    for (const c of allComments) handleMap[c.id] = c.user.x_handle;
+
     const topLevel: Comment[] = [];
     const replyMap: Record<string, Comment[]> = {};
 
     for (const c of allComments) {
       if (c.parent_id) {
+        c._parentHandle = handleMap[c.parent_id] || undefined;
         if (!replyMap[c.parent_id]) replyMap[c.parent_id] = [];
         replyMap[c.parent_id].push(c);
       } else {
@@ -280,7 +317,6 @@ export default function CommentSection({ page, compact = false }: { page: string
       }
     }
 
-    // Recursively attach replies
     function attachReplies(comment: Comment): Comment {
       const replies = (replyMap[comment.id] || []).sort(
         (a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
@@ -302,7 +338,6 @@ export default function CommentSection({ page, compact = false }: { page: string
     return data?.id || null;
   }
 
-  // Post a top-level comment
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!body.trim() || !session) return;
@@ -315,7 +350,6 @@ export default function CommentSection({ page, compact = false }: { page: string
     fetchComments();
   }
 
-  // Post a reply to a specific comment
   async function handleReply(parentId: string, replyBody: string) {
     const userId = await getUserId();
     if (!userId) return;
@@ -334,17 +368,16 @@ export default function CommentSection({ page, compact = false }: { page: string
     fetchComments();
   }
 
-  // Count all comments recursively
   function countAll(list: Comment[]): number {
     return list.reduce((n, c) => n + 1 + countAll(c.replies || []), 0);
   }
   const totalComments = countAll(comments);
 
   return (
-    <div className={compact ? "mt-3 pt-3 border-t border-gray-100" : "card p-4 sm:p-5"}>
+    <div className={compact ? "mt-3 pt-3 border-t border-gray-100" : "card p-5 sm:p-6"}>
       {/* Header */}
-      <div className="flex items-center justify-between mb-3">
-        <h3 className={compact ? "text-xs font-bold text-text-muted uppercase tracking-wider" : "heading-md"}>
+      <div className="flex items-center justify-between mb-4">
+        <h3 className={compact ? "text-xs font-bold text-text-muted uppercase tracking-wider" : "text-lg font-black text-text-primary"}>
           {compact ? "Replies" : "Discussion"}
         </h3>
         <span className="text-text-muted text-xs font-medium">
@@ -352,27 +385,27 @@ export default function CommentSection({ page, compact = false }: { page: string
         </span>
       </div>
 
-      {/* Top-level comment form */}
+      {/* Top-level form */}
       {session ? (
-        <form onSubmit={handleSubmit} className="mb-4">
-          <div className="flex gap-2">
+        <form onSubmit={handleSubmit} className="mb-5 pb-5 border-b border-gray-100">
+          <div className="flex gap-3">
             {session.user?.image && (
-              <img src={session.user.image} alt="" className="w-8 h-8 rounded-full border border-gray-200 shrink-0 mt-0.5" />
+              <img src={session.user.image} alt="" className="w-9 h-9 rounded-full border border-gray-200 shrink-0" />
             )}
             <div className="flex-1">
               <textarea
                 value={body}
                 onChange={(e) => setBody(e.target.value)}
                 placeholder={compact ? "Write a reply..." : "What do you think?"}
-                className="w-full bg-bg-input border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-text-primary placeholder:text-text-muted/50 resize-none focus:outline-none focus:border-brand-orange/30 transition-colors"
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-text-primary placeholder:text-text-muted/50 resize-none focus:outline-none focus:border-brand-orange/30 transition-colors"
                 rows={compact ? 1 : 2}
                 maxLength={500}
               />
-              <div className="flex justify-end mt-1.5">
+              <div className="flex justify-end mt-2">
                 <button
                   type="submit"
                   disabled={!body.trim() || submitting}
-                  className="px-4 py-1.5 rounded-lg gradient-bg-brand text-white text-xs font-bold disabled:opacity-40 hover:opacity-90 transition-opacity"
+                  className="px-5 py-2 rounded-lg gradient-bg-brand text-white text-xs font-bold disabled:opacity-40 hover:opacity-90 transition-opacity"
                 >
                   {submitting ? "Posting..." : "Comment"}
                 </button>
@@ -383,36 +416,34 @@ export default function CommentSection({ page, compact = false }: { page: string
       ) : !compact ? (
         <button
           onClick={() => signIn("twitter")}
-          className="w-full mb-4 py-3 rounded-xl bg-gray-50 border border-gray-200 hover:bg-brand-orange/10 hover:border-brand-orange/20 transition-all flex items-center justify-center gap-2"
+          className="w-full mb-5 py-3.5 rounded-xl bg-gray-50 border border-gray-200 hover:bg-brand-orange/5 hover:border-brand-orange/20 transition-all flex items-center justify-center gap-2"
         >
           <svg className="w-4 h-4 text-text-secondary" viewBox="0 0 24 24" fill="currentColor">
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
           </svg>
-          <span className="text-text-secondary text-sm font-semibold">Sign in with X to comment</span>
+          <span className="text-text-secondary text-sm font-semibold">Sign in with X to join the discussion</span>
         </button>
       ) : null}
 
       {/* Thread */}
       {loading ? (
-        <div className="space-y-3">
-          {[1, 2].map((i) => (
-            <div key={i} className="flex gap-2.5">
-              <div className="w-8 h-8 rounded-full bg-gray-100 animate-pulse-soft shrink-0" />
-              <div className="flex-1 space-y-1.5">
-                <div className="h-3 w-24 rounded bg-gray-100 animate-pulse-soft" />
-                <div className="h-4 w-full rounded bg-gray-50 animate-pulse-soft" />
-              </div>
+        <div className="space-y-4">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="py-4 border-b border-gray-100">
+              <div className="h-4 w-32 rounded bg-gray-100 animate-pulse-soft mb-2" />
+              <div className="h-5 w-full rounded bg-gray-50 animate-pulse-soft mb-1" />
+              <div className="h-5 w-3/4 rounded bg-gray-50 animate-pulse-soft" />
             </div>
           ))}
         </div>
       ) : comments.length === 0 ? (
-        <p className="text-text-muted text-xs text-center py-4">
-          {compact ? "No replies yet." : "No comments yet. Be the first."}
+        <p className="text-text-muted text-sm text-center py-8">
+          {compact ? "No replies yet." : "No comments yet. Start the conversation."}
         </p>
       ) : (
-        <div className="divide-y divide-gray-100">
+        <div>
           {comments.map((comment) => (
-            <CommentBubble
+            <CommentRow
               key={comment.id}
               comment={comment}
               onReply={handleReply}
