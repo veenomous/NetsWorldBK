@@ -13,6 +13,7 @@ const navLinks = [
   { href: "/tiebreaker", label: "Tiebreaker" },
   { href: "/anti-tanking", label: "Anti-Tank" },
   { href: "/community", label: "Community" },
+  { href: "/recaps", label: "Recaps" },
 ];
 
 interface ScoreGame {
