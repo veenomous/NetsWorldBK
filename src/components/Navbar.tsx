@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 
@@ -65,8 +66,8 @@ export default function Navbar() {
 
   return (
     <nav className="bg-black text-white flex justify-between items-center w-full px-6 py-4 sticky top-0 z-50">
-      <Link href="/" className="text-2xl font-black tracking-tighter text-white uppercase font-display">
-        BK GRIT
+      <Link href="/" className="shrink-0">
+        <Image src="/BKGrit.png" alt="BK Grit" width={140} height={50} priority className="h-10 w-auto" />
       </Link>
 
       <div className="hidden md:flex items-center gap-8">
