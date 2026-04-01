@@ -26,40 +26,40 @@ const AnimatedTabs = ({
   if (!tabs?.length) return null;
 
   return (
-    <div className={cn("w-full flex flex-col gap-y-0", className)}>
-      {/* Tab buttons — black bg with red active */}
-      <div className="flex gap-0 bg-black p-0">
+    <div className={cn("w-full flex flex-col gap-y-2", className)}>
+      {/* Tab buttons */}
+      <div className="flex gap-2 flex-wrap bg-[#11111198] bg-opacity-50 backdrop-blur-sm p-1.5 rounded-xl">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={cn(
-              "relative px-4 py-2 text-[11px] font-black uppercase tracking-wider text-white/50 outline-none transition-colors"
+              "relative px-4 py-2 text-sm font-bold rounded-lg text-white outline-none transition-colors"
             )}
           >
             {activeTab === tab.id && (
               <motion.div
                 layoutId="active-recap-tab"
-                className="absolute inset-0 bg-brand-red"
-                transition={{ type: "spring", duration: 0.5 }}
+                className="absolute inset-0 bg-brand-red shadow-[0_0_20px_rgba(228,60,62,0.3)] !rounded-lg"
+                transition={{ type: "spring", duration: 0.6 }}
               />
             )}
-            <span className="relative z-10 text-white">{tab.label}</span>
+            <span className="relative z-10">{tab.label}</span>
           </button>
         ))}
       </div>
 
-      {/* Content area — black bg, red border */}
-      <div className="p-5 bg-black text-white border-2 border-brand-red min-h-[200px]">
+      {/* Content area — white bg, rounded, with shadow */}
+      <div className="p-5 bg-white text-text-primary shadow-[0_0_20px_rgba(0,0,0,0.08)] rounded-xl min-h-[220px] h-full">
         {tabs.map(
           (tab) =>
             activeTab === tab.id && (
               <motion.div
                 key={tab.id}
-                initial={{ opacity: 0, scale: 0.97, filter: "blur(6px)" }}
-                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                exit={{ opacity: 0, scale: 0.97, filter: "blur(6px)" }}
-                transition={{ duration: 0.4, ease: "circInOut", type: "spring" }}
+                initial={{ opacity: 0, scale: 0.95, x: -10, filter: "blur(10px)" }}
+                animate={{ opacity: 1, scale: 1, x: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, scale: 0.95, x: -10, filter: "blur(10px)" }}
+                transition={{ duration: 0.5, ease: "circInOut", type: "spring" }}
               >
                 {tab.content}
               </motion.div>

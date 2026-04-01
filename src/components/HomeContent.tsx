@@ -148,78 +148,124 @@ function DraftPositionCard() {
   );
 }
 
-// ─── Recap Tabs (for hero) ───
-function RecapTabs() {
+// ─── Hero Tabs (Game Recap, Game Preview, Top News) ───
+function HeroTabs() {
   const [recaps, setRecaps] = useState<Recap[]>([]);
+  const [articles, setArticles] = useState<{ id: string; title: string; body: string; tag: string; image_url: string | null; user: { x_handle: string } }[]>([]);
+  const { lottery } = useStandings();
+  const nets = getNetsFromStandings(lottery);
 
   useEffect(() => {
     async function load() {
-      const { data } = await supabase
-        .from("game_recaps")
-        .select("id, headline, summary, opponent, nets_score, opponent_score, vibe, image_url, created_at, user:users(x_handle)")
-        .order("created_at", { ascending: false })
-        .limit(3);
-      if (data) setRecaps(data as unknown as Recap[]);
+      const [recapsRes, articlesRes] = await Promise.all([
+        supabase.from("game_recaps").select("id, headline, summary, opponent, nets_score, opponent_score, vibe, image_url, created_at, user:users(x_handle)").order("created_at", { ascending: false }).limit(1),
+        supabase.from("articles").select("id, title, body, tag, image_url, user:users(x_handle)").order("created_at", { ascending: false }).limit(1),
+      ]);
+      if (recapsRes.data) setRecaps(recapsRes.data as unknown as Recap[]);
+      if (articlesRes.data) setArticles(articlesRes.data as unknown as typeof articles);
     }
     load();
   }, []);
 
-  if (recaps.length === 0) {
-    // Fallback tabs when no recaps exist
-    const fallbackTabs: Tab[] = [
-      {
-        id: "welcome",
-        label: "Game Recaps",
-        content: (
-          <div className="flex flex-col items-center justify-center h-full py-8">
-            <p className="text-2xl font-black uppercase mb-2">No Recaps Yet</p>
-            <p className="text-sm text-white/60">Write the first post-game breakdown.</p>
-            <Link href="/community" className="mt-4 bg-brand-red px-5 py-2 text-xs font-bold uppercase tracking-wider hover:bg-red-700 transition-all">
-              Write Recap
-            </Link>
+  const recap = recaps[0];
+  const article = articles[0];
 
-          </div>
-        ),
-      },
-    ];
-    return <AnimatedTabs tabs={fallbackTabs} className="w-full" />;
-  }
+  // Find next opponent from standings data
+  const nextOpp = nets ? `Next game coming up` : "Season in progress";
 
-  const tabs: Tab[] = recaps.map((recap) => {
-    const won = recap.nets_score > recap.opponent_score;
-    return {
-      id: recap.id,
-      label: `BKN ${won ? "W" : "L"} vs ${recap.opponent}`,
-      content: (
-        <Link href={`/community`} className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full h-full group">
-          <div className="flex flex-col justify-center">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-2xl">{vibeEmoji[recap.vibe] || "🏀"}</span>
-              <span className={`text-xl font-black ${won ? "text-green-400" : "text-red-400"}`}>
+  const tabs: Tab[] = [
+    {
+      id: "recap",
+      label: "Game Recap",
+      content: recap ? (
+        <Link href="/community" className="grid grid-cols-2 gap-5 w-full h-full group">
+          {recap.image_url ? (
+            <img src={recap.image_url} alt="" className="rounded-lg w-full h-52 object-cover shadow-[0_0_20px_rgba(0,0,0,0.1)]" />
+          ) : (
+            <div className="rounded-lg w-full h-52 bg-gray-100 flex items-center justify-center">
+              <span className="text-5xl">{vibeEmoji[recap.vibe] || "🏀"}</span>
+            </div>
+          )}
+          <div className="flex flex-col gap-y-2 justify-center">
+            <div className="flex items-center gap-2">
+              <span className="text-lg">{vibeEmoji[recap.vibe] || "🏀"}</span>
+              <span className={`text-sm font-black ${recap.nets_score > recap.opponent_score ? "text-accent-green" : "text-brand-red"}`}>
                 BKN {recap.nets_score} - {recap.opponent} {recap.opponent_score}
               </span>
             </div>
-            <h3 className="text-xl font-black uppercase leading-tight group-hover:text-white/80 transition-colors">
+            <h2 className="text-xl font-black mb-0 text-text-primary group-hover:text-brand-red transition-colors uppercase leading-tight">
               {recap.headline}
-            </h3>
-            <p className="text-sm text-white/50 mt-2 line-clamp-2">{recap.summary}</p>
-            <p className="text-[10px] text-white/30 mt-3 uppercase tracking-wider">by @{recap.user?.x_handle} · Click to read</p>
-          </div>
-          <div className="hidden sm:flex items-center justify-center">
-            {recap.image_url ? (
-              <img src={recap.image_url} alt="" className="w-full h-48 object-cover" />
-            ) : (
-              <div className="w-full h-48 bg-white/5 flex items-center justify-center">
-                <span className="text-6xl">{vibeEmoji[recap.vibe] || "🏀"}</span>
-              </div>
-            )}
+            </h2>
+            <p className="text-sm text-text-secondary line-clamp-3">{recap.summary}</p>
+            <p className="text-[10px] text-text-muted uppercase tracking-wider mt-1">by @{recap.user?.x_handle}</p>
           </div>
         </Link>
+      ) : (
+        <div className="flex flex-col items-center justify-center py-8">
+          <p className="text-xl font-black uppercase mb-1">No Recaps Yet</p>
+          <p className="text-sm text-text-muted">Write the first post-game breakdown.</p>
+          <Link href="/community" className="mt-3 bg-brand-red text-white px-5 py-2 text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-red-700 transition-all">
+            Write Recap
+          </Link>
+        </div>
       ),
-    };
-  });
+    },
+    {
+      id: "preview",
+      label: "Game Preview",
+      content: (
+        <div className="grid grid-cols-2 gap-5 w-full h-full">
+          <div className="rounded-lg w-full h-52 bg-black flex items-center justify-center">
+            <span className="text-6xl font-black text-white/10 font-display">BKN</span>
+          </div>
+          <div className="flex flex-col gap-y-2 justify-center">
+            <h2 className="text-xl font-black text-text-primary uppercase leading-tight">
+              {nextOpp}
+            </h2>
+            <p className="text-sm text-text-secondary">
+              {nets ? `The Nets sit at ${nets.wins}-${nets.losses} with ${nets.gamesRemaining} games remaining. Every result matters for draft positioning.` : "Check back for the next game preview."}
+            </p>
+            <Link href="/tiebreaker" className="text-[11px] font-bold text-brand-red uppercase tracking-wider mt-2 hover:underline">
+              View Draft Scenarios →
+            </Link>
+          </div>
+        </div>
+      ),
+    },
+    {
+      id: "news",
+      label: "Top News",
+      content: article ? (
+        <Link href={`/community/${article.id}`} className="grid grid-cols-2 gap-5 w-full h-full group">
+          {article.image_url ? (
+            <img src={article.image_url} alt="" className="rounded-lg w-full h-52 object-cover shadow-[0_0_20px_rgba(0,0,0,0.1)]" />
+          ) : (
+            <div className="rounded-lg w-full h-52 bg-gray-100 flex items-center justify-center">
+              <span className="text-4xl">📰</span>
+            </div>
+          )}
+          <div className="flex flex-col gap-y-2 justify-center">
+            <span className="text-[9px] font-black tracking-[0.2em] uppercase text-accent-blue">{article.tag}</span>
+            <h2 className="text-xl font-black text-text-primary group-hover:text-brand-red transition-colors uppercase leading-tight">
+              {article.title}
+            </h2>
+            <p className="text-sm text-text-secondary line-clamp-3">{article.body}</p>
+            <p className="text-[10px] text-text-muted uppercase tracking-wider mt-1">by @{article.user?.x_handle}</p>
+          </div>
+        </Link>
+      ) : (
+        <div className="flex flex-col items-center justify-center py-8">
+          <p className="text-xl font-black uppercase mb-1">No Articles Yet</p>
+          <p className="text-sm text-text-muted">Be the first to write one.</p>
+          <Link href="/community" className="mt-3 bg-accent-blue text-white px-5 py-2 text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-blue-800 transition-all">
+            Write Article
+          </Link>
+        </div>
+      ),
+    },
+  ];
 
-  return <AnimatedTabs tabs={tabs} className="w-full" />;
+  return <AnimatedTabs tabs={tabs} defaultTab="recap" className="w-full" />;
 }
 
 // ─── Main Homepage ───
@@ -245,7 +291,7 @@ export default function HomeContent() {
 
             {/* Right: Animated recap tabs — takes up all remaining space */}
             <div className="flex-1">
-              <RecapTabs />
+              <HeroTabs />
             </div>
           </div>
         </div>
