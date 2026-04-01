@@ -80,7 +80,7 @@ export default function Navbar() {
           <Link
             key={link.href}
             href={link.href}
-            className={`font-display uppercase tracking-tighter font-bold text-[11px] transition-colors ${
+            className={`font-display uppercase tracking-tighter font-bold text-sm transition-colors ${
               link.active
                 ? "text-brand-red"
                 : "text-white/60 hover:text-white"

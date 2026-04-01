@@ -88,56 +88,45 @@ function TakeContent({ text }: { text: string }) {
 }
 
 // ─── Single Take ───
-function TakeCard({ take, onVote, userVote, expanded, onExpand, commentCount }: {
+function TakeCard({ take, onRec, userRecd, expanded, onExpand, commentCount }: {
   take: Take;
-  onVote: (id: string, type: "agree" | "disagree") => void;
-  userVote: string | undefined;
+  onRec: (id: string) => void;
+  userRecd: boolean;
   expanded: boolean;
   onExpand: () => void;
   commentCount: number;
 }) {
-  const total = take.agrees + take.disagrees;
-  const pct = total > 0 ? Math.round((take.agrees / total) * 100) : 50;
-
   return (
-    <div className="py-4 border-b border-gray-100 hover:bg-gray-50/50 -mx-2 px-2 transition-colors">
+    <div className="py-5 border-b border-gray-100 hover:bg-gray-50/50 -mx-2 px-2 transition-colors">
       <div className="flex items-center gap-2 mb-1.5">
-        <span className="text-[9px] font-black tracking-[0.15em] uppercase text-black/20">@{take.author}</span>
-        <span className="text-[9px] text-black/15">{timeAgo(take.created_at)}</span>
-        <span className="text-[9px] font-black tracking-[0.15em] uppercase text-brand-red">{take.tag}</span>
+        <span className="text-[10px] font-black tracking-[0.15em] uppercase text-black/25">@{take.author}</span>
+        <span className="text-[10px] text-black/15">· {timeAgo(take.created_at)}</span>
       </div>
+      {take.tag && take.tag !== "Take" && (
+        <span className="inline-block text-[9px] font-black tracking-[0.15em] uppercase text-brand-red mb-1.5">{take.tag}</span>
+      )}
       <TakeContent text={take.text} />
-      <div className="flex items-center gap-3 mt-2.5">
+      {/* Action bar — Rec, Reply, Share, ... */}
+      <div className="flex items-center gap-5 mt-3">
         <button
-          onClick={() => !userVote && onVote(take.id, "agree")}
-          className={`text-xs font-bold transition-colors ${userVote === "agree" ? "text-accent-green" : "text-black/25 hover:text-accent-green"} ${userVote ? "cursor-default" : "cursor-pointer"}`}
+          onClick={() => !userRecd && onRec(take.id)}
+          className={`flex items-center gap-1.5 text-[13px] font-bold transition-colors ${userRecd ? "text-accent-green" : "text-black/30 hover:text-accent-green"} ${userRecd ? "cursor-default" : "cursor-pointer"}`}
         >
-          👍 {take.agrees}
+          <svg className="w-4 h-4" fill={userRecd ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z" />
+          </svg>
+          Rec {take.agrees > 0 ? take.agrees : ""}
         </button>
         <button
-          onClick={() => !userVote && onVote(take.id, "disagree")}
-          className={`text-xs font-bold transition-colors ${userVote === "disagree" ? "text-brand-red" : "text-black/25 hover:text-brand-red"} ${userVote ? "cursor-default" : "cursor-pointer"}`}
+          onClick={onExpand}
+          className={`flex items-center gap-1.5 text-[13px] font-bold transition-colors ${expanded ? "text-brand-red" : "text-black/30 hover:text-brand-red"}`}
         >
-          👎 {take.disagrees}
-        </button>
-        {userVote && (
-          <span className="text-[10px] font-bold text-black/20">{pct}% agree</span>
-        )}
-        <button onClick={onExpand} className={`text-[10px] font-bold uppercase tracking-wider transition-colors ml-auto flex items-center gap-1 ${expanded ? "text-brand-red" : "text-black/25 hover:text-brand-red"}`}>
-          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
           </svg>
-          {commentCount > 0 ? commentCount : ""} {expanded ? "Hide" : "Reply"}
+          Reply {commentCount > 0 ? commentCount : ""}
         </button>
-        {/* Share on X */}
-        <a
-          href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`"${take.text.slice(0, 200)}" — via @BKGrit`)}&url=https://bkgrit.com/wire`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[10px] font-bold uppercase tracking-wider text-black/25 hover:text-accent-blue transition-colors"
-        >
-          Share
-        </a>
+        <span className="text-black/15 text-lg cursor-default">···</span>
       </div>
       {expanded && <CommentSection page={`take-${take.id}`} compact />}
     </div>
@@ -150,7 +139,10 @@ function PostForm({ onPost }: { onPost: () => void }) {
   const xHandle = (session?.user as { xHandle?: string })?.xHandle;
 
   const [text, setText] = useState("");
+  const [tag, setTag] = useState("Take");
   const [submitting, setSubmitting] = useState(false);
+
+  const TAGS = ["Take", "Draft", "Roster", "Strategy", "Trade", "Spicy"];
 
   if (!session) {
     return (
@@ -166,10 +158,11 @@ function PostForm({ onPost }: { onPost: () => void }) {
     setSubmitting(true);
 
     await supabase.from("hot_takes").insert({
-      text: text.trim(), author: xHandle || "Anonymous", tag: "Take", ip_hash: getVisitorId(),
+      text: text.trim(), author: xHandle || "Anonymous", tag, ip_hash: getVisitorId(),
     });
 
     setText("");
+    setTag("Take");
     setSubmitting(false);
     onPost();
   }
@@ -191,7 +184,23 @@ function PostForm({ onPost }: { onPost: () => void }) {
         className="w-full bg-transparent text-sm text-text-primary outline-none resize-none placeholder:text-black/20"
       />
       <div className="flex items-center justify-between mt-2 pt-2 border-t border-gray-100">
-        <span className="text-[10px] text-black/15">{text.length}/500</span>
+        <div className="flex items-center gap-2">
+          <div className="flex gap-1">
+            {TAGS.map((t) => (
+              <button
+                key={t}
+                type="button"
+                onClick={() => setTag(t)}
+                className={`px-2 py-0.5 text-[9px] font-black uppercase tracking-wider transition-all ${
+                  tag === t ? "bg-brand-red text-white" : "bg-gray-100 text-black/30 hover:text-black/50"
+                }`}
+              >
+                {t}
+              </button>
+            ))}
+          </div>
+          <span className="text-[10px] text-black/15">{text.length}/500</span>
+        </div>
         <button
           type="submit"
           disabled={!text.trim() || submitting}
@@ -261,24 +270,19 @@ export default function TheWire({ limit, showForm = true, showHotTake = true }: 
 
   useEffect(() => { fetchAll(); }, [fetchAll]);
 
-  async function handleVote(takeId: string, voteType: "agree" | "disagree") {
+  async function handleRec(takeId: string) {
     if (userVotes[takeId]) return;
     const visitorId = getVisitorId();
 
-    setUserVotes((prev) => ({ ...prev, [takeId]: voteType }));
+    setUserVotes((prev) => ({ ...prev, [takeId]: "agree" }));
     setTakes((prev) =>
-      prev.map((t) =>
-        t.id === takeId
-          ? { ...t, agrees: t.agrees + (voteType === "agree" ? 1 : 0), disagrees: t.disagrees + (voteType === "disagree" ? 1 : 0) }
-          : t
-      )
+      prev.map((t) => t.id === takeId ? { ...t, agrees: t.agrees + 1 } : t)
     );
 
-    await supabase.from("take_votes").insert({ take_id: takeId, vote_type: voteType, visitor_id: visitorId });
+    await supabase.from("take_votes").insert({ take_id: takeId, vote_type: "agree", visitor_id: visitorId });
     const take = takes.find((t) => t.id === takeId);
     if (take) {
-      const field = voteType === "agree" ? "agrees" : "disagrees";
-      await supabase.from("hot_takes").update({ [field]: (take[field] || 0) + 1 }).eq("id", takeId);
+      await supabase.from("hot_takes").update({ agrees: (take.agrees || 0) + 1 }).eq("id", takeId);
     }
   }
 
@@ -305,8 +309,8 @@ export default function TheWire({ limit, showForm = true, showHotTake = true }: 
             <TakeCard
               key={take.id}
               take={take}
-              onVote={handleVote}
-              userVote={userVotes[take.id]}
+              onRec={handleRec}
+              userRecd={!!userVotes[take.id]}
               expanded={expandedId === take.id}
               onExpand={() => setExpandedId(expandedId === take.id ? null : take.id)}
               commentCount={commentCounts[take.id] || 0}

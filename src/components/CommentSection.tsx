@@ -234,17 +234,6 @@ function CommentRow({
           </div>
         )}
 
-        {/* Inline reply form */}
-        {isReplying && (
-          <InlineReplyForm
-            replyingTo={comment.user.x_handle}
-            onSubmit={async (body) => {
-              await onReply(comment.id, body);
-              setReplyingToId(null);
-            }}
-            onCancel={() => setReplyingToId(null)}
-          />
-        )}
       </div>
 
       {/* Replies */}
@@ -274,6 +263,18 @@ function CommentRow({
             </button>
           )}
         </div>
+      )}
+
+      {/* Inline reply form — after all replies */}
+      {isReplying && (
+        <InlineReplyForm
+          replyingTo={comment.user.x_handle}
+          onSubmit={async (body) => {
+            await onReply(comment.id, body);
+            setReplyingToId(null);
+          }}
+          onCancel={() => setReplyingToId(null)}
+        />
       )}
     </div>
   );
@@ -405,7 +406,7 @@ export default function CommentSection({ page, compact = false }: { page: string
                 <button
                   type="submit"
                   disabled={!body.trim() || submitting}
-                  className="px-5 py-2 rounded-lg gradient-bg-brand text-white text-xs font-bold disabled:opacity-40 hover:opacity-90 transition-opacity"
+                  className="px-5 py-2 bg-brand-red text-white text-xs font-black uppercase tracking-wider disabled:opacity-30 hover:bg-red-700 transition-all"
                 >
                   {submitting ? "Posting..." : "Comment"}
                 </button>
