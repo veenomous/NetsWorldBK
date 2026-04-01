@@ -309,6 +309,7 @@ export default function ThePress({ showForm = true }: { showForm?: boolean }) {
   const [recaps, setRecaps] = useState<GameRecap[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<"all" | Category>("all");
+  const [editorOpen, setEditorOpen] = useState(false);
 
   const fetchAll = useCallback(async () => {
     const [articlesRes, recapsRes] = await Promise.all([
@@ -346,7 +347,25 @@ export default function ThePress({ showForm = true }: { showForm?: boolean }) {
 
   return (
     <div>
-      {showForm && <WriterForm onPublish={fetchAll} />}
+      {showForm && (
+        editorOpen ? (
+          <div className="mb-6">
+            <div className="flex justify-end mb-2">
+              <button onClick={() => setEditorOpen(false)} className="text-[10px] font-bold uppercase tracking-wider text-black/30 hover:text-brand-red transition-colors">
+                Close Editor
+              </button>
+            </div>
+            <WriterForm onPublish={() => { fetchAll(); setEditorOpen(false); }} />
+          </div>
+        ) : (
+          <button
+            onClick={() => session ? setEditorOpen(true) : signIn("twitter")}
+            className="w-full mb-6 py-3 bg-brand-red text-white font-black text-[12px] uppercase tracking-wider hover:bg-red-700 transition-all"
+          >
+            {session ? "Write an Article" : "Sign in to Write"}
+          </button>
+        )
+      )}
 
       {/* Filter */}
       <div className="flex gap-0 mb-4 border-b border-gray-200">

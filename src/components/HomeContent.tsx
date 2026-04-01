@@ -178,7 +178,7 @@ function HeroTabs() {
       id: "recap",
       label: "Game Recap",
       content: recap ? (
-        <Link href="/community" className="grid grid-cols-1 sm:grid-cols-[1fr_1fr] gap-5 w-full group">
+        <Link href={`/community/recap-${recap.id}`} className="grid grid-cols-1 sm:grid-cols-[1fr_1fr] gap-5 w-full group">
           <div className="relative w-full h-0 pb-[60%] overflow-hidden rounded-lg bg-gray-100">
             {recap.image_url ? (
               <img src={recap.image_url} alt="" className="absolute inset-0 w-full h-full object-cover object-top" />
