@@ -209,6 +209,8 @@ function PostForm({ onPost }: { onPost: () => void }) {
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   const [tag, setTag] = useState("Hot Take");
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
   // Recap fields
   const [opponent, setOpponent] = useState("ATL");
   const [netsScore, setNetsScore] = useState("");
@@ -227,10 +229,30 @@ function PostForm({ onPost }: { onPost: () => void }) {
     );
   }
 
+  function handleImageSelect(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setImageFile(file);
+    setImagePreview(URL.createObjectURL(file));
+  }
+
+  async function uploadImage(): Promise<string | null> {
+    if (!imageFile) return null;
+    const ext = imageFile.name.split(".").pop();
+    const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+    const { error } = await supabase.storage.from("images").upload(fileName, imageFile);
+    if (error) { console.error("Upload error:", error); return null; }
+    const { data: urlData } = supabase.storage.from("images").getPublicUrl(fileName);
+    return urlData.publicUrl;
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (submitting) return;
     setSubmitting(true);
+
+    // Upload image if selected
+    const imageUrl = await uploadImage();
 
     if (postType === "take") {
       if (!text.trim()) { setSubmitting(false); return; }
@@ -244,6 +266,7 @@ function PostForm({ onPost }: { onPost: () => void }) {
       if (!userData) { setSubmitting(false); return; }
       await supabase.from("articles").insert({
         title: title.trim(), body: text.trim(), tag, user_id: userData.id,
+        ...(imageUrl ? { image_url: imageUrl } : {}),
       });
     } else if (postType === "recap") {
       if (!title.trim() || !text.trim() || !netsScore || !oppScore) { setSubmitting(false); return; }
@@ -255,11 +278,13 @@ function PostForm({ onPost }: { onPost: () => void }) {
         nets_score: parseInt(netsScore), opponent_score: parseInt(oppScore),
         mvp, rating, vibe, game_date: new Date().toISOString().slice(0, 10),
         user_id: userData.id,
+        ...(imageUrl ? { image_url: imageUrl } : {}),
       });
       if (error) { alert(error.message); setSubmitting(false); return; }
     }
 
     setText(""); setTitle(""); setNetsScore(""); setOppScore("");
+    setImageFile(null); setImagePreview(null);
     setSubmitting(false);
     onPost();
   }
@@ -334,6 +359,24 @@ function PostForm({ onPost }: { onPost: () => void }) {
         maxLength={postType === "take" ? 280 : 3000}
         className="w-full bg-transparent text-sm text-text-primary outline-none resize-none placeholder:text-black/20"
       />
+
+      {/* Image upload (articles + recaps only) */}
+      {postType !== "take" && (
+        <div className="mt-3">
+          {imagePreview ? (
+            <div className="relative inline-block">
+              <img src={imagePreview} alt="Preview" className="h-24 object-cover border border-gray-200" />
+              <button type="button" onClick={() => { setImageFile(null); setImagePreview(null); }} className="absolute -top-2 -right-2 bg-brand-red text-white w-5 h-5 flex items-center justify-center text-xs font-bold">×</button>
+            </div>
+          ) : (
+            <label className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-black/30 hover:text-brand-red transition-colors cursor-pointer">
+              <span className="material-symbols-outlined text-sm">add_photo_alternate</span>
+              Add Image
+              <input type="file" accept="image/*" onChange={handleImageSelect} className="hidden" />
+            </label>
+          )}
+        </div>
+      )}
 
       <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
         <div className="flex items-center gap-2">

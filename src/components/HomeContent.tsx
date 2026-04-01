@@ -32,6 +32,7 @@ interface Recap {
   nets_score: number;
   opponent_score: number;
   vibe: string;
+  image_url: string | null;
   created_at: string;
   user: { x_handle: string };
 }
@@ -155,7 +156,7 @@ function RecapTabs() {
     async function load() {
       const { data } = await supabase
         .from("game_recaps")
-        .select("id, headline, summary, opponent, nets_score, opponent_score, vibe, created_at, user:users(x_handle)")
+        .select("id, headline, summary, opponent, nets_score, opponent_score, vibe, image_url, created_at, user:users(x_handle)")
         .order("created_at", { ascending: false })
         .limit(3);
       if (data) setRecaps(data as unknown as Recap[]);
@@ -204,9 +205,13 @@ function RecapTabs() {
             <p className="text-[10px] text-white/30 mt-3 uppercase tracking-wider">by @{recap.user?.x_handle} · Click to read</p>
           </div>
           <div className="hidden sm:flex items-center justify-center">
-            <div className="w-full h-48 bg-white/5 flex items-center justify-center">
-              <span className="text-6xl">{vibeEmoji[recap.vibe] || "🏀"}</span>
-            </div>
+            {recap.image_url ? (
+              <img src={recap.image_url} alt="" className="w-full h-48 object-cover" />
+            ) : (
+              <div className="w-full h-48 bg-white/5 flex items-center justify-center">
+                <span className="text-6xl">{vibeEmoji[recap.vibe] || "🏀"}</span>
+              </div>
+            )}
           </div>
         </Link>
       ),
@@ -218,36 +223,27 @@ function RecapTabs() {
 
 // ─── Main Homepage ───
 export default function HomeContent() {
-  const { isLoading } = useStandings();
-  const { lottery } = useStandings();
-  const nets = getNetsFromStandings(lottery);
 
   return (
     <div>
-      {/* ═══ HERO — white bg, logo + animated tabs ═══ */}
-      <section className="bg-white border-b-[6px] border-brand-red">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            {/* Left: Logo + badge */}
-            <div className="flex flex-col justify-center">
+      {/* ═══ HERO — white bg, logo left + full recap tabs right ═══ */}
+      <section className="bg-white border-b-[4px] border-brand-red">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
+          <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-6 items-stretch">
+            {/* Left: Logo */}
+            <div className="flex items-center justify-center md:justify-start">
               <Image
                 src="/logo2.png"
                 alt="BK Grit"
-                width={500}
-                height={250}
+                width={280}
+                height={140}
                 priority
-                className="w-full max-w-[400px] h-auto"
+                className="w-full max-w-[240px] h-auto"
               />
-              {/* Red badge — bigger */}
-              <div className="mt-6 inline-flex self-start bg-brand-red px-5 py-2.5">
-                <span className="font-display text-white font-black tracking-[0.2em] uppercase text-xs">
-                  {isLoading ? "LOADING..." : nets ? `#${nets.lotteryRank} Pick · ${nets.wins}-${nets.losses} · ${nets.gamesRemaining}g Left` : "FAN HQ · ACTIVE"}
-                </span>
-              </div>
             </div>
 
-            {/* Right: Animated recap tabs */}
-            <div>
+            {/* Right: Animated recap tabs — takes up all remaining space */}
+            <div className="flex-1">
               <RecapTabs />
             </div>
           </div>

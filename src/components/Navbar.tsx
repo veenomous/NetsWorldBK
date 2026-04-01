@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useStandings, getNetsFromStandings } from "@/lib/useStandings";
 
 const navLinks = [
   { href: "/", label: "Dashboard", active: true },
   { href: "/simulator", label: "Lottery Sim" },
   { href: "/gm-mode", label: "War Room" },
   { href: "/trade-machine", label: "Trade Machine" },
-  { href: "/recaps", label: "Recap Studio" },
+  { href: "/recaps", label: "Recaps" },
   { href: "/community", label: "The Wire" },
 ];
 
@@ -17,12 +18,12 @@ function UserButton() {
   const { data: session, status } = useSession();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  if (status === "loading") return <div className="w-8 h-8 bg-white/10 animate-pulse-soft" />;
+  if (status === "loading") return <div className="w-6 h-6 bg-white/10 animate-pulse-soft" />;
 
   if (!session) {
     return (
-      <button onClick={() => signIn("twitter")} className="hover:bg-white/10 transition-all p-1">
-        <span className="material-symbols-outlined text-white/70 hover:text-white">account_circle</span>
+      <button onClick={() => signIn("twitter")} className="hover:bg-white/10 transition-all p-0.5">
+        <span className="material-symbols-outlined text-white/70 hover:text-white text-[20px]">account_circle</span>
       </button>
     );
   }
@@ -32,24 +33,23 @@ function UserButton() {
 
   return (
     <div className="relative">
-      <button onClick={() => setDropdownOpen(!dropdownOpen)} className="hover:bg-white/10 transition-all p-1">
+      <button onClick={() => setDropdownOpen(!dropdownOpen)} className="hover:bg-white/10 transition-all p-0.5">
         {user.image ? (
-          <img src={user.image} alt={handle} className="w-8 h-8 border border-white/20" />
+          <img src={user.image} alt={handle} className="w-6 h-6 border border-white/20" />
         ) : (
-          <span className="material-symbols-outlined text-white">account_circle</span>
+          <span className="material-symbols-outlined text-white text-[20px]">account_circle</span>
         )}
       </button>
       {dropdownOpen && (
         <>
           <div className="fixed inset-0 z-40" onClick={() => setDropdownOpen(false)} />
-          <div className="absolute right-0 top-full mt-2 z-50 w-52 bg-black border border-white/10 shadow-2xl">
-            <div className="px-4 py-3 border-b border-white/10">
-              <p className="text-sm font-bold text-white">@{handle}</p>
-              <p className="text-[10px] text-white/40 uppercase tracking-widest">Signed in via X</p>
+          <div className="absolute right-0 top-full mt-2 z-50 w-48 bg-black border border-white/10 shadow-2xl">
+            <div className="px-3 py-2 border-b border-white/10">
+              <p className="text-xs font-bold text-white">@{handle}</p>
             </div>
             <button
               onClick={() => { setDropdownOpen(false); signOut(); }}
-              className="w-full text-left px-4 py-3 text-sm text-brand-red hover:bg-white/5 transition-colors uppercase tracking-wider font-bold text-xs"
+              className="w-full text-left px-3 py-2 text-xs text-brand-red hover:bg-white/5 transition-colors uppercase tracking-wider font-bold"
             >
               Sign Out
             </button>
@@ -62,22 +62,28 @@ function UserButton() {
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { lottery, isLoading } = useStandings();
+  const nets = getNetsFromStandings(lottery);
 
   return (
-    <nav className="bg-black text-white flex justify-between items-center w-full px-6 py-2.5 sticky top-0 z-50">
-      <Link href="/" className="text-xl font-black tracking-tighter text-white uppercase font-display shrink-0">
-        BK GRIT
+    <nav className="bg-black text-white flex justify-between items-center w-full px-4 sm:px-6 py-1.5 sticky top-0 z-50">
+      {/* Draft badge (replaces BK GRIT text) */}
+      <Link href="/" className="shrink-0 bg-brand-red px-3 py-1">
+        <span className="font-display text-white font-black tracking-[0.15em] uppercase text-[10px]">
+          {isLoading ? "LOADING..." : nets ? `#${nets.lotteryRank} PICK · ${nets.wins}-${nets.losses} · ${nets.gamesRemaining}G LEFT` : "BK GRIT"}
+        </span>
       </Link>
 
-      <div className="hidden md:flex items-center gap-8">
+      {/* Desktop nav */}
+      <div className="hidden md:flex items-center gap-5">
         {navLinks.map((link) => (
           <Link
             key={link.href}
             href={link.href}
-            className={`font-display uppercase tracking-tighter font-bold text-sm transition-colors ${
+            className={`font-display uppercase tracking-tighter font-bold text-[11px] transition-colors ${
               link.active
-                ? "text-brand-red border-b-4 border-brand-red pb-1"
-                : "text-white/70 hover:text-white"
+                ? "text-brand-red"
+                : "text-white/60 hover:text-white"
             }`}
           >
             {link.label}
@@ -85,13 +91,11 @@ export default function Navbar() {
         ))}
       </div>
 
-      <div className="flex items-center gap-4">
+      {/* Right */}
+      <div className="flex items-center gap-3">
         <UserButton />
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden hover:bg-white/10 transition-all p-1"
-        >
-          <span className="material-symbols-outlined">
+        <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden hover:bg-white/10 transition-all p-0.5">
+          <span className="material-symbols-outlined text-[20px]">
             {mobileOpen ? "close" : "menu"}
           </span>
         </button>
@@ -99,13 +103,13 @@ export default function Navbar() {
 
       {mobileOpen && (
         <div className="absolute top-full left-0 right-0 bg-black border-t border-white/10 md:hidden z-50">
-          <div className="px-6 py-4 space-y-1">
+          <div className="px-4 py-2 space-y-0.5">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="block py-3 font-display uppercase tracking-tighter font-bold text-white/70 hover:text-white transition-colors border-b border-white/5"
+                className="block py-2 font-display uppercase tracking-tighter font-bold text-sm text-white/60 hover:text-white transition-colors"
               >
                 {link.label}
               </Link>
