@@ -2,18 +2,27 @@
 
 import { useState, useCallback } from "react";
 import { runLotterySimulation, type SimulationResult } from "@/lib/lottery";
+import { useStandings } from "@/lib/useStandings";
+import { lotteryOdds } from "@/data/standings";
 import { ShareLotteryResult } from "@/components/ShareButton";
+import Link from "next/link";
 
-interface Props {
-  compact?: boolean;
-}
+// Historical lottery data
+const HISTORY = [
+  { year: 2023, team: "San Antonio Spurs", odds: "14.0%", outcome: "STAYED #1", jumped: false },
+  { year: 2022, team: "Orlando Magic", odds: "14.0%", outcome: "STAYED #1", jumped: false },
+  { year: 2021, team: "Detroit Pistons", odds: "14.0%", outcome: "STAYED #1", jumped: false },
+  { year: 2019, team: "New Orleans Pelicans", odds: "6.0%", outcome: "JUMPED +6", jumped: true },
+];
 
-export default function LotterySimulator({ compact = false }: Props) {
+export default function LotterySimulator() {
+  const { lottery, isLoading } = useStandings();
+  const top6 = lottery.slice(0, 6);
+
   const [result, setResult] = useState<SimulationResult | null>(null);
   const [isSpinning, setIsSpinning] = useState(false);
-  const [bestResult, setBestResult] = useState<number | null>(null);
   const [simCount, setSimCount] = useState(0);
-  const [history, setHistory] = useState<number[]>([]);
+  const [bestResult, setBestResult] = useState<number | null>(null);
 
   const runSim = useCallback(() => {
     setIsSpinning(true);
@@ -21,7 +30,6 @@ export default function LotterySimulator({ compact = false }: Props) {
       const sim = runLotterySimulation();
       setResult(sim);
       setSimCount((c) => c + 1);
-      setHistory((h) => [...h.slice(-49), sim.netsResult.lotteryPick]);
       if (bestResult === null || sim.netsResult.lotteryPick < bestResult) {
         setBestResult(sim.netsResult.lotteryPick);
       }
@@ -29,162 +37,261 @@ export default function LotterySimulator({ compact = false }: Props) {
     }, 800);
   }, [bestResult]);
 
-  const getResultColor = (pick: number) => {
-    if (pick === 1) return "text-accent-gold";
-    if (pick <= 3) return "text-accent-green";
-    if (pick <= 6) return "text-accent-blue";
-    return "text-text-muted";
-  };
-
-  const getResultEmoji = (pick: number) => {
-    if (pick === 1) return "JACKPOT";
-    if (pick === 2) return "SO CLOSE";
-    if (pick <= 4) return "W";
-    if (pick <= 6) return "Solid";
-    return "Pain";
-  };
-
-  const getResultBg = (pick: number) => {
-    if (pick === 1) return "from-accent-gold/15 to-accent-gold/5 border-accent-gold/25";
-    if (pick <= 3) return "from-accent-green/15 to-accent-green/5 border-accent-green/25";
-    if (pick <= 6) return "from-accent-blue/15 to-accent-blue/5 border-accent-blue/25";
-    return "from-white/5 to-transparent border-white/10";
-  };
-
-  // shareText removed — using ShareLotteryResult component with OG images now
+  const top4 = result ? result.results.slice(0, 4) : null;
 
   return (
-    <div className={compact ? "" : "card p-5 sm:p-6"}>
-      {!compact && (
-        <div className="flex items-center justify-between mb-5">
-          <div>
-            <h2 className="text-xl font-black">Lottery Simulator</h2>
-            <p className="text-text-muted text-xs mt-0.5">Test your luck. How high do the Nets land?</p>
-          </div>
-          {simCount > 0 && (
-            <div className="text-right">
-              <p className="text-[11px] text-text-muted">Runs: {simCount}</p>
-              {bestResult && (
-                <p className="text-xs font-bold">
-                  Best: <span className={getResultColor(bestResult)}>#{bestResult}</span>
-                </p>
-              )}
-            </div>
-          )}
+    <div>
+      {/* ═══ HERO ═══ */}
+      <section className="relative w-full px-6 py-12 md:py-20 bg-black text-white overflow-hidden">
+        <div className="absolute inset-0 opacity-15 bg-gradient-to-br from-black via-gray-900 to-black" />
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <p className="text-[11px] font-bold tracking-[0.3em] mb-4 text-brand-red uppercase">2026 Draft Cycle</p>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black italic tracking-tighter leading-[0.85] mb-6 font-display">
+            Lottery Simulator:<br />Change the Future
+          </h1>
+          <p className="max-w-2xl text-base md:text-lg font-light opacity-60 leading-relaxed">
+            The weight of the franchise in a single ping-pong ball. Simulate the outcomes of the 2026 NBA Lottery based on real-time standings and verified probability matrices.
+          </p>
         </div>
-      )}
+      </section>
 
-      {/* Run button */}
-      <div className="text-center mb-5">
-        <button
-          onClick={runSim}
-          disabled={isSpinning}
-          className={`
-            relative px-6 py-3 rounded-xl font-black text-sm uppercase tracking-wider
-            transition-all duration-300 transform
-            ${isSpinning
-              ? "bg-bg-elevated text-text-muted scale-95 cursor-wait"
-              : "gradient-bg-brand hover:opacity-90 hover:scale-105 active:scale-95 text-white shadow-lg shadow-brand-orange/20"
-            }
-          `}
-        >
-          {isSpinning ? (
-            <span className="flex items-center gap-2">
-              <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-              </svg>
-              Drawing balls...
-            </span>
-          ) : (
-            "Run Lottery"
-          )}
-        </button>
-      </div>
-
-      {/* Result */}
-      {result && !isSpinning && (
-        <div className="animate-slide-up">
-          {/* Nets Result Hero */}
-          <div className={`rounded-xl p-5 mb-4 bg-gradient-to-r ${getResultBg(result.netsResult.lotteryPick)} border`}>
-            <div className="text-center">
-              <p className="text-text-muted text-xs uppercase tracking-widest mb-1">Brooklyn Nets</p>
-              <span className={`text-5xl sm:text-6xl font-black animate-count-up ${getResultColor(result.netsResult.lotteryPick)}`}>
-                #{result.netsResult.lotteryPick}
+      {/* ═══ MAIN GRID ═══ */}
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row">
+        {/* Sidebar: Live Odds */}
+        <div className="w-full lg:w-[340px] shrink-0 bg-gray-50 p-6 sm:p-8 border-r border-gray-200">
+          <div className="lg:sticky lg:top-16">
+            <div className="flex justify-between items-end mb-6">
+              <h2 className="text-xl font-black italic font-display uppercase">Live Odds</h2>
+              <span className="text-[9px] font-bold tracking-[0.2em] text-black/30 uppercase">
+                {isLoading ? "Loading..." : "Live"}
               </span>
-              <p className={`text-sm font-bold mt-1.5 ${getResultColor(result.netsResult.lotteryPick)}`}>
-                {getResultEmoji(result.netsResult.lotteryPick)}
-              </p>
-              {result.netsResult.movedUp && (
-                <p className="text-accent-green text-xs mt-1">Moved up from #{result.netsResult.originalSlot}!</p>
-              )}
-              {result.netsResult.movedDown && (
-                <p className="text-accent-red text-xs mt-1">Dropped from #{result.netsResult.originalSlot}</p>
-              )}
+            </div>
 
-              {/* Share button — links to shareable page with dynamic OG image */}
-              <div className="mt-3">
-                <ShareLotteryResult pick={result.netsResult.lotteryPick} />
+            {isLoading ? (
+              <div className="space-y-4">
+                {[1,2,3,4,5,6].map(i => <div key={i} className="h-12 bg-gray-200 animate-pulse-soft" />)}
               </div>
-            </div>
-          </div>
-
-          {/* Full Results Table */}
-          {!compact && (
-            <div className="space-y-0.5 mb-4">
-              <p className="text-xs font-bold text-text-muted mb-2">Full Lottery Results</p>
-              {result.results.map((r) => (
-                <div
-                  key={r.abbrev}
-                  className={`flex items-center justify-between px-3 py-1.5 rounded-lg text-xs ${
-                    r.abbrev === "BKN"
-                      ? "bg-brand-orange/10 border border-brand-orange/20 font-bold"
-                      : "hover:bg-gray-50"
-                  }`}
-                >
-                  <div className="flex items-center gap-2.5">
-                    <span className={`w-6 text-center font-bold ${
-                      r.lotteryPick <= 4 ? "text-accent-gold" : "text-text-muted"
-                    }`}>
-                      #{r.lotteryPick}
-                    </span>
-                    <span className={r.abbrev === "BKN" ? "" : "text-text-secondary"}>{r.team}</span>
-                  </div>
-                  <div>
-                    {r.movedUp && <span className="text-accent-green text-[11px]">&#9650;{r.originalSlot - r.lotteryPick}</span>}
-                    {r.movedDown && <span className="text-accent-red text-[11px]">&#9660;{r.lotteryPick - r.originalSlot}</span>}
-                    {!r.movedUp && !r.movedDown && <span className="text-text-muted text-[11px]">—</span>}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* History chart */}
-          {history.length > 1 && (
-            <div className="pt-3 border-t border-gray-200">
-              <p className="text-[11px] text-text-muted mb-2">Your history ({history.length} runs)</p>
-              <div className="flex gap-0.5 items-end h-10">
-                {Array.from({ length: 14 }, (_, i) => i + 1).map((pick) => {
-                  const count = history.filter((h) => h === pick).length;
-                  const pct = (count / history.length) * 100;
+            ) : (
+              <div className="space-y-4">
+                {top6.map((team, i) => {
+                  const odds = lotteryOdds[team.lotteryRank];
+                  const no1 = odds ? odds[0] : 0;
+                  const isBKN = team.abbrev === "BKN";
                   return (
-                    <div key={pick} className="flex-1 flex flex-col items-center gap-0.5">
-                      <div
-                        className={`w-full rounded-sm transition-all ${
-                          pick <= 4 ? "bg-accent-gold/50" : "bg-gray-200"
-                        }`}
-                        style={{ height: `${Math.max(pct * 1.5, 2)}px` }}
-                      />
-                      <span className="text-[8px] text-text-muted">{pick}</span>
+                    <div key={team.abbrev} className={isBKN ? "opacity-100" : i >= 4 ? "opacity-40" : "opacity-100"}>
+                      <div className="flex justify-between items-center mb-1.5">
+                        <span className="font-bold font-display text-sm uppercase">
+                          {i + 1}. {team.team}
+                        </span>
+                        <span className="font-black text-accent-blue">{no1.toFixed(1)}%</span>
+                      </div>
+                      <div className="w-full h-3 bg-gray-200">
+                        <div
+                          className={`h-full ${isBKN ? "bg-brand-red" : "bg-accent-blue"}`}
+                          style={{ width: `${no1}%` }}
+                        />
+                      </div>
                     </div>
                   );
                 })}
               </div>
+            )}
+
+            {/* Commissioner's Note */}
+            <div className="mt-10 p-5 bg-black text-white">
+              <h3 className="text-sm font-bold uppercase font-display mb-2">Commissioner&apos;s Note</h3>
+              <p className="text-[11px] leading-relaxed opacity-60">
+                Odds are calculated based on the 2024 NBA Draft Lottery format. Tiebreakers are resolved via random selection algorithm mirroring the official league draw.
+              </p>
             </div>
-          )}
+
+            {/* Stats */}
+            {simCount > 0 && (
+              <div className="mt-6 flex justify-between text-xs">
+                <span className="text-black/30">Simulations: <span className="font-bold text-black">{simCount}</span></span>
+                {bestResult && (
+                  <span className="text-black/30">Best: <span className="font-bold text-brand-red">#{bestResult}</span></span>
+                )}
+              </div>
+            )}
+          </div>
         </div>
-      )}
+
+        {/* Main: Simulator */}
+        <div className="flex-1 bg-white min-w-0">
+          {/* Controls */}
+          <div className="p-6 sm:p-10 border-b border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-6">
+            <div className="text-center sm:text-left">
+              <h2 className="text-3xl sm:text-4xl font-black italic tracking-tighter font-display uppercase mb-1">Simulate Draw</h2>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-black/30">Iterative probability processing</p>
+            </div>
+            <button
+              onClick={runSim}
+              disabled={isSpinning}
+              className={`w-full sm:w-auto px-10 py-5 text-xl font-black font-display italic uppercase transition-all ${
+                isSpinning
+                  ? "bg-gray-200 text-black/30 cursor-wait"
+                  : "bg-brand-red text-white hover:bg-red-700 active:scale-95"
+              }`}
+            >
+              {isSpinning ? "Processing..." : "Run Simulation"}
+            </button>
+          </div>
+
+          {/* Results */}
+          <div className="p-6 sm:p-10">
+            {!result && !isSpinning && (
+              <div className="text-center py-20">
+                <p className="text-black/15 text-lg font-display font-bold italic uppercase">Hit &quot;Run Simulation&quot; to start</p>
+              </div>
+            )}
+
+            {isSpinning && (
+              <div className="text-center py-20">
+                <div className="inline-block w-12 h-12 border-4 border-gray-200 border-t-brand-red rounded-full animate-spin" />
+                <p className="text-black/30 text-sm mt-4 font-display uppercase">Drawing ping-pong balls...</p>
+              </div>
+            )}
+
+            {result && !isSpinning && top4 && (
+              <div className="animate-slide-up">
+                {/* Top 4 Picks Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {top4.map((r, i) => {
+                    const isBKN = r.abbrev === "BKN";
+                    const isPick1 = i === 0;
+                    const spotDiff = r.originalSlot - r.lotteryPick;
+
+                    return (
+                      <div
+                        key={r.abbrev}
+                        className={`p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden ${
+                          isPick1 && isBKN
+                            ? "bg-black text-white sm:col-span-1 min-h-[220px]"
+                            : isPick1
+                            ? "bg-black text-white min-h-[220px]"
+                            : "bg-gray-100 border border-gray-200 min-h-[200px]"
+                        }`}
+                      >
+                        <div className="relative z-10">
+                          <span className={`text-[10px] font-bold tracking-[0.3em] ${isPick1 ? "opacity-50" : "text-black/30"}`}>
+                            PICK {String(i + 1).padStart(2, "0")}
+                          </span>
+                          <h3 className={`text-3xl sm:text-4xl font-black italic font-display mt-2 leading-tight ${
+                            isPick1 ? "text-white" : isBKN ? "text-brand-red" : "text-black"
+                          }`}>
+                            {r.team.split(" ").slice(-1)[0]?.toUpperCase()}<br />{r.team.split(" ").slice(0, -1).join(" ").toUpperCase()}
+                          </h3>
+                          {isBKN && isPick1 && (
+                            <p className="mt-2 text-accent-blue font-bold text-sm">POSSIBILITY: +{r.originalSlot - r.lotteryPick} SPOTS</p>
+                          )}
+                        </div>
+                        <div className="flex items-center gap-2 mt-4">
+                          <span className={`w-3 h-3 ${isBKN ? "bg-brand-red" : "bg-accent-blue"}`} />
+                          <span className={`text-[10px] font-bold uppercase tracking-[0.15em] ${isPick1 ? "text-white/50" : "text-black/30"}`}>
+                            {spotDiff > 0 ? `+${spotDiff} SPOT${spotDiff > 1 ? "S" : ""}` : spotDiff < 0 ? `${spotDiff} SPOT${spotDiff < -1 ? "S" : ""}` : "NO CHANGE"}
+                          </span>
+                        </div>
+                        {isPick1 && isBKN && (
+                          <div className="absolute top-4 right-4 bg-accent-blue text-white px-3 py-1 text-[9px] font-bold tracking-wider">WINNER</div>
+                        )}
+                        {isPick1 && (
+                          <span className="material-symbols-outlined absolute -right-4 -bottom-4 text-[10rem] opacity-5" style={{ fontVariationSettings: "'FILL' 1" }}>
+                            sports_basketball
+                          </span>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Full Results */}
+                <div className="mt-8 space-y-0">
+                  <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-black/30 mb-3">Full Draft Order</p>
+                  {result.results.map((r) => {
+                    const isBKN = r.abbrev === "BKN";
+                    const spotDiff = r.originalSlot - r.lotteryPick;
+                    return (
+                      <div key={r.abbrev} className={`flex items-center justify-between py-2 px-3 text-sm border-b border-gray-100 ${isBKN ? "bg-brand-red/5 font-bold" : ""}`}>
+                        <div className="flex items-center gap-3">
+                          <span className={`w-6 text-right font-black ${r.lotteryPick <= 4 ? "text-brand-red" : "text-black/30"}`}>
+                            {r.lotteryPick}
+                          </span>
+                          <span className={isBKN ? "text-brand-red" : ""}>{r.team}</span>
+                        </div>
+                        <span className={`text-[11px] font-bold ${spotDiff > 0 ? "text-accent-green" : spotDiff < 0 ? "text-brand-red" : "text-black/20"}`}>
+                          {spotDiff > 0 ? `▲${spotDiff}` : spotDiff < 0 ? `▼${Math.abs(spotDiff)}` : "—"}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Share */}
+                <div className="mt-6 text-center">
+                  <ShareLotteryResult pick={result.netsResult.lotteryPick} />
+                </div>
+              </div>
+            )}
+
+            {/* Historical Context */}
+            <div className="mt-12">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="h-[2px] flex-grow bg-black" />
+                <h2 className="text-lg font-black italic font-display uppercase">Historical Context</h2>
+                <div className="h-[2px] flex-grow bg-black" />
+              </div>
+              <table className="w-full text-left">
+                <thead>
+                  <tr className="bg-gray-100">
+                    <th className="p-3 text-[9px] font-black tracking-[0.2em] uppercase text-black/30">Year</th>
+                    <th className="p-3 text-[9px] font-black tracking-[0.2em] uppercase text-black/30">Top Pick</th>
+                    <th className="p-3 text-[9px] font-black tracking-[0.2em] uppercase text-black/30">Pre-Lottery Odds</th>
+                    <th className="p-3 text-[9px] font-black tracking-[0.2em] uppercase text-black/30">Outcome</th>
+                  </tr>
+                </thead>
+                <tbody className="text-sm">
+                  {HISTORY.map((h) => (
+                    <tr key={h.year} className="border-b border-gray-100">
+                      <td className="p-3 font-bold">{h.year}</td>
+                      <td className="p-3">{h.team}</td>
+                      <td className="p-3">{h.odds}</td>
+                      <td className={`p-3 font-bold ${h.jumped ? "text-brand-red" : "text-accent-blue"}`}>{h.outcome}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ═══ FOOTER CARDS ═══ */}
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-white p-8 border-t-[6px] border-black">
+            <h4 className="text-xl font-black italic font-display uppercase mb-3">The Strategy</h4>
+            <p className="text-sm text-black/40 leading-relaxed">
+              Understanding the &quot;smoothing&quot; of lottery odds introduced in 2019 and how it impacts Brooklyn&apos;s asset accumulation strategy for the current rebuild.
+            </p>
+          </div>
+          <Link href="/community" className="bg-white p-8 border-t-[6px] border-accent-blue group">
+            <h4 className="text-xl font-black italic font-display uppercase mb-3 group-hover:text-accent-blue transition-colors">Prospect Watch</h4>
+            <p className="text-sm text-black/40 leading-relaxed">
+              Early looks at the top of the board: from French wings to defensive anchors. Who fits the Brooklyn grit identity?
+            </p>
+            <span className="inline-block mt-3 text-accent-blue font-bold font-display text-[10px] tracking-[0.15em] uppercase border-b-2 border-accent-blue pb-0.5">
+              Go to The Press
+            </span>
+          </Link>
+          <div className="bg-white p-8 border-t-[6px] border-brand-red">
+            <h4 className="text-xl font-black italic font-display uppercase mb-3">Mock Draft</h4>
+            <p className="text-sm text-black/40 leading-relaxed">
+              Latest 2-round mock draft based on simulated results and team needs across the league landscape.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
