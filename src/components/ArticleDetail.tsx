@@ -38,6 +38,9 @@ export default function ArticleDetail({ id }: { id: string }) {
   const [editing, setEditing] = useState(false);
   const [editTitle, setEditTitle] = useState("");
   const [editBody, setEditBody] = useState("");
+  const [editImageFile, setEditImageFile] = useState<File | null>(null);
+  const [editImagePreview, setEditImagePreview] = useState<string | null>(null);
+  const [removeImage, setRemoveImage] = useState(false);
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -90,16 +93,55 @@ export default function ArticleDetail({ id }: { id: string }) {
 
   const isOwner = article && currentHandle === article.user.x_handle;
 
+  function handleEditImageSelect(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setEditImageFile(file);
+    setEditImagePreview(URL.createObjectURL(file));
+    setRemoveImage(false);
+  }
+
   async function handleSaveEdit() {
     if (!editTitle.trim() || !editBody.trim() || !article) return;
     setSaving(true);
-    if (article._isRecap) {
-      await supabase.from("game_recaps").update({ headline: editTitle.trim(), summary: editBody.trim() }).eq("id", article.id);
-    } else {
-      await supabase.from("articles").update({ title: editTitle.trim(), body: editBody.trim() }).eq("id", article.id);
+
+    // Upload new image if selected
+    let newImageUrl: string | null | undefined = undefined;
+    if (editImageFile) {
+      const ext = editImageFile.name.split(".").pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+      const { error } = await supabase.storage.from("images").upload(fileName, editImageFile);
+      if (!error) {
+        const { data } = supabase.storage.from("images").getPublicUrl(fileName);
+        newImageUrl = data.publicUrl;
+      }
+    } else if (removeImage) {
+      newImageUrl = null;
     }
-    setArticle((prev) => prev ? { ...prev, title: editTitle.trim(), body: editBody.trim() } : prev);
+
+    const updates: Record<string, unknown> = {};
+    if (article._isRecap) {
+      updates.headline = editTitle.trim();
+      updates.summary = editBody.trim();
+    } else {
+      updates.title = editTitle.trim();
+      updates.body = editBody.trim();
+    }
+    if (newImageUrl !== undefined) updates.image_url = newImageUrl;
+
+    const table = article._isRecap ? "game_recaps" : "articles";
+    await supabase.from(table).update(updates).eq("id", article.id);
+
+    setArticle((prev) => prev ? {
+      ...prev,
+      title: editTitle.trim(),
+      body: editBody.trim(),
+      image_url: newImageUrl !== undefined ? (newImageUrl as string | null) : prev.image_url,
+    } : prev);
     setEditing(false);
+    setEditImageFile(null);
+    setEditImagePreview(null);
+    setRemoveImage(false);
     setSaving(false);
   }
 
@@ -147,9 +189,43 @@ export default function ArticleDetail({ id }: { id: string }) {
       </Link>
 
       <article className="border border-gray-200 bg-white">
-        {/* Featured image */}
-        {article.image_url && (
-          <img src={article.image_url} alt="" className="w-full h-64 object-cover" />
+        {/* Featured image — editable when editing */}
+        {editing ? (
+          <div className="relative">
+            {editImagePreview ? (
+              <div className="relative">
+                <img src={editImagePreview} alt="New image" className="w-full h-64 object-cover" />
+                <button type="button" onClick={() => { setEditImageFile(null); setEditImagePreview(null); }}
+                  className="absolute top-3 right-3 bg-brand-red text-white w-7 h-7 flex items-center justify-center text-sm font-bold">×</button>
+              </div>
+            ) : article.image_url && !removeImage ? (
+              <div className="relative">
+                <img src={article.image_url} alt="" className="w-full h-64 object-cover opacity-70" />
+                <div className="absolute inset-0 flex items-center justify-center gap-3">
+                  <label className="bg-white/90 text-black px-4 py-2 text-[11px] font-bold uppercase tracking-wider cursor-pointer hover:bg-white transition-all">
+                    Replace Image
+                    <input type="file" accept="image/*" onChange={handleEditImageSelect} className="hidden" />
+                  </label>
+                  <button type="button" onClick={() => setRemoveImage(true)}
+                    className="bg-brand-red/90 text-white px-4 py-2 text-[11px] font-bold uppercase tracking-wider hover:bg-brand-red transition-all">
+                    Remove
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <label className="flex items-center justify-center h-40 bg-gray-50 border-b border-gray-200 cursor-pointer hover:bg-gray-100 transition-colors">
+                <div className="text-center">
+                  <span className="material-symbols-outlined text-3xl text-black/15">add_photo_alternate</span>
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-black/20 mt-1">Add Featured Image</p>
+                </div>
+                <input type="file" accept="image/*" onChange={handleEditImageSelect} className="hidden" />
+              </label>
+            )}
+          </div>
+        ) : (
+          article.image_url && (
+            <img src={article.image_url} alt="" className="w-full h-64 object-cover" />
+          )
         )}
 
         <div className="p-6 sm:p-8">
@@ -190,7 +266,7 @@ export default function ArticleDetail({ id }: { id: string }) {
                   className="bg-brand-red text-white px-5 py-2 font-black text-[11px] uppercase tracking-wider hover:bg-red-700 transition-all">
                   {saving ? "Saving..." : "Save"}
                 </button>
-                <button onClick={() => { setEditing(false); setEditTitle(article.title); setEditBody(article.body); }}
+                <button onClick={() => { setEditing(false); setEditTitle(article.title); setEditBody(article.body); setEditImageFile(null); setEditImagePreview(null); setRemoveImage(false); }}
                   className="bg-gray-100 text-black/40 px-5 py-2 font-black text-[11px] uppercase tracking-wider hover:bg-gray-200 transition-all">
                   Cancel
                 </button>
