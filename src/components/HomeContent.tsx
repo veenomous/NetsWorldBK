@@ -477,19 +477,21 @@ export default function HomeContent() {
         </div>
       </section>
 
-      {/* ═══ BENTO GRID ═══ */}
+      {/* ═══ MAIN CONTENT ═══ */}
       <section className="w-full px-3 py-6 sm:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-[2px]">
-          {/* Draft Position + Poll (4 col) — first on mobile */}
-          <div className="md:col-span-4 md:order-2 flex flex-col gap-[2px]">
-            <DraftPositionCard />
-            <div className="bg-white border border-gray-200 p-5">
-              <PollOfTheDay />
+        <div className="flex flex-col md:flex-row gap-4 max-w-7xl mx-auto">
+          {/* Draft Position + Poll — sidebar (shows first on mobile) */}
+          <div className="w-full md:w-[340px] shrink-0 md:order-2">
+            <div className="md:sticky md:top-16 flex flex-col gap-3">
+              <DraftPositionCard />
+              <div className="bg-white border border-gray-200 p-5">
+                <PollOfTheDay />
+              </div>
             </div>
           </div>
 
-          {/* The Wire (8 col) — second on mobile, first on desktop */}
-          <div className="md:col-span-8 md:order-1 bg-white border border-gray-200 p-6 sm:p-8">
+          {/* The Wire — main feed */}
+          <div className="flex-1 md:order-1 bg-white border border-gray-200 p-6 sm:p-8 min-w-0">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-2xl sm:text-3xl font-black tracking-tighter uppercase font-display">The Wire</h2>
               <Link href="/wire" className="text-[10px] font-black tracking-[0.15em] uppercase border-b-2 border-brand-red pb-0.5 hover:text-brand-red transition-colors">
