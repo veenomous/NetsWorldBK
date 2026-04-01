@@ -233,7 +233,12 @@ function WriterForm({ onPublish }: { onPublish: () => void }) {
 }
 
 // ─── Article Card ───
-function PressCard({ type, data }: { type: "article" | "recap"; data: Article | GameRecap }) {
+function PressCard({ type, data, currentUserHandle, onDelete }: {
+  type: "article" | "recap";
+  data: Article | GameRecap;
+  currentUserHandle: string | null;
+  onDelete: (type: "article" | "recap", id: string) => void;
+}) {
   const isRecap = type === "recap";
   const recap = isRecap ? (data as GameRecap) : null;
   const article = !isRecap ? (data as Article) : null;
@@ -243,6 +248,7 @@ function PressCard({ type, data }: { type: "article" | "recap"; data: Article | 
   const imageUrl = data.image_url;
   const user = data.user;
   const tag = recap ? "Game Recap" : (article?.tag || "News");
+  const isOwner = currentUserHandle === user.x_handle;
 
   return (
     <div className="border-b border-gray-100 py-5">
@@ -265,7 +271,7 @@ function PressCard({ type, data }: { type: "article" | "recap"; data: Article | 
             </div>
           )}
 
-          <Link href={`/community/${data.id}`} className="group">
+          <Link href={`/community/${type}-${data.id}`} className="group">
             <h3 className="text-base font-black uppercase tracking-tight leading-snug group-hover:text-brand-red transition-colors">
               {title}
             </h3>
@@ -275,11 +281,17 @@ function PressCard({ type, data }: { type: "article" | "recap"; data: Article | 
           <div className="flex items-center gap-2 mt-2">
             {user.x_avatar && <img src={user.x_avatar} alt="" className="w-4 h-4 rounded-full" />}
             <span className="text-[9px] font-bold text-black/25 uppercase tracking-wider">@{user.x_handle}</span>
+            {isOwner && (
+              <div className="ml-auto flex items-center gap-2">
+                <Link href={`/community/${type}-${data.id}`} className="text-[9px] font-bold uppercase tracking-wider text-black/20 hover:text-accent-blue transition-colors">Edit</Link>
+                <button onClick={() => { if (confirm("Delete this post?")) onDelete(type, data.id); }} className="text-[9px] font-bold uppercase tracking-wider text-black/20 hover:text-brand-red transition-colors">Delete</button>
+              </div>
+            )}
           </div>
         </div>
 
         {imageUrl && (
-          <Link href={`/community/${data.id}`} className="shrink-0">
+          <Link href={`/community/${type}-${data.id}`} className="shrink-0">
             <img src={imageUrl} alt="" className="w-28 h-28 object-cover rounded-lg" />
           </Link>
         )}
@@ -290,6 +302,9 @@ function PressCard({ type, data }: { type: "article" | "recap"; data: Article | 
 
 // ─── Main Press Component ───
 export default function ThePress({ showForm = true }: { showForm?: boolean }) {
+  const { data: session } = useSession();
+  const currentUserHandle = (session?.user as { xHandle?: string })?.xHandle || null;
+
   const [articles, setArticles] = useState<Article[]>([]);
   const [recaps, setRecaps] = useState<GameRecap[]>([]);
   const [loading, setLoading] = useState(true);
@@ -319,6 +334,15 @@ export default function ThePress({ showForm = true }: { showForm?: boolean }) {
     if (item.type === "article") return (item.data as Article).tag === filter;
     return false;
   });
+
+  async function handleDelete(type: "article" | "recap", id: string) {
+    if (type === "article") {
+      await supabase.from("articles").delete().eq("id", id);
+    } else {
+      await supabase.from("game_recaps").delete().eq("id", id);
+    }
+    fetchAll();
+  }
 
   return (
     <div>
@@ -354,7 +378,7 @@ export default function ThePress({ showForm = true }: { showForm?: boolean }) {
       ) : (
         <div>
           {filtered.map((item) => (
-            <PressCard key={`${item.type}-${item.data.id}`} type={item.type} data={item.data} />
+            <PressCard key={`${item.type}-${item.data.id}`} type={item.type} data={item.data} currentUserHandle={currentUserHandle} onDelete={handleDelete} />
           ))}
         </div>
       )}
