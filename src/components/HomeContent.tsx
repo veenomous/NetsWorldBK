@@ -161,7 +161,7 @@ function DraftPositionCard() {
       )}
 
       <Link
-        href="/simulator"
+        href="/simulator?autorun=1"
         className="block w-full bg-brand-red text-white py-3.5 font-bold tracking-[0.15em] text-xs uppercase text-center hover:bg-red-700 transition-all mt-5"
       >
         Run Simulation

@@ -1,5 +1,6 @@
-import LotterySimulator from "@/components/LotterySimulator";
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import LotterySimulator from "@/components/LotterySimulator";
 
 export const metadata: Metadata = {
   title: "Lottery Simulator — BK Grit",
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 };
 
 export default function SimulatorPage() {
-  return <LotterySimulator />;
+  return (
+    <Suspense>
+      <LotterySimulator />
+    </Suspense>
+  );
 }
