@@ -88,18 +88,19 @@ function TakeContent({ text }: { text: string }) {
 }
 
 // ─── Single Take ───
-function TakeCard({ take, onVote, userVote, expanded, onExpand }: {
+function TakeCard({ take, onVote, userVote, expanded, onExpand, commentCount }: {
   take: Take;
   onVote: (id: string, type: "agree" | "disagree") => void;
   userVote: string | undefined;
   expanded: boolean;
   onExpand: () => void;
+  commentCount: number;
 }) {
   const total = take.agrees + take.disagrees;
   const pct = total > 0 ? Math.round((take.agrees / total) * 100) : 50;
 
   return (
-    <div className="py-4 border-b border-gray-100">
+    <div className="py-4 border-b border-gray-100 hover:bg-gray-50/50 -mx-2 px-2 transition-colors">
       <div className="flex items-center gap-2 mb-1.5">
         <span className="text-[9px] font-black tracking-[0.15em] uppercase text-black/20">@{take.author}</span>
         <span className="text-[9px] text-black/15">{timeAgo(take.created_at)}</span>
@@ -122,8 +123,11 @@ function TakeCard({ take, onVote, userVote, expanded, onExpand }: {
         {userVote && (
           <span className="text-[10px] font-bold text-black/20">{pct}% agree</span>
         )}
-        <button onClick={onExpand} className="text-[10px] font-bold uppercase tracking-wider text-black/25 hover:text-brand-red transition-colors ml-auto">
-          {expanded ? "Hide" : "Reply"}
+        <button onClick={onExpand} className={`text-[10px] font-bold uppercase tracking-wider transition-colors ml-auto flex items-center gap-1 ${expanded ? "text-brand-red" : "text-black/25 hover:text-brand-red"}`}>
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+          {commentCount > 0 ? commentCount : ""} {expanded ? "Hide" : "Reply"}
         </button>
         {/* Share on X */}
         <a
@@ -211,6 +215,7 @@ export default function TheWire({ limit, showForm = true, showHotTake = true }: 
   const [userVotes, setUserVotes] = useState<Record<string, string>>({});
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [hotTake, setHotTake] = useState<Take | null>(null);
+  const [commentCounts, setCommentCounts] = useState<Record<string, number>>({});
 
   const fetchAll = useCallback(async () => {
     const visitorId = getVisitorId();
@@ -235,6 +240,20 @@ export default function TheWire({ limit, showForm = true, showHotTake = true }: 
       const map: Record<string, string> = {};
       votesRes.data.forEach((v: { take_id: string; vote_type: string }) => { map[v.take_id] = v.vote_type; });
       setUserVotes(map);
+    }
+
+    // Fetch comment counts for all takes
+    const takePages = allTakes.map((t) => `take-${t.id}`);
+    if (takePages.length > 0) {
+      const { data: commentData } = await supabase.from("comments").select("page").in("page", takePages);
+      if (commentData) {
+        const counts: Record<string, number> = {};
+        for (const c of commentData) {
+          const takeId = (c as { page: string }).page.replace("take-", "");
+          counts[takeId] = (counts[takeId] || 0) + 1;
+        }
+        setCommentCounts(counts);
+      }
     }
 
     setLoading(false);
@@ -290,6 +309,7 @@ export default function TheWire({ limit, showForm = true, showHotTake = true }: 
               userVote={userVotes[take.id]}
               expanded={expandedId === take.id}
               onExpand={() => setExpandedId(expandedId === take.id ? null : take.id)}
+              commentCount={commentCounts[take.id] || 0}
             />
           ))}
         </div>

@@ -8,11 +8,16 @@ import TheWire from "@/components/TheWire";
 import Image from "next/image";
 import Link from "next/link";
 
-// ─── Odds data ───
+// ─── Odds data (picks 1-8) ───
 const ODDS: Record<number, number[]> = {
-  1: [14.0, 13.4, 12.7, 12.0], 2: [14.0, 13.4, 12.7, 12.0], 3: [14.0, 13.4, 12.7, 12.0],
-  4: [12.5, 12.2, 11.9, 11.5], 5: [10.5, 10.5, 10.6, 10.5],
-  6: [9.0, 9.2, 9.4, 9.6], 7: [7.5, 7.8, 8.1, 8.5], 8: [6.0, 6.3, 6.7, 7.2],
+  1: [14.0, 13.4, 12.7, 12.0, 47.9, 0, 0, 0],
+  2: [14.0, 13.4, 12.7, 12.0, 27.8, 20.0, 0, 0],
+  3: [14.0, 13.4, 12.7, 12.0, 14.8, 26.0, 7.0, 0],
+  4: [12.5, 12.2, 11.9, 11.5, 7.2, 25.7, 16.7, 0],
+  5: [10.5, 10.5, 10.6, 10.5, 2.2, 19.6, 26.7, 8.7],
+  6: [9.0, 9.2, 9.4, 9.6, 0, 8.6, 29.8, 20.5],
+  7: [7.5, 7.8, 8.1, 8.5, 0, 0, 19.7, 34.1],
+  8: [6.0, 6.3, 6.7, 7.2, 0, 0, 0, 34.5],
 };
 
 // ─── Poll data ───
@@ -263,9 +268,9 @@ function LotteryOddsSection() {
               <th className="text-left py-2 pr-3 text-[9px] font-black tracking-[0.15em] uppercase text-black/30">#</th>
               <th className="text-left py-2 pr-3 text-[9px] font-black tracking-[0.15em] uppercase text-black/30">Team</th>
               <th className="text-left py-2 pr-2 text-[9px] font-black tracking-[0.15em] uppercase text-black/30">Record</th>
-              {[1,2,3,4].map(pick => (
-                <th key={pick} className="text-center py-2 px-2 text-[9px] font-black tracking-[0.15em] uppercase text-black/30 min-w-[50px]">
-                  Pick {pick}
+              {[1,2,3,4,5,6,7,8].map(pick => (
+                <th key={pick} className="text-center py-2 px-1.5 text-[9px] font-black tracking-[0.1em] uppercase text-black/30 min-w-[44px]">
+                  {pick}
                 </th>
               ))}
             </tr>
@@ -280,13 +285,16 @@ function LotteryOddsSection() {
                   <td className="py-3 pr-3 text-black/30 font-bold">{slot}</td>
                   <td className={`py-3 pr-3 font-black ${isNets ? "text-brand-red" : ""}`}>{team.abbrev}</td>
                   <td className="py-3 pr-2 text-black/50 font-bold tabular-nums">{team.wins}-{team.losses}</td>
-                  {[0,1,2,3].map(i => {
+                  {[0,1,2,3,4,5,6,7].map(i => {
                     const val = odds[i];
                     return (
-                      <td key={i} className={`text-center py-3 px-2 tabular-nums font-bold ${
-                        val >= 14 ? "text-brand-red font-black" : val >= 10 ? "text-black" : "text-black/40"
+                      <td key={i} className={`text-center py-3 px-1.5 tabular-nums font-bold text-xs ${
+                        !val || val === 0 ? "text-black/10" :
+                        val >= 20 ? "text-brand-red font-black" :
+                        val >= 10 ? "text-black font-black" :
+                        "text-black/40"
                       }`}>
-                        {val ? `${val.toFixed(1)}%` : "—"}
+                        {!val || val === 0 ? "—" : `${val.toFixed(1)}`}
                       </td>
                     );
                   })}

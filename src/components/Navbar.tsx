@@ -68,9 +68,9 @@ export default function Navbar() {
   return (
     <nav className="bg-black text-white flex justify-between items-center w-full px-4 sm:px-6 py-1.5 sticky top-0 z-50">
       {/* Draft badge (replaces BK GRIT text) */}
-      <Link href="/" className="shrink-0 bg-brand-red px-3 py-1">
-        <span className="font-display text-white font-black tracking-[0.15em] uppercase text-[10px]">
-          {isLoading ? "LOADING..." : nets ? `#${nets.lotteryRank} PICK · ${nets.wins}-${nets.losses} · ${nets.gamesRemaining}G LEFT` : "BK GRIT"}
+      <Link href="/" className="shrink-0 bg-brand-red px-4 py-2">
+        <span className="font-display text-white font-black tracking-[0.1em] uppercase text-sm sm:text-base">
+          {isLoading ? "BK GRIT" : nets ? `#${nets.lotteryRank} PICK · ${nets.wins}-${nets.losses} · ${nets.gamesRemaining}G LEFT` : "BK GRIT"}
         </span>
       </Link>
 
