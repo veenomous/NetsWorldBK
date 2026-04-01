@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, Suspense } from "react";
 import { useSession, signIn } from "next-auth/react";
 import { supabase, getVisitorId } from "@/lib/supabase";
+import SignInPrompt from "@/components/SignInPrompt";
 import { Tweet } from "react-tweet";
 
 function extractTweetId(text: string): string | null {
@@ -301,6 +302,14 @@ function CommentRow({
 export default function CommentSection({ page, compact = false }: { page: string; compact?: boolean }) {
   const { data: session } = useSession();
   const currentUserHandle = (session?.user as { xHandle?: string })?.xHandle || null;
+  const [guestName, setGuestNameState] = useState<string | null>(null);
+
+  useEffect(() => {
+    const { getGuestName } = require("@/lib/guest");
+    setGuestNameState(getGuestName());
+  }, []);
+
+  const canPost = !!session || !!guestName;
 
   const [comments, setComments] = useState<Comment[]>([]);
   const [body, setBody] = useState("");
@@ -360,15 +369,38 @@ export default function CommentSection({ page, compact = false }: { page: string
   useEffect(() => { fetchComments(); }, [fetchComments]);
 
   async function getUserId(): Promise<string | null> {
-    if (!session) return null;
-    const xId = (session.user as { xId?: string }).xId;
-    const { data } = await supabase.from("users").select("id").eq("x_id", xId).single();
-    return data?.id || null;
+    // Authenticated user
+    if (session) {
+      const xId = (session.user as { xId?: string }).xId;
+      const { data } = await supabase.from("users").select("id").eq("x_id", xId).single();
+      return data?.id || null;
+    }
+
+    // Guest user — upsert by visitor ID
+    if (guestName) {
+      const visitorId = getVisitorId();
+      const guestXId = `guest_${visitorId}`;
+
+      // Try to find existing guest user
+      const { data: existing } = await supabase.from("users").select("id").eq("x_id", guestXId).single();
+      if (existing) return existing.id;
+
+      // Create guest user
+      const { data: created } = await supabase.from("users").insert({
+        x_id: guestXId,
+        x_handle: guestName,
+        x_name: guestName,
+        x_avatar: null,
+      }).select("id").single();
+      return created?.id || null;
+    }
+
+    return null;
   }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!body.trim() || !session) return;
+    if (!body.trim() || !canPost) return;
     setSubmitting(true);
     const userId = await getUserId();
     if (!userId) { setSubmitting(false); return; }
@@ -433,11 +465,15 @@ export default function CommentSection({ page, compact = false }: { page: string
       </div>
 
       {/* Top-level form — hidden when inline reply is open */}
-      {session && !replyingToId ? (
+      {canPost && !replyingToId ? (
         <form onSubmit={handleSubmit} className="mb-5 pb-5 border-b border-gray-100">
           <div className="flex gap-3">
-            {session.user?.image && (
+            {session?.user?.image ? (
               <img src={session.user.image} alt="" className="w-9 h-9 rounded-full border border-gray-200 shrink-0" />
+            ) : (
+              <div className="w-9 h-9 bg-black flex items-center justify-center text-white font-black text-xs shrink-0">
+                {(guestName || "?")[0].toUpperCase()}
+              </div>
             )}
             <div className="flex-1">
               <textarea
@@ -460,16 +496,13 @@ export default function CommentSection({ page, compact = false }: { page: string
             </div>
           </div>
         </form>
-      ) : !compact ? (
-        <button
-          onClick={() => signIn("twitter")}
-          className="w-full mb-5 py-3.5 rounded-xl bg-gray-50 border border-gray-200 hover:bg-brand-red/5 hover:border-brand-red/20 transition-all flex items-center justify-center gap-2"
-        >
-          <svg className="w-4 h-4 text-text-secondary" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-          </svg>
-          <span className="text-text-secondary text-sm font-semibold">Sign in with X to join the discussion</span>
-        </button>
+      ) : !compact && !replyingToId ? (
+        <div className="mb-5">
+          <SignInPrompt onGuestSignIn={() => {
+            const { getGuestName } = require("@/lib/guest");
+            setGuestNameState(getGuestName());
+          }} />
+        </div>
       ) : null}
 
       {/* Thread */}

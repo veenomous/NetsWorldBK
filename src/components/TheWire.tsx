@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, Suspense } from "react";
 import { useSession, signIn } from "next-auth/react";
 import { supabase, getVisitorId } from "@/lib/supabase";
 import CommentSection from "@/components/CommentSection";
+import SignInPrompt from "@/components/SignInPrompt";
 import { Tweet } from "react-tweet";
 
 interface Take {
@@ -147,19 +148,38 @@ function ThreadCard({ take, onBoost, userBoosted, expanded, onExpand, commentCou
 function PostForm({ onPost }: { onPost: () => void }) {
   const { data: session } = useSession();
   const xHandle = (session?.user as { xHandle?: string })?.xHandle;
+  const [guestName, setGuestNameState] = useState<string | null>(null);
   const [text, setText] = useState("");
   const [tag, setTag] = useState("Take");
   const [submitting, setSubmitting] = useState(false);
   const TAGS = ["Take", "Hot Take", "Draft", "Roster", "Strategy", "Trade", "Spicy"];
 
-  if (!session) return null;
+  // Load guest name on mount
+  useEffect(() => {
+    const { getGuestName } = require("@/lib/guest");
+    setGuestNameState(getGuestName());
+  }, []);
+
+  const displayName = xHandle || guestName;
+
+  // Show sign-in prompt if no session and no guest name
+  if (!session && !guestName) {
+    return (
+      <div className="mb-4">
+        <SignInPrompt onGuestSignIn={() => {
+          const { getGuestName } = require("@/lib/guest");
+          setGuestNameState(getGuestName());
+        }} />
+      </div>
+    );
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!text.trim() || submitting) return;
     setSubmitting(true);
     await supabase.from("hot_takes").insert({
-      text: text.trim(), author: xHandle || "Anonymous", tag, ip_hash: getVisitorId(),
+      text: text.trim(), author: displayName || "Anonymous", tag, ip_hash: getVisitorId(),
     });
     setText(""); setTag("Take"); setSubmitting(false);
     onPost();
@@ -168,8 +188,15 @@ function PostForm({ onPost }: { onPost: () => void }) {
   return (
     <form onSubmit={handleSubmit} className="bg-white p-5 sm:p-6 border-l-4 border-black shadow-sm mb-4">
       <div className="flex items-center gap-2 mb-3">
-        {session.user?.image && <img src={session.user.image} alt="" className="w-8 h-8" />}
-        <span className="font-display font-black uppercase text-xs">{xHandle}</span>
+        {session?.user?.image ? (
+          <img src={session.user.image} alt="" className="w-8 h-8" />
+        ) : (
+          <div className="w-8 h-8 bg-black flex items-center justify-center text-white font-black text-xs">
+            {(displayName || "?")[0].toUpperCase()}
+          </div>
+        )}
+        <span className="font-display font-black uppercase text-xs">{displayName}</span>
+        {!session && <span className="text-[9px] text-black/20 uppercase tracking-wider">Guest</span>}
       </div>
       <textarea
         value={text}
