@@ -2,7 +2,10 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useStandings, getNetsFromStandings } from "@/lib/useStandings";
+import { supabase } from "@/lib/supabase";
+import { AnimatedTabs, type Tab } from "@/components/ui/animated-tabs";
 import TheWire from "@/components/TheWire";
+import Image from "next/image";
 import Link from "next/link";
 
 // ─── Types ───
@@ -21,17 +24,30 @@ interface NextGame {
   dayLabel: string;
 }
 
-const TOP5 = new Set(["IND", "WAS", "BKN", "SAC", "UTA"]);
+interface Recap {
+  id: string;
+  headline: string;
+  summary: string;
+  opponent: string;
+  nets_score: number;
+  opponent_score: number;
+  vibe: string;
+  created_at: string;
+  user: { x_handle: string };
+}
+
+const vibeEmoji: Record<string, string> = {
+  hyped: "🔥", solid: "💪", meh: "😐", pain: "😭", tank: "🪖",
+};
 
 function periodLabel(p: number): string {
   if (p <= 4) return `Q${p}`;
   return `OT${p - 4}`;
 }
 
-// ─── Draft Position Card (black, with live scores) ───
+// ─── Draft Position Card ───
 function DraftPositionCard() {
   const { lottery, isLoading } = useStandings();
-  const nets = getNetsFromStandings(lottery);
   const top5 = lottery.slice(0, 5);
 
   const [games, setGames] = useState<ScoreGame[]>([]);
@@ -56,7 +72,7 @@ function DraftPositionCard() {
     return () => clearInterval(interval);
   }, [fetchScores]);
 
-  function getGameInfo(abbrev: string): string {
+  function getGameLine(abbrev: string): { text: string; isLive: boolean } {
     const game = games.find(
       (g) => g.homeTeam.abbrev === abbrev || g.awayTeam.abbrev === abbrev
     );
@@ -69,48 +85,52 @@ function DraftPositionCard() {
       const prefix = isHome ? "vs" : "@";
 
       if (game.status === 3) {
-        return `${prefix} ${oppAbbrev} ${teamScore}-${oppScore} FINAL`;
+        return { text: `${prefix} ${oppAbbrev}  ${teamScore} - ${oppScore}  FINAL`, isLive: false };
       }
       if (game.status === 2) {
-        return `${prefix} ${oppAbbrev} ${teamScore}-${oppScore} ${periodLabel(game.period)}`;
+        return { text: `${prefix} ${oppAbbrev}  ${teamScore} - ${oppScore}  ${periodLabel(game.period)}`, isLive: true };
       }
-      return `${prefix} ${oppAbbrev} ${game.statusText}`;
+      return { text: `${prefix} ${oppAbbrev}  ${game.statusText}`, isLive: false };
     }
 
     const next = nextGames[abbrev];
     if (next) {
-      return `${next.isHome ? "vs" : "@"} ${next.opponent} — ${next.dayLabel}`;
+      return { text: `Next: ${next.isHome ? "vs" : "@"} ${next.opponent} — ${next.dayLabel}`, isLive: false };
     }
 
-    return "No game today";
+    return { text: "No game today", isLive: false };
   }
 
   return (
     <div className="bg-black text-white p-6 sm:p-8 h-full">
-      <h2 className="text-xl sm:text-2xl font-black tracking-tighter uppercase font-display mb-6 flex items-center gap-2">
+      <h2 className="text-xl sm:text-2xl font-black tracking-tighter uppercase font-display mb-5 flex items-center gap-2">
         <span className="material-symbols-outlined text-brand-red" style={{ fontVariationSettings: "'FILL' 1" }}>stars</span>
         Draft Position
       </h2>
 
       {isLoading ? (
         <div className="space-y-4">
-          {[1,2,3,4,5].map(i => <div key={i} className="h-14 bg-white/5 animate-pulse-soft" />)}
+          {[1,2,3,4,5].map(i => <div key={i} className="h-16 bg-white/5 animate-pulse-soft" />)}
         </div>
       ) : (
         <div className="space-y-0">
           {top5.map((team, i) => {
             const isBKN = team.abbrev === "BKN";
-            const gameInfo = getGameInfo(team.abbrev);
+            const gameLine = getGameLine(team.abbrev);
+            const teamName = team.team.split(" ").pop()?.toUpperCase();
 
             return (
-              <div key={team.abbrev} className={`py-3.5 ${i > 0 ? "border-t border-white/10" : ""}`}>
-                <div className="flex items-center justify-between">
-                  <p className={`text-sm font-bold ${isBKN ? "text-brand-red" : "text-white"}`}>
-                    {i + 1}. {team.team.split(" ").pop()?.toUpperCase()}
-                  </p>
-                  <span className="text-xs font-bold text-white/60 tabular-nums">{team.wins}-{team.losses}</span>
-                </div>
-                <p className="text-[10px] tracking-wider text-white/30 mt-0.5">{gameInfo}</p>
+              <div key={team.abbrev} className={`py-3 ${i > 0 ? "border-t border-white/10" : ""}`}>
+                {/* Team name + record */}
+                <p className={`text-lg font-black ${isBKN ? "text-brand-red" : "text-white"}`}>
+                  {i + 1}. {teamName} <span className="text-white/50 font-bold">({team.wins}-{team.losses})</span>
+                </p>
+                {/* Live score / next game — big and bold */}
+                <p className={`text-base font-bold mt-0.5 tabular-nums ${
+                  gameLine.isLive ? "text-brand-red" : "text-white/70"
+                }`}>
+                  {gameLine.text}
+                </p>
               </div>
             );
           })}
@@ -127,29 +147,109 @@ function DraftPositionCard() {
   );
 }
 
+// ─── Recap Tabs (for hero) ───
+function RecapTabs() {
+  const [recaps, setRecaps] = useState<Recap[]>([]);
+
+  useEffect(() => {
+    async function load() {
+      const { data } = await supabase
+        .from("game_recaps")
+        .select("id, headline, summary, opponent, nets_score, opponent_score, vibe, created_at, user:users(x_handle)")
+        .order("created_at", { ascending: false })
+        .limit(3);
+      if (data) setRecaps(data as unknown as Recap[]);
+    }
+    load();
+  }, []);
+
+  if (recaps.length === 0) {
+    // Fallback tabs when no recaps exist
+    const fallbackTabs: Tab[] = [
+      {
+        id: "welcome",
+        label: "Game Recaps",
+        content: (
+          <div className="flex flex-col items-center justify-center h-full py-8">
+            <p className="text-2xl font-black uppercase mb-2">No Recaps Yet</p>
+            <p className="text-sm text-white/60">Write the first post-game breakdown.</p>
+            <Link href="/recaps" className="mt-4 bg-brand-red px-5 py-2 text-xs font-bold uppercase tracking-wider hover:bg-red-700 transition-all">
+              Write Recap
+            </Link>
+          </div>
+        ),
+      },
+    ];
+    return <AnimatedTabs tabs={fallbackTabs} className="w-full" />;
+  }
+
+  const tabs: Tab[] = recaps.map((recap) => {
+    const won = recap.nets_score > recap.opponent_score;
+    return {
+      id: recap.id,
+      label: `BKN ${won ? "W" : "L"} vs ${recap.opponent}`,
+      content: (
+        <Link href={`/recaps/${recap.id}`} className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full h-full group">
+          <div className="flex flex-col justify-center">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-2xl">{vibeEmoji[recap.vibe] || "🏀"}</span>
+              <span className={`text-xl font-black ${won ? "text-green-400" : "text-red-400"}`}>
+                BKN {recap.nets_score} - {recap.opponent} {recap.opponent_score}
+              </span>
+            </div>
+            <h3 className="text-xl font-black uppercase leading-tight group-hover:text-white/80 transition-colors">
+              {recap.headline}
+            </h3>
+            <p className="text-sm text-white/50 mt-2 line-clamp-2">{recap.summary}</p>
+            <p className="text-[10px] text-white/30 mt-3 uppercase tracking-wider">by @{recap.user?.x_handle} · Click to read</p>
+          </div>
+          <div className="hidden sm:flex items-center justify-center">
+            <div className="w-full h-48 bg-white/5 flex items-center justify-center">
+              <span className="text-6xl">{vibeEmoji[recap.vibe] || "🏀"}</span>
+            </div>
+          </div>
+        </Link>
+      ),
+    };
+  });
+
+  return <AnimatedTabs tabs={tabs} className="w-full" />;
+}
+
 // ─── Main Homepage ───
 export default function HomeContent() {
-  const { lottery, isLoading } = useStandings();
+  const { isLoading } = useStandings();
+  const { lottery } = useStandings();
   const nets = getNetsFromStandings(lottery);
 
   return (
     <div>
-      {/* ═══ HERO ═══ */}
-      <section className="relative w-full flex flex-col justify-end overflow-hidden border-b-[6px] border-brand-red bg-black" style={{ minHeight: "38vh" }}>
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900/80 to-black" />
-        <div className="relative z-10 px-6 sm:px-8 pb-8 pt-14 max-w-7xl mx-auto w-full">
-          <div className="inline-block bg-brand-red px-3 py-1 mb-3">
-            <span className="font-display text-white font-black tracking-[0.3em] uppercase text-[9px]">
-              {isLoading ? "LOADING" : nets ? `#${nets.lotteryRank} PICK · ${nets.wins}-${nets.losses}` : "FAN HQ"}
-            </span>
-          </div>
-          <h1 className="font-display text-white text-[10vw] sm:text-[7vw] leading-[0.85] font-black italic tracking-tighter uppercase">
-            Brooklyn<br />Nets HQ
-          </h1>
-          <div className="mt-4 border-l-[6px] border-brand-red pl-6">
-            <p className="font-display text-white/40 text-sm uppercase tracking-[0.15em]">
-              The Wire · Draft Tracker · Lottery Sim · Trade Machine
-            </p>
+      {/* ═══ HERO — white bg, logo + animated tabs ═══ */}
+      <section className="bg-white border-b-[6px] border-brand-red">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+            {/* Left: Logo + badge */}
+            <div className="flex flex-col justify-center">
+              <Image
+                src="/logo2.png"
+                alt="BK Grit"
+                width={500}
+                height={250}
+                priority
+                className="w-full max-w-[400px] h-auto"
+              />
+              {/* Red badge — bigger */}
+              <div className="mt-6 inline-flex self-start bg-brand-red px-5 py-2.5">
+                <span className="font-display text-white font-black tracking-[0.2em] uppercase text-xs">
+                  {isLoading ? "LOADING..." : nets ? `#${nets.lotteryRank} Pick · ${nets.wins}-${nets.losses} · ${nets.gamesRemaining}g Left` : "FAN HQ · ACTIVE"}
+                </span>
+              </div>
+            </div>
+
+            {/* Right: Animated recap tabs */}
+            <div>
+              <RecapTabs />
+            </div>
           </div>
         </div>
       </section>
@@ -157,7 +257,6 @@ export default function HomeContent() {
       {/* ═══ BENTO GRID ═══ */}
       <section className="w-full px-3 py-6 sm:px-6">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-[2px]">
-
           {/* The Wire (8 col) */}
           <div className="md:col-span-8 bg-white border border-gray-200 p-6 sm:p-8">
             <div className="flex justify-between items-center mb-4">
@@ -173,7 +272,6 @@ export default function HomeContent() {
           <div className="md:col-span-4">
             <DraftPositionCard />
           </div>
-
         </div>
       </section>
 
