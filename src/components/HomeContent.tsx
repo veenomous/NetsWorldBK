@@ -304,7 +304,7 @@ export default function HomeContent() {
           <div className="md:col-span-8 bg-white border border-gray-200 p-6 sm:p-8">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-2xl sm:text-3xl font-black tracking-tighter uppercase font-display">The Wire</h2>
-              <Link href="/community" className="text-[10px] font-black tracking-[0.15em] uppercase border-b-2 border-brand-red pb-0.5 hover:text-brand-red transition-colors">
+              <Link href="/wire" className="text-[10px] font-black tracking-[0.15em] uppercase border-b-2 border-brand-red pb-0.5 hover:text-brand-red transition-colors">
                 Full Feed
               </Link>
             </div>

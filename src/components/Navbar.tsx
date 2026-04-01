@@ -10,7 +10,8 @@ const navLinks = [
   { href: "/simulator", label: "Lottery Sim" },
   { href: "/gm-mode", label: "War Room" },
   { href: "/trade-machine", label: "Trade Machine" },
-  { href: "/community", label: "The Wire" },
+  { href: "/wire", label: "The Wire" },
+  { href: "/community", label: "The Press" },
 ];
 
 function UserButton() {
