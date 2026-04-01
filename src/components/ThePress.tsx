@@ -291,8 +291,8 @@ function PressCard({ type, data, currentUserHandle, onDelete }: {
         </div>
 
         {imageUrl && (
-          <Link href={`/community/${type}-${data.id}`} className="shrink-0">
-            <img src={imageUrl} alt="" className="w-28 h-28 object-cover rounded-lg" />
+          <Link href={`/community/${type}-${data.id}`} className="shrink-0 hidden sm:block">
+            <img src={imageUrl} alt="" className="w-32 h-24 object-cover object-top" />
           </Link>
         )}
       </div>

@@ -284,6 +284,7 @@ export default function TheWire({ limit, showForm = true, showHotTake = true, sh
   const [userVotes, setUserVotes] = useState<Record<string, string>>({});
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [commentCounts, setCommentCounts] = useState<Record<string, number>>({});
+  const [sortBy, setSortBy] = useState<"latest" | "top">("latest");
 
   const fetchAll = useCallback(async () => {
     const visitorId = getVisitorId();
@@ -330,9 +331,27 @@ export default function TheWire({ limit, showForm = true, showHotTake = true, sh
     if (take) await supabase.from("hot_takes").update({ agrees: (take.agrees || 0) + 1 }).eq("id", takeId);
   }
 
+  const sortedTakes = sortBy === "top"
+    ? [...takes].sort((a, b) => b.agrees - a.agrees)
+    : takes; // already sorted by created_at desc from Supabase
+
   const feed = (
     <div className="space-y-3">
       {showForm && <PostForm onPost={fetchAll} />}
+
+      {/* Sort toggle */}
+      {!loading && takes.length > 0 && (
+        <div className="flex gap-0 mb-2">
+          <button onClick={() => setSortBy("latest")}
+            className={`px-4 py-2 text-[11px] font-black uppercase tracking-wider transition-colors ${sortBy === "latest" ? "bg-black text-white" : "bg-gray-100 text-black/25 hover:text-black/50"}`}>
+            Latest
+          </button>
+          <button onClick={() => setSortBy("top")}
+            className={`px-4 py-2 text-[11px] font-black uppercase tracking-wider transition-colors ${sortBy === "top" ? "bg-brand-red text-white" : "bg-gray-100 text-black/25 hover:text-black/50"}`}>
+            Top Boosts
+          </button>
+        </div>
+      )}
 
       {loading ? (
         <div className="space-y-3">
@@ -350,7 +369,7 @@ export default function TheWire({ limit, showForm = true, showHotTake = true, sh
         </div>
       ) : (
         <div className="space-y-3">
-          {takes.map((take) => (
+          {sortedTakes.map((take) => (
             <ThreadCard
               key={take.id}
               take={take}

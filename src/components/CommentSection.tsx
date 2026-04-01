@@ -33,9 +33,10 @@ interface Comment {
   body: string;
   created_at: string;
   parent_id: string | null;
+  daps: number;
   user: { x_handle: string; x_name: string; x_avatar: string | null };
   replies?: Comment[];
-  _parentHandle?: string; // injected for "In reply to"
+  _parentHandle?: string;
 }
 
 function timeAgo(dateStr: string): string {
@@ -103,6 +104,8 @@ function CommentRow({
   onReply,
   onDelete,
   onEdit,
+  onDap,
+  userDaps,
   currentUserHandle,
   replyingToId,
   setReplyingToId,
@@ -112,6 +115,8 @@ function CommentRow({
   onReply: (parentId: string, body: string) => Promise<void>;
   onDelete: (id: string) => void;
   onEdit: (id: string, body: string) => void;
+  onDap: (id: string) => void;
+  userDaps: Record<string, boolean>;
   currentUserHandle: string | null;
   replyingToId: string | null;
   setReplyingToId: (id: string | null) => void;
@@ -193,6 +198,16 @@ function CommentRow({
         {!editing && (
           <div className="flex items-center">
             <div className="flex items-center gap-4">
+              {/* Dap */}
+              <button
+                onClick={() => !userDaps[comment.id] && onDap(comment.id)}
+                className={`flex items-center gap-1 text-xs font-bold transition-colors ${
+                  userDaps[comment.id] ? "text-brand-red" : "text-black/25 hover:text-brand-red"
+                } ${userDaps[comment.id] ? "cursor-default" : "cursor-pointer"}`}
+              >
+                👊 Dap{comment.daps > 0 ? ` ${comment.daps}` : ""}
+              </button>
+
               {/* Reply */}
               {currentUserHandle && (
                 <button
@@ -246,6 +261,8 @@ function CommentRow({
               onReply={onReply}
               onDelete={onDelete}
               onEdit={onEdit}
+              onDap={onDap}
+              userDaps={userDaps}
               currentUserHandle={currentUserHandle}
               replyingToId={replyingToId}
               setReplyingToId={setReplyingToId}
@@ -290,13 +307,23 @@ export default function CommentSection({ page, compact = false }: { page: string
   const [submitting, setSubmitting] = useState(false);
   const [loading, setLoading] = useState(true);
   const [replyingToId, setReplyingToId] = useState<string | null>(null);
+  const [userDaps, setUserDaps] = useState<Record<string, boolean>>({});
 
   const fetchComments = useCallback(async () => {
-    const { data } = await supabase
-      .from("comments")
-      .select("id, body, created_at, parent_id, user:users(x_handle, x_name, x_avatar)")
-      .eq("page", page)
-      .order("created_at", { ascending: false });
+    const visitorId = getVisitorId();
+
+    const [commentsRes, dapsRes] = await Promise.all([
+      supabase.from("comments").select("id, body, created_at, parent_id, daps, user:users(x_handle, x_name, x_avatar)").eq("page", page).order("created_at", { ascending: false }),
+      supabase.from("comment_daps").select("comment_id").eq("visitor_id", visitorId),
+    ]);
+
+    if (dapsRes.data) {
+      const dapMap: Record<string, boolean> = {};
+      dapsRes.data.forEach((d: { comment_id: string }) => { dapMap[d.comment_id] = true; });
+      setUserDaps(dapMap);
+    }
+
+    const data = commentsRes.data;
 
     if (!data) { setLoading(false); return; }
 
@@ -367,6 +394,25 @@ export default function CommentSection({ page, compact = false }: { page: string
     if (!newBody.trim()) return;
     await supabase.from("comments").update({ body: newBody.trim() }).eq("id", id);
     fetchComments();
+  }
+
+  async function handleDap(commentId: string) {
+    if (userDaps[commentId]) return;
+    const visitorId = getVisitorId();
+    setUserDaps((prev) => ({ ...prev, [commentId]: true }));
+    // Optimistic update
+    setComments((prev) => {
+      function updateDaps(list: Comment[]): Comment[] {
+        return list.map((c) => ({
+          ...c,
+          daps: c.id === commentId ? (c.daps || 0) + 1 : c.daps,
+          replies: c.replies ? updateDaps(c.replies) : undefined,
+        }));
+      }
+      return updateDaps(prev);
+    });
+    await supabase.from("comment_daps").insert({ comment_id: commentId, visitor_id: visitorId });
+    await supabase.from("comments").update({ daps: (comments.find(c => c.id === commentId)?.daps || 0) + 1 }).eq("id", commentId);
   }
 
   function countAll(list: Comment[]): number {
@@ -450,6 +496,8 @@ export default function CommentSection({ page, compact = false }: { page: string
               onReply={handleReply}
               onDelete={handleDelete}
               onEdit={handleEdit}
+              onDap={handleDap}
+              userDaps={userDaps}
               currentUserHandle={currentUserHandle}
               replyingToId={replyingToId}
               setReplyingToId={setReplyingToId}
