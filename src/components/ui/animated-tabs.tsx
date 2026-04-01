@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -22,6 +22,11 @@ const AnimatedTabs = ({
   className,
 }: AnimatedTabsProps) => {
   const [activeTab, setActiveTab] = useState<string>(defaultTab || tabs[0]?.id);
+
+  // Update active tab when defaultTab changes (async data load)
+  useEffect(() => {
+    if (defaultTab) setActiveTab(defaultTab);
+  }, [defaultTab]);
 
   if (!tabs?.length) return null;
 
@@ -49,7 +54,7 @@ const AnimatedTabs = ({
         ))}
       </div>
 
-      {/* Content area — white bg, rounded, with shadow */}
+      {/* Content area */}
       <div className="p-5 bg-white text-text-primary shadow-[0_0_20px_rgba(0,0,0,0.08)] rounded-xl min-h-[220px] h-full">
         {tabs.map(
           (tab) =>

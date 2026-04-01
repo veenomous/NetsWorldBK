@@ -2,12 +2,28 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useStandings, getNetsFromStandings } from "@/lib/useStandings";
-import { supabase } from "@/lib/supabase";
+import { supabase, getVisitorId } from "@/lib/supabase";
 import { AnimatedTabs, type Tab } from "@/components/ui/animated-tabs";
 import TheWire from "@/components/TheWire";
-import DailyPoll from "@/components/DailyPoll";
 import Image from "next/image";
 import Link from "next/link";
+
+// ─── Odds data ───
+const ODDS: Record<number, number[]> = {
+  1: [14.0, 13.4, 12.7, 12.0], 2: [14.0, 13.4, 12.7, 12.0], 3: [14.0, 13.4, 12.7, 12.0],
+  4: [12.5, 12.2, 11.9, 11.5], 5: [10.5, 10.5, 10.6, 10.5],
+  6: [9.0, 9.2, 9.4, 9.6], 7: [7.5, 7.8, 8.1, 8.5], 8: [6.0, 6.3, 6.7, 7.2],
+};
+
+// ─── Poll data ───
+const POLLS = [
+  { id: "poll-top3-2026", question: "Will the Nets land a top 3 pick?", optionA: "Top 3", optionB: "Nah, we drop" },
+  { id: "poll-boozer-dybantsa", question: "If Nets get #3: Boozer or Dybantsa?", optionA: "Boozer", optionB: "Dybantsa" },
+  { id: "poll-trade-pick", question: "Trade the pick for a star?", optionA: "Keep it", optionB: "Trade for a star" },
+  { id: "poll-clowney-core", question: "Is Noah Clowney a long-term starter?", optionA: "Yes, core piece", optionB: "Solid role player" },
+  { id: "poll-demin-potential", question: "Egor Demin's ceiling?", optionA: "All-Star", optionB: "Good starter" },
+  { id: "poll-rebuild-years", question: "How many years until we contend?", optionA: "2-3 years", optionB: "4+ years" },
+];
 
 // ─── Types ───
 interface ScoreGame {
@@ -145,6 +161,141 @@ function DraftPositionCard() {
       >
         Run Simulation
       </Link>
+    </div>
+  );
+}
+
+// ─── Poll of the Day ───
+function PollOfTheDay() {
+  const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);
+  const poll = POLLS[dayOfYear % POLLS.length];
+
+  const [voted, setVoted] = useState<string | null>(null);
+  const [counts, setCounts] = useState({ a: 0, b: 0 });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function load() {
+      const visitorId = getVisitorId();
+      const [picksRes, myVoteRes] = await Promise.all([
+        supabase.from("prediction_picks").select("picked_option").eq("prediction_id", poll.id),
+        supabase.from("prediction_picks").select("picked_option").eq("prediction_id", poll.id).eq("visitor_id", visitorId).single(),
+      ]);
+      if (picksRes.data) {
+        const a = picksRes.data.filter((p: { picked_option: string }) => p.picked_option === "A").length;
+        const b = picksRes.data.filter((p: { picked_option: string }) => p.picked_option === "B").length;
+        setCounts({ a, b });
+      }
+      if (myVoteRes.data) setVoted((myVoteRes.data as { picked_option: string }).picked_option);
+      setLoading(false);
+    }
+    load();
+  }, [poll.id]);
+
+  async function vote(option: string) {
+    if (voted) return;
+    const visitorId = getVisitorId();
+    setVoted(option);
+    setCounts((prev) => ({ a: prev.a + (option === "A" ? 1 : 0), b: prev.b + (option === "B" ? 1 : 0) }));
+    await supabase.from("prediction_picks").insert({ prediction_id: poll.id, picked_option: option, visitor_id: visitorId });
+  }
+
+  const total = counts.a + counts.b;
+  const pctA = total > 0 ? Math.round((counts.a / total) * 100) : 50;
+  const pctB = 100 - pctA;
+
+  return (
+    <div>
+      <h3 className="text-lg font-black tracking-tighter uppercase font-display mb-4">Poll of the Day</h3>
+      {loading ? (
+        <div className="h-20 bg-gray-50 animate-pulse-soft" />
+      ) : (
+        <div>
+          <p className="text-sm font-bold mb-3">{poll.question}</p>
+          <div className="space-y-2">
+            <button
+              onClick={() => vote("A")}
+              disabled={!!voted}
+              className={`w-full text-left relative overflow-hidden transition-all ${voted ? "cursor-default" : "cursor-pointer hover:border-brand-red/30"} border ${voted === "A" ? "border-brand-red" : "border-gray-200"} p-3`}
+            >
+              {voted && <div className="absolute inset-y-0 left-0 bg-brand-red/10 transition-all" style={{ width: `${pctA}%` }} />}
+              <div className="relative flex justify-between items-center">
+                <span className={`text-sm font-bold ${voted === "A" ? "text-brand-red" : ""}`}>{poll.optionA}</span>
+                {voted && <span className="text-sm font-black">{pctA}%</span>}
+              </div>
+            </button>
+            <button
+              onClick={() => vote("B")}
+              disabled={!!voted}
+              className={`w-full text-left relative overflow-hidden transition-all ${voted ? "cursor-default" : "cursor-pointer hover:border-accent-blue/30"} border ${voted === "B" ? "border-accent-blue" : "border-gray-200"} p-3`}
+            >
+              {voted && <div className="absolute inset-y-0 left-0 bg-accent-blue/10 transition-all" style={{ width: `${pctB}%` }} />}
+              <div className="relative flex justify-between items-center">
+                <span className={`text-sm font-bold ${voted === "B" ? "text-accent-blue" : ""}`}>{poll.optionB}</span>
+                {voted && <span className="text-sm font-black">{pctB}%</span>}
+              </div>
+            </button>
+          </div>
+          {voted && <p className="text-[10px] text-black/20 mt-2 uppercase tracking-wider">{total} votes</p>}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── Lottery Odds Table (editorial style) ───
+function LotteryOddsSection() {
+  const { lottery, isLive, isLoading } = useStandings();
+  const top8 = lottery.slice(0, 8);
+
+  if (isLoading) return <div className="h-40 bg-gray-50 animate-pulse-soft" />;
+
+  return (
+    <div>
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-2xl font-black tracking-tighter uppercase font-display">Lottery Odds</h2>
+        {isLive && <span className="text-[9px] font-black tracking-[0.2em] uppercase text-accent-green">Live Standings</span>}
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full text-xs">
+          <thead>
+            <tr className="border-b-2 border-black">
+              <th className="text-left py-2 pr-3 text-[9px] font-black tracking-[0.15em] uppercase text-black/30">#</th>
+              <th className="text-left py-2 pr-3 text-[9px] font-black tracking-[0.15em] uppercase text-black/30">Team</th>
+              <th className="text-left py-2 pr-2 text-[9px] font-black tracking-[0.15em] uppercase text-black/30">Record</th>
+              {[1,2,3,4].map(pick => (
+                <th key={pick} className="text-center py-2 px-2 text-[9px] font-black tracking-[0.15em] uppercase text-black/30 min-w-[50px]">
+                  Pick {pick}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {top8.map((team) => {
+              const slot = team.lotteryRank;
+              const odds = ODDS[slot] || [];
+              const isNets = team.abbrev === "BKN";
+              return (
+                <tr key={team.abbrev} className={`border-b border-gray-100 ${isNets ? "bg-brand-red/5" : ""}`}>
+                  <td className="py-3 pr-3 text-black/30 font-bold">{slot}</td>
+                  <td className={`py-3 pr-3 font-black ${isNets ? "text-brand-red" : ""}`}>{team.abbrev}</td>
+                  <td className="py-3 pr-2 text-black/50 font-bold tabular-nums">{team.wins}-{team.losses}</td>
+                  {[0,1,2,3].map(i => {
+                    const val = odds[i];
+                    return (
+                      <td key={i} className={`text-center py-3 px-2 tabular-nums font-bold ${
+                        val >= 14 ? "text-brand-red font-black" : val >= 10 ? "text-black" : "text-black/40"
+                      }`}>
+                        {val ? `${val.toFixed(1)}%` : "—"}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
@@ -321,11 +472,11 @@ export default function HomeContent() {
       {/* ═══ BENTO GRID ═══ */}
       <section className="w-full px-3 py-6 sm:px-6">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-[2px]">
-          {/* Draft Position + Polls (4 col) — first on mobile */}
+          {/* Draft Position + Poll (4 col) — first on mobile */}
           <div className="md:col-span-4 md:order-2 flex flex-col gap-[2px]">
             <DraftPositionCard />
             <div className="bg-white border border-gray-200 p-5">
-              <DailyPoll />
+              <PollOfTheDay />
             </div>
           </div>
 
@@ -339,6 +490,13 @@ export default function HomeContent() {
             </div>
             <TheWire limit={8} showForm={false} showHotTake={true} />
           </div>
+        </div>
+      </section>
+
+      {/* ═══ LOTTERY ODDS ═══ */}
+      <section className="w-full px-3 py-6 sm:px-6">
+        <div className="bg-white border border-gray-200 p-6 sm:p-8">
+          <LotteryOddsSection />
         </div>
       </section>
 
