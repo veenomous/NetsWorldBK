@@ -5,6 +5,7 @@ import { useStandings, getNetsFromStandings } from "@/lib/useStandings";
 import { supabase } from "@/lib/supabase";
 import { AnimatedTabs, type Tab } from "@/components/ui/animated-tabs";
 import TheWire from "@/components/TheWire";
+import DailyPoll from "@/components/DailyPoll";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -148,130 +149,144 @@ function DraftPositionCard() {
   );
 }
 
-// ─── Hero Tabs (Game Recap, Game Preview, Top News) ───
+// ─── Placeholder image for tabs without content ───
+function PlaceholderImage({ text }: { text: string }) {
+  return (
+    <div className="absolute inset-0 bg-black flex items-center justify-center">
+      <span className="text-5xl font-black text-white/10 font-display">{text}</span>
+    </div>
+  );
+}
+
+// ─── Hero Tabs ───
+interface HeroArticle { id: string; title: string; body: string; tag: string; image_url: string | null; created_at: string; user: { x_handle: string } }
+
 function HeroTabs() {
   const [recaps, setRecaps] = useState<Recap[]>([]);
-  const [articles, setArticles] = useState<{ id: string; title: string; body: string; tag: string; image_url: string | null; user: { x_handle: string } }[]>([]);
+  const [newsArticles, setNewsArticles] = useState<HeroArticle[]>([]);
+  const [opinionArticles, setOpinionArticles] = useState<HeroArticle[]>([]);
+  const [nextGame, setNextGame] = useState<{ opponent: string; isHome: boolean; dayLabel: string } | null>(null);
   const { lottery } = useStandings();
   const nets = getNetsFromStandings(lottery);
 
   useEffect(() => {
     async function load() {
-      const [recapsRes, articlesRes] = await Promise.all([
+      const [recapsRes, newsRes, opinionRes, nextRes] = await Promise.all([
         supabase.from("game_recaps").select("id, headline, summary, opponent, nets_score, opponent_score, vibe, image_url, created_at, user:users(x_handle)").order("created_at", { ascending: false }).limit(1),
-        supabase.from("articles").select("id, title, body, tag, image_url, user:users(x_handle)").order("created_at", { ascending: false }).limit(1),
+        supabase.from("articles").select("id, title, body, tag, image_url, created_at, user:users(x_handle)").eq("tag", "News").order("created_at", { ascending: false }).limit(1),
+        supabase.from("articles").select("id, title, body, tag, image_url, created_at, user:users(x_handle)").eq("tag", "Opinion").order("created_at", { ascending: false }).limit(1),
+        fetch("/api/next-games").then(r => r.json()).catch(() => ({ nextGames: {} })),
       ]);
       if (recapsRes.data) setRecaps(recapsRes.data as unknown as Recap[]);
-      if (articlesRes.data) setArticles(articlesRes.data as unknown as typeof articles);
+      if (newsRes.data) setNewsArticles(newsRes.data as unknown as HeroArticle[]);
+      if (opinionRes.data) setOpinionArticles(opinionRes.data as unknown as HeroArticle[]);
+      if (nextRes.nextGames?.BKN) setNextGame(nextRes.nextGames.BKN);
     }
     load();
   }, []);
 
   const recap = recaps[0];
-  const article = articles[0];
+  const news = newsArticles[0];
+  const opinion = opinionArticles[0];
+  const recapOpponent = recap?.opponent || "TBD";
+  const nextOpp = nextGame ? `${nextGame.isHome ? "vs" : "@"} ${nextGame.opponent} — ${nextGame.dayLabel}` : "TBD";
 
-  // Find next opponent from standings data
-  const nextOpp = nets ? `Next game coming up` : "Season in progress";
+  // Helper to render a tab content card
+  function tabCard(item: { href: string; imageUrl: string | null; placeholderText: string; tag?: string; tagColor?: string; title: string; body: string; author?: string; meta?: React.ReactNode }) {
+    return (
+      <Link href={item.href} className="grid grid-cols-1 sm:grid-cols-[1fr_1fr] gap-5 w-full group">
+        <div className="relative w-full h-0 pb-[60%] overflow-hidden rounded-lg bg-gray-100">
+          {item.imageUrl ? (
+            <img src={item.imageUrl} alt="" className="absolute inset-0 w-full h-full object-cover object-top" />
+          ) : (
+            <PlaceholderImage text={item.placeholderText} />
+          )}
+        </div>
+        <div className="flex flex-col gap-y-2 justify-center">
+          {item.meta}
+          {item.tag && <span className={`text-[9px] font-black tracking-[0.2em] uppercase ${item.tagColor || "text-accent-blue"}`}>{item.tag}</span>}
+          <h2 className="text-lg font-black text-text-primary group-hover:text-brand-red transition-colors uppercase leading-tight">{item.title}</h2>
+          <p className="text-sm text-text-secondary line-clamp-3">{item.body}</p>
+          {item.author && <p className="text-[10px] text-text-muted uppercase tracking-wider mt-1">by @{item.author}</p>}
+        </div>
+      </Link>
+    );
+  }
+
+  function emptyCard(title: string, cta: string, href: string, color: string) {
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-[1fr_1fr] gap-5 w-full">
+        <div className="relative w-full h-0 pb-[60%] overflow-hidden rounded-lg"><PlaceholderImage text="BKN" /></div>
+        <div className="flex flex-col gap-y-2 justify-center items-start">
+          <p className="text-lg font-black uppercase">{title}</p>
+          <p className="text-sm text-text-muted">Be the first to write one.</p>
+          <Link href={href} className={`mt-2 ${color} text-white px-5 py-2 text-xs font-bold uppercase tracking-wider hover:opacity-80 transition-all`}>{cta}</Link>
+        </div>
+      </div>
+    );
+  }
 
   const tabs: Tab[] = [
     {
-      id: "recap",
-      label: "Game Recap",
-      content: recap ? (
-        <Link href={`/community/recap-${recap.id}`} className="grid grid-cols-1 sm:grid-cols-[1fr_1fr] gap-5 w-full group">
-          <div className="relative w-full h-0 pb-[60%] overflow-hidden rounded-lg bg-gray-100">
-            {recap.image_url ? (
-              <img src={recap.image_url} alt="" className="absolute inset-0 w-full h-full object-cover object-top" />
-            ) : (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-5xl">{vibeEmoji[recap.vibe] || "🏀"}</span>
-              </div>
-            )}
-          </div>
-          <div className="flex flex-col gap-y-2 justify-center">
-            <div className="flex items-center gap-2">
-              <span className="text-lg">{vibeEmoji[recap.vibe] || "🏀"}</span>
-              <span className={`text-sm font-black ${recap.nets_score > recap.opponent_score ? "text-accent-green" : "text-brand-red"}`}>
-                BKN {recap.nets_score} - {recap.opponent} {recap.opponent_score}
-              </span>
-            </div>
-            <h2 className="text-lg font-black mb-0 text-text-primary group-hover:text-brand-red transition-colors uppercase leading-tight">
-              {recap.headline}
-            </h2>
-            <p className="text-sm text-text-secondary line-clamp-3">{recap.summary}</p>
-            <p className="text-[10px] text-text-muted uppercase tracking-wider mt-1">by @{recap.user?.x_handle}</p>
-          </div>
-        </Link>
-      ) : (
-        <div className="flex flex-col items-center justify-center py-8">
-          <p className="text-xl font-black uppercase mb-1">No Recaps Yet</p>
-          <p className="text-sm text-text-muted">Write the first post-game breakdown.</p>
-          <Link href="/community" className="mt-3 bg-brand-red text-white px-5 py-2 text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-red-700 transition-all">
-            Write Recap
-          </Link>
-        </div>
-      ),
+      id: "news",
+      label: "Top News",
+      content: news
+        ? tabCard({ href: `/community/article-${news.id}`, imageUrl: news.image_url, placeholderText: "NEWS", tag: "News", tagColor: "text-accent-blue", title: news.title, body: news.body, author: news.user?.x_handle })
+        : emptyCard("No News Yet", "Write Article", "/community", "bg-accent-blue"),
     },
     {
       id: "preview",
       label: "Game Preview",
-      content: (
-        <div className="grid grid-cols-1 sm:grid-cols-[1fr_1fr] gap-5 w-full">
-          <div className="relative w-full h-0 pb-[60%] overflow-hidden rounded-lg bg-black">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-6xl font-black text-white/10 font-display">BKN</span>
-            </div>
-          </div>
-          <div className="flex flex-col gap-y-2 justify-center">
-            <h2 className="text-lg font-black text-text-primary uppercase leading-tight">
-              {nextOpp}
-            </h2>
-            <p className="text-sm text-text-secondary">
-              {nets ? `The Nets sit at ${nets.wins}-${nets.losses} with ${nets.gamesRemaining} games remaining. Every result matters for draft positioning.` : "Check back for the next game preview."}
-            </p>
-            <Link href="/tiebreaker" className="text-[11px] font-bold text-brand-red uppercase tracking-wider mt-2 hover:underline">
-              View Draft Scenarios →
-            </Link>
-          </div>
-        </div>
-      ),
+      content: tabCard({
+        href: "/tiebreaker",
+        imageUrl: null,
+        placeholderText: `BKN`,
+        tag: `Next: ${nextOpp}`,
+        tagColor: "text-accent-green",
+        title: nets ? `Nets (${nets.wins}-${nets.losses}) — ${nets.gamesRemaining} Games Left` : "Season in Progress",
+        body: nets ? `Currently sitting at #${nets.lotteryRank} in the draft. ${nets.top1Odds.toFixed(1)}% chance at the #1 pick. Every result matters for positioning.` : "Check back soon.",
+      }),
     },
     {
-      id: "news",
-      label: "Top News",
-      content: article ? (
-        <Link href={`/community/article-${article.id}`} className="grid grid-cols-1 sm:grid-cols-[1fr_1fr] gap-5 w-full group">
-          <div className="relative w-full h-0 pb-[60%] overflow-hidden rounded-lg bg-gray-100">
-            {article.image_url ? (
-              <img src={article.image_url} alt="" className="absolute inset-0 w-full h-full object-cover object-top" />
-            ) : (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-4xl">📰</span>
+      id: "recap",
+      label: `Game Recap${recap ? ` (Nets vs ${recapOpponent})` : ""}`,
+      content: recap
+        ? tabCard({
+            href: `/community/recap-${recap.id}`,
+            imageUrl: recap.image_url,
+            placeholderText: "RECAP",
+            meta: (
+              <div className="flex items-center gap-2">
+                <span className="text-lg">{vibeEmoji[recap.vibe] || "🏀"}</span>
+                <span className={`text-sm font-black ${recap.nets_score > recap.opponent_score ? "text-accent-green" : "text-brand-red"}`}>
+                  BKN {recap.nets_score} - {recap.opponent} {recap.opponent_score}
+                </span>
               </div>
-            )}
-          </div>
-          <div className="flex flex-col gap-y-2 justify-center">
-            <span className="text-[9px] font-black tracking-[0.2em] uppercase text-accent-blue">{article.tag}</span>
-            <h2 className="text-lg font-black text-text-primary group-hover:text-brand-red transition-colors uppercase leading-tight">
-              {article.title}
-            </h2>
-            <p className="text-sm text-text-secondary line-clamp-3">{article.body}</p>
-            <p className="text-[10px] text-text-muted uppercase tracking-wider mt-1">by @{article.user?.x_handle}</p>
-          </div>
-        </Link>
-      ) : (
-        <div className="flex flex-col items-center justify-center py-8">
-          <p className="text-xl font-black uppercase mb-1">No Articles Yet</p>
-          <p className="text-sm text-text-muted">Be the first to write one.</p>
-          <Link href="/community" className="mt-3 bg-accent-blue text-white px-5 py-2 text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-blue-800 transition-all">
-            Write Article
-          </Link>
-        </div>
-      ),
+            ),
+            title: recap.headline,
+            body: recap.summary,
+            author: recap.user?.x_handle,
+          })
+        : emptyCard("No Recaps Yet", "Write Recap", "/community", "bg-brand-red"),
+    },
+    {
+      id: "opinion",
+      label: "Opinion",
+      content: opinion
+        ? tabCard({ href: `/community/article-${opinion.id}`, imageUrl: opinion.image_url, placeholderText: "OPINION", tag: "Opinion", tagColor: "text-accent-purple", title: opinion.title, body: opinion.body, author: opinion.user?.x_handle })
+        : emptyCard("No Opinions Yet", "Share Your Take", "/community", "bg-accent-purple"),
     },
   ];
 
-  return <AnimatedTabs tabs={tabs} defaultTab="recap" className="w-full" />;
+  // Default to the most recent article across all types
+  const allDates = [
+    news ? { id: "news", date: new Date(news.created_at).getTime() } : null,
+    recap ? { id: "recap", date: new Date(recap.created_at).getTime() } : null,
+    opinion ? { id: "opinion", date: new Date(opinion.created_at).getTime() } : null,
+  ].filter(Boolean) as { id: string; date: number }[];
+  const mostRecent = allDates.sort((a, b) => b.date - a.date)[0]?.id || "news";
+
+  return <AnimatedTabs tabs={tabs} defaultTab={mostRecent} className="w-full" />;
 }
 
 // ─── Main Homepage ───
@@ -306,8 +321,16 @@ export default function HomeContent() {
       {/* ═══ BENTO GRID ═══ */}
       <section className="w-full px-3 py-6 sm:px-6">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-[2px]">
-          {/* The Wire (8 col) */}
-          <div className="md:col-span-8 bg-white border border-gray-200 p-6 sm:p-8">
+          {/* Draft Position + Polls (4 col) — first on mobile */}
+          <div className="md:col-span-4 md:order-2 flex flex-col gap-[2px]">
+            <DraftPositionCard />
+            <div className="bg-white border border-gray-200 p-5">
+              <DailyPoll />
+            </div>
+          </div>
+
+          {/* The Wire (8 col) — second on mobile, first on desktop */}
+          <div className="md:col-span-8 md:order-1 bg-white border border-gray-200 p-6 sm:p-8">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-2xl sm:text-3xl font-black tracking-tighter uppercase font-display">The Wire</h2>
               <Link href="/wire" className="text-[10px] font-black tracking-[0.15em] uppercase border-b-2 border-brand-red pb-0.5 hover:text-brand-red transition-colors">
@@ -315,11 +338,6 @@ export default function HomeContent() {
               </Link>
             </div>
             <TheWire limit={8} showForm={false} showHotTake={true} />
-          </div>
-
-          {/* Draft Position (4 col) */}
-          <div className="md:col-span-4">
-            <DraftPositionCard />
           </div>
         </div>
       </section>
