@@ -87,7 +87,7 @@ function InlineReplyForm({
           autoFocus
           className="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm text-text-primary placeholder:text-text-muted/50 focus:outline-none focus:border-brand-red/30 transition-colors"
         />
-        <button type="submit" disabled={!body.trim() || submitting} className="px-3 py-2 rounded-lg gradient-bg-brand text-white text-xs font-bold disabled:opacity-40 hover:opacity-90 transition-opacity">
+        <button type="submit" disabled={!body.trim() || submitting} className="px-3 py-2 bg-brand-red text-white text-xs font-black uppercase tracking-wider disabled:opacity-30 hover:bg-red-700 transition-all">
           {submitting ? "..." : "Reply"}
         </button>
         <button type="button" onClick={onCancel} className="px-3 py-2 rounded-lg bg-gray-100 text-text-muted text-xs font-bold hover:bg-gray-200 transition-colors">
@@ -184,7 +184,7 @@ function CommentRow({
               maxLength={500}
             />
             <div className="flex gap-2 mt-1.5">
-              <button onClick={() => { onEdit(comment.id, editBody); setEditing(false); }} className="px-3 py-1.5 rounded-lg gradient-bg-brand text-white text-xs font-bold hover:opacity-90">Save</button>
+              <button onClick={() => { onEdit(comment.id, editBody); setEditing(false); }} className="px-3 py-1.5 bg-brand-red text-white text-xs font-black uppercase tracking-wider hover:bg-red-700 transition-all">Save</button>
               <button onClick={() => { setEditing(false); setEditBody(comment.body); }} className="px-3 py-1.5 rounded-lg bg-gray-100 text-text-muted text-xs font-bold hover:bg-gray-200">Cancel</button>
             </div>
           </div>
@@ -432,8 +432,8 @@ export default function CommentSection({ page, compact = false }: { page: string
         </span>
       </div>
 
-      {/* Top-level form */}
-      {session ? (
+      {/* Top-level form — hidden when inline reply is open */}
+      {session && !replyingToId ? (
         <form onSubmit={handleSubmit} className="mb-5 pb-5 border-b border-gray-100">
           <div className="flex gap-3">
             {session.user?.image && (
