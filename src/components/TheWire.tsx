@@ -400,16 +400,20 @@ function PostForm({ onPost }: { onPost: () => void }) {
 }
 
 // ─── Main Wire Component ───
-export default function TheWire({ limit, showForm = true, showHotTake = true }: {
+type FilterType = "all" | "take" | "article" | "recap";
+
+export default function TheWire({ limit, showForm = true, showHotTake = true, showFilters = true }: {
   limit?: number;
   showForm?: boolean;
   showHotTake?: boolean;
+  showFilters?: boolean;
 }) {
   const [posts, setPosts] = useState<WirePost[]>([]);
   const [loading, setLoading] = useState(true);
   const [userVotes, setUserVotes] = useState<Record<string, string>>({});
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [hotTake, setHotTake] = useState<Take | null>(null);
+  const [filter, setFilter] = useState<FilterType>("all");
 
   const fetchAll = useCallback(async () => {
     const visitorId = getVisitorId();
@@ -471,11 +475,39 @@ export default function TheWire({ limit, showForm = true, showHotTake = true }: 
     }
   }
 
+  const FILTERS: { key: FilterType; label: string }[] = [
+    { key: "all", label: "All" },
+    { key: "take", label: "Takes" },
+    { key: "article", label: "Articles" },
+    { key: "recap", label: "Recaps" },
+  ];
+
+  const filteredPosts = filter === "all" ? posts : posts.filter((p) => p._type === filter);
+
   return (
     <div>
       {showForm && <PostForm onPost={fetchAll} />}
 
       {showHotTake && hotTake && <HotTakeOfTheDay take={hotTake} />}
+
+      {/* Filter buttons */}
+      {showFilters && !loading && posts.length > 0 && (
+        <div className="flex gap-0 mb-4 border-b border-gray-200">
+          {FILTERS.map((f) => (
+            <button
+              key={f.key}
+              onClick={() => setFilter(f.key)}
+              className={`px-4 py-2 text-[11px] font-black uppercase tracking-wider transition-colors ${
+                filter === f.key
+                  ? "text-brand-red border-b-2 border-brand-red -mb-[1px]"
+                  : "text-black/30 hover:text-black/60"
+              }`}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+      )}
 
       {loading ? (
         <div className="space-y-4">
@@ -487,11 +519,13 @@ export default function TheWire({ limit, showForm = true, showHotTake = true }: 
             </div>
           ))}
         </div>
-      ) : posts.length === 0 ? (
-        <p className="text-black/30 text-sm text-center py-8">Nothing on The Wire yet. Be the first to post.</p>
+      ) : filteredPosts.length === 0 ? (
+        <p className="text-black/30 text-sm text-center py-8">
+          {filter === "all" ? "Nothing on The Wire yet. Be the first to post." : `No ${filter}s yet.`}
+        </p>
       ) : (
         <div>
-          {posts.map((post) => {
+          {filteredPosts.map((post) => {
             const isExpanded = expandedId === post.id;
             const toggle = () => setExpandedId(isExpanded ? null : post.id);
 

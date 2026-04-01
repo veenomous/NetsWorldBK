@@ -174,9 +174,10 @@ function RecapTabs() {
           <div className="flex flex-col items-center justify-center h-full py-8">
             <p className="text-2xl font-black uppercase mb-2">No Recaps Yet</p>
             <p className="text-sm text-white/60">Write the first post-game breakdown.</p>
-            <Link href="/recaps" className="mt-4 bg-brand-red px-5 py-2 text-xs font-bold uppercase tracking-wider hover:bg-red-700 transition-all">
+            <Link href="/community" className="mt-4 bg-brand-red px-5 py-2 text-xs font-bold uppercase tracking-wider hover:bg-red-700 transition-all">
               Write Recap
             </Link>
+
           </div>
         ),
       },
@@ -190,7 +191,7 @@ function RecapTabs() {
       id: recap.id,
       label: `BKN ${won ? "W" : "L"} vs ${recap.opponent}`,
       content: (
-        <Link href={`/recaps/${recap.id}`} className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full h-full group">
+        <Link href={`/community`} className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full h-full group">
           <div className="flex flex-col justify-center">
             <div className="flex items-center gap-2 mb-2">
               <span className="text-2xl">{vibeEmoji[recap.vibe] || "🏀"}</span>
