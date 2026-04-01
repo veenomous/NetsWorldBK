@@ -7,11 +7,11 @@ import { useStandings, getNetsFromStandings } from "@/lib/useStandings";
 
 const navLinks = [
   { href: "/", label: "Dashboard", active: true },
-  { href: "/simulator", label: "Lottery Sim" },
+  { href: "/community", label: "The Press" },
+  { href: "/wire", label: "The Wire" },
+  { href: "/simulator", label: "Lottery Simulator" },
   { href: "/gm-mode", label: "War Room" },
   { href: "/trade-machine", label: "Trade Machine" },
-  { href: "/wire", label: "The Wire" },
-  { href: "/community", label: "The Press" },
 ];
 
 function UserButton() {
