@@ -194,7 +194,7 @@ export default function ArticleDetail({ id }: { id: string }) {
           <div className="relative">
             {editImagePreview ? (
               <div className="relative">
-                <img src={editImagePreview} alt="New image" className="w-full h-64 object-cover" />
+                <img src={editImagePreview} alt="New image" className="w-full max-h-[400px] object-cover object-top" />
                 <button type="button" onClick={() => { setEditImageFile(null); setEditImagePreview(null); }}
                   className="absolute top-3 right-3 bg-brand-red text-white w-7 h-7 flex items-center justify-center text-sm font-bold">×</button>
               </div>
@@ -224,7 +224,7 @@ export default function ArticleDetail({ id }: { id: string }) {
           </div>
         ) : (
           article.image_url && (
-            <img src={article.image_url} alt="" className="w-full h-64 object-cover" />
+            <img src={article.image_url} alt="" className="w-full max-h-[400px] object-cover object-top" />
           )
         )}
 

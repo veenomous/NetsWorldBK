@@ -178,14 +178,16 @@ function HeroTabs() {
       id: "recap",
       label: "Game Recap",
       content: recap ? (
-        <Link href="/community" className="grid grid-cols-2 gap-5 w-full h-full group">
-          {recap.image_url ? (
-            <img src={recap.image_url} alt="" className="rounded-lg w-full h-52 object-cover shadow-[0_0_20px_rgba(0,0,0,0.1)]" />
-          ) : (
-            <div className="rounded-lg w-full h-52 bg-gray-100 flex items-center justify-center">
-              <span className="text-5xl">{vibeEmoji[recap.vibe] || "🏀"}</span>
-            </div>
-          )}
+        <Link href="/community" className="grid grid-cols-1 sm:grid-cols-[1fr_1fr] gap-5 w-full group">
+          <div className="relative w-full h-0 pb-[60%] overflow-hidden rounded-lg bg-gray-100">
+            {recap.image_url ? (
+              <img src={recap.image_url} alt="" className="absolute inset-0 w-full h-full object-cover object-top" />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-5xl">{vibeEmoji[recap.vibe] || "🏀"}</span>
+              </div>
+            )}
+          </div>
           <div className="flex flex-col gap-y-2 justify-center">
             <div className="flex items-center gap-2">
               <span className="text-lg">{vibeEmoji[recap.vibe] || "🏀"}</span>
@@ -193,7 +195,7 @@ function HeroTabs() {
                 BKN {recap.nets_score} - {recap.opponent} {recap.opponent_score}
               </span>
             </div>
-            <h2 className="text-xl font-black mb-0 text-text-primary group-hover:text-brand-red transition-colors uppercase leading-tight">
+            <h2 className="text-lg font-black mb-0 text-text-primary group-hover:text-brand-red transition-colors uppercase leading-tight">
               {recap.headline}
             </h2>
             <p className="text-sm text-text-secondary line-clamp-3">{recap.summary}</p>
@@ -214,12 +216,14 @@ function HeroTabs() {
       id: "preview",
       label: "Game Preview",
       content: (
-        <div className="grid grid-cols-2 gap-5 w-full h-full">
-          <div className="rounded-lg w-full h-52 bg-black flex items-center justify-center">
-            <span className="text-6xl font-black text-white/10 font-display">BKN</span>
+        <div className="grid grid-cols-1 sm:grid-cols-[1fr_1fr] gap-5 w-full">
+          <div className="relative w-full h-0 pb-[60%] overflow-hidden rounded-lg bg-black">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-6xl font-black text-white/10 font-display">BKN</span>
+            </div>
           </div>
           <div className="flex flex-col gap-y-2 justify-center">
-            <h2 className="text-xl font-black text-text-primary uppercase leading-tight">
+            <h2 className="text-lg font-black text-text-primary uppercase leading-tight">
               {nextOpp}
             </h2>
             <p className="text-sm text-text-secondary">
@@ -236,17 +240,19 @@ function HeroTabs() {
       id: "news",
       label: "Top News",
       content: article ? (
-        <Link href={`/community/${article.id}`} className="grid grid-cols-2 gap-5 w-full h-full group">
-          {article.image_url ? (
-            <img src={article.image_url} alt="" className="rounded-lg w-full h-52 object-cover shadow-[0_0_20px_rgba(0,0,0,0.1)]" />
-          ) : (
-            <div className="rounded-lg w-full h-52 bg-gray-100 flex items-center justify-center">
-              <span className="text-4xl">📰</span>
-            </div>
-          )}
+        <Link href={`/community/article-${article.id}`} className="grid grid-cols-1 sm:grid-cols-[1fr_1fr] gap-5 w-full group">
+          <div className="relative w-full h-0 pb-[60%] overflow-hidden rounded-lg bg-gray-100">
+            {article.image_url ? (
+              <img src={article.image_url} alt="" className="absolute inset-0 w-full h-full object-cover object-top" />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-4xl">📰</span>
+              </div>
+            )}
+          </div>
           <div className="flex flex-col gap-y-2 justify-center">
             <span className="text-[9px] font-black tracking-[0.2em] uppercase text-accent-blue">{article.tag}</span>
-            <h2 className="text-xl font-black text-text-primary group-hover:text-brand-red transition-colors uppercase leading-tight">
+            <h2 className="text-lg font-black text-text-primary group-hover:text-brand-red transition-colors uppercase leading-tight">
               {article.title}
             </h2>
             <p className="text-sm text-text-secondary line-clamp-3">{article.body}</p>
