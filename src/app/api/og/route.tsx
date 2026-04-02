@@ -4,16 +4,20 @@ export const runtime = "edge";
 
 /* eslint-disable @next/next/no-img-element, jsx-a11y/alt-text */
 
-async function loadLogo(requestUrl: string): Promise<string> {
-  const base = new URL(requestUrl).origin;
-  const res = await fetch(`${base}/og-logo.png`);
-  const buf = await res.arrayBuffer();
-  const bytes = new Uint8Array(buf);
-  let binary = "";
-  for (let i = 0; i < bytes.length; i++) {
-    binary += String.fromCharCode(bytes[i]);
+async function loadImage(requestUrl: string, path: string): Promise<string> {
+  try {
+    const base = new URL(requestUrl).origin;
+    const res = await fetch(`${base}${path}`);
+    const buf = await res.arrayBuffer();
+    const bytes = new Uint8Array(buf);
+    let binary = "";
+    for (let i = 0; i < bytes.length; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return `data:image/png;base64,${btoa(binary)}`;
+  } catch {
+    return "";
   }
-  return `data:image/png;base64,${btoa(binary)}`;
 }
 
 export async function GET(request: Request) {
@@ -25,38 +29,33 @@ export async function GET(request: Request) {
   const player = url.searchParams.get("player") || "";
   const percentile = url.searchParams.get("percentile") || "65";
 
-  let logoSrc = "";
-  try {
-    logoSrc = await loadLogo(request.url);
-  } catch {
-    // Will fall back to text
-  }
+  const logoSrc = await loadImage(request.url, "/FAV.png");
+  const cacheHeaders = { "Cache-Control": "public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400" };
+
+  const RED = "#E43C3E";
+  const BLUE = "#0047AB";
 
   const logo = logoSrc
-    ? <img src={logoSrc} width={150} height={150} />
-    : <div style={{ display: "flex", marginBottom: 16 }}><span style={{ fontSize: 36, fontWeight: 900, color: "#fff", marginRight: 8 }}>BK</span><span style={{ fontSize: 36, fontWeight: 900, color: "#e87a2e" }}>GRIT</span></div>;
-
-  const bigLogo = logoSrc
-    ? <img src={logoSrc} width={250} height={250} />
-    : <div style={{ display: "flex", marginBottom: 20 }}><span style={{ fontSize: 56, fontWeight: 900, color: "#fff", marginRight: 12 }}>BK</span><span style={{ fontSize: 56, fontWeight: 900, color: "#e87a2e" }}>GRIT</span></div>;
-
-  const cacheHeaders = { "Cache-Control": "public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400" };
+    ? <img src={logoSrc} width={120} height={120} />
+    : <div style={{ display: "flex", fontSize: 48, fontWeight: 900, color: "#fff" }}>BK GRIT</div>;
 
   if (type === "lottery") {
     const pickNum = parseInt(pick);
-    const pickColor = pickNum === 1 ? "#ffc312" : pickNum <= 3 ? "#00d68f" : "#94949e";
+    const pickColor = pickNum === 1 ? "#16a34a" : pickNum <= 3 ? BLUE : "#888";
 
     return new ImageResponse(
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", backgroundColor: "#0c0c0f", padding: 60 }}>
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: 60 }}>
+      <div style={{ display: "flex", width: "100%", height: "100%", backgroundColor: "#000", color: "#fff" }}>
+        {/* Left side */}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "40%", borderRight: `6px solid ${RED}` }}>
           {logo}
-          <div style={{ display: "flex", fontSize: 16, color: "#5c5c66", marginTop: 16 }}>bkgrit.com</div>
+          <div style={{ display: "flex", fontSize: 14, color: "#666", marginTop: 16, letterSpacing: 4 }}>BKGRIT.COM</div>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <div style={{ display: "flex", fontSize: 16, color: "#94949e", marginBottom: 8 }}>NBA DRAFT LOTTERY RESULT</div>
-          <div style={{ display: "flex", fontSize: 160, fontWeight: 900, color: pickColor }}>#{pick}</div>
-          <div style={{ display: "flex", fontSize: 32, fontWeight: 700, color: "#fff", marginTop: 4 }}>BROOKLYN NETS</div>
-          <div style={{ display: "flex", fontSize: 18, color: "#5c5c66", marginTop: 20 }}>Can you beat this? Try at bkgrit.com</div>
+        {/* Right side */}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "60%" }}>
+          <div style={{ display: "flex", fontSize: 14, color: "#666", letterSpacing: 4 }}>NBA DRAFT LOTTERY</div>
+          <div style={{ display: "flex", fontSize: 180, fontWeight: 900, color: pickColor, lineHeight: 1 }}>#{pick}</div>
+          <div style={{ display: "flex", fontSize: 32, fontWeight: 900, color: "#fff" }}>BROOKLYN NETS</div>
+          <div style={{ display: "flex", fontSize: 14, color: "#666", marginTop: 20 }}>Run yours at bkgrit.com/simulator</div>
         </div>
       </div>,
       { width: 1200, height: 630, headers: cacheHeaders },
@@ -65,35 +64,42 @@ export async function GET(request: Request) {
 
   if (type === "gm") {
     const scoreNum = parseInt(score);
-    const scoreColor = scoreNum >= 80 ? "#00d68f" : scoreNum >= 60 ? "#ffc312" : "#ff4757";
-    const playerText = player ? "Drafted: " + player : "";
+    const scoreColor = scoreNum >= 80 ? "#16a34a" : scoreNum >= 60 ? BLUE : RED;
 
     return new ImageResponse(
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", backgroundColor: "#0c0c0f", padding: 60 }}>
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: 60 }}>
+      <div style={{ display: "flex", width: "100%", height: "100%", backgroundColor: "#000", color: "#fff" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "40%", borderRight: `6px solid ${BLUE}` }}>
           {logo}
-          <div style={{ display: "flex", fontSize: 16, color: "#5c5c66", marginTop: 16 }}>bkgrit.com</div>
+          <div style={{ display: "flex", fontSize: 14, color: "#666", marginTop: 16, letterSpacing: 4 }}>BKGRIT.COM</div>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <div style={{ display: "flex", fontSize: 16, color: "#94949e", marginBottom: 8 }}>DRAFT WAR ROOM SCORE</div>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "60%" }}>
+          <div style={{ display: "flex", fontSize: 14, color: "#666", letterSpacing: 4 }}>WAR ROOM SCORE</div>
           <div style={{ display: "flex", alignItems: "baseline" }}>
-            <span style={{ fontSize: 120, fontWeight: 900, color: scoreColor, marginRight: 8 }}>{score}</span>
-            <span style={{ fontSize: 40, color: "#5c5c66", fontWeight: 700 }}>/100</span>
+            <span style={{ fontSize: 140, fontWeight: 900, color: scoreColor, lineHeight: 1 }}>{score}</span>
+            <span style={{ fontSize: 40, color: "#444", fontWeight: 700 }}>/100</span>
           </div>
-          <div style={{ display: "flex", fontSize: 28, fontWeight: 900, color: scoreColor, marginTop: 8 }}>Grade: {grade}</div>
-          <div style={{ display: "flex", fontSize: 22, color: "#fff", marginTop: 12 }}>{playerText}</div>
-          <div style={{ display: "flex", fontSize: 18, color: "#94949e", marginTop: 8 }}>Better than {percentile}% of Nets fans</div>
+          <div style={{ display: "flex", fontSize: 28, fontWeight: 900, color: scoreColor }}>Grade: {grade}</div>
+          {player && <div style={{ display: "flex", fontSize: 20, color: "#999", marginTop: 8 }}>Drafted: {player}</div>}
+          <div style={{ display: "flex", fontSize: 14, color: "#666", marginTop: 16 }}>Better than {percentile}% of fans</div>
         </div>
       </div>,
       { width: 1200, height: 630, headers: cacheHeaders },
     );
   }
 
+  // Default OG image
   return new ImageResponse(
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", backgroundColor: "#0c0c0f" }}>
-      {bigLogo}
-      <div style={{ display: "flex", fontSize: 28, color: "#94949e", marginTop: 16 }}>Brooklyn Grit — Nets Fanatic</div>
-      <div style={{ display: "flex", fontSize: 18, color: "#5c5c66", marginTop: 8 }}>Draft Tracker · Lottery Sim · War Room · Hot Takes</div>
+    <div style={{ display: "flex", width: "100%", height: "100%", backgroundColor: "#fff", color: "#000" }}>
+      {/* Left: white with logo */}
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "45%", borderRight: `8px solid ${RED}` }}>
+        {logo}
+      </div>
+      {/* Right: text */}
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", width: "55%", paddingLeft: 50 }}>
+        <div style={{ display: "flex", fontSize: 52, fontWeight: 900, letterSpacing: -2, lineHeight: 1 }}>BK GRIT</div>
+        <div style={{ display: "flex", fontSize: 20, color: RED, fontWeight: 700, marginTop: 8, letterSpacing: 2 }}>BROOKLYN NETS FAN HQ</div>
+        <div style={{ display: "flex", fontSize: 16, color: "#999", marginTop: 16 }}>The Wire · The Press · Lottery Sim · War Room · Trade Machine</div>
+      </div>
     </div>,
     { width: 1200, height: 630, headers: cacheHeaders },
   );

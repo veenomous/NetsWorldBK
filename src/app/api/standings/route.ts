@@ -52,7 +52,7 @@ interface StandingsTeam {
 }
 
 // ESPN public standings API — returns all 30 teams with current records
-async function fetchFromESPN(): Promise<Record<string, { team: string; abbrev: string; wins: number; losses: number }> | null> {
+async function fetchFromESPN(): Promise<Record<string, { team: string; abbrev: string; wins: number; losses: number; differential: number }> | null> {
   try {
     const res = await fetch(
       "https://site.api.espn.com/apis/v2/sports/basketball/nba/standings",
@@ -61,7 +61,7 @@ async function fetchFromESPN(): Promise<Record<string, { team: string; abbrev: s
     if (!res.ok) return null;
 
     const data = await res.json();
-    const records: Record<string, { team: string; abbrev: string; wins: number; losses: number }> = {};
+    const records: Record<string, { team: string; abbrev: string; wins: number; losses: number; differential: number }> = {};
 
     for (const conf of data?.children || []) {
       for (const entry of conf?.standings?.entries || []) {
@@ -69,7 +69,6 @@ async function fetchFromESPN(): Promise<Record<string, { team: string; abbrev: s
         const rawAbbrev = team.abbreviation;
         if (!rawAbbrev) continue;
 
-        // Normalize ESPN abbreviations to our standard
         const abbrev = ESPN_ABBREV_MAP[rawAbbrev] || rawAbbrev;
         if (!LOTTERY_ABBREVS.has(abbrev)) continue;
 
@@ -85,6 +84,7 @@ async function fetchFromESPN(): Promise<Record<string, { team: string; abbrev: s
           abbrev,
           wins: stats.wins || 0,
           losses: stats.losses || 0,
+          differential: stats.differential || 0,
         };
       }
     }
@@ -131,6 +131,14 @@ export async function GET() {
     // Try ESPN first (all teams), fall back to NBA scoreboard (partial)
     const liveRecords = await fetchFromESPN() || await fetchFromScoreboard();
 
+    // Build differential lookup from ESPN data
+    const diffMap: Record<string, number> = {};
+    if (liveRecords) {
+      for (const [abbrev, record] of Object.entries(liveRecords)) {
+        diffMap[abbrev] = (record as { differential?: number }).differential || 0;
+      }
+    }
+
     const allTeams: StandingsTeam[] = Object.entries(STATIC_FALLBACK).map(([abbrev, fallback]) => {
       const live = liveRecords?.[abbrev];
       const wins = live?.wins ?? fallback.wins;
@@ -146,16 +154,18 @@ export async function GET() {
       };
     });
 
-    // Sort by win percentage (lowest first) — matches ESPN's method
-    // This handles teams with different games played correctly
+    // Sort by win percentage (lowest first), then point differential (worst first)
+    // This matches ESPN's ordering for tied teams
     allTeams.sort((a, b) => {
       const aGames = a.wins + a.losses;
       const bGames = b.wins + b.losses;
       const aPct = aGames > 0 ? a.wins / aGames : 0;
       const bPct = bGames > 0 ? b.wins / bGames : 0;
       if (aPct !== bPct) return aPct - bPct;
-      // If same win%, more losses = worse record
-      return b.losses - a.losses;
+      // Tiebreaker: worse point differential = higher lottery position
+      const aDiff = diffMap[a.abbrev] || 0;
+      const bDiff = diffMap[b.abbrev] || 0;
+      return aDiff - bDiff;
     });
 
     // Assign lottery rank
