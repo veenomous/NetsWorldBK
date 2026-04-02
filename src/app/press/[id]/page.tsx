@@ -52,13 +52,16 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     }
   }
 
+  // Add cache buster to image URL so Twitter re-fetches
+  const cacheBustedImage = image.includes("?") ? `${image}&v=2` : `${image}?v=2`;
+
   return {
     title,
     description,
     openGraph: {
       title,
       description,
-      images: [image],
+      images: [cacheBustedImage],
       type: "article",
       siteName: "BK Grit",
     },
@@ -66,7 +69,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       card: "summary_large_image",
       title,
       description,
-      images: [image],
+      images: [cacheBustedImage],
     },
   };
 }
