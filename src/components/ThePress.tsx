@@ -4,10 +4,8 @@ import { useState, useEffect, useCallback } from "react";
 import { useSession, signIn } from "next-auth/react";
 import { supabase } from "@/lib/supabase";
 import { getNetsTeam } from "@/data/rosters";
-import CommentSection from "@/components/CommentSection";
 import Link from "next/link";
 
-// ─── Types ───
 type Category = "Game Recap" | "Game Preview" | "News" | "Opinion";
 
 interface Article {
@@ -43,14 +41,15 @@ const VIBES = [
 ];
 const vibeEmoji: Record<string, string> = { hyped: "🔥", solid: "💪", meh: "😐", pain: "😭", tank: "🪖" };
 
-function timeAgo(dateStr: string): string {
-  const diff = Date.now() - new Date(dateStr).getTime();
-  const mins = Math.floor(diff / 60000);
-  if (mins < 1) return "just now";
-  if (mins < 60) return `${mins}m`;
-  const hrs = Math.floor(mins / 60);
-  if (hrs < 24) return `${hrs}h`;
-  return `${Math.floor(hrs / 24)}d`;
+const TAG_COLORS: Record<string, string> = {
+  "Game Recap": "bg-brand-red text-white",
+  "Game Preview": "bg-accent-blue text-white",
+  "News": "bg-accent-blue text-white",
+  "Opinion": "bg-black text-white",
+};
+
+function formatDate(dateStr: string): string {
+  return new Date(dateStr).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }).toUpperCase();
 }
 
 // ─── Writer Form ───
@@ -63,7 +62,6 @@ function WriterForm({ onPublish }: { onPublish: () => void }) {
   const [body, setBody] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  // Recap-specific
   const [opponent, setOpponent] = useState("ATL");
   const [netsScore, setNetsScore] = useState("");
   const [oppScore, setOppScore] = useState("");
@@ -72,13 +70,7 @@ function WriterForm({ onPublish }: { onPublish: () => void }) {
   const [vibe, setVibe] = useState("meh");
   const [submitting, setSubmitting] = useState(false);
 
-  if (!session) {
-    return (
-      <button onClick={() => signIn("twitter")} className="w-full py-4 bg-gray-50 border border-gray-200 text-sm font-bold text-black/30 uppercase tracking-wider hover:border-brand-red/30 hover:text-brand-red transition-all">
-        Sign in with X to write
-      </button>
-    );
-  }
+  if (!session) return null;
 
   function handleImageSelect(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -92,7 +84,7 @@ function WriterForm({ onPublish }: { onPublish: () => void }) {
     const ext = imageFile.name.split(".").pop();
     const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
     const { error } = await supabase.storage.from("images").upload(fileName, imageFile);
-    if (error) { console.error("Upload error:", error); return null; }
+    if (error) return null;
     const { data } = supabase.storage.from("images").getPublicUrl(fileName);
     return data.publicUrl;
   }
@@ -114,8 +106,7 @@ function WriterForm({ onPublish }: { onPublish: () => void }) {
         headline: title.trim(), summary: body.trim(), opponent,
         nets_score: parseInt(netsScore), opponent_score: parseInt(oppScore),
         mvp, rating, vibe, game_date: new Date().toISOString().slice(0, 10),
-        user_id: userData.id,
-        ...(imageUrl ? { image_url: imageUrl } : {}),
+        user_id: userData.id, ...(imageUrl ? { image_url: imageUrl } : {}),
       });
       if (error) { alert(error.message); setSubmitting(false); return; }
     } else {
@@ -132,113 +123,83 @@ function WriterForm({ onPublish }: { onPublish: () => void }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white border border-gray-200 mb-8">
+    <form onSubmit={handleSubmit} className="border-l-8 border-black pl-8 mb-16">
       {/* Category selector */}
-      <div className="flex border-b border-gray-200">
+      <div className="flex gap-3 mb-6 flex-wrap">
         {CATEGORIES.map((c) => (
-          <button
-            key={c}
-            type="button"
-            onClick={() => setCategory(c)}
-            className={`flex-1 py-3 text-[11px] font-black uppercase tracking-wider transition-colors ${
-              category === c ? "text-white bg-brand-red" : "text-black/30 hover:text-black/60 bg-gray-50"
-            }`}
-          >
+          <button key={c} type="button" onClick={() => setCategory(c)}
+            className={`px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all ${
+              category === c ? (TAG_COLORS[c] || "bg-black text-white") : "bg-gray-100 text-black/25 hover:text-black/50"
+            }`}>
             {c}
           </button>
         ))}
       </div>
 
-      <div className="p-5 sm:p-6 space-y-4">
-        {/* Title */}
-        <input
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder={category === "Game Recap" ? "Headline — e.g. Clowney goes off in tank-mode W" : "Title"}
-          maxLength={150}
-          className="w-full text-xl font-black text-text-primary bg-transparent outline-none border-b border-gray-200 pb-3 placeholder:font-normal placeholder:text-black/15"
-        />
+      <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Headline..." maxLength={150}
+        className="w-full text-3xl sm:text-4xl font-black text-black bg-transparent outline-none border-b-2 border-gray-200 pb-3 mb-4 uppercase tracking-tighter placeholder:normal-case placeholder:font-normal placeholder:text-black/15 font-display" />
 
-        {/* Recap-specific fields */}
-        {category === "Game Recap" && (
-          <>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              <select value={opponent} onChange={(e) => setOpponent(e.target.value)} className="bg-gray-50 border border-gray-200 px-3 py-2.5 text-sm outline-none">
-                {NBA_TEAMS.map((t) => <option key={t} value={t}>{t}</option>)}
-              </select>
-              <input type="number" value={netsScore} onChange={(e) => setNetsScore(e.target.value)} placeholder="BKN Score" className="bg-gray-50 border border-gray-200 px-3 py-2.5 text-sm outline-none" />
-              <input type="number" value={oppScore} onChange={(e) => setOppScore(e.target.value)} placeholder="OPP Score" className="bg-gray-50 border border-gray-200 px-3 py-2.5 text-sm outline-none" />
-              <select value={mvp} onChange={(e) => setMvp(e.target.value)} className="bg-gray-50 border border-gray-200 px-3 py-2.5 text-sm outline-none">
-                {netsRoster.map((p) => <option key={p} value={p}>{p}</option>)}
-              </select>
+      {category === "Game Recap" && (
+        <>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+            <select value={opponent} onChange={(e) => setOpponent(e.target.value)} className="bg-gray-50 border border-gray-200 px-3 py-2.5 text-sm outline-none">
+              {NBA_TEAMS.map((t) => <option key={t} value={t}>{t}</option>)}
+            </select>
+            <input type="number" value={netsScore} onChange={(e) => setNetsScore(e.target.value)} placeholder="BKN" className="bg-gray-50 border border-gray-200 px-3 py-2.5 text-sm outline-none" />
+            <input type="number" value={oppScore} onChange={(e) => setOppScore(e.target.value)} placeholder="OPP" className="bg-gray-50 border border-gray-200 px-3 py-2.5 text-sm outline-none" />
+            <select value={mvp} onChange={(e) => setMvp(e.target.value)} className="bg-gray-50 border border-gray-200 px-3 py-2.5 text-sm outline-none">
+              {netsRoster.map((p) => <option key={p} value={p}>{p}</option>)}
+            </select>
+          </div>
+          <div className="flex items-center gap-4 mb-4">
+            <div className="flex gap-1">
+              {VIBES.map((v) => (
+                <button key={v.key} type="button" onClick={() => setVibe(v.key)}
+                  className={`w-9 h-9 text-lg flex items-center justify-center transition-all ${vibe === v.key ? "bg-brand-red/10 border-2 border-brand-red" : "bg-gray-50 border border-gray-200"}`}>
+                  {v.emoji}
+                </button>
+              ))}
             </div>
-            <div className="flex items-center gap-4">
-              <div className="flex gap-1">
-                {VIBES.map((v) => (
-                  <button key={v.key} type="button" onClick={() => setVibe(v.key)}
-                    className={`w-9 h-9 text-lg flex items-center justify-center transition-all ${vibe === v.key ? "bg-brand-red/10 border-2 border-brand-red" : "bg-gray-50 border border-gray-200"}`}>
-                    {v.emoji}
-                  </button>
-                ))}
-              </div>
-              <div className="flex items-center gap-2 ml-auto">
-                <span className="text-[10px] uppercase tracking-wider text-black/30 font-bold">Rating</span>
-                <input type="range" min={1} max={10} value={rating} onChange={(e) => setRating(parseInt(e.target.value))} className="w-24" />
-                <span className="text-sm font-black text-brand-orange w-6 text-center">{rating}</span>
-              </div>
+            <div className="flex items-center gap-2 ml-auto">
+              <span className="text-[10px] uppercase tracking-wider text-black/30 font-bold">Rating</span>
+              <input type="range" min={1} max={10} value={rating} onChange={(e) => setRating(parseInt(e.target.value))} className="w-24" />
+              <span className="text-sm font-black text-brand-red w-6 text-center">{rating}</span>
             </div>
-          </>
-        )}
+          </div>
+        </>
+      )}
 
-        {/* Body */}
-        <textarea
-          value={body}
-          onChange={(e) => setBody(e.target.value)}
-          placeholder="Write your piece..."
-          rows={10}
-          maxLength={5000}
-          className="w-full bg-transparent text-[15px] leading-relaxed text-text-primary outline-none resize-none placeholder:text-black/15"
-        />
+      <textarea value={body} onChange={(e) => setBody(e.target.value)} placeholder="Write your piece..."
+        rows={8} maxLength={5000}
+        className="w-full bg-transparent text-lg leading-relaxed outline-none resize-none placeholder:text-black/15 mb-4" />
 
-        {/* Image */}
-        <div>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-4">
           {imagePreview ? (
-            <div className="relative inline-block">
-              <img src={imagePreview} alt="Preview" className="h-32 object-cover rounded-lg border border-gray-200" />
-              <button type="button" onClick={() => { setImageFile(null); setImagePreview(null); }} className="absolute -top-2 -right-2 bg-brand-red text-white w-5 h-5 flex items-center justify-center text-xs font-bold rounded-full">×</button>
+            <div className="relative">
+              <img src={imagePreview} alt="" className="h-16 object-cover border border-gray-200" />
+              <button type="button" onClick={() => { setImageFile(null); setImagePreview(null); }} className="absolute -top-2 -right-2 bg-brand-red text-white w-5 h-5 flex items-center justify-center text-xs font-bold">×</button>
             </div>
           ) : (
-            <label className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-black/25 hover:text-brand-red transition-colors cursor-pointer border border-dashed border-gray-300 px-4 py-3 rounded-lg">
-              <span className="material-symbols-outlined text-base">add_photo_alternate</span>
-              Add Featured Image
+            <label className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-black/25 hover:text-brand-red transition-colors cursor-pointer">
+              <span className="material-symbols-outlined text-sm">add_photo_alternate</span>
+              Add Image
               <input type="file" accept="image/*" onChange={handleImageSelect} className="hidden" />
             </label>
           )}
-        </div>
-
-        {/* Footer */}
-        <div className="flex items-center justify-between pt-3 border-t border-gray-100">
           <span className="text-[10px] text-black/15">{body.length}/5000</span>
-          <button
-            type="submit"
-            disabled={!title.trim() || !body.trim() || submitting}
-            className="bg-brand-red text-white px-6 py-2.5 font-black text-[11px] uppercase tracking-wider disabled:opacity-30 hover:bg-red-700 transition-all"
-          >
-            {submitting ? "Publishing..." : "Publish"}
-          </button>
         </div>
+        <button type="submit" disabled={!title.trim() || !body.trim() || submitting}
+          className="bg-black text-white px-8 py-3 font-black text-sm uppercase tracking-wider disabled:opacity-20 hover:bg-gray-800 transition-all font-display">
+          {submitting ? "Publishing..." : "Publish"}
+        </button>
       </div>
     </form>
   );
 }
 
-// ─── Article Card ───
-function PressCard({ type, data, currentUserHandle, onDelete }: {
-  type: "article" | "recap";
-  data: Article | GameRecap;
-  currentUserHandle: string | null;
-  onDelete: (type: "article" | "recap", id: string) => void;
-}) {
+// ─── Press Article Card ───
+function PressCard({ type, data }: { type: "article" | "recap"; data: Article | GameRecap }) {
   const isRecap = type === "recap";
   const recap = isRecap ? (data as GameRecap) : null;
   const article = !isRecap ? (data as Article) : null;
@@ -248,63 +209,65 @@ function PressCard({ type, data, currentUserHandle, onDelete }: {
   const imageUrl = data.image_url;
   const user = data.user;
   const tag = recap ? "Game Recap" : (article?.tag || "News");
-  const isOwner = currentUserHandle === user.x_handle;
+  const tagColor = TAG_COLORS[tag] || "bg-black text-white";
 
   return (
-    <div className="border-b border-gray-100 py-5">
-      <div className="flex gap-5">
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1.5">
-            <span className={`text-[9px] font-black tracking-[0.15em] uppercase ${tag === "Game Recap" ? "text-brand-red" : tag === "Game Preview" ? "text-accent-green" : tag === "Opinion" ? "text-accent-purple" : "text-accent-blue"}`}>
-              {tag}
-            </span>
-            <span className="text-[9px] text-black/15">{timeAgo(data.created_at)}</span>
-          </div>
-
-          {recap && (
-            <div className="flex items-center gap-2 mb-1">
-              <span className="text-sm">{vibeEmoji[recap.vibe] || "🏀"}</span>
-              <span className={`text-sm font-black ${recap.nets_score > recap.opponent_score ? "text-accent-green" : "text-brand-red"}`}>
-                BKN {recap.nets_score} - {recap.opponent} {recap.opponent_score}
-              </span>
-              <span className="text-[9px] font-bold text-black/20">MVP: {recap.mvp}</span>
-            </div>
-          )}
-
-          <Link href={`/community/${type}-${data.id}`} className="group">
-            <h3 className="text-base font-black uppercase tracking-tight leading-snug group-hover:text-brand-red transition-colors">
-              {title}
-            </h3>
-          </Link>
-          <p className="text-sm text-black/40 line-clamp-2 mt-1 leading-relaxed">{body}</p>
-
-          <div className="flex items-center gap-2 mt-2">
-            {user.x_avatar && <img src={user.x_avatar} alt="" className="w-4 h-4 rounded-full" />}
-            <span className="text-[9px] font-bold text-black/25 uppercase tracking-wider">@{user.x_handle}</span>
-            {isOwner && (
-              <div className="ml-auto flex items-center gap-2">
-                <Link href={`/community/${type}-${data.id}`} className="text-[9px] font-bold uppercase tracking-wider text-black/20 hover:text-accent-blue transition-colors">Edit</Link>
-                <button onClick={() => { if (confirm("Delete this post?")) onDelete(type, data.id); }} className="text-[9px] font-bold uppercase tracking-wider text-black/20 hover:text-brand-red transition-colors">Delete</button>
-              </div>
-            )}
-          </div>
+    <article className="group">
+      <div className="flex flex-col gap-5">
+        {/* Meta */}
+        <div className="flex items-center gap-4">
+          <span className={`${tagColor} px-3 py-1 text-[10px] font-bold tracking-[0.2em] uppercase`}>{tag}</span>
+          <span className="text-black/30 text-[11px] font-semibold tracking-[0.15em] uppercase">{formatDate(data.created_at)}</span>
         </div>
 
+        {/* Recap score */}
+        {recap && (
+          <div className="flex items-center gap-3">
+            <span className="text-xl">{vibeEmoji[recap.vibe] || "🏀"}</span>
+            <span className={`text-lg font-black ${recap.nets_score > recap.opponent_score ? "text-accent-green" : "text-brand-red"}`}>
+              BKN {recap.nets_score} - {recap.opponent} {recap.opponent_score}
+            </span>
+            <span className="text-[10px] font-bold text-black/20 uppercase tracking-wider">MVP: {recap.mvp}</span>
+          </div>
+        )}
+
+        {/* Title */}
+        <Link href={`/community/${type}-${data.id}`}>
+          <h2 className="text-3xl sm:text-4xl font-bold uppercase tracking-tighter leading-tight group-hover:text-brand-red transition-colors cursor-pointer font-display">
+            {title}
+          </h2>
+        </Link>
+
+        {/* Image */}
         {imageUrl && (
-          <Link href={`/community/${type}-${data.id}`} className="shrink-0 hidden sm:block">
-            <img src={imageUrl} alt="" className="w-32 h-24 object-cover object-top" />
+          <Link href={`/community/${type}-${data.id}`} className="block w-full aspect-[21/9] bg-gray-100 overflow-hidden">
+            <img src={imageUrl} alt="" className="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" />
           </Link>
         )}
+
+        {/* Body preview */}
+        <p className="text-base sm:text-lg text-black/60 leading-relaxed max-w-2xl line-clamp-3">{body}</p>
+
+        {/* Author + Read More */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            {user.x_avatar && <img src={user.x_avatar} alt="" className="w-5 h-5 rounded-full" />}
+            <span className="text-[10px] font-bold text-black/25 uppercase tracking-wider">@{user.x_handle}</span>
+          </div>
+          <Link href={`/community/${type}-${data.id}`}
+            className="inline-flex items-center gap-2 text-brand-red font-bold tracking-tighter uppercase text-sm border-b-2 border-brand-red pb-0.5 hover:gap-3 transition-all">
+            Read More
+            <span className="material-symbols-outlined text-sm">arrow_forward</span>
+          </Link>
+        </div>
       </div>
-    </div>
+    </article>
   );
 }
 
 // ─── Main Press Component ───
 export default function ThePress({ showForm = true }: { showForm?: boolean }) {
   const { data: session } = useSession();
-  const currentUserHandle = (session?.user as { xHandle?: string })?.xHandle || null;
-
   const [articles, setArticles] = useState<Article[]>([]);
   const [recaps, setRecaps] = useState<GameRecap[]>([]);
   const [loading, setLoading] = useState(true);
@@ -323,7 +286,6 @@ export default function ThePress({ showForm = true }: { showForm?: boolean }) {
 
   useEffect(() => { fetchAll(); }, [fetchAll]);
 
-  // Merge and sort
   type PressItem = { type: "article" | "recap"; data: Article | GameRecap; date: number };
   const allItems: PressItem[] = [
     ...articles.map((a) => ({ type: "article" as const, data: a, date: new Date(a.created_at).getTime() })),
@@ -336,21 +298,13 @@ export default function ThePress({ showForm = true }: { showForm?: boolean }) {
     return false;
   });
 
-  async function handleDelete(type: "article" | "recap", id: string) {
-    if (type === "article") {
-      await supabase.from("articles").delete().eq("id", id);
-    } else {
-      await supabase.from("game_recaps").delete().eq("id", id);
-    }
-    fetchAll();
-  }
-
   return (
     <div>
+      {/* Write button */}
       {showForm && (
         editorOpen ? (
-          <div className="mb-6">
-            <div className="flex justify-end mb-2">
+          <div className="mb-12">
+            <div className="flex justify-end mb-4">
               <button onClick={() => setEditorOpen(false)} className="text-[10px] font-bold uppercase tracking-wider text-black/30 hover:text-brand-red transition-colors">
                 Close Editor
               </button>
@@ -360,44 +314,47 @@ export default function ThePress({ showForm = true }: { showForm?: boolean }) {
         ) : (
           <button
             onClick={() => session ? setEditorOpen(true) : signIn("twitter")}
-            className="w-full mb-6 py-3 bg-brand-red text-white font-black text-[12px] uppercase tracking-wider hover:bg-red-700 transition-all"
+            className="mb-12 bg-black text-white px-8 py-4 font-display font-black text-lg uppercase tracking-tighter hover:bg-gray-800 transition-all flex items-center gap-3 group"
           >
             {session ? "Write an Article" : "Sign in to Write"}
+            <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">edit</span>
           </button>
         )
       )}
 
-      {/* Filter */}
-      <div className="flex gap-0 mb-4 border-b border-gray-200">
+      {/* Filters */}
+      <div className="flex gap-3 mb-12 flex-wrap">
         {(["all", ...CATEGORIES] as ("all" | Category)[]).map((f) => (
-          <button
-            key={f}
-            onClick={() => setFilter(f)}
-            className={`px-4 py-2 text-[11px] font-black uppercase tracking-wider transition-colors ${
-              filter === f ? "text-brand-red border-b-2 border-brand-red -mb-[1px]" : "text-black/25 hover:text-black/50"
-            }`}
-          >
+          <button key={f} onClick={() => setFilter(f)}
+            className={`px-3 py-1 text-[11px] font-bold uppercase tracking-wider transition-all ${
+              filter === f ? "bg-black text-white" : "bg-gray-100 text-black/25 hover:text-black/50"
+            }`}>
             {f === "all" ? "All" : f}
           </button>
         ))}
       </div>
 
+      {/* Feed */}
       {loading ? (
-        <div className="space-y-4">
+        <div className="space-y-16">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="py-5 border-b border-gray-100">
-              <div className="h-3 w-20 bg-gray-100 animate-pulse-soft mb-2" />
-              <div className="h-5 w-3/4 bg-gray-50 animate-pulse-soft mb-1" />
-              <div className="h-4 w-full bg-gray-50 animate-pulse-soft" />
+            <div key={i}>
+              <div className="h-4 w-32 bg-gray-100 animate-pulse-soft mb-4" />
+              <div className="h-10 w-full bg-gray-50 animate-pulse-soft mb-3" />
+              <div className="h-5 w-3/4 bg-gray-50 animate-pulse-soft" />
             </div>
           ))}
         </div>
       ) : filtered.length === 0 ? (
-        <p className="text-black/20 text-sm text-center py-10">No articles yet{filter !== "all" ? ` in ${filter}` : ""}. Be the first to write.</p>
+        <div className="py-16 text-center">
+          <p className="text-black/15 font-display font-bold italic uppercase text-2xl">
+            {filter === "all" ? "No articles yet. Be the first to write." : `No ${filter} articles yet.`}
+          </p>
+        </div>
       ) : (
-        <div>
+        <div className="flex flex-col gap-20">
           {filtered.map((item) => (
-            <PressCard key={`${item.type}-${item.data.id}`} type={item.type} data={item.data} currentUserHandle={currentUserHandle} onDelete={handleDelete} />
+            <PressCard key={`${item.type}-${item.data.id}`} type={item.type} data={item.data} />
           ))}
         </div>
       )}
