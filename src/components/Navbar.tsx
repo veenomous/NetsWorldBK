@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useStandings, getNetsFromStandings } from "@/lib/useStandings";
 
 const navLinks = [
-  { href: "/", label: "Dashboard", active: true },
+  { href: "/", label: "Dashboard" },
   { href: "/community", label: "The Press" },
   { href: "/wire", label: "The Wire" },
   { href: "/simulator", label: "Lottery Simulator" },
@@ -62,33 +63,37 @@ function UserButton() {
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
   const { lottery, isLoading } = useStandings();
   const nets = getNetsFromStandings(lottery);
 
   return (
-    <nav className="bg-black text-white flex justify-between items-center w-full px-4 sm:px-6 py-1 sticky top-0 z-50">
+    <nav className="bg-black text-white flex justify-between items-center w-full px-4 sm:px-6 py-0.5 sticky top-0 z-50">
       {/* Draft badge (replaces BK GRIT text) */}
-      <Link href="/" className="shrink-0 bg-brand-red px-3 py-1.5">
-        <span className="font-display text-white font-black tracking-[0.1em] uppercase text-xs sm:text-sm">
+      <Link href="/" className="shrink-0 bg-brand-red px-4 py-2">
+        <span className="font-display text-white font-black tracking-[0.1em] uppercase text-sm sm:text-base">
           {isLoading ? "BK GRIT" : nets ? `#${nets.lotteryRank} PICK · ${nets.wins}-${nets.losses} · ${nets.gamesRemaining}G LEFT` : "BK GRIT"}
         </span>
       </Link>
 
       {/* Desktop nav */}
       <div className="hidden md:flex items-center gap-5">
-        {navLinks.map((link) => (
+        {navLinks.map((link) => {
+          const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+          return (
           <Link
             key={link.href}
             href={link.href}
             className={`font-display uppercase tracking-tighter font-bold text-sm transition-colors ${
-              link.active
-                ? "text-brand-red"
+              isActive
+                ? "text-brand-red border-b-2 border-brand-red pb-0.5"
                 : "text-white/60 hover:text-white"
             }`}
           >
             {link.label}
           </Link>
-        ))}
+          );
+        })}
       </div>
 
       {/* Right */}
