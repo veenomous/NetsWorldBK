@@ -343,7 +343,7 @@ export default function LotterySimulator() {
               Understanding the &quot;smoothing&quot; of lottery odds introduced in 2019 and how it impacts Brooklyn&apos;s asset accumulation strategy for the current rebuild.
             </p>
           </div>
-          <Link href="/community" className="bg-white p-8 border-t-[6px] border-accent-blue group">
+          <Link href="/press" className="bg-white p-8 border-t-[6px] border-accent-blue group">
             <h4 className="text-xl font-black italic font-display uppercase mb-3 group-hover:text-accent-blue transition-colors">Prospect Watch</h4>
             <p className="text-sm text-black/40 leading-relaxed">
               Early looks at the top of the board: from French wings to defensive anchors. Who fits the Brooklyn grit identity?

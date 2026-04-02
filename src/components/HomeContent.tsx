@@ -431,8 +431,8 @@ function HeroTabs() {
       id: "news",
       label: "Top News",
       content: news
-        ? tabCard({ href: `/community/article-${news.id}`, imageUrl: news.image_url, placeholderText: "NEWS", tag: "News", tagColor: "text-accent-blue", title: news.title, body: news.body, author: news.user?.x_handle })
-        : emptyCard("No News Yet", "Write Article", "/community", "bg-accent-blue"),
+        ? tabCard({ href: `/press/article-${news.id}`, imageUrl: news.image_url, placeholderText: "NEWS", tag: "News", tagColor: "text-accent-blue", title: news.title, body: news.body, author: news.user?.x_handle })
+        : emptyCard("No News Yet", "Write Article", "/press", "bg-accent-blue"),
     },
     {
       id: "preview",
@@ -452,7 +452,7 @@ function HeroTabs() {
       label: `Game Recap${recap ? ` (Nets vs ${recapOpponent})` : ""}`,
       content: recap
         ? tabCard({
-            href: `/community/recap-${recap.id}`,
+            href: `/press/recap-${recap.id}`,
             imageUrl: recap.image_url,
             placeholderText: "RECAP",
             meta: (
@@ -467,14 +467,14 @@ function HeroTabs() {
             body: recap.summary,
             author: recap.user?.x_handle,
           })
-        : emptyCard("No Recaps Yet", "Write Recap", "/community", "bg-brand-red"),
+        : emptyCard("No Recaps Yet", "Write Recap", "/press", "bg-brand-red"),
     },
     {
       id: "opinion",
       label: "Opinion",
       content: opinion
-        ? tabCard({ href: `/community/article-${opinion.id}`, imageUrl: opinion.image_url, placeholderText: "OPINION", tag: "Opinion", tagColor: "text-accent-purple", title: opinion.title, body: opinion.body, author: opinion.user?.x_handle })
-        : emptyCard("No Opinions Yet", "Share Your Take", "/community", "bg-accent-purple"),
+        ? tabCard({ href: `/press/article-${opinion.id}`, imageUrl: opinion.image_url, placeholderText: "OPINION", tag: "Opinion", tagColor: "text-accent-purple", title: opinion.title, body: opinion.body, author: opinion.user?.x_handle })
+        : emptyCard("No Opinions Yet", "Share Your Take", "/press", "bg-accent-purple"),
     },
   ];
 

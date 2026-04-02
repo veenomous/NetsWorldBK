@@ -152,7 +152,7 @@ export default function ArticleDetail({ id }: { id: string }) {
     } else {
       await supabase.from("articles").delete().eq("id", article.id);
     }
-    router.push("/community");
+    router.push("/press");
   }
 
   if (loading) {
@@ -169,7 +169,7 @@ export default function ArticleDetail({ id }: { id: string }) {
     return (
       <div className="text-center py-16">
         <p className="text-text-muted text-lg">Post not found.</p>
-        <Link href="/community" className="text-brand-orange text-sm font-semibold mt-2 inline-block hover:underline">
+        <Link href="/press" className="text-brand-orange text-sm font-semibold mt-2 inline-block hover:underline">
           Back to The Press
         </Link>
       </div>
@@ -184,7 +184,7 @@ export default function ArticleDetail({ id }: { id: string }) {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 space-y-6">
-      <Link href="/community" className="text-text-muted text-sm hover:text-brand-red transition-colors">
+      <Link href="/press" className="text-text-muted text-sm hover:text-brand-red transition-colors">
         &larr; Back to The Press
       </Link>
 
@@ -301,7 +301,7 @@ export default function ArticleDetail({ id }: { id: string }) {
           <div className="mt-6 pt-5 border-t border-gray-200">
             <ShareOnX
               text={`"${article.title}" by @${article.user.x_handle} on BK Grit`}
-              url={`https://bkgrit.com/community/${article._isRecap ? "recap" : "article"}-${article.id}`}
+              url={`https://bkgrit.com/press/${article._isRecap ? "recap" : "article"}-${article.id}`}
             />
           </div>
         </div>

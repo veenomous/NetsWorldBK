@@ -232,7 +232,7 @@ function PressCard({ type, data }: { type: "article" | "recap"; data: Article | 
         )}
 
         {/* Title */}
-        <Link href={`/community/${type}-${data.id}`}>
+        <Link href={`/press/${type}-${data.id}`}>
           <h2 className="text-3xl sm:text-4xl font-bold uppercase tracking-tighter leading-tight group-hover:text-brand-red transition-colors cursor-pointer font-display">
             {title}
           </h2>
@@ -240,7 +240,7 @@ function PressCard({ type, data }: { type: "article" | "recap"; data: Article | 
 
         {/* Image */}
         {imageUrl && (
-          <Link href={`/community/${type}-${data.id}`} className="block w-full aspect-[21/9] bg-gray-100 overflow-hidden">
+          <Link href={`/press/${type}-${data.id}`} className="block w-full aspect-[21/9] bg-gray-100 overflow-hidden">
             <img src={imageUrl} alt="" className="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" />
           </Link>
         )}
@@ -254,7 +254,7 @@ function PressCard({ type, data }: { type: "article" | "recap"; data: Article | 
             {user.x_avatar && <img src={user.x_avatar} alt="" className="w-5 h-5 rounded-full" />}
             <span className="text-[10px] font-bold text-black/25 uppercase tracking-wider">@{user.x_handle}</span>
           </div>
-          <Link href={`/community/${type}-${data.id}`}
+          <Link href={`/press/${type}-${data.id}`}
             className="inline-flex items-center gap-2 text-brand-red font-bold tracking-tighter uppercase text-sm border-b-2 border-brand-red pb-0.5 hover:gap-3 transition-all">
             Read More
             <span className="material-symbols-outlined text-sm">arrow_forward</span>

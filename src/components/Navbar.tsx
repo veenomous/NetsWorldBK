@@ -8,7 +8,7 @@ import { useStandings, getNetsFromStandings } from "@/lib/useStandings";
 
 const navLinks = [
   { href: "/", label: "Dashboard" },
-  { href: "/community", label: "The Press" },
+  { href: "/press", label: "The Press" },
   { href: "/wire", label: "The Wire" },
   { href: "/simulator", label: "Lottery Simulator" },
   { href: "/gm-mode", label: "War Room" },
@@ -71,8 +71,8 @@ export default function Navbar() {
     <nav className="bg-black text-white flex justify-between items-center w-full px-4 sm:px-6 py-0.5 sticky top-0 z-50">
       {/* Draft badge (replaces BK GRIT text) */}
       <Link href="/" className="shrink-0 bg-brand-red px-4 py-2">
-        <span className="font-display text-white font-black tracking-[0.1em] uppercase text-sm sm:text-base">
-          {isLoading ? "BK GRIT" : nets ? `#${nets.lotteryRank} PICK · ${nets.wins}-${nets.losses} · ${nets.gamesRemaining}G LEFT` : "BK GRIT"}
+        <span className="font-display text-white font-black tracking-[0.1em] uppercase text-sm sm:text-base whitespace-nowrap">
+          {isLoading ? "#\u2009—\u2009PICK · —-— · —G LEFT" : nets ? `#${nets.lotteryRank} PICK · ${nets.wins}-${nets.losses} · ${nets.gamesRemaining}G LEFT` : "BK GRIT"}
         </span>
       </Link>
 
