@@ -55,7 +55,7 @@ const AnimatedTabs = ({
       </div>
 
       {/* Content area */}
-      <div className="p-5 bg-white text-text-primary shadow-[0_0_20px_rgba(0,0,0,0.08)] rounded-xl min-h-[220px] h-full">
+      <div className="p-5 bg-white text-text-primary shadow-[0_0_20px_rgba(0,0,0,0.08)] rounded-xl min-h-[280px] h-full">
         {tabs.map(
           (tab) =>
             activeTab === tab.id && (

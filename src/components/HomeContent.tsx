@@ -395,7 +395,7 @@ function HeroTabs() {
   function tabCard(item: { href: string; imageUrl: string | null; placeholderText: string; tag?: string; tagColor?: string; title: string; body: string; author?: string; meta?: React.ReactNode }) {
     return (
       <Link href={item.href} className="grid grid-cols-1 sm:grid-cols-[1fr_1fr] gap-5 w-full group">
-        <div className="relative w-full h-0 pb-[60%] overflow-hidden rounded-lg bg-gray-100">
+        <div className="relative w-full h-0 pb-[75%] overflow-hidden rounded-lg bg-gray-100">
           {item.imageUrl ? (
             <img src={item.imageUrl} alt="" className="absolute inset-0 w-full h-full object-cover object-top" />
           ) : (
@@ -416,7 +416,7 @@ function HeroTabs() {
   function emptyCard(title: string, cta: string, href: string, color: string) {
     return (
       <div className="grid grid-cols-1 sm:grid-cols-[1fr_1fr] gap-5 w-full">
-        <div className="relative w-full h-0 pb-[60%] overflow-hidden rounded-lg"><PlaceholderImage text="BKN" /></div>
+        <div className="relative w-full h-0 pb-[75%] overflow-hidden rounded-lg"><PlaceholderImage text="BKN" /></div>
         <div className="flex flex-col gap-y-2 justify-center items-start">
           <p className="text-lg font-black uppercase">{title}</p>
           <p className="text-sm text-text-muted">Be the first to write one.</p>
