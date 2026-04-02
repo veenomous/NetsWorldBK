@@ -33,19 +33,19 @@ const AnimatedTabs = ({
   return (
     <div className={cn("w-full flex flex-col gap-y-2", className)}>
       {/* Tab buttons */}
-      <div className="flex gap-2 flex-wrap bg-[#11111198] bg-opacity-50 backdrop-blur-sm p-1.5 rounded-xl">
+      <div className="flex bg-[#111111] p-1 rounded-lg overflow-hidden">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={cn(
-              "relative px-4 py-2 text-sm font-bold rounded-lg text-white outline-none transition-colors"
+              "relative flex-1 px-3 py-2 text-[12px] sm:text-sm font-bold rounded-md text-white outline-none transition-colors"
             )}
           >
             {activeTab === tab.id && (
               <motion.div
                 layoutId="active-recap-tab"
-                className="absolute inset-0 bg-brand-red shadow-[0_0_20px_rgba(228,60,62,0.3)] !rounded-lg"
+                className="absolute inset-0 bg-brand-red shadow-[0_0_20px_rgba(228,60,62,0.3)] rounded-md"
                 transition={{ type: "spring", duration: 0.6 }}
               />
             )}

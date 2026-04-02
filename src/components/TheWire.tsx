@@ -49,7 +49,7 @@ function TakeContent({ text }: { text: string }) {
     const cleanText = text.replace(/https?:\/\/(?:twitter\.com|x\.com)\/\w+\/status\/\d+\S*/g, "").trim();
     return (
       <div>
-        {cleanText && <h3 className="font-display text-xl sm:text-2xl font-black uppercase leading-tight mb-3">{cleanText}</h3>}
+        {cleanText && <h3 className="font-display text-base sm:text-lg font-black uppercase leading-tight mb-3">{cleanText}</h3>}
         <div className="overflow-hidden border border-gray-200" data-theme="light">
           <Suspense fallback={<div className="h-20 bg-gray-50 animate-pulse-soft" />}>
             <Tweet id={tweetId} />
@@ -63,7 +63,7 @@ function TakeContent({ text }: { text: string }) {
   const parts = text.split(urlRegex);
 
   return (
-    <h3 className="font-display text-xl sm:text-2xl font-black uppercase leading-tight">
+    <h3 className="font-display text-base sm:text-lg font-black uppercase leading-tight">
       {parts.map((part, i) =>
         urlRegex.test(part) ? (
           <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="text-accent-blue hover:underline break-all text-base font-normal normal-case">

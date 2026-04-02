@@ -496,17 +496,17 @@ export default function HomeContent() {
     <div>
       {/* ═══ HERO — white bg, logo left + full recap tabs right ═══ */}
       <section className="bg-white border-b-[4px] border-brand-red">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
-          <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-6 items-stretch">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 sm:py-8">
+          <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-6 items-stretch">
             {/* Left: Logo */}
             <div className="flex items-center justify-center md:justify-start">
               <Image
                 src="/logo2.png"
                 alt="BK Grit"
-                width={280}
-                height={140}
+                width={220}
+                height={110}
                 priority
-                className="w-full max-w-[240px] h-auto"
+                className="w-full max-w-[200px] h-auto"
               />
             </div>
 
