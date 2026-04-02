@@ -95,7 +95,19 @@ function DraftPositionCard() {
     return () => clearInterval(interval);
   }, [fetchScores]);
 
-  function getGameLine(abbrev: string): { text: string; isLive: boolean } {
+  interface GameInfo {
+    type: "live" | "final" | "scheduled" | "next" | "off";
+    prefix?: string;
+    opponent?: string;
+    teamScore?: number;
+    oppScore?: number;
+    winning?: boolean;
+    period?: string;
+    statusText?: string;
+    nextLabel?: string;
+  }
+
+  function getGameInfo(abbrev: string): GameInfo {
     const game = games.find(
       (g) => g.homeTeam.abbrev === abbrev || g.awayTeam.abbrev === abbrev
     );
@@ -106,22 +118,23 @@ function DraftPositionCard() {
       const oppAbbrev = isHome ? game.awayTeam.abbrev : game.homeTeam.abbrev;
       const oppScore = isHome ? game.awayTeam.score : game.homeTeam.score;
       const prefix = isHome ? "vs" : "@";
+      const winning = teamScore > oppScore;
 
       if (game.status === 3) {
-        return { text: `${prefix} ${oppAbbrev}  ${teamScore} - ${oppScore}  FINAL`, isLive: false };
+        return { type: "final", prefix, opponent: oppAbbrev, teamScore, oppScore, winning };
       }
       if (game.status === 2) {
-        return { text: `${prefix} ${oppAbbrev}  ${teamScore} - ${oppScore}  ${periodLabel(game.period)}`, isLive: true };
+        return { type: "live", prefix, opponent: oppAbbrev, teamScore, oppScore, winning, period: periodLabel(game.period) };
       }
-      return { text: `${prefix} ${oppAbbrev}  ${game.statusText}`, isLive: false };
+      return { type: "scheduled", prefix, opponent: oppAbbrev, statusText: game.statusText };
     }
 
     const next = nextGames[abbrev];
     if (next) {
-      return { text: `Next: ${next.isHome ? "vs" : "@"} ${next.opponent} — ${next.dayLabel}`, isLive: false };
+      return { type: "next", nextLabel: `${next.isHome ? "vs" : "@"} ${next.opponent} — ${next.dayLabel}` };
     }
 
-    return { text: "No game today", isLive: false };
+    return { type: "off" };
   }
 
   return (
@@ -139,21 +152,49 @@ function DraftPositionCard() {
         <div className="space-y-0">
           {top5.map((team, i) => {
             const isBKN = team.abbrev === "BKN";
-            const gameLine = getGameLine(team.abbrev);
+            const info = getGameInfo(team.abbrev);
             const teamName = team.team.split(" ").pop()?.toUpperCase();
 
             return (
               <div key={team.abbrev} className={`py-3 ${i > 0 ? "border-t border-white/10" : ""}`}>
                 {/* Team name + record */}
                 <p className={`text-lg font-black ${isBKN ? "text-brand-red" : "text-white"}`}>
-                  {i + 1}. {teamName} <span className="text-white/50 font-bold">({team.wins}-{team.losses})</span>
+                  {i + 1}. {teamName} <span className="text-white/40 font-bold">({team.wins}-{team.losses})</span>
                 </p>
-                {/* Live score / next game — big and bold */}
-                <p className={`text-base font-bold mt-0.5 tabular-nums ${
-                  gameLine.isLive ? "text-brand-red" : "text-white/70"
-                }`}>
-                  {gameLine.text}
-                </p>
+
+                {/* Game status */}
+                <div className="mt-1 text-sm font-bold tabular-nums">
+                  {info.type === "final" && (
+                    <div className="flex items-center gap-2">
+                      <span className={info.winning ? "text-accent-green" : "text-brand-red"}>
+                        {info.winning ? "W" : "L"}
+                      </span>
+                      <span className="text-white/30">{info.prefix} {info.opponent}</span>
+                      <span className="text-white font-black">{info.teamScore}</span>
+                      <span className="text-white/20">-</span>
+                      <span className="text-white/40">{info.oppScore}</span>
+                    </div>
+                  )}
+                  {info.type === "live" && (
+                    <div className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-brand-red rounded-full animate-pulse-soft" />
+                      <span className="text-white/30">{info.prefix} {info.opponent}</span>
+                      <span className={`font-black ${info.winning ? "text-white" : "text-brand-red"}`}>{info.teamScore}</span>
+                      <span className="text-white/20">-</span>
+                      <span className={`font-black ${!info.winning ? "text-white" : "text-white/40"}`}>{info.oppScore}</span>
+                      <span className="text-brand-red text-[10px] font-black tracking-wider">{info.period}</span>
+                    </div>
+                  )}
+                  {info.type === "scheduled" && (
+                    <span className="text-white/30">{info.prefix} {info.opponent} · {info.statusText}</span>
+                  )}
+                  {info.type === "next" && (
+                    <span className="text-white/30">Next: {info.nextLabel}</span>
+                  )}
+                  {info.type === "off" && (
+                    <span className="text-white/20">No game today</span>
+                  )}
+                </div>
               </div>
             );
           })}
