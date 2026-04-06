@@ -397,7 +397,7 @@ function HeroTabs() {
       <Link href={item.href} className="grid grid-cols-1 sm:grid-cols-[1fr_1fr] gap-5 w-full group">
         <div className="relative w-full h-0 pb-[75%] overflow-hidden rounded-lg bg-gray-100">
           {item.imageUrl ? (
-            <img src={item.imageUrl} alt="" className="absolute inset-0 w-full h-full object-cover object-top" />
+            <img src={item.imageUrl} alt="" className="absolute inset-0 w-full h-full object-cover object-center" />
           ) : (
             <PlaceholderImage text={item.placeholderText} />
           )}

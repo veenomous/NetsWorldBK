@@ -240,8 +240,8 @@ function PressCard({ type, data }: { type: "article" | "recap"; data: Article | 
 
         {/* Image */}
         {imageUrl && (
-          <Link href={`/press/${type}-${data.id}`} className="block w-full aspect-[21/9] bg-gray-100 overflow-hidden">
-            <img src={imageUrl} alt="" className="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" />
+          <Link href={`/press/${type}-${data.id}`} className="block w-full aspect-[16/9] bg-gray-100 overflow-hidden">
+            <img src={imageUrl} alt="" className="w-full h-full object-cover object-center grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" />
           </Link>
         )}
 
