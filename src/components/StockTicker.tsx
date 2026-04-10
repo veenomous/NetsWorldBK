@@ -3,6 +3,9 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { supabase, getVisitorId } from "@/lib/supabase";
+import KBHoverCard from "@/components/KBHoverCard";
+import { findEntity } from "@/lib/kb-entities";
+import Link from "next/link";
 
 interface RosterPlayer {
   name: string;
@@ -223,7 +226,13 @@ export default function StockTicker() {
                   <div className="flex items-center justify-between mb-1.5">
                     <div className="flex items-center gap-2">
                       <span className={`text-xs font-bold ${trendColor[player.trend]}`}>{trendIcon[player.trend]}</span>
-                      <span className="font-bold text-sm text-text-primary">{player.name}</span>
+                      {findEntity(player.name) ? (
+                        <KBHoverCard name={player.name}>
+                          <span className="font-bold text-sm">{player.name}</span>
+                        </KBHoverCard>
+                      ) : (
+                        <span className="font-bold text-sm text-text-primary">{player.name}</span>
+                      )}
                       <span className="tag tag-blue text-[9px]">{player.position}</span>
                     </div>
                     <span className="text-text-data text-xs font-medium">{player.salary}</span>
@@ -255,6 +264,24 @@ export default function StockTicker() {
                 {/* Expanded section */}
                 {isExpanded && (
                   <div className="px-3 pb-3 pt-1 border-t border-gray-200 animate-slide-up">
+                    {/* KB link */}
+                    {findEntity(player.name) && (() => {
+                      const ent = findEntity(player.name)!;
+                      return (
+                        <Link
+                          href={`/kb/${ent.category}/${ent.slug}`}
+                          onClick={(e) => e.stopPropagation()}
+                          className="flex items-center gap-1.5 mb-3 py-1.5 px-2 bg-black/5 hover:bg-brand-red/5 transition-colors group"
+                        >
+                          <span className="material-symbols-outlined text-brand-red text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>auto_stories</span>
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-text-muted group-hover:text-brand-red transition-colors">
+                            Read Wiki Intel on {player.name.split(" ").pop()}
+                          </span>
+                          <span className="material-symbols-outlined text-text-muted/30 group-hover:text-brand-red text-xs ml-auto transition-colors">arrow_forward</span>
+                        </Link>
+                      );
+                    })()}
+
                     {/* Rating buttons */}
                     <p className="text-text-muted text-[11px] uppercase tracking-wider font-bold mb-2">
                       {myRating ? "You rated" : "What's their role on a contending Nets team?"}

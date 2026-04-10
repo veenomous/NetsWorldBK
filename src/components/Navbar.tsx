@@ -13,6 +13,7 @@ const navLinks = [
   { href: "/simulator", label: "Lottery Simulator" },
   { href: "/gm-mode", label: "War Room" },
   { href: "/trade-machine", label: "Trade Machine" },
+  { href: "/kb", label: "KB" },
 ];
 
 function UserButton() {
