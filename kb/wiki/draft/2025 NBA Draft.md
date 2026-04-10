@@ -1,58 +1,62 @@
 ---
 title: 2025 NBA Draft
-tags: [draft, "2025", prospects, cooper-flagg, dylan-harper, ace-bailey, lottery]
-sources: [raw/scouting/2025-draft-class-overview.md, raw/beat-reporters/nets-rebuild-timeline.md]
-confidence: medium
-last_updated: 2026-04-09
-needs_review: true
+tags: [draft, "2025", egor-demin, nolan-traore, drake-powell, ben-saraf, danny-wolf, cooper-flagg]
+sources: [raw/transactions/2025-nba-draft-results.md, raw/scouting/2025-draft-class-overview.md]
+confidence: high
+last_updated: 2026-04-10
 ---
 
 ## Summary
-The 2025 NBA Draft is the most important event in the Brooklyn Nets rebuild. With a likely top-5 pick of their own plus potential additional first-rounders (Rockets top-4 protected, late Suns/Knicks picks), the Nets have a chance to add a franchise-altering prospect from what's considered a strong class at the top. Cooper Flagg is the consensus #1; Dylan Harper and Ace Bailey round out the elite tier.
+The 2025 NBA Draft was the most important night of the Brooklyn Nets rebuild — and the results were mixed. Despite tanking for a top-3 pick, the Nets landed at #8 in the lottery, missing out on Cooper Flagg (#1 to Dallas), Dylan Harper, and Ace Bailey. But the sheer volume of picks was unprecedented: Brooklyn used FIVE first-round selections, drafting an entire potential starting lineup in one night. Egor Demin (#8) emerged as the centerpiece — a 6'8" Russian point guard with franchise-player upside.
 
 ## Key Insights
-- The Nets tanked the 2024-25 season specifically to maximize lottery odds in this draft
-- Cooper Flagg (Duke) is the consensus #1 — a 6'9" two-way forward with generational IQ
-- Dylan Harper (Rutgers) is a smooth 6'6" scoring guard — a hometown kid from NJ
-- Ace Bailey (Rutgers) is a 6'9" fluid wing with deep range and shot creation
-- The Nets could have up to 3 first-round picks in this draft (own + Rockets top-4 protected + Suns 2025)
-- This draft is where the rebuild goes from "accumulate assets" to "build the core"
+- Cooper Flagg went #1 overall to the Dallas Mavericks — the Nets' lottery luck failed them
+- The Nets picked #8 despite having a bottom-3 record — one of the worst lottery outcomes possible
+- Five first-round picks in one draft is unprecedented in modern NBA history
+- Egor Demin (#8, BYU) is the centerpiece: 6'8" point guard averaging 10.3 PPG and 3.3 APG as a rookie
+- Nolan Traore (#19, France) brings explosive athleticism at point guard
+- The Rockets pick (#27) finally conveyed — Houston finished well enough that the top-4 protection didn't apply
 
 ## Details
 
-### Nets Draft Assets in 2025
-1. **Own pick** — Lottery, likely top 5. THE most important asset.
-2. **Rockets pick** (from Harden trade) — Top-4 protected. If Houston misses the playoffs or gets bounced early, this could convey as a mid-lottery pick. If top-4, it rolls over.
-3. **Suns 2025** (from KD trade) — Phoenix is a playoff team, so this is likely a late first (20-30 range).
-4. **Knicks 2025** (from Bridges trade) — New York is a contender, so this is likely late first (25-30 range).
+### The Lottery Disappointment
+The Nets finished with the 2nd-worst record in the NBA in 2024-25, giving them a 14% chance at the #1 pick. Instead, they fell to #8 — outside the elite tier of Flagg, Harper, and Bailey. This was a gut punch, but the depth of their pick haul softened the blow.
 
-### Top Prospects (Nets Perspective)
+### The Five Picks
 
-**Cooper Flagg** (Duke, 6'9" F) — The dream pick. Two-way dominance, plays like a 10-year vet at 18. Would be the franchise cornerstone instantly. Comparison: prime Jayson Tatum with better defense.
+**Egor Demin (#8 overall, PG, 6'8", BYU)**
+The franchise bet. A Russian point guard who played one year at BYU, Demin has rare size for a lead guard with elite court vision. His 2025-26 rookie stats (10.3 PPG, 3.3 APG, 3.2 RPG) show flashes of a future All-Star. His 6'8" frame at point guard is Luka Doncic-adjacent in terms of physical profile.
 
-**Dylan Harper** (Rutgers, 6'6" G) — The hometown story. Born in NJ, played at Rutgers. Smooth shot creation, elite scoring guard. Would electrify the Brooklyn fanbase. Comparison: Brandon Roy.
+**Nolan Traore (#19 overall, PG, 6'3", Saint-Quentin, France)**
+The explosive athletic guard. Traore played professionally in France and brings electrifying speed and finishing ability. His rookie stats (8.5 PPG, 3.7 APG) suggest a future starting-caliber guard. The Nets now have two young point guards with very different profiles — Demin as the big playmaker, Traore as the speedy scorer.
 
-**Ace Bailey** (Rutgers, 6'9" F) — Length and fluidity at 6'9" with deep shooting range. Shot creation at his size is rare. Pairs beautifully next to [[Cameron Johnson]] as a switchable, shooting frontcourt. Comparison: young Tracy McGrady.
+**Drake Powell (#22 overall, SG, 6'5", North Carolina)**
+The two-way wing. Powell is a defensive specialist from UNC who projects as a 3-and-D wing. His rookie numbers (6.0 PPG, 1.7 RPG) are modest but his defensive impact is already visible.
 
-**VJ Edgecombe** (Baylor, 6'5" G) — Explosive athlete, transition terror. Highest ceiling outside the top 3 but needs polish. Comparison: Jalen Green with better defense.
+**Ben Saraf (#26 overall, SG, 6'6", Israel/Ratiopharm Ulm)**
+The crafty international guard. Saraf played professionally in Germany and brings a polished scoring game. At 19, he's one of the youngest players in the draft class. Averaging 6.3 PPG with 3.1 APG as a rookie.
 
-**Kasparas Jakucionis** (Illinois, 6'5" G) — Crafty playmaker with size. International IQ, could run an offense day one. Comparison: Manu Ginobili lite.
+**Danny Wolf (#27 overall, PF, 6'11", Michigan)**
+The stretch big. Wolf is a 6'11" forward with passing ability and outside shooting — a modern NBA big. He adds size to a guard-heavy draft class. Averaging 8.9 PPG and 4.9 RPG.
 
-### Draft Strategy Scenarios
-- **If Nets get #1:** Take Flagg, no questions asked
-- **If Nets get #2-3:** Harper or Bailey — both fit the rebuild timeline
-- **If Nets get #4-5:** Edgecombe or Jakucionis — higher risk, higher variance
-- **Trade up possibility:** Could package Rockets/Suns/Knicks picks to move up if they fall to #4-5
+### Pick Sources
+| Pick | Source | Origin |
+|------|--------|--------|
+| #8 | Own pick | 2024-25 tank |
+| #19 | Phoenix Suns | [[Kevin Durant Trade Tree]] |
+| #22 | Via trade chain | Originally Atlanta, routed to Brooklyn |
+| #26 | New York Knicks | [[Kevin Durant Trade Tree]] (Bridges flip) |
+| #27 | Houston Rockets | Harden trade (top-4 protection lifted) |
 
 ## Related
-- [[2024-25 Season]]
 - [[Kevin Durant Trade Tree]]
+- [[Nets Pick Inventory]]
+- [[2025-26 Season]]
 - [[Sean Marks Era]]
-- [[Cameron Johnson]]
 - [[Tank Math]]
 
 ## Open Questions
-- Where does the Nets' pick land in the lottery?
-- Does the Rockets pick convey (need to finish outside top 4)?
-- Should the Nets trade up if they fall out of the top 3?
-- How does the drafted player fit with Cam Thomas and Cameron Johnson?
+- Can Egor Demin develop into a franchise player despite being picked #8, not top 3?
+- Which of the five rookies will emerge as the best player?
+- How do Demin and Traore coexist as two point guards in the same backcourt?
+- Will any of the late first-rounders (Saraf, Wolf) outperform their draft position?

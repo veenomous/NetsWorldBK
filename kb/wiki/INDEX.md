@@ -1,37 +1,40 @@
 ---
 last_compiled: 2026-04-10
-raw_sources: 5
-wiki_articles: 8
+raw_sources: 7
+wiki_articles: 12
 ---
 
 # BKGrit Knowledge Base — Index
 
 ## Players
-- [[Cameron Johnson]] — The last KD trade return on the roster; elite shooter, keep-vs-trade debate defines the rebuild's next phase
+- [[Cameron Johnson]] — Traded to Denver (July 2025) for MPJ + 2032 first; the last KD trade return exits Brooklyn
+- [[Michael Porter Jr.]] — Acquired from Denver for Cam Johnson; leading scorer at 24.2 PPG, the veteran anchor of the rebuild
 
 ## Seasons
-- [[2024-25 Season]] — Year One of the rebuild: deliberate tank, youth development, and positioning for the 2025 draft
+- [[2024-25 Season]] — Year One: deliberate tank, youth development, positioning for the 2025 draft
+- [[2025-26 Season]] — Year Two: five rookies, MPJ leading scorer, 20-60 record, Cam Thomas waived
 
 ## Trades
-- [[Kevin Durant Trade Tree]] — The foundational transaction: 8 first-round picks, 2 swaps, and Cam Johnson traced from one trade
+- [[Kevin Durant Trade Tree]] — The foundational transaction: 9 FRPs, 2 swaps, MPJ, and 3 current roster players from one trade
 
 ## Front Office
 - [[Sean Marks Era]] — From post-Billy King wasteland through the superstar gamble to Rebuild 2.0
 
 ## Draft
-- [[2025 NBA Draft]] — The most important event in the rebuild: Flagg, Harper, Bailey, and up to 3 Nets first-rounders
+- [[2025 NBA Draft]] — Five first-rounders in one draft: Demin, Traore, Powell, Saraf, Wolf. Flagg goes #1 to Dallas.
 
 ## Rivalries
-- [[Nets vs Knicks]] — Four unprotected Knicks picks through 2031 turn every Knicks loss into a Nets win
+- [[Nets vs Knicks]] — Unprotected Knicks picks through 2031 turn every Knicks loss into a Nets win
 
 ## Concepts
-- [[Tank Math]] — The lottery odds calculus behind the 2024-25 tank and why bottom-3 is the target
-- [[Nets Pick Inventory]] — Master doc of all 10+ first-round picks and swaps the Nets control through 2031
+- [[Tank Math]] — The lottery odds calculus behind the tank and why bottom-3 is the target
+- [[Nets Pick Inventory]] — 6+ first-round picks and 2 swaps still owed from 2027-2032
 
 ---
 
 ## Key Themes
-- **The pick haul is historically unprecedented** — 10+ first-round picks over the next 7 drafts, many unprotected from teams that could decline
-- **2025 is the inflection point** — the draft pick that comes out of this year's lottery defines the rebuild
-- **Sean Marks' legacy hinges on development** — he's proven he can acquire assets, but not that he can develop them
-- **The Knicks entanglement** — Brooklyn's future is inversely correlated with New York's success
+- **The KD trade tree keeps growing** — Now extends to 2032 via the Denver pick from the Cam Johnson trade
+- **Five rookies define the future** — Demin, Traore, Powell, Saraf, Wolf are the core; which ones emerge?
+- **MPJ is the bridge** — A 24 PPG scorer mentoring rookies, but also a trade chip for a contender
+- **Cam Thomas wasn't the answer** — Waived mid-season, ending the longest-running roster debate
+- **The Knicks entanglement continues** — Brooklyn's future is still inversely correlated with New York's success

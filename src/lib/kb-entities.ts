@@ -11,6 +11,12 @@ export interface KBEntity {
 
 export const KB_ENTITIES: KBEntity[] = [
   {
+    name: "Michael Porter Jr.",
+    aliases: ["MPJ", "Porter"],
+    category: "players",
+    slug: "michael-porter-jr",
+  },
+  {
     name: "Cameron Johnson",
     aliases: ["Cam Johnson", "CamJohnson"],
     category: "players",
@@ -23,10 +29,28 @@ export const KB_ENTITIES: KBEntity[] = [
     slug: "kevin-durant-trade-tree",
   },
   {
-    name: "Mikal Bridges",
-    aliases: ["Bridges"],
-    category: "trades",
-    slug: "kevin-durant-trade-tree",
+    name: "Egor Demin",
+    aliases: ["Demin"],
+    category: "draft",
+    slug: "2025-nba-draft",
+  },
+  {
+    name: "Nolan Traore",
+    aliases: ["Traore"],
+    category: "draft",
+    slug: "2025-nba-draft",
+  },
+  {
+    name: "Noah Clowney",
+    aliases: ["Clowney"],
+    category: "seasons",
+    slug: "2025-26-season",
+  },
+  {
+    name: "Nic Claxton",
+    aliases: ["Claxton"],
+    category: "seasons",
+    slug: "2025-26-season",
   },
   {
     name: "Sean Marks",
