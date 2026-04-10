@@ -1,29 +1,34 @@
 # BKGrit Knowledge Base — Compilation Prompt
 
-## Run from the kb/ directory:
+## Quick Run
 
-```
-claude "Compile the BKGrit knowledge base. Read all files in raw/ and update wiki/ accordingly."
+```bash
+cd /path/to/NetsWorldBK
+claude "Read kb/templates/compile-prompt.md and follow the instructions to compile the knowledge base."
 ```
 
 ## Full Compilation Instructions
 
 You are a Brooklyn Nets knowledge base compiler. Your job is to read raw source material and compile it into a structured wiki about the Brooklyn Nets.
 
-### Rules
+### Step 1: Read All Raw Sources
 
-1. Read all files in `raw/` (transactions, pressers, scouting reports, beat tweets, stats)
-2. For each piece of raw material, extract the key insights relevant to the Nets
-3. Create or update wiki articles in the appropriate category:
-   - `wiki/players/` — One article per player (e.g., "Cameron Johnson.md")
-   - `wiki/seasons/` — Season narratives (e.g., "2024-25 Season.md")
-   - `wiki/trades/` — Trade trees and analysis (e.g., "Kevin Durant Trade Tree.md")
-   - `wiki/front-office/` — FO strategy (e.g., "Sean Marks Era.md")
-   - `wiki/draft/` — Draft articles (e.g., "2025 NBA Draft.md")
-   - `wiki/rivalries/` — Matchup histories (e.g., "Nets vs Knicks.md")
-   - `wiki/concepts/` — Basketball concepts (e.g., "Tank Math.md")
+Read every file in `kb/raw/` and its subdirectories (transactions, pressers, scouting, beat-reporters, stats, media). Note what's new since the last compilation by checking dates against `kb/CHANGELOG.md`.
 
-4. Each wiki article must follow this format:
+### Step 2: Update or Create Wiki Articles
+
+For each piece of raw material, extract key insights and update the relevant wiki article(s):
+- `wiki/players/` — One article per relevant player
+- `wiki/seasons/` — Season narrative arcs (living docs)
+- `wiki/trades/` — Trade trees and analysis
+- `wiki/front-office/` — FO strategy and decisions
+- `wiki/draft/` — Draft-specific articles
+- `wiki/rivalries/` — Matchup histories
+- `wiki/concepts/` — Basketball concepts in Nets context
+
+### Step 3: Article Format
+
+Every wiki article MUST follow this format:
 
 ```markdown
 ---
@@ -50,41 +55,54 @@ Full explanation with specifics — names, dates, pick numbers, contract figures
 - Things we don't know yet about this topic
 ```
 
-5. After updating articles, update `wiki/INDEX.md`:
-   - List every article with a one-line summary
-   - Group by category
-   - Include article count and last compile date
+### Step 4: Update CHANGELOG.md
 
-6. Do NOT edit `raw/` files — they are source records
-7. Do NOT delete wiki articles — mark them as `needs_review` if source data contradicts them
-8. Use `[[wikilinks]]` to connect related articles
-9. Be specific — "Cam Johnson: 19.4 PPG on .415 3PT%" not "Cam played well"
-10. Note confidence level — single tweet = "low", official transaction + multiple reporters = "high"
-11. Date everything — NBA context is perishable
+After every compilation, append entries to `kb/CHANGELOG.md`:
 
-### Cross-referencing
+```markdown
+## YYYY-MM-DD
+- **Article Name** — One-line description of what changed
+- **New Article Name** — Created: brief description
+```
 
-When compiling, actively look for connections:
-- Player mentioned in a trade? Link to both the player article and trade article
-- Scouting report for a pick the Nets own? Link to the draft article
-- Beat reporter quote about FO strategy? Link to front-office article
-- Stats that inform a season narrative? Link to the season article
+### Step 5: Update INDEX.md
 
-### Handling Conflicts
+Update `kb/wiki/INDEX.md` with:
+- Correct article count and last compiled date in frontmatter
+- Every article listed with a one-line summary
+- Updated Key Themes section reflecting current state
 
-If two sources disagree:
-- Note both claims in the wiki article
+### Compilation Rules
+
+1. **Never edit `raw/` files** — they are immutable source records
+2. **Always use `[[wikilinks]]`** to connect related wiki articles
+3. **Be specific** — "Demin: 10.3 PPG, 3.3 APG in 24 minutes" not "Demin played ok"
+4. **Date everything** — NBA context is perishable. Use "as of YYYY-MM-DD" for stats
+5. **Nets-first perspective** — every article framed through Brooklyn's lens
+
+### Confidence Rules
+
+- **High**: Based on official transactions, box scores, or 3+ independent sources
+- **Medium**: Based on 2 sources, or beat reporter analysis
+- **Low**: Based on single tweet, rumor, or speculation
+
+If a new source contradicts an existing article:
+- Note both claims in the article
 - Flag which source is more authoritative
 - Set confidence to "low" on the disputed claim
 - Add to Open Questions
 
-## Health Check Prompt
+### Cross-Reference Protocol
 
-```
-claude "Run a health check on the BKGrit KB. Find:
-1. Stale articles (not updated in 30+ days)
-2. Contradictions between articles
-3. Topics in raw/ not yet compiled to wiki/
-4. Players on the roster without wiki articles
-5. Suggest 5 articles to research and add next"
-```
+When compiling, actively look for connections:
+- Player mentioned in a trade? Link to both the player article AND trade article
+- Stats that inform a season narrative? Link to the season article
+- Pick used in draft? Link to the pick inventory AND draft article
+- Beat reporter quote about FO strategy? Link to front-office article
+
+### Agent Tier Guidance
+
+- **Routine updates** (stats changed, record updated, minor roster move): Sonnet tier
+- **New article creation** (new player profile, new trade analysis): Opus tier
+- **Editorial judgment** (scouting analysis, FO strategy reads, "what if" scenarios): Opus tier
+- **Data formatting** (raw source cleanup, wikilink validation): Haiku tier
