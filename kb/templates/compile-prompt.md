@@ -79,6 +79,10 @@ Update `kb/wiki/INDEX.md` with:
 3. **Be specific** — "Demin: 10.3 PPG, 3.3 APG in 24 minutes" not "Demin played ok"
 4. **Date everything** — NBA context is perishable. Use "as of YYYY-MM-DD" for stats
 5. **Nets-first perspective** — every article framed through Brooklyn's lens
+6. **Include ALL picks** — first-round AND second-round picks in every trade article
+7. **Specify protections** — "unprotected", "top-4 protected", etc. on every pick
+8. **Note picks traded away** — if a pick was later traded to another team, say so
+9. **Verify before publishing** — read `kb/templates/verification-checklist.md` and run through it before finalizing any article
 
 ### Confidence Rules
 

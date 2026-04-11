@@ -66,7 +66,7 @@ Some KD-origin Suns picks were redirected to Houston:
 - [[Michael Porter Jr.]] — via Cam Johnson → Denver trade
 - [[Ben Saraf]] — drafted #26 with Knicks 2025 pick
 
-**Picks still owed:**
+**First-round picks still owed:**
 | Year | Team | Type | Status |
 |------|------|------|--------|
 | 2027 | Knicks | Unprotected 1st | Owed |
@@ -75,6 +75,12 @@ Some KD-origin Suns picks were redirected to Houston:
 | 2029 | Knicks | Unprotected 1st | Owed |
 | 2031 | Knicks | Unprotected 1st | Owed |
 | 2032 | Denver | 1st | Owed |
+
+**Second-round picks from KD-related trades:**
+| Year | Source | Origin |
+|------|--------|--------|
+| 2026 | BOS/IND/LAC/MIA via HOU | Seven-team KD trade (Jul 2025) |
+| 2030 | BOS via HOU | Seven-team KD trade (Jul 2025) |
 
 ## Related
 - [[Cameron Johnson]]

@@ -68,6 +68,27 @@ The Brooklyn Nets' draft capital position is the product of multiple trades — 
 
 In exchange, the Nets received their own 2026 first back and removed Houston's right to swap the Nets' 2025 first-round pick.
 
+### Second-Round Picks Controlled
+
+The Nets also hold multiple second-round picks from various trades:
+
+| Year | Source | Origin |
+|------|--------|--------|
+| 2026 | ATL (via GSW) | Schroder trade (Dec 2024) |
+| 2026 | BOS/IND/LAC/MIA (via HOU) | Seven-team KD trade (Jul 2025) |
+| 2027 | LAL | Finney-Smith trade (Dec 2024) |
+| 2028 | ATL (via GSW) | Schroder trade (Dec 2024) |
+| 2029 | GSW | Schroder trade (Dec 2024) |
+| 2030 | LAL | Finney-Smith trade (Dec 2024) |
+| 2030 | BOS (via HOU) | Seven-team KD trade (Jul 2025) |
+| 2030 | DAL | Ziaire Williams trade (Jul 2024) |
+| 2031 | LAL | Finney-Smith trade (Dec 2024) |
+
+These seconds are valuable for:
+- Packaging with firsts in trades to sweeten offers
+- Drafting developmental G League prospects
+- Trading for veteran role players at the deadline
+
 ### The Rockets Restructure Explained
 The June 2024 Rockets trade was strategic: the Nets gave up future Suns picks to protect their own near-term lottery picks. Getting the 2026 first back means the Nets control their own pick during a tank year — critical for the rebuild. Removing the 2025 swap right protected the #8 pick (Egor Demin) from being swapped away by Houston.
 
