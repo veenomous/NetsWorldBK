@@ -285,6 +285,12 @@ body {
 }
 .kb-article a.wikilink-broken:hover { border-bottom-style: solid; }
 
+/* Trade tree glow pulse for total badge */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(228,60,62,0.15); }
+  50% { box-shadow: 0 0 24px rgba(228,60,62,0.35); }
+}
+
 /* Trade tree responsive — SVG only on wide screens */
 @media (min-width: 900px) {
   .trade-tree-desktop { display: block !important; }

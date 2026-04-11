@@ -285,16 +285,24 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
             <TradeTree />
           </div>
           {/* Mobile/tablet: vertical card layout */}
-          <div className="trade-tree-mobile space-y-3">
-            <Link href="/kb/trades/kevin-durant-trade-tree" className="block border border-white/10 p-4 hover:border-brand-red/50 transition-colors">
+          <div className="trade-tree-mobile space-y-0 stagger-children">
+            {/* KD node */}
+            <Link href="/kb/trades/kevin-durant-trade-tree" className="block border border-white/10 p-4 hover:border-brand-red/50 transition-colors animate-slide-up opacity-0">
               <p className="font-display font-black text-white text-sm uppercase">Kevin Durant</p>
               <p className="text-[10px] text-white/40 tracking-widest uppercase mt-0.5">FEB 2023 → PHX</p>
             </Link>
-            <div className="flex items-center gap-2 pl-4">
-              <div className="w-px h-4 bg-brand-red/40" />
+
+            {/* Connector with pulse */}
+            <div className="flex items-center gap-2 pl-4 py-2 animate-slide-up opacity-0">
+              <div className="relative w-px h-6">
+                <div className="absolute inset-0 bg-brand-red/20" />
+                <div className="absolute w-1.5 h-1.5 bg-brand-red rounded-full -left-[2.5px] animate-pulse-soft" style={{ top: 0 }} />
+              </div>
               <span className="text-[10px] text-brand-orange font-bold tracking-[0.15em] uppercase">Suns Return</span>
             </div>
-            <div className="grid grid-cols-2 gap-2 pl-4">
+
+            {/* Bridges + Cam J */}
+            <div className="grid grid-cols-2 gap-2 pl-4 animate-slide-up opacity-0">
               <Link href="/kb/trades/kevin-durant-trade-tree" className="border border-white/10 p-3 hover:border-brand-red/50 transition-colors">
                 <p className="font-display font-bold text-white text-xs uppercase">Mikal Bridges</p>
                 <p className="text-[10px] text-brand-red font-bold mt-1">→ NYK</p>
@@ -304,25 +312,39 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
                 <p className="text-[10px] text-brand-red font-bold mt-1">→ DEN</p>
               </Link>
             </div>
-            <div className="pl-4 border border-brand-orange/30 p-3">
+
+            {/* Suns picks */}
+            <div className="pl-4 border border-brand-orange/30 p-3 mt-2 animate-slide-up opacity-0">
               <p className="font-display font-bold text-white text-xs uppercase">4 Suns FRPs</p>
               <p className="text-[10px] text-brand-orange font-bold mt-1">&apos;25, &apos;27, &apos;29 + &apos;28 SWAP — ALL UNPROTECTED</p>
             </div>
 
-            <div className="flex items-center gap-2 pl-8">
-              <div className="w-px h-4 bg-accent-blue/40" />
+            {/* Knicks connector with pulse */}
+            <div className="flex items-center gap-2 pl-8 py-2 animate-slide-up opacity-0">
+              <div className="relative w-px h-6">
+                <div className="absolute inset-0 bg-accent-blue/20" />
+                <div className="absolute w-1.5 h-1.5 bg-accent-blue rounded-full -left-[2.5px] animate-pulse-soft" style={{ top: 0, animationDelay: "0.5s" }} />
+              </div>
               <span className="text-[10px] text-accent-blue font-bold tracking-[0.15em] uppercase">From Bridges → Knicks</span>
             </div>
-            <div className="pl-8 border border-accent-blue/30 p-3">
+
+            {/* Knicks picks */}
+            <div className="pl-8 border border-accent-blue/30 p-3 animate-slide-up opacity-0">
               <p className="font-display font-bold text-white text-xs uppercase">4 Knicks FRPs</p>
               <p className="text-[10px] text-accent-blue font-bold mt-1">&apos;25, &apos;27, &apos;29, &apos;31 + &apos;28 SWAP — ALL UNPROTECTED</p>
             </div>
 
-            <div className="flex items-center gap-2 pl-8">
-              <div className="w-px h-4 bg-accent-purple/40" />
+            {/* Denver connector with pulse */}
+            <div className="flex items-center gap-2 pl-8 py-2 animate-slide-up opacity-0">
+              <div className="relative w-px h-6">
+                <div className="absolute inset-0 bg-accent-purple/20" />
+                <div className="absolute w-1.5 h-1.5 bg-accent-purple rounded-full -left-[2.5px] animate-pulse-soft" style={{ top: 0, animationDelay: "1s" }} />
+              </div>
               <span className="text-[10px] text-accent-purple font-bold tracking-[0.15em] uppercase">From Cam J → Denver</span>
             </div>
-            <div className="grid grid-cols-2 gap-2 pl-8">
+
+            {/* Denver returns */}
+            <div className="grid grid-cols-2 gap-2 pl-8 animate-slide-up opacity-0">
               <Link href="/kb/players/michael-porter-jr" className="border border-accent-green/40 p-3 hover:border-brand-red/50 transition-colors">
                 <p className="font-display font-bold text-white text-xs uppercase">Michael Porter Jr</p>
                 <p className="text-[10px] text-accent-green font-bold mt-1">ON ROSTER · 24.2 PPG</p>
@@ -333,9 +355,12 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
               </div>
             </div>
 
-            <div className="border-2 border-brand-red p-4 text-center mt-4">
-              <p className="text-[10px] text-white/40 tracking-[0.2em] uppercase font-bold">Total from KD</p>
-              <p className="font-display font-black text-brand-red text-2xl tracking-tight leading-none mt-1">9 FRPs + 2 SWAPS + MPJ</p>
+            {/* Total badge with glow pulse */}
+            <div className="mt-4 animate-slide-up opacity-0">
+              <div className="border-2 border-brand-red p-4 text-center" style={{ animation: "glow-pulse 3s ease-in-out infinite" }}>
+                <p className="text-[10px] text-white/40 tracking-[0.2em] uppercase font-bold">Total from KD</p>
+                <p className="font-display font-black text-brand-red text-2xl tracking-tight leading-none mt-1">9 FRPs + 2 SWAPS + MPJ</p>
+              </div>
             </div>
           </div>
         </div>
