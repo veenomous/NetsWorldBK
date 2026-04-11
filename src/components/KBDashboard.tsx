@@ -296,7 +296,7 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
             <div className="flex items-center gap-2 pl-4 py-2 animate-slide-up opacity-0">
               <div className="relative w-px h-6">
                 <div className="absolute inset-0 bg-brand-red/20" />
-                <div className="absolute w-1.5 h-1.5 bg-brand-red rounded-full -left-[2.5px] animate-pulse-soft" style={{ top: 0 }} />
+                <div className="absolute w-3 h-3 bg-brand-red rounded-full -left-[5px] animate-pulse-soft" style={{ top: 0 }} />
               </div>
               <span className="text-[10px] text-brand-orange font-bold tracking-[0.15em] uppercase">Suns Return</span>
             </div>
@@ -323,7 +323,7 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
             <div className="flex items-center gap-2 pl-8 py-2 animate-slide-up opacity-0">
               <div className="relative w-px h-6">
                 <div className="absolute inset-0 bg-accent-blue/20" />
-                <div className="absolute w-1.5 h-1.5 bg-accent-blue rounded-full -left-[2.5px] animate-pulse-soft" style={{ top: 0, animationDelay: "0.5s" }} />
+                <div className="absolute w-3 h-3 bg-accent-blue rounded-full -left-[5px] animate-pulse-soft" style={{ top: 0, animationDelay: "0.5s" }} />
               </div>
               <span className="text-[10px] text-accent-blue font-bold tracking-[0.15em] uppercase">From Bridges → Knicks</span>
             </div>
@@ -338,7 +338,7 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
             <div className="flex items-center gap-2 pl-8 py-2 animate-slide-up opacity-0">
               <div className="relative w-px h-6">
                 <div className="absolute inset-0 bg-accent-purple/20" />
-                <div className="absolute w-1.5 h-1.5 bg-accent-purple rounded-full -left-[2.5px] animate-pulse-soft" style={{ top: 0, animationDelay: "1s" }} />
+                <div className="absolute w-3 h-3 bg-accent-purple rounded-full -left-[5px] animate-pulse-soft" style={{ top: 0, animationDelay: "1s" }} />
               </div>
               <span className="text-[10px] text-accent-purple font-bold tracking-[0.15em] uppercase">From Cam J → Denver</span>
             </div>
