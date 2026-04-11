@@ -1,0 +1,70 @@
+name: KB Daily Compile
+
+on:
+  # Disabled by default — uncomment cron to activate daily runs
+  # schedule:
+  #   - cron: '0 10 * * *'
+  workflow_dispatch:
+    # Manual trigger only for now (conservative mode)
+    inputs:
+      fetch_only:
+        description: 'Only fetch data, skip AI compilation (free)'
+        required: false
+        default: 'true'
+      compile:
+        description: 'Run AI compilation after fetch (uses API credits)'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: feature/knowledge-base
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install tsx
+        run: npm install -g tsx
+
+      - name: Fetch ESPN data
+        run: npx tsx scripts/fetch-espn.ts --type all
+
+      - name: Install Claude Code
+        if: ${{ github.event.inputs.compile == 'true' }}
+        run: npm install -g @anthropic-ai/claude-code
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Compile KB (Sonnet — ~$0.30 per run)
+        if: ${{ github.event.inputs.compile == 'true' }}
+        run: |
+          claude --model claude-sonnet-4-6 --print "Read the file kb/templates/compile-prompt.md and follow its instructions. Read all new files in kb/raw/ (files dated today or not yet referenced in any wiki article's sources), then update the relevant wiki articles. Update kb/CHANGELOG.md and kb/wiki/INDEX.md."
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Commit and push
+        run: |
+          git config user.name "BKGrit KB Bot"
+          git config user.email "kb-bot@bkgrit.com"
+          git add kb/
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "KB auto-update: $(date +%Y-%m-%d)
+
+          Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+            git push
+          fi
