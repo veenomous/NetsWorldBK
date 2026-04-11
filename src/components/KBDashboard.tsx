@@ -281,11 +281,11 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
             <h2 className="font-display font-black text-sm tracking-[0.1em] uppercase text-white/60">The KD Trade Tree</h2>
           </div>
           {/* Desktop: SVG visualization */}
-          <div className="hidden lg:block">
+          <div className="hidden xl:block">
             <TradeTree />
           </div>
           {/* Mobile: vertical card layout */}
-          <div className="lg:hidden space-y-3">
+          <div className="xl:hidden space-y-3">
             <Link href="/kb/trades/kevin-durant-trade-tree" className="block border border-white/10 p-4 hover:border-brand-red/50 transition-colors">
               <p className="font-display font-black text-white text-sm uppercase">Kevin Durant</p>
               <p className="text-[10px] text-white/40 tracking-widest uppercase mt-0.5">FEB 2023 → PHX</p>
