@@ -1,7 +1,7 @@
 ---
 last_compiled: 2026-04-11
 raw_sources: 9
-wiki_articles: 28
+wiki_articles: 29
 ---
 
 # BKGrit Knowledge Base — Index
@@ -42,6 +42,7 @@ wiki_articles: 28
 - [[Nets Pick Inventory]] — 6+ first-round picks and 2 swaps still owed from 2027-2032
 - [[Rebuild Timeline]] — Projected competitive by 2027-28; development clock, pick calendar, and risks
 - [[Salary Cap Situation]] — MPJ + Claxton anchors, rookie-scale flexibility, cap space outlook through 2029
+- [[Fan Pulse]] — Live fan sentiment from Wire takes, player ratings, and polls — auto-compiled from community data
 
 ## Rumor Mill
 - [[MPJ Trade Buzz]] — Will the Nets trade their best scorer to a contender this offseason?

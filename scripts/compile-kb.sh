@@ -52,6 +52,10 @@ if [ "$COMPILE_ONLY" = false ]; then
   echo "$LOG_PREFIX Step 1b: Fetching approved fan submissions..."
   npx tsx scripts/fetch-submissions.ts
   echo ""
+
+  echo "$LOG_PREFIX Step 1c: Compiling Fan Pulse..."
+  npx tsx scripts/compile-fan-pulse.ts
+  echo ""
 fi
 
 # ─── Step 2: Compile raw → wiki ───
