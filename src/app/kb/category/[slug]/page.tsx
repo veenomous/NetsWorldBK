@@ -48,7 +48,7 @@ export default async function CategoryPage({
       <div className="bg-black text-white px-4 sm:px-8 pt-4 sm:pt-6 pb-6 sm:pb-8">
         <div className="max-w-3xl mx-auto">
           <nav className="flex items-center gap-2 text-xs font-body mb-4">
-            <Link href="/kb" className="text-white/40 hover:text-white transition-colors">
+            <Link href="/" className="text-white/40 hover:text-white transition-colors">
               &larr; KB
             </Link>
           </nav>
@@ -101,7 +101,7 @@ export default async function CategoryPage({
         </div>
 
         <div className="mt-8">
-          <Link href="/kb" className="text-sm text-brand-red hover:underline font-body flex items-center gap-1">
+          <Link href="/" className="text-sm text-brand-red hover:underline font-body flex items-center gap-1">
             <span className="material-symbols-outlined text-sm">arrow_back</span>
             Knowledge Base
           </Link>

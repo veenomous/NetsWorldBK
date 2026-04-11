@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 import KBSearch from "@/components/KBSearch";
 import KBChangelog from "@/components/KBChangelog";
 import { netsPicks, totalFirstRoundPicks, totalSwaps } from "@/data/picks";
@@ -210,22 +211,30 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
     <div className="min-h-screen bg-bg-primary">
 
       {/* ── HERO (black) ── */}
-      <section className="bg-black text-white px-4 sm:px-8 pt-8 pb-10">
+      <section className="bg-black text-white px-4 sm:px-8 pt-6 pb-10">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="tag tag-red">Knowledge Base</span>
-            <span className="text-white/30 text-[10px] tracking-[0.2em] uppercase font-bold">{articles.length} Articles</span>
+          <div className="flex flex-col sm:flex-row sm:items-end gap-6 sm:gap-10 mb-6">
+            {/* Logo */}
+            <Image
+              src="/logo2.png"
+              alt="BK Grit"
+              width={180}
+              height={90}
+              priority
+              className="w-[140px] sm:w-[180px] h-auto"
+            />
+            {/* Title + meta */}
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="tag tag-red">Nets Wiki</span>
+                <span className="text-white/30 text-[10px] tracking-[0.2em] uppercase font-bold">{articles.length} Articles</span>
+              </div>
+              <p className="text-white/40 font-body text-sm sm:text-base max-w-lg leading-relaxed">
+                Every thread of the Brooklyn Nets rebuild — trades, picks, prospects, front office moves — all connected and updating.
+              </p>
+            </div>
           </div>
-          <h1 className="font-display font-black text-white uppercase tracking-[-0.04em] leading-[0.85]" style={{ fontSize: "clamp(2.5rem, 7vw, 5rem)" }}>
-            NETS<br />
-            <span className="text-brand-red">WIKI</span>
-          </h1>
-          <p className="text-white/40 font-body text-sm sm:text-base mt-4 max-w-lg leading-relaxed">
-            Every thread of the Brooklyn Nets rebuild — trades, picks, prospects, front office moves — all connected and updating.
-          </p>
-          <div className="mt-6">
-            <KBSearch />
-          </div>
+          <KBSearch />
         </div>
       </section>
 

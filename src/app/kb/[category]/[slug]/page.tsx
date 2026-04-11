@@ -7,6 +7,7 @@ import {
   buildArticleIndex,
 } from "@/lib/kb";
 import type { Metadata } from "next";
+import KBWireTakes from "@/components/KBWireTakes";
 
 const confidenceColor = {
   high: "tag-green",
@@ -100,14 +101,14 @@ export default async function KBArticlePage({
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-xs font-body mb-4 sm:mb-6">
             <Link
-              href="/kb"
+              href="/"
               className="text-white/40 hover:text-white transition-colors"
             >
               KB
             </Link>
             <span className="text-white/20">/</span>
             <Link
-              href="/kb"
+              href="/"
               className="text-white/40 hover:text-white transition-colors flex items-center gap-1"
             >
               <span
@@ -259,10 +260,19 @@ export default async function KBArticlePage({
           </div>
         )}
 
+        {/* Wire takes mentioning this article's topics */}
+        <KBWireTakes
+          keywords={[
+            article.title,
+            ...article.title.split(" ").filter((w) => w.length > 3),
+            ...article.tags.filter((t) => t.length > 3).slice(0, 5),
+          ]}
+        />
+
         {/* Navigation */}
         <div className="mt-10 flex items-center justify-between">
           <Link
-            href="/kb"
+            href="/"
             className="text-sm text-brand-red hover:underline font-body flex items-center gap-1"
           >
             <span className="material-symbols-outlined text-sm">

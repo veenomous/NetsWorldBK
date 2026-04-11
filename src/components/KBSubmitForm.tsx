@@ -38,7 +38,13 @@ export default function KBSubmitForm() {
   const [error, setError] = useState("");
 
   const [recent, setRecent] = useState<Submission[]>([]);
-  const [voted, setVoted] = useState<Set<string>>(new Set());
+  const [voted, setVoted] = useState<Set<string>>(() => {
+    if (typeof window === "undefined") return new Set();
+    try {
+      const stored = localStorage.getItem("kb-votes");
+      return stored ? new Set(JSON.parse(stored)) : new Set();
+    } catch { return new Set(); }
+  });
 
   // Load recent submissions
   useEffect(() => {
@@ -84,7 +90,9 @@ export default function KBSubmitForm() {
 
   async function handleUpvote(id: string) {
     if (voted.has(id)) return;
-    setVoted((prev) => new Set(prev).add(id));
+    const newVoted = new Set(voted).add(id);
+    setVoted(newVoted);
+    try { localStorage.setItem("kb-votes", JSON.stringify([...newVoted])); } catch {}
     setRecent((prev) =>
       prev.map((s) => (s.id === id ? { ...s, upvotes: s.upvotes + 1 } : s))
     );
@@ -112,7 +120,7 @@ export default function KBSubmitForm() {
       <div className="bg-black text-white px-4 sm:px-8 pt-4 pb-6">
         <div className="max-w-3xl mx-auto">
           <nav className="flex items-center gap-2 text-xs font-body mb-4">
-            <Link href="/kb" className="text-white/40 hover:text-white transition-colors">
+            <Link href="/" className="text-white/40 hover:text-white transition-colors">
               &larr; KB
             </Link>
           </nav>
@@ -259,7 +267,7 @@ export default function KBSubmitForm() {
 
         {/* Back */}
         <div className="mt-8">
-          <Link href="/kb" className="text-sm text-brand-red hover:underline font-body flex items-center gap-1">
+          <Link href="/" className="text-sm text-brand-red hover:underline font-body flex items-center gap-1">
             <span className="material-symbols-outlined text-sm">arrow_back</span>
             Knowledge Base
           </Link>

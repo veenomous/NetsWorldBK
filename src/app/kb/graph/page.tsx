@@ -15,7 +15,7 @@ export default function KBGraphPage() {
       <div className="px-4 sm:px-8 pt-6 pb-4 flex items-center justify-between">
         <div>
           <div className="flex items-center gap-3 mb-2">
-            <Link href="/kb" className="text-white/40 hover:text-white text-sm font-body transition-colors">
+            <Link href="/" className="text-white/40 hover:text-white text-sm font-body transition-colors">
               &larr; KB
             </Link>
             <span className="tag tag-red">Graph Explorer</span>

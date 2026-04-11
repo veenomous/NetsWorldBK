@@ -5,9 +5,9 @@ import AuthProvider from "@/components/AuthProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bkgrit.com"),
-  title: "BK Grit — Brooklyn Nets Fan HQ",
-  description: "The interactive hub for Brooklyn Nets fans. Draft tracker, lottery simulator, hot takes, player stocks, and more. Built for Brooklyn.",
-  keywords: ["Brooklyn Nets", "BK Grit", "NBA Draft 2026", "Lottery Simulator", "Nets Fans", "Brooklyn Grit"],
+  title: "BK Grit — Brooklyn Nets Wiki",
+  description: "The living knowledge base for Brooklyn Nets fans. Trade trees, pick inventory, player profiles, draft analysis, and front office strategy — all connected.",
+  keywords: ["Brooklyn Nets", "BK Grit", "Nets Wiki", "NBA Draft 2026", "Trade Tree", "Nets Rebuild", "Brooklyn Grit"],
   icons: {
     icon: [
       { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
@@ -17,16 +17,16 @@ export const metadata: Metadata = {
     apple: "/apple-icon.png",
   },
   openGraph: {
-    title: "BK Grit — Brooklyn Nets Fan HQ",
-    description: "Track the draft. Run the lottery. Play GM. Vote on hot takes. Built for Brooklyn.",
+    title: "BK Grit — Brooklyn Nets Wiki",
+    description: "The living knowledge base for the Brooklyn Nets rebuild. Trade trees, picks, players, strategy.",
     images: ["https://bkgrit.com/api/og?v=2"],
     type: "website",
     siteName: "BK Grit",
   },
   twitter: {
     card: "summary_large_image",
-    title: "BK Grit — Brooklyn Nets Fan HQ",
-    description: "Track the draft. Run the lottery. Play GM. Vote on hot takes. Built for Brooklyn.",
+    title: "BK Grit — Brooklyn Nets Wiki",
+    description: "The living knowledge base for the Brooklyn Nets rebuild. Trade trees, picks, players, strategy.",
     images: ["https://bkgrit.com/api/og?v=2"],
   },
 };

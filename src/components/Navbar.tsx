@@ -1,19 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { useStandings, getNetsFromStandings } from "@/lib/useStandings";
 
 const navLinks = [
-  { href: "/", label: "Dashboard" },
-  { href: "/press", label: "The Press" },
+  { href: "/", label: "Wiki" },
   { href: "/wire", label: "The Wire" },
-  { href: "/simulator", label: "Lottery Simulator" },
-  { href: "/gm-mode", label: "War Room" },
+  { href: "/kb/graph", label: "Graph" },
   { href: "/trade-machine", label: "Trade Machine" },
-  { href: "/kb", label: "KB" },
+  { href: "/gm-mode", label: "War Room" },
+  { href: "/simulator", label: "Lottery Sim" },
+  { href: "/kb/submit", label: "Submit" },
 ];
 
 function UserButton() {
@@ -65,16 +65,18 @@ function UserButton() {
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
-  const { lottery, isLoading } = useStandings();
-  const nets = getNetsFromStandings(lottery);
 
   return (
     <nav className="bg-black text-white flex justify-between items-center w-full px-4 sm:px-6 py-0.5 sticky top-0 z-50">
-      {/* Draft badge (replaces BK GRIT text) */}
-      <Link href="/" className="shrink-0 bg-brand-red px-4 py-2">
-        <span className="font-display text-white font-black tracking-[0.1em] uppercase text-sm sm:text-base whitespace-nowrap">
-          {isLoading ? "#\u2009—\u2009PICK · —-— · —G LEFT" : nets ? `#${nets.lotteryRank} PICK · ${nets.wins}-${nets.losses} · ${nets.gamesRemaining}G LEFT` : "BK GRIT"}
-        </span>
+      {/* Home link */}
+      <Link href="/" className="shrink-0">
+        <Image
+          src="/logo2.png"
+          alt="BK Grit"
+          width={100}
+          height={50}
+          className="w-[80px] sm:w-[100px] h-auto"
+        />
       </Link>
 
       {/* Desktop nav */}
