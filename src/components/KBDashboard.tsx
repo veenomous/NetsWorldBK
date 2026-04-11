@@ -484,6 +484,40 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
 
       <div className="section-divider" />
 
+      {/* ── FRONT OFFICE ── */}
+      <section className="bg-bg-primary px-4 sm:px-8 py-12">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center gap-2 mb-6">
+            <span className="material-symbols-outlined text-brand-red text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>corporate_fare</span>
+            <h2 className="font-display font-black text-sm tracking-[0.1em] uppercase text-text-secondary">Front Office</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <Link href="/kb/front-office/sean-marks-era" className="card card-interactive p-5 group flex gap-4 items-start">
+              <div className="w-12 h-12 bg-black shrink-0 flex items-center justify-center">
+                <span className="font-display font-black text-white text-lg">SM</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="font-display font-black text-sm uppercase tracking-tight group-hover:text-brand-red transition-colors">Sean Marks</p>
+                <p className="text-text-muted text-[10px] uppercase tracking-wider font-bold mt-0.5">General Manager</p>
+                <p className="text-text-secondary text-xs font-body mt-1.5 line-clamp-2">Architect of the rebuild. Extracted 9 FRPs from the KD trade tree. The question: can he develop what he acquired?</p>
+              </div>
+            </Link>
+            <Link href="/kb/front-office/jordi-fernandez" className="card card-interactive p-5 group flex gap-4 items-start">
+              <div className="w-12 h-12 bg-black shrink-0 flex items-center justify-center">
+                <span className="font-display font-black text-white text-lg">JF</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="font-display font-black text-sm uppercase tracking-tight group-hover:text-brand-red transition-colors">Jordi Fernandez</p>
+                <p className="text-text-muted text-[10px] uppercase tracking-wider font-bold mt-0.5">Head Coach</p>
+                <p className="text-text-secondary text-xs font-body mt-1.5 line-clamp-2">First Spanish NBA head coach. Sports psychology PhD. Development specialist building the young core.</p>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
       {/* ── REBUILD TIMELINE ── */}
       <section className="bg-bg-primary px-4 sm:px-8 py-12">
         <div className="max-w-6xl mx-auto">
@@ -534,10 +568,8 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
             </div>
             <div className="space-y-1">
               {categories.map(cat => {
-                const firstArticle = articles.find(a => a.category === cat.name);
-                const href = firstArticle ? `/kb/${firstArticle.category}/${firstArticle.slug}` : `/kb`;
                 return (
-                  <Link key={cat.name} href={href} className="flex items-center gap-3 py-3 px-3 group hover:bg-bg-surface transition-colors border-b border-black/5 last:border-0">
+                  <Link key={cat.name} href={`/kb/category/${cat.name}`} className="flex items-center gap-3 py-3 px-3 group hover:bg-bg-surface transition-colors border-b border-black/5 last:border-0">
                     <span className="material-symbols-outlined text-text-muted group-hover:text-brand-red transition-colors text-lg">{categoryIcon[cat.name] || "article"}</span>
                     <span className="font-display font-bold text-sm uppercase tracking-tight text-text-primary group-hover:text-brand-red transition-colors flex-1">{cat.label}</span>
                     <span className="text-text-muted text-xs font-body">{cat.count}</span>
