@@ -62,22 +62,45 @@ export default function KBGraphExplorer({ graph }: { graph: KBGraph }) {
   const didDragRef = useRef(false);
   const mouseRef = useRef({ x: 0, y: 0 });
 
-  // Initialize nodes with positions
+  // Initialize nodes with organized positions by category
   useEffect(() => {
     const w = window.innerWidth;
     const h = window.innerHeight - 120;
     setDimensions({ w, h });
 
-    const cx = w / 2;
-    const cy = h / 2;
+    // Category zones — organized layout
+    const categoryZones: Record<string, { x: number; y: number }> = {
+      "front-office": { x: 0.1, y: 0.4 },
+      seasons: { x: 0.15, y: 0.7 },
+      trades: { x: 0.35, y: 0.7 },
+      concepts: { x: 0.3, y: 0.2 },
+      players: { x: 0.65, y: 0.35 },
+      draft: { x: 0.75, y: 0.65 },
+      rivalries: { x: 0.5, y: 0.5 },
+      rumors: { x: 0.55, y: 0.15 },
+    };
 
-    nodesRef.current = graph.nodes.map((n, i) => {
-      const angle = (i / graph.nodes.length) * Math.PI * 2;
-      const radius = Math.min(w, h) * 0.25;
+    // Group nodes by category and position within their zone
+    const categoryNodes: Record<string, typeof graph.nodes> = {};
+    for (const node of graph.nodes) {
+      if (!categoryNodes[node.category]) categoryNodes[node.category] = [];
+      categoryNodes[node.category].push(node);
+    }
+
+    nodesRef.current = graph.nodes.map((n) => {
+      const zone = categoryZones[n.category] || { x: 0.5, y: 0.5 };
+      const siblings = categoryNodes[n.category] || [];
+      const idx = siblings.indexOf(n);
+      const count = siblings.length;
+
+      // Spread within zone
+      const spread = Math.min(w, h) * 0.08;
+      const angle = count > 1 ? (idx / count) * Math.PI * 2 : 0;
+
       return {
         ...n,
-        x: cx + Math.cos(angle) * radius + (Math.random() - 0.5) * 100,
-        y: cy + Math.sin(angle) * radius + (Math.random() - 0.5) * 100,
+        x: zone.x * w + Math.cos(angle) * spread * Math.min(count, 4) * 0.5,
+        y: zone.y * h + Math.sin(angle) * spread * Math.min(count, 4) * 0.5,
         vx: 0,
         vy: 0,
       };
