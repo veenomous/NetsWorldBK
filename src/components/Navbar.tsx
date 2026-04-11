@@ -8,8 +8,8 @@ import { useSession, signIn, signOut } from "next-auth/react";
 const navLinks = [
   { href: "/", label: "Wiki" },
   { href: "/wire", label: "The Wire" },
+  { href: "/press", label: "The Press" },
   { href: "/kb/graph", label: "Graph" },
-  { href: "/trade-machine", label: "Trade Machine" },
   { href: "/gm-mode", label: "War Room" },
   { href: "/simulator", label: "Lottery Sim" },
   { href: "/kb/submit", label: "Submit" },
