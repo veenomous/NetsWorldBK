@@ -96,8 +96,8 @@ export default function KBSearch() {
       style={{
         position: "fixed",
         top: dropdownPos.top,
-        left: dropdownPos.left,
-        width: dropdownPos.width,
+        left: dropdownPos.width > 400 ? dropdownPos.left : 8,
+        width: dropdownPos.width > 400 ? dropdownPos.width : "calc(100vw - 16px)",
         zIndex: 9999,
       }}
     >

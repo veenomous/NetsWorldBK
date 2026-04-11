@@ -341,7 +341,25 @@ export default function KBGraphExplorer({ graph }: { graph: KBGraph }) {
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onClick={handleClick}
-        className="block"
+        onTouchStart={(e) => {
+          const touch = e.touches[0];
+          const rect = canvasRef.current?.getBoundingClientRect();
+          if (!rect) return;
+          handleMouseDown({ clientX: touch.clientX, clientY: touch.clientY, } as unknown as React.MouseEvent<HTMLCanvasElement>);
+        }}
+        onTouchMove={(e) => {
+          const touch = e.touches[0];
+          handleMouseMove({ clientX: touch.clientX, clientY: touch.clientY } as unknown as React.MouseEvent<HTMLCanvasElement>);
+          e.preventDefault();
+        }}
+        onTouchEnd={() => {
+          handleMouseUp();
+          if (!didDragRef.current && hoveredNode) {
+            router.push(`/kb/${hoveredNode.category}/${hoveredNode.slug}`);
+          }
+          didDragRef.current = false;
+        }}
+        className="block touch-none"
       />
 
       {/* Legend */}

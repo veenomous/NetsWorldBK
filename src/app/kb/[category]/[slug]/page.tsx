@@ -126,7 +126,7 @@ export default async function KBArticlePage({
           </h1>
 
           {/* Meta row */}
-          <div className="flex items-center gap-2 flex-wrap">
+          <div className="flex items-center gap-1.5 flex-wrap overflow-hidden">
             <span className={`tag ${confidenceColor[article.confidence]}`}>
               {article.confidence}
             </span>

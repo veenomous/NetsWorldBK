@@ -358,7 +358,7 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
             <span className="material-symbols-outlined text-brand-red text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>groups</span>
             <h2 className="font-display font-black text-sm tracking-[0.1em] uppercase text-text-secondary">The Roster</h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
             {PLAYERS.map(player => (
               <Link key={player.name} href={player.href} className="card card-interactive p-4 group">
                 {/* Player avatar placeholder */}

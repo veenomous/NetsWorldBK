@@ -24,7 +24,7 @@ export default function KBGraphPage() {
             Knowledge <span className="text-brand-red">Graph</span>
           </h1>
           <p className="text-white/30 text-xs font-body mt-1">
-            {graph.nodes.length} articles, {graph.edges.length} connections. Click a node to read. Drag to explore.
+            {graph.nodes.length} articles, {graph.edges.length} connections. Tap a node to read. Drag to rearrange.
           </p>
         </div>
       </div>
