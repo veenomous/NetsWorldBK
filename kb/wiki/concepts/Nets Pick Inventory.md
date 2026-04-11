@@ -1,20 +1,19 @@
 ---
 title: Nets Pick Inventory
 tags: [picks, draft, rebuild, assets, trade-capital]
-sources: [raw/transactions/2023-kd-trade.md, raw/transactions/2024-mikal-bridges-trade.md, raw/transactions/2025-nba-draft-results.md, raw/transactions/2025-cam-johnson-mpj-trade.md]
+sources: [raw/transactions/2023-kd-trade.md, raw/transactions/2024-mikal-bridges-trade.md, raw/transactions/2024-rockets-nets-pick-trade.md, raw/transactions/2025-nba-draft-results.md, raw/transactions/2025-cam-johnson-mpj-trade.md]
 confidence: high
-last_updated: 2026-04-10
+last_updated: 2026-04-11
 ---
 
 ## Summary
-The Brooklyn Nets' draft capital haul is historically unprecedented. After using five first-round picks in the 2025 draft, the Nets still control 6+ first-round picks and 2 pick swaps stretching from 2027 to 2032. The picks come from the Suns (KD trade), Knicks (Bridges trade), Mavs (Kyrie trade), and Nuggets (Cam Johnson trade) — all from teams whose competitive windows could close.
+The Brooklyn Nets' draft capital position is the product of multiple trades — the KD trade, the Bridges flip, the Kyrie trade, the Harden trade, the Rockets pick restructure, and the Cam Johnson trade. After using five first-round picks in the 2025 draft and trading some Suns picks to Houston, the Nets still control multiple first-round picks and swaps stretching to 2032.
 
 ## Key Insights
 - Used 5 first-rounders in the 2025 draft (Demin #8, Traore #19, Powell #22, Saraf #26, Wolf #27)
-- Still hold 6+ first-round picks and 2 swaps from 2027-2032
+- In June 2024, the Nets traded the 2027 PHX first, a 2029 first, and 2029 swap right to Houston in exchange for getting their own 2026 first back and removing Houston's 2025 swap right on the BKN pick
+- The Rockets trade reduced the Suns pick haul but secured the Nets' own future picks
 - The 2032 Denver first (from the Cam Johnson trade) extends the timeline further than any other rebuilding team
-- Unprotected picks from aging Suns and Knicks rosters could land in the lottery by 2027-2029
-- This war chest gives Brooklyn flexibility: draft, trade up, or package picks for a star
 
 ## Details
 
@@ -25,27 +24,30 @@ The Brooklyn Nets' draft capital haul is historically unprecedented. After using
 | #19 | Via Milwaukee (multi-team chain) | Nolan Traore |
 | #22 | Via Atlanta (originally LAL/AD trade) | Drake Powell |
 | #26 | New York Knicks (Bridges trade) | Ben Saraf |
-| #27 | Houston Rockets (Harden trade) | Danny Wolf |
+| #27 | Houston Rockets (Harden trade, top-4 prot. lifted) | Danny Wolf |
 
 ### Remaining First-Round Picks
+
+**2026**
+| Pick | Source | Notes |
+|------|--------|-------|
+| OWN | Brooklyn | Returned from Houston in June 2024 pick restructure |
 
 **2027**
 | Pick | Source | Protection | Origin |
 |------|--------|------------|--------|
-| PHX | Phoenix Suns | Unprotected | [[Kevin Durant Trade Tree]] |
 | NYK | New York Knicks | Unprotected | Bridges trade |
 | DAL | Dallas Mavericks | — | Kyrie trade |
 
 **2028**
 | Pick | Source | Type | Origin |
 |------|--------|------|--------|
-| PHX | Phoenix Suns | Swap | KD trade |
 | NYK | New York Knicks | Swap | Bridges trade |
 
 **2029**
 | Pick | Source | Protection | Origin |
 |------|--------|------------|--------|
-| PHX | Phoenix Suns | Unprotected | KD trade |
+| PHX | Phoenix Suns | Unprotected | KD trade (remaining) |
 | NYK | New York Knicks | Unprotected | Bridges trade |
 
 **2031**
@@ -54,15 +56,20 @@ The Brooklyn Nets' draft capital haul is historically unprecedented. After using
 | NYK | New York Knicks | Unprotected | Bridges trade |
 
 **2032**
-| Pick | Source | Protection | Origin |
-|------|--------|------------|--------|
+| Pick | Source | Notes | Origin |
+|------|--------|-------|--------|
 | DEN | Denver Nuggets | TBD | Cam Johnson trade |
 
-### Strategic Options Going Forward
-1. **Draft and develop** — Use every pick, build through the draft like OKC's Thunder rebuild
-2. **Package for a star** — Trade 3-4 picks for an established All-Star when the timeline aligns (likely 2027-28)
-3. **Trade up** — If the Nets want a specific prospect in 2027, package Suns + Knicks + Mavs picks to move into the top 3
-4. **Stockpile** — Hold picks and let them appreciate in value as the Suns/Knicks age
+### Picks Traded Away (to Houston, June 2024)
+- 2027 PHX first-round pick (originally from KD trade)
+- 2029 first-round pick
+- 2029 first-round pick swap right
+- 2025 PHX first-round pick swap right
+
+In exchange, the Nets received their own 2026 first back and removed Houston's right to swap the Nets' 2025 first-round pick.
+
+### The Rockets Restructure Explained
+The June 2024 Rockets trade was strategic: the Nets gave up future Suns picks to protect their own near-term lottery picks. Getting the 2026 first back means the Nets control their own pick during a tank year — critical for the rebuild. Removing the 2025 swap right protected the #8 pick (Egor Demin) from being swapped away by Houston.
 
 ## Related
 - [[Kevin Durant Trade Tree]]
@@ -70,9 +77,9 @@ The Brooklyn Nets' draft capital haul is historically unprecedented. After using
 - [[Sean Marks Era]]
 - [[Tank Math]]
 - [[Nets vs Knicks]]
-- [[2025-26 Season]]
+- [[Rebuild Timeline]]
 
 ## Open Questions
-- When does Sean Marks shift from accumulation to packaging picks for a star?
-- Which of the remaining picks will land in the lottery first — Suns or Knicks?
-- Is the 2032 Denver pick too far out to have meaningful planning value?
+- How valuable will the remaining Knicks picks (2027, 2029, 2031) be as NY ages?
+- Was trading the 2027 Suns first to Houston worth getting the 2026 own pick back?
+- When does Sean Marks start packaging picks for a star?

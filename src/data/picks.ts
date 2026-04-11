@@ -13,26 +13,21 @@ export interface NetsPickYear {
 
 export const netsPicks: NetsPickYear[] = [
   {
-    year: 2025,
+    year: 2026,
     picks: [
-      { label: "OWN", source: "own", note: "Lottery", href: "/kb/draft/2025-nba-draft" },
-      { label: "PHX", source: "suns", note: "Unprotected", href: "/kb/trades/kevin-durant-trade-tree" },
-      { label: "NYK", source: "knicks", note: "Late 1st", href: "/kb/trades/kevin-durant-trade-tree" },
-      { label: "HOU", source: "rockets", note: "Top-4 prot.", href: "/kb/trades/kevin-durant-trade-tree" },
+      { label: "OWN", source: "own", note: "#3 pick", href: "/kb/concepts/nets-pick-inventory" },
     ],
   },
   {
     year: 2027,
     picks: [
-      { label: "PHX", source: "suns", note: "Unprotected", href: "/kb/trades/kevin-durant-trade-tree" },
       { label: "NYK", source: "knicks", note: "Unprotected", href: "/kb/trades/kevin-durant-trade-tree" },
-      { label: "DAL", source: "mavs", note: "From Kyrie", href: "/kb/trades/kevin-durant-trade-tree" },
+      { label: "DAL", source: "mavs", note: "From Kyrie", href: "/kb/trades/kyrie-irving-trade" },
     ],
   },
   {
     year: 2028,
     picks: [
-      { label: "PHX", source: "suns", note: "Swap", href: "/kb/trades/kevin-durant-trade-tree", isSwap: true },
       { label: "NYK", source: "knicks", note: "Swap", href: "/kb/trades/kevin-durant-trade-tree", isSwap: true },
     ],
   },
@@ -47,6 +42,12 @@ export const netsPicks: NetsPickYear[] = [
     year: 2031,
     picks: [
       { label: "NYK", source: "knicks", note: "Unprotected", href: "/kb/trades/kevin-durant-trade-tree" },
+    ],
+  },
+  {
+    year: 2032,
+    picks: [
+      { label: "DEN", source: "mavs", note: "From Cam trade", href: "/kb/trades/kevin-durant-trade-tree" },
     ],
   },
 ];

@@ -146,7 +146,7 @@ function TradeTree() {
       <div className="absolute" style={{ right: 0, bottom: 0 }}>
         <div className="border-2 border-brand-red px-5 py-3 text-center">
           <p className="text-[10px] text-white/40 tracking-[0.2em] uppercase font-bold">From One Trade</p>
-          <p className="font-display font-black text-brand-red text-2xl leading-none mt-1">9 FRPs + MPJ</p>
+          <p className="font-display font-black text-brand-red text-2xl leading-none mt-1">6 FRPs + MPJ</p>
         </div>
       </div>
     </div>
@@ -191,7 +191,7 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
       <section className="bg-bg-primary px-4 sm:px-8 py-10 border-b-4 border-brand-red">
         <div className="max-w-4xl mx-auto">
           <p className="font-body text-text-secondary text-base sm:text-lg leading-relaxed">
-            In February 2023, the Brooklyn Nets traded <Link href="/kb/trades/kevin-durant-trade-tree" className="text-brand-red font-semibold hover:underline">Kevin Durant</Link> and <Link href="/kb/trades/kyrie-irving-trade" className="text-brand-red font-semibold hover:underline">Kyrie Irving</Link>, ending the most ambitious and catastrophic superstar experiment in franchise history. What they got back — <span className="font-semibold text-text-primary">9 first-round picks, 2 swaps, and Michael Porter Jr.</span> — is the largest trade haul in NBA history. Now in Year 2 of the rebuild with <Link href="/kb/players/egor-demin" className="text-brand-red font-semibold hover:underline">five rookie first-rounders</Link>, a <Link href="/kb/concepts/rebuild-timeline" className="text-brand-red font-semibold hover:underline">target window of 2027-28</Link>, and <Link href="/kb/concepts/nets-pick-inventory" className="text-brand-red font-semibold hover:underline">picks owed through 2032</Link> — Brooklyn has the assets. The question is whether they can build a winner.
+            In February 2023, the Brooklyn Nets traded <Link href="/kb/trades/kevin-durant-trade-tree" className="text-brand-red font-semibold hover:underline">Kevin Durant</Link> and <Link href="/kb/trades/kyrie-irving-trade" className="text-brand-red font-semibold hover:underline">Kyrie Irving</Link>, ending the most ambitious and catastrophic superstar experiment in franchise history. What they got back — <span className="font-semibold text-text-primary">multiple first-round picks, swaps, and Michael Porter Jr.</span> — fueled the most aggressive rebuild in the NBA. Now in Year 2 with <Link href="/kb/players/egor-demin" className="text-brand-red font-semibold hover:underline">five rookie first-rounders</Link>, a <Link href="/kb/concepts/rebuild-timeline" className="text-brand-red font-semibold hover:underline">target window of 2027-28</Link>, and <Link href="/kb/concepts/nets-pick-inventory" className="text-brand-red font-semibold hover:underline">picks owed through 2032</Link> — Brooklyn has the assets. The question is whether they can build a winner.
           </p>
         </div>
       </section>
@@ -279,9 +279,9 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
                 <div>
                   <p className="text-white/40 text-[10px] tracking-[0.15em] uppercase font-bold mb-1">FEB 2023</p>
                   <p className="font-display font-black text-lg uppercase tracking-tight group-hover:text-brand-red transition-colors">Kevin Durant → Phoenix</p>
-                  <p className="text-white/40 font-body text-sm mt-1">9 first-round picks, 2 swaps, and Michael Porter Jr. The foundational trade.</p>
+                  <p className="text-white/40 font-body text-sm mt-1">Multiple firsts, swaps, and Michael Porter Jr. The foundational trade.</p>
                 </div>
-                <span className="font-display font-black text-brand-red text-2xl">9</span>
+                <span className="material-symbols-outlined text-brand-red text-2xl">account_tree</span>
               </div>
             </Link>
             {/* Kyrie Trade */}
@@ -374,7 +374,7 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
             <Link href="/kb/front-office/sean-marks-era" className="border border-black/10 p-5 hover:border-brand-red/30 transition-colors group">
               <p className="font-display font-black text-base uppercase tracking-tight group-hover:text-brand-red transition-colors">Sean Marks</p>
               <p className="text-text-muted text-[10px] uppercase tracking-wider font-bold mt-0.5">General Manager</p>
-              <p className="text-text-secondary text-xs font-body mt-2 leading-relaxed">Best trade-maker in the NBA. Extracted 9 FRPs from one KD trade. Now faces the test he&apos;s never passed: developing draft picks into stars.</p>
+              <p className="text-text-secondary text-xs font-body mt-2 leading-relaxed">Best trade-maker in the NBA. Master trade-maker behind the rebuild&apos;s asset haul. Now faces the test he&apos;s never passed: developing draft picks into stars.</p>
             </Link>
             <Link href="/kb/front-office/jordi-fernandez" className="border border-black/10 p-5 hover:border-brand-red/30 transition-colors group">
               <p className="font-display font-black text-base uppercase tracking-tight group-hover:text-brand-red transition-colors">Jordi Fernandez</p>
