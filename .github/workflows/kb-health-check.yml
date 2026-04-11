@@ -1,0 +1,53 @@
+name: KB Weekly Health Check
+
+on:
+  schedule:
+    # Run every Sunday at 12:00 UTC
+    - cron: '0 12 * * 0'
+  workflow_dispatch:
+    # Manual trigger for testing
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: feature/knowledge-base
+
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Run health check
+        id: health
+        run: |
+          REPORT=$(claude --print "Read the file kb/templates/health-check-prompt.md and follow its instructions to audit the knowledge base. Output the health check report in markdown format.")
+          echo "report<<EOF" >> $GITHUB_OUTPUT
+          echo "$REPORT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Create issue with report
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const report = `${{ steps.health.outputs.report }}`;
+            if (report && report.trim().length > 0) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `KB Health Check — ${new Date().toISOString().split('T')[0]}`,
+                body: report,
+                labels: ['kb', 'automated']
+              });
+            }
