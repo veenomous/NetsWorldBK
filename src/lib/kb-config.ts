@@ -24,6 +24,7 @@ const NBA_CATEGORIES: KBCategory[] = [
   { slug: "draft", label: "Draft", icon: "format_list_numbered" },
   { slug: "rivalries", label: "Rivalries", icon: "swords" },
   { slug: "concepts", label: "Concepts", icon: "school" },
+  { slug: "rumors", label: "Rumor Mill", icon: "local_fire_department" },
 ];
 
 const NBA_RAW_TYPES = [

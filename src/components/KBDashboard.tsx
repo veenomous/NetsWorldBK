@@ -38,6 +38,7 @@ const categoryIcon: Record<string, string> = {
   draft: "format_list_numbered",
   rivalries: "swords",
   concepts: "school",
+  rumors: "local_fire_department",
 };
 
 interface KBArticleProps {
@@ -269,6 +270,41 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
           </div>
         </div>
       </section>
+
+      {/* ── RUMOR MILL ── */}
+      {(() => {
+        const rumors = articles.filter(a => a.category === "rumors");
+        if (rumors.length === 0) return null;
+        return (
+          <section className="bg-bg-primary px-4 sm:px-8 py-10 border-b border-black/5">
+            <div className="max-w-6xl mx-auto">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-brand-red text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>local_fire_department</span>
+                  <h2 className="font-display font-black text-sm tracking-[0.1em] uppercase text-text-secondary">Rumor Mill</h2>
+                </div>
+                <Link href="/kb/category/rumors" className="text-[10px] text-brand-red font-bold uppercase tracking-wider hover:underline">
+                  View All
+                </Link>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {rumors.map(rumor => (
+                  <Link key={rumor.slug} href={`/kb/${rumor.category}/${rumor.slug}`} className="card card-interactive p-4 group border-l-4 border-l-brand-red">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className={`tag ${confColor[rumor.confidence]}`} style={{ fontSize: "9px" }}>{rumor.confidence}</span>
+                      <span className="text-text-muted text-[10px]">{rumor.last_updated}</span>
+                    </div>
+                    <p className="font-display font-bold text-sm uppercase tracking-tight text-text-primary group-hover:text-brand-red transition-colors">{rumor.title}</p>
+                    {rumor.tags.filter(t => !["rumor"].includes(t)).slice(0, 2).map(tag => (
+                      <span key={tag} className="tag tag-blue mr-1 mt-2" style={{ fontSize: "8px", padding: "1px 6px" }}>{tag}</span>
+                    ))}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      })()}
 
       {/* ── TRADE TREE ── */}
       <section className="bg-bg-primary px-4 sm:px-8 py-10 border-b border-black/5">
