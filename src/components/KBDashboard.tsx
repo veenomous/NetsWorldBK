@@ -7,37 +7,24 @@ import KBChangelog from "@/components/KBChangelog";
 import { netsPicks, totalFirstRoundPicks, totalSwaps } from "@/data/picks";
 import { kbPlayers } from "@/data/kb-players";
 
-/* ═══════════════════════════════════════════
-   HARDCODED DATA — prototype only
-   ═══════════════════════════════════════════ */
-
 const PICKS = netsPicks;
+const PLAYERS = kbPlayers;
 
 const sourceColor: Record<string, string> = {
   own: "bg-brand-red text-white",
-  suns: "bg-brand-orange text-white",
+  suns: "bg-brand-red/70 text-white",
   knicks: "bg-accent-blue text-white",
-  rockets: "bg-accent-red text-white",
-  mavs: "bg-accent-cyan text-white",
+  rockets: "bg-brand-red/50 text-white",
+  mavs: "bg-accent-blue/70 text-white",
 };
-
-const sourceDot: Record<string, string> = {
-  own: "bg-brand-red",
-  suns: "bg-brand-orange",
-  knicks: "bg-accent-blue",
-  rockets: "bg-accent-red",
-  mavs: "bg-accent-cyan",
-};
-
-const PLAYERS = kbPlayers;
 
 const TIMELINE = [
   { date: "FEB 2023", event: "KD traded to Suns", detail: "Bridges + Cam + 4 FRPs + swap", type: "trade" as const },
   { date: "FEB 2023", event: "Kyrie traded to Mavs", detail: "2 FRPs returned", type: "trade" as const },
   { date: "JUN 2024", event: "Bridges traded to Knicks", detail: "4 FRPs + swap returned", type: "trade" as const },
-  { date: "DEC 2024", event: "Schroder to Warriors", detail: "3 SRPs returned", type: "trade" as const },
-  { date: "2024-25", event: "Tank season", detail: "Development year, bottom 5 record", type: "season" as const },
-  { date: "JUN 2025", event: "NBA Draft", detail: "The inflection point", type: "draft" as const },
+  { date: "JUL 2025", event: "Cam Johnson to Denver", detail: "MPJ + 2032 DEN 1st returned", type: "trade" as const },
+  { date: "JUN 2025", event: "5 first-rounders drafted", detail: "Demin, Traore, Powell, Saraf, Wolf", type: "draft" as const },
+  { date: "2025-26", event: "Year 2: Development", detail: "20-60, rookies getting reps", type: "season" as const },
 ];
 
 const confColor = { high: "tag-green", medium: "tag-gold", low: "tag-red" };
@@ -52,7 +39,6 @@ const categoryIcon: Record<string, string> = {
   concepts: "school",
 };
 
-/* Props from server component */
 interface KBArticleProps {
   title: string;
   category: string;
@@ -80,7 +66,7 @@ interface KBDashboardProps {
 }
 
 /* ═══════════════════════════════════════════
-   TRADE TREE — SVG + positioned nodes
+   TRADE TREE — SVG (desktop only)
    ═══════════════════════════════════════════ */
 
 function TradeTree() {
@@ -88,29 +74,18 @@ function TradeTree() {
 
   return (
     <div className="relative w-full">
-      {/* Scroll hint gradient — right edge */}
-      <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none sm:hidden" />
-      <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
       <div className="relative" style={{ width: 800, height: 680 }}>
-        {/* SVG connection lines — coordinates match node centers exactly */}
         <svg className="absolute inset-0" width="800" height="680" fill="none">
-          {/* KD (400,40) → Suns Return (400,130) */}
           <path d="M 400 65 L 400 125" stroke="#E43C3E" strokeWidth="2" strokeDasharray="6 3" opacity="0.6" />
-          {/* Suns Return (400,150) → Bridges (140,260), CamJ (400,260), Picks (660,260) */}
-          <path d="M 400 155 L 140 240" stroke="#e87a2e" strokeWidth="2" opacity="0.4" />
-          <path d="M 400 155 L 400 240" stroke="#e87a2e" strokeWidth="2" opacity="0.4" />
-          <path d="M 400 155 L 660 240" stroke="#e87a2e" strokeWidth="2" opacity="0.4" />
-          {/* Bridges (140,290) → Knicks Return (140,370) */}
+          <path d="M 400 155 L 140 240" stroke="#1a1c1c" strokeWidth="2" opacity="0.2" />
+          <path d="M 400 155 L 400 240" stroke="#1a1c1c" strokeWidth="2" opacity="0.2" />
+          <path d="M 400 155 L 660 240" stroke="#1a1c1c" strokeWidth="2" opacity="0.2" />
           <path d="M 140 295 L 140 365" stroke="#E43C3E" strokeWidth="2" strokeDasharray="6 3" opacity="0.6" />
-          {/* Knicks Return (140,390) → NYK Picks (80,460), NYK Swap (200,460) */}
-          <path d="M 140 395 L 80 450" stroke="#0047AB" strokeWidth="2" opacity="0.4" />
-          <path d="M 140 395 L 200 450" stroke="#0047AB" strokeWidth="2" opacity="0.4" />
-          {/* CamJ (400,290) → Denver Return (400,370) */}
+          <path d="M 140 395 L 80 450" stroke="#0047AB" strokeWidth="2" opacity="0.3" />
+          <path d="M 140 395 L 200 450" stroke="#0047AB" strokeWidth="2" opacity="0.3" />
           <path d="M 400 295 L 400 365" stroke="#E43C3E" strokeWidth="2" strokeDasharray="6 3" opacity="0.6" />
-          {/* Denver Return (400,390) → MPJ (340,460), DEN Pick (470,460) */}
-          <path d="M 400 395 L 340 450" stroke="#7c3aed" strokeWidth="2" opacity="0.4" />
-          <path d="M 400 395 L 470 450" stroke="#7c3aed" strokeWidth="2" opacity="0.4" />
-          {/* Animated pulses */}
+          <path d="M 400 395 L 340 450" stroke="#1a1c1c" strokeWidth="2" opacity="0.2" />
+          <path d="M 400 395 L 470 450" stroke="#1a1c1c" strokeWidth="2" opacity="0.2" />
           <circle r="3" fill="#E43C3E" opacity="0.8">
             <animateMotion dur="2.5s" repeatCount="indefinite" path="M 400 65 L 400 155" />
           </circle>
@@ -120,112 +95,100 @@ function TradeTree() {
           <circle r="3" fill="#E43C3E" opacity="0.8">
             <animateMotion dur="2.5s" repeatCount="indefinite" path="M 400 295 L 400 395" />
           </circle>
-          <circle r="3" fill="#e87a2e" opacity="0.6">
-            <animateMotion dur="3s" repeatCount="indefinite" path="M 400 155 L 140 240" />
-          </circle>
-          <circle r="3" fill="#e87a2e" opacity="0.6">
-            <animateMotion dur="3s" repeatCount="indefinite" path="M 400 155 L 660 240" />
-          </circle>
         </svg>
 
-        {/* ── NODES (absolute, pixel-positioned to match SVG) ── */}
-
-        {/* KD — center 400, top 15 */}
-        <Link href="/kb/trades/kevin-durant-trade-tree"
-          className="absolute" style={{ left: 310, top: 10 }}
+        {/* KD */}
+        <Link href="/kb/trades/kevin-durant-trade-tree" className="absolute" style={{ left: 310, top: 10 }}
           onMouseEnter={() => setHoveredNode("kd")} onMouseLeave={() => setHoveredNode(null)}>
-          <div className={`bg-black border-2 transition-all px-6 py-3 w-[180px] text-center ${hoveredNode === "kd" ? "border-brand-red shadow-[0_0_24px_rgba(228,60,62,0.3)]" : "border-white/20"}`}>
+          <div className={`bg-black border-2 transition-all px-6 py-3 w-[180px] text-center ${hoveredNode === "kd" ? "border-brand-red shadow-[0_0_24px_rgba(228,60,62,0.3)]" : "border-black"}`}>
             <p className="font-display font-black text-white text-base tracking-tight uppercase">Kevin Durant</p>
             <p className="text-[10px] text-white/40 tracking-widest uppercase mt-0.5">FEB 2023 → PHX</p>
           </div>
         </Link>
 
-        {/* Suns Return — center 400, top 120 */}
+        {/* Suns Return */}
         <div className="absolute" style={{ left: 340, top: 120 }}>
-          <div className="bg-brand-orange/10 border border-brand-orange/30 px-5 py-2 w-[120px] text-center">
-            <p className="font-display font-bold text-brand-orange text-[10px] tracking-[0.2em] uppercase">Suns Return</p>
+          <div className="bg-brand-red/10 border border-brand-red/30 px-5 py-2 w-[120px] text-center">
+            <p className="font-display font-bold text-brand-red text-[10px] tracking-[0.2em] uppercase">Suns Return</p>
           </div>
         </div>
 
-        {/* Bridges — center 140, top 235 */}
-        <Link href="/kb/trades/kevin-durant-trade-tree"
-          className="absolute" style={{ left: 60, top: 235 }}
+        {/* Bridges */}
+        <Link href="/kb/trades/kevin-durant-trade-tree" className="absolute" style={{ left: 60, top: 235 }}
           onMouseEnter={() => setHoveredNode("bridges")} onMouseLeave={() => setHoveredNode(null)}>
-          <div className={`bg-black border-2 transition-all px-4 py-3 w-[160px] text-center ${hoveredNode === "bridges" ? "border-brand-red shadow-[0_0_20px_rgba(228,60,62,0.3)]" : "border-white/20"}`}>
-            <p className="font-display font-black text-white text-sm tracking-tight uppercase">Mikal Bridges</p>
+          <div className={`bg-white border-2 transition-all px-4 py-3 w-[160px] text-center ${hoveredNode === "bridges" ? "border-brand-red shadow-[0_0_20px_rgba(228,60,62,0.2)]" : "border-black/10"}`}>
+            <p className="font-display font-black text-text-primary text-sm tracking-tight uppercase">Mikal Bridges</p>
             <p className="text-[10px] text-brand-red font-bold mt-1">→ TRADED TO NYK</p>
           </div>
         </Link>
 
-        {/* Cam Johnson — center 400, top 235 */}
-        <Link href="/kb/players/cameron-johnson"
-          className="absolute" style={{ left: 320, top: 235 }}
+        {/* Cam Johnson */}
+        <Link href="/kb/players/cameron-johnson" className="absolute" style={{ left: 320, top: 235 }}
           onMouseEnter={() => setHoveredNode("cam")} onMouseLeave={() => setHoveredNode(null)}>
-          <div className={`bg-black border-2 transition-all px-4 py-3 w-[160px] text-center ${hoveredNode === "cam" ? "border-brand-red shadow-[0_0_20px_rgba(228,60,62,0.3)]" : "border-white/20"}`}>
-            <p className="font-display font-black text-white text-sm tracking-tight uppercase">Cam Johnson</p>
+          <div className={`bg-white border-2 transition-all px-4 py-3 w-[160px] text-center ${hoveredNode === "cam" ? "border-brand-red shadow-[0_0_20px_rgba(228,60,62,0.2)]" : "border-black/10"}`}>
+            <p className="font-display font-black text-text-primary text-sm tracking-tight uppercase">Cam Johnson</p>
             <p className="text-[10px] text-brand-red font-bold mt-1">→ TRADED TO DEN</p>
           </div>
         </Link>
 
-        {/* 4 Suns Picks — center 660, top 235 */}
+        {/* 4 Suns Picks */}
         <div className="absolute" style={{ left: 575, top: 235 }}>
-          <div className="bg-black border-2 border-brand-orange/50 px-4 py-3 w-[170px] text-center">
-            <p className="font-display font-black text-white text-sm tracking-tight uppercase">4 Suns FRPs</p>
-            <p className="text-[10px] text-brand-orange font-bold mt-1">&apos;25, &apos;27, &apos;29 + &apos;28 SWAP</p>
-            <p className="text-[9px] text-white/30 mt-0.5">ALL UNPROTECTED</p>
+          <div className="bg-white border-2 border-brand-red/30 px-4 py-3 w-[170px] text-center">
+            <p className="font-display font-black text-text-primary text-sm tracking-tight uppercase">4 Suns FRPs</p>
+            <p className="text-[10px] text-brand-red font-bold mt-1">&apos;25, &apos;27, &apos;29 + &apos;28 SWAP</p>
+            <p className="text-[9px] text-text-muted mt-0.5">ALL UNPROTECTED</p>
           </div>
         </div>
 
-        {/* Knicks Return — center 140, top 360 */}
+        {/* Knicks Return */}
         <div className="absolute" style={{ left: 80, top: 360 }}>
           <div className="bg-accent-blue/10 border border-accent-blue/30 px-4 py-2 w-[120px] text-center">
             <p className="font-display font-bold text-accent-blue text-[10px] tracking-[0.2em] uppercase">Knicks Return</p>
           </div>
         </div>
 
-        {/* Denver Return — center 400, top 360 */}
+        {/* Denver Return */}
         <div className="absolute" style={{ left: 335, top: 360 }}>
-          <div className="bg-accent-purple/10 border border-accent-purple/30 px-4 py-2 w-[130px] text-center">
-            <p className="font-display font-bold text-accent-purple text-[10px] tracking-[0.2em] uppercase">Denver Return</p>
+          <div className="bg-black/5 border border-black/10 px-4 py-2 w-[130px] text-center">
+            <p className="font-display font-bold text-text-secondary text-[10px] tracking-[0.2em] uppercase">Denver Return</p>
           </div>
         </div>
 
-        {/* 4 Knicks FRPs — center 80, top 445 */}
+        {/* 4 Knicks FRPs */}
         <div className="absolute" style={{ left: 10, top: 445 }}>
-          <div className="bg-black border-2 border-accent-blue/50 px-3 py-3 w-[140px] text-center">
-            <p className="font-display font-black text-white text-xs tracking-tight uppercase">4 Knicks FRPs</p>
+          <div className="bg-white border-2 border-accent-blue/40 px-3 py-3 w-[140px] text-center">
+            <p className="font-display font-black text-text-primary text-xs tracking-tight uppercase">4 Knicks FRPs</p>
             <p className="text-[10px] text-accent-blue font-bold mt-1">&apos;25, &apos;27, &apos;29, &apos;31</p>
-            <p className="text-[9px] text-white/30 mt-0.5">ALL UNPROTECTED</p>
+            <p className="text-[9px] text-text-muted mt-0.5">ALL UNPROTECTED</p>
           </div>
         </div>
 
-        {/* Knicks Swap — center 200, top 445 */}
+        {/* Knicks Swap */}
         <div className="absolute" style={{ left: 160, top: 445 }}>
-          <div className="bg-black border-2 border-accent-blue/30 px-3 py-3 w-[100px] text-center">
-            <p className="font-display font-bold text-white text-xs tracking-tight uppercase">&apos;28 Swap</p>
+          <div className="bg-white border-2 border-accent-blue/20 px-3 py-3 w-[100px] text-center">
+            <p className="font-display font-bold text-text-primary text-xs tracking-tight uppercase">&apos;28 Swap</p>
             <p className="text-[10px] text-accent-blue/60 font-bold mt-1">NYK</p>
           </div>
         </div>
 
-        {/* MPJ — center 340, top 445 */}
-        <Link href="/kb/players/michael-porter-jr"
-          className="absolute" style={{ left: 275, top: 445 }}
+        {/* MPJ */}
+        <Link href="/kb/players/michael-porter-jr" className="absolute" style={{ left: 275, top: 445 }}
           onMouseEnter={() => setHoveredNode("mpj")} onMouseLeave={() => setHoveredNode(null)}>
-          <div className={`bg-black border-2 transition-all px-3 py-3 w-[130px] text-center ${hoveredNode === "mpj" ? "border-brand-red shadow-[0_0_20px_rgba(228,60,62,0.3)]" : "border-accent-green/50"}`}>
-            <p className="font-display font-black text-white text-xs tracking-tight uppercase">Michael Porter Jr</p>
+          <div className={`bg-white border-2 transition-all px-3 py-3 w-[130px] text-center ${hoveredNode === "mpj" ? "border-brand-red shadow-[0_0_20px_rgba(228,60,62,0.2)]" : "border-accent-green/50"}`}>
+            <p className="font-display font-black text-text-primary text-xs tracking-tight uppercase">Michael Porter Jr</p>
             <p className="text-[10px] text-accent-green font-bold mt-1">ON ROSTER · 24.2 PPG</p>
           </div>
         </Link>
 
-        {/* 2032 Denver Pick — center 470, top 445 */}
+        {/* 2032 Denver Pick */}
         <div className="absolute" style={{ left: 415, top: 445 }}>
-          <div className="bg-black border-2 border-accent-purple/50 px-3 py-3 w-[120px] text-center">
-            <p className="font-display font-black text-white text-xs tracking-tight uppercase">&apos;32 DEN 1st</p>
-            <p className="text-[9px] text-accent-purple/60 font-bold mt-1">FROM CAM TRADE</p>
+          <div className="bg-white border-2 border-black/10 px-3 py-3 w-[120px] text-center">
+            <p className="font-display font-black text-text-primary text-xs tracking-tight uppercase">&apos;32 DEN 1st</p>
+            <p className="text-[9px] text-text-muted font-bold mt-1">FROM CAM TRADE</p>
           </div>
         </div>
 
-        {/* Total badge — bottom right */}
+        {/* Total badge */}
         <div className="absolute" style={{ right: 0, bottom: 0 }}>
           <div className="bg-black border-2 border-brand-red px-6 py-4 text-center">
             <p className="text-[10px] text-white/40 tracking-[0.2em] uppercase font-bold">Total from KD</p>
@@ -233,7 +196,6 @@ function TradeTree() {
             <p className="text-[10px] text-white/30 mt-1">+ 2 SWAPS + MPJ</p>
           </div>
         </div>
-      </div>
       </div>
     </div>
   );
@@ -245,22 +207,16 @@ function TradeTree() {
 
 export default function KBDashboard({ articles, categories, changelog }: KBDashboardProps) {
   return (
-    <div className="min-h-screen">
-      {/* ── HERO ── */}
-      <section className="bg-black text-white px-4 sm:px-8 pt-10 pb-12 relative overflow-hidden">
-        {/* Subtle grid overlay */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: "linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)",
-          backgroundSize: "40px 40px"
-        }} />
-        <div className="max-w-6xl mx-auto relative">
+    <div className="min-h-screen bg-bg-primary">
+
+      {/* ── HERO (black) ── */}
+      <section className="bg-black text-white px-4 sm:px-8 pt-8 pb-10">
+        <div className="max-w-6xl mx-auto">
           <div className="flex items-center gap-3 mb-4">
             <span className="tag tag-red">Knowledge Base</span>
             <span className="text-white/30 text-[10px] tracking-[0.2em] uppercase font-bold">{articles.length} Articles</span>
-            <span className="text-white/10 text-[10px]">|</span>
-            <span className="text-white/30 text-[10px] tracking-[0.2em] uppercase font-bold">5 Sources</span>
           </div>
-          <h1 className="font-display font-black text-white uppercase tracking-[-0.04em] leading-[0.85]" style={{ fontSize: "clamp(3rem, 8vw, 6rem)" }}>
+          <h1 className="font-display font-black text-white uppercase tracking-[-0.04em] leading-[0.85]" style={{ fontSize: "clamp(2.5rem, 7vw, 5rem)" }}>
             NETS<br />
             <span className="text-brand-red">WIKI</span>
           </h1>
@@ -273,53 +229,76 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
         </div>
       </section>
 
+      {/* ── REBUILD OVERVIEW (white canvas) ── */}
+      <section className="bg-bg-primary px-4 sm:px-8 py-10 border-b border-black/5">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center gap-2 mb-6">
+            <span className="material-symbols-outlined text-brand-red text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>monitoring</span>
+            <h2 className="font-display font-black text-sm tracking-[0.1em] uppercase text-text-secondary">State of the Rebuild</h2>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+            <div className="border border-black/10 p-4 text-center">
+              <p className="font-display font-black text-2xl text-text-primary">20-61</p>
+              <p className="text-[10px] text-text-muted tracking-[0.15em] uppercase font-bold mt-1">2025-26 Record</p>
+            </div>
+            <div className="border border-black/10 p-4 text-center">
+              <p className="font-display font-black text-2xl text-brand-red">#3</p>
+              <p className="text-[10px] text-text-muted tracking-[0.15em] uppercase font-bold mt-1">Lottery Position</p>
+            </div>
+            <div className="border border-black/10 p-4 text-center">
+              <p className="font-display font-black text-2xl text-accent-blue">{totalFirstRoundPicks + totalSwaps}</p>
+              <p className="text-[10px] text-text-muted tracking-[0.15em] uppercase font-bold mt-1">Picks Through 2032</p>
+            </div>
+            <div className="border border-black/10 p-4 text-center">
+              <p className="font-display font-black text-2xl text-text-primary">21.2</p>
+              <p className="text-[10px] text-text-muted tracking-[0.15em] uppercase font-bold mt-1">Avg Core Age</p>
+            </div>
+            <Link href="/kb/concepts/rebuild-timeline" className="border border-black/10 p-4 text-center hover:border-brand-red/30 transition-colors group col-span-2 sm:col-span-1">
+              <p className="font-display font-black text-2xl text-accent-green group-hover:text-brand-red transition-colors">2027-28</p>
+              <p className="text-[10px] text-text-muted tracking-[0.15em] uppercase font-bold mt-1">Target Window</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── TRADE TREE ── */}
-      <section className="bg-black text-white px-4 sm:px-8 pb-12">
+      <section className="bg-bg-primary px-4 sm:px-8 py-10 border-b border-black/5">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <span className="material-symbols-outlined text-brand-red text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>account_tree</span>
-            <h2 className="font-display font-black text-sm tracking-[0.1em] uppercase text-white/60">The KD Trade Tree</h2>
+            <h2 className="font-display font-black text-sm tracking-[0.1em] uppercase text-text-secondary">The KD Trade Tree</h2>
           </div>
-          {/* Desktop: SVG visualization (only on wide screens) */}
+          {/* Desktop SVG */}
           <div style={{ display: "none" }} className="trade-tree-desktop">
             <TradeTree />
           </div>
-          {/* Mobile/tablet: vertical card layout */}
+          {/* Mobile cards */}
           <div className="trade-tree-mobile space-y-0 stagger-children">
-            {/* KD node */}
-            <Link href="/kb/trades/kevin-durant-trade-tree" className="block border border-white/10 p-4 hover:border-brand-red/50 transition-colors animate-slide-up opacity-0">
-              <p className="font-display font-black text-white text-sm uppercase">Kevin Durant</p>
-              <p className="text-[10px] text-white/40 tracking-widest uppercase mt-0.5">FEB 2023 → PHX</p>
+            <Link href="/kb/trades/kevin-durant-trade-tree" className="block border border-black/10 p-4 hover:border-brand-red/30 transition-colors animate-slide-up opacity-0">
+              <p className="font-display font-black text-text-primary text-sm uppercase">Kevin Durant</p>
+              <p className="text-[10px] text-text-muted tracking-widest uppercase mt-0.5">FEB 2023 → PHX</p>
             </Link>
-
-            {/* Connector with pulse */}
             <div className="flex items-center gap-2 pl-4 py-2 animate-slide-up opacity-0">
               <div className="relative w-px h-6">
                 <div className="absolute inset-0 bg-brand-red/20" />
                 <div className="absolute w-3 h-3 bg-brand-red rounded-full -left-[5px] animate-pulse-soft" style={{ top: 0 }} />
               </div>
-              <span className="text-[10px] text-brand-orange font-bold tracking-[0.15em] uppercase">Suns Return</span>
+              <span className="text-[10px] text-brand-red font-bold tracking-[0.15em] uppercase">Suns Return</span>
             </div>
-
-            {/* Bridges + Cam J */}
             <div className="grid grid-cols-2 gap-2 pl-4 animate-slide-up opacity-0">
-              <Link href="/kb/trades/kevin-durant-trade-tree" className="border border-white/10 p-3 hover:border-brand-red/50 transition-colors">
-                <p className="font-display font-bold text-white text-xs uppercase">Mikal Bridges</p>
+              <Link href="/kb/trades/kevin-durant-trade-tree" className="border border-black/10 p-3 hover:border-brand-red/30 transition-colors">
+                <p className="font-display font-bold text-text-primary text-xs uppercase">Mikal Bridges</p>
                 <p className="text-[10px] text-brand-red font-bold mt-1">→ NYK</p>
               </Link>
-              <Link href="/kb/players/cameron-johnson" className="border border-white/10 p-3 hover:border-brand-red/50 transition-colors">
-                <p className="font-display font-bold text-white text-xs uppercase">Cam Johnson</p>
+              <Link href="/kb/players/cameron-johnson" className="border border-black/10 p-3 hover:border-brand-red/30 transition-colors">
+                <p className="font-display font-bold text-text-primary text-xs uppercase">Cam Johnson</p>
                 <p className="text-[10px] text-brand-red font-bold mt-1">→ DEN</p>
               </Link>
             </div>
-
-            {/* Suns picks */}
-            <div className="pl-4 border border-brand-orange/30 p-3 mt-2 animate-slide-up opacity-0">
-              <p className="font-display font-bold text-white text-xs uppercase">4 Suns FRPs</p>
-              <p className="text-[10px] text-brand-orange font-bold mt-1">&apos;25, &apos;27, &apos;29 + &apos;28 SWAP — ALL UNPROTECTED</p>
+            <div className="pl-4 border border-brand-red/20 p-3 mt-2 animate-slide-up opacity-0">
+              <p className="font-display font-bold text-text-primary text-xs uppercase">4 Suns FRPs</p>
+              <p className="text-[10px] text-brand-red font-bold mt-1">&apos;25, &apos;27, &apos;29 + &apos;28 SWAP — ALL UNPROTECTED</p>
             </div>
-
-            {/* Knicks connector with pulse */}
             <div className="flex items-center gap-2 pl-8 py-2 animate-slide-up opacity-0">
               <div className="relative w-px h-6">
                 <div className="absolute inset-0 bg-accent-blue/20" />
@@ -327,37 +306,29 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
               </div>
               <span className="text-[10px] text-accent-blue font-bold tracking-[0.15em] uppercase">From Bridges → Knicks</span>
             </div>
-
-            {/* Knicks picks */}
-            <div className="pl-8 border border-accent-blue/30 p-3 animate-slide-up opacity-0">
-              <p className="font-display font-bold text-white text-xs uppercase">4 Knicks FRPs</p>
+            <div className="pl-8 border border-accent-blue/20 p-3 animate-slide-up opacity-0">
+              <p className="font-display font-bold text-text-primary text-xs uppercase">4 Knicks FRPs</p>
               <p className="text-[10px] text-accent-blue font-bold mt-1">&apos;25, &apos;27, &apos;29, &apos;31 + &apos;28 SWAP — ALL UNPROTECTED</p>
             </div>
-
-            {/* Denver connector with pulse */}
             <div className="flex items-center gap-2 pl-8 py-2 animate-slide-up opacity-0">
               <div className="relative w-px h-6">
-                <div className="absolute inset-0 bg-accent-purple/20" />
-                <div className="absolute w-3 h-3 bg-accent-purple rounded-full -left-[5px] animate-pulse-soft" style={{ top: 0, animationDelay: "1s" }} />
+                <div className="absolute inset-0 bg-black/10" />
+                <div className="absolute w-3 h-3 bg-text-secondary rounded-full -left-[5px] animate-pulse-soft" style={{ top: 0, animationDelay: "1s" }} />
               </div>
-              <span className="text-[10px] text-accent-purple font-bold tracking-[0.15em] uppercase">From Cam J → Denver</span>
+              <span className="text-[10px] text-text-secondary font-bold tracking-[0.15em] uppercase">From Cam J → Denver</span>
             </div>
-
-            {/* Denver returns */}
             <div className="grid grid-cols-2 gap-2 pl-8 animate-slide-up opacity-0">
-              <Link href="/kb/players/michael-porter-jr" className="border border-accent-green/40 p-3 hover:border-brand-red/50 transition-colors">
-                <p className="font-display font-bold text-white text-xs uppercase">Michael Porter Jr</p>
+              <Link href="/kb/players/michael-porter-jr" className="border border-accent-green/30 p-3 hover:border-brand-red/30 transition-colors">
+                <p className="font-display font-bold text-text-primary text-xs uppercase">Michael Porter Jr</p>
                 <p className="text-[10px] text-accent-green font-bold mt-1">ON ROSTER · 24.2 PPG</p>
               </Link>
-              <div className="border border-accent-purple/30 p-3">
-                <p className="font-display font-bold text-white text-xs uppercase">&apos;32 DEN 1st</p>
-                <p className="text-[10px] text-accent-purple/60 font-bold mt-1">FROM CAM TRADE</p>
+              <div className="border border-black/10 p-3">
+                <p className="font-display font-bold text-text-primary text-xs uppercase">&apos;32 DEN 1st</p>
+                <p className="text-[10px] text-text-muted font-bold mt-1">FROM CAM TRADE</p>
               </div>
             </div>
-
-            {/* Total badge with glow pulse */}
             <div className="mt-4 animate-slide-up opacity-0">
-              <div className="border-2 border-brand-red p-4 text-center" style={{ animation: "glow-pulse 3s ease-in-out infinite" }}>
+              <div className="bg-black border-2 border-brand-red p-4 text-center" style={{ animation: "glow-pulse 3s ease-in-out infinite" }}>
                 <p className="text-[10px] text-white/40 tracking-[0.2em] uppercase font-bold">Total from KD</p>
                 <p className="font-display font-black text-brand-red text-2xl tracking-tight leading-none mt-1">9 FRPs + 2 SWAPS + MPJ</p>
               </div>
@@ -366,26 +337,22 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
         </div>
       </section>
 
-      {/* Transition line */}
-      <div className="h-px bg-gradient-to-r from-transparent via-brand-red/30 to-transparent" />
-
-      {/* ── PICK TIMELINE ── */}
-      <section className="bg-bg-primary px-4 sm:px-8 py-12">
+      {/* ── PICK INVENTORY ── */}
+      <section className="bg-bg-primary px-4 sm:px-8 py-10 border-b border-black/5">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center gap-2 mb-2">
             <span className="material-symbols-outlined text-brand-red text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>confirmation_number</span>
             <h2 className="font-display font-black text-sm tracking-[0.1em] uppercase text-text-secondary">Pick Inventory</h2>
           </div>
-          <p className="text-text-muted text-xs font-body mb-6">First-round picks the Nets own through 2031</p>
+          <p className="text-text-muted text-xs font-body mb-6">First-round picks the Nets control through 2032</p>
 
-          {/* Legend */}
           <div className="flex flex-wrap gap-3 mb-6">
             {[
               { label: "OWN", color: "bg-brand-red" },
-              { label: "SUNS", color: "bg-brand-orange" },
+              { label: "SUNS", color: "bg-brand-red/70" },
               { label: "KNICKS", color: "bg-accent-blue" },
-              { label: "ROCKETS", color: "bg-accent-red" },
-              { label: "MAVS", color: "bg-accent-cyan" },
+              { label: "ROCKETS", color: "bg-brand-red/50" },
+              { label: "MAVS", color: "bg-accent-blue/70" },
             ].map(l => (
               <div key={l.label} className="flex items-center gap-1.5">
                 <span className={`w-2.5 h-2.5 ${l.color}`} />
@@ -394,7 +361,7 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
             ))}
           </div>
 
-          {/* Timeline — vertical on mobile, horizontal on desktop */}
+          {/* Mobile: vertical */}
           <div className="space-y-4 sm:hidden">
             {PICKS.map((yearGroup) => (
               <div key={yearGroup.year} className="border border-black/10 p-4">
@@ -403,8 +370,7 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
                   {yearGroup.picks.map((pick, pi) => (
                     <Link key={pi} href={pick.href}>
                       <div className={`${sourceColor[pick.source]} px-3 py-2 text-center ${(pick as { isSwap?: boolean }).isSwap ? "opacity-60 border border-dashed border-black/20 bg-transparent !text-text-muted" : ""}`}
-                        style={(pick as { isSwap?: boolean }).isSwap ? { background: "transparent" } : {}}
-                      >
+                        style={(pick as { isSwap?: boolean }).isSwap ? { background: "transparent" } : {}}>
                         <p className="font-display font-bold text-[11px] tracking-wider uppercase">{pick.label}</p>
                         <p className={`text-[9px] mt-0.5 ${(pick as { isSwap?: boolean }).isSwap ? "text-text-muted" : "text-white/70"}`}>{pick.note}</p>
                       </div>
@@ -414,7 +380,7 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
               </div>
             ))}
           </div>
-          {/* Desktop horizontal timeline */}
+          {/* Desktop: horizontal */}
           <div className="hidden sm:block overflow-x-auto scrollbar-hide">
             <div className="flex gap-0 min-w-[700px]">
               {PICKS.map((yearGroup, yi) => (
@@ -426,9 +392,8 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
                   <div className="flex flex-col items-center gap-2">
                     {yearGroup.picks.map((pick, pi) => (
                       <Link key={pi} href={pick.href} className="group">
-                        <div className={`${sourceColor[pick.source]} px-3 py-1.5 text-center transition-all group-hover:shadow-lg group-hover:scale-105 ${(pick as { isSwap?: boolean }).isSwap ? "opacity-60 border border-dashed border-white/30 bg-transparent !text-text-muted" : ""}`}
-                          style={(pick as { isSwap?: boolean }).isSwap ? { background: "transparent" } : {}}
-                        >
+                        <div className={`${sourceColor[pick.source]} px-3 py-1.5 text-center transition-all group-hover:shadow-lg group-hover:scale-105 ${(pick as { isSwap?: boolean }).isSwap ? "opacity-60 border border-dashed border-black/20 bg-transparent !text-text-muted" : ""}`}
+                          style={(pick as { isSwap?: boolean }).isSwap ? { background: "transparent" } : {}}>
                           <p className="font-display font-bold text-[11px] tracking-wider uppercase">{pick.label}</p>
                           <p className={`text-[9px] mt-0.5 ${(pick as { isSwap?: boolean }).isSwap ? "text-text-muted" : "text-white/70"}`}>{pick.note}</p>
                         </div>
@@ -443,18 +408,15 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
             </div>
           </div>
 
-          {/* Total badge */}
           <div className="mt-6 flex items-center gap-3 pt-4 border-t border-black/5">
             <span className="font-display font-black text-brand-red text-lg">{totalFirstRoundPicks + totalSwaps}</span>
-            <span className="text-text-muted text-[10px] tracking-[0.15em] uppercase font-bold">First-round picks + swaps through 2031</span>
+            <span className="text-text-muted text-[10px] tracking-[0.15em] uppercase font-bold">First-round picks + swaps through 2032</span>
           </div>
         </div>
       </section>
 
-      <div className="section-divider" />
-
-      {/* ── PLAYERS ── */}
-      <section className="bg-bg-primary px-4 sm:px-8 py-12">
+      {/* ── THE ROSTER ── */}
+      <section className="bg-bg-primary px-4 sm:px-8 py-10 border-b border-black/5">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <span className="material-symbols-outlined text-brand-red text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>groups</span>
@@ -463,7 +425,6 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
             {PLAYERS.map(player => (
               <Link key={player.name} href={player.href} className="card card-interactive p-4 group">
-                {/* Player avatar placeholder */}
                 <div className="w-12 h-12 bg-black mb-3 flex items-center justify-center">
                   <span className="font-display font-black text-white text-lg">{player.name.split(" ").map(n => n[0]).join("")}</span>
                 </div>
@@ -482,10 +443,8 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
         </div>
       </section>
 
-      <div className="section-divider" />
-
       {/* ── FRONT OFFICE ── */}
-      <section className="bg-bg-primary px-4 sm:px-8 py-12">
+      <section className="bg-bg-primary px-4 sm:px-8 py-10 border-b border-black/5">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <span className="material-symbols-outlined text-brand-red text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>corporate_fare</span>
@@ -499,7 +458,7 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
               <div className="flex-1 min-w-0">
                 <p className="font-display font-black text-sm uppercase tracking-tight group-hover:text-brand-red transition-colors">Sean Marks</p>
                 <p className="text-text-muted text-[10px] uppercase tracking-wider font-bold mt-0.5">General Manager</p>
-                <p className="text-text-secondary text-xs font-body mt-1.5 line-clamp-2">Architect of the rebuild. Extracted 9 FRPs from the KD trade tree. The question: can he develop what he acquired?</p>
+                <p className="text-text-secondary text-xs font-body mt-1.5 line-clamp-2">Architect of the rebuild. 9 FRPs from the KD trade tree. Can he develop what he acquired?</p>
               </div>
             </Link>
             <Link href="/kb/front-office/jordi-fernandez" className="card card-interactive p-5 group flex gap-4 items-start">
@@ -509,41 +468,35 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
               <div className="flex-1 min-w-0">
                 <p className="font-display font-black text-sm uppercase tracking-tight group-hover:text-brand-red transition-colors">Jordi Fernandez</p>
                 <p className="text-text-muted text-[10px] uppercase tracking-wider font-bold mt-0.5">Head Coach</p>
-                <p className="text-text-secondary text-xs font-body mt-1.5 line-clamp-2">First Spanish NBA head coach. Sports psychology PhD. Development specialist building the young core.</p>
+                <p className="text-text-secondary text-xs font-body mt-1.5 line-clamp-2">First Spanish NBA head coach. Sports psychology PhD. Building the young core.</p>
               </div>
             </Link>
           </div>
         </div>
       </section>
 
-      <div className="section-divider" />
-
       {/* ── REBUILD TIMELINE ── */}
-      <section className="bg-bg-primary px-4 sm:px-8 py-12">
+      <section className="bg-bg-primary px-4 sm:px-8 py-10 border-b border-black/5">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <span className="material-symbols-outlined text-brand-red text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>timeline</span>
             <h2 className="font-display font-black text-sm tracking-[0.1em] uppercase text-text-secondary">Rebuild Timeline</h2>
           </div>
           <div className="relative">
-            {/* Vertical line */}
             <div className="absolute left-[60px] sm:left-[80px] top-0 bottom-0 w-px bg-black/10" />
             <div className="space-y-0">
               {TIMELINE.map((evt, i) => (
                 <div key={i} className="flex items-start gap-4 sm:gap-6 py-4 group">
-                  {/* Date */}
                   <div className="w-[52px] sm:w-[68px] text-right shrink-0">
                     <p className="font-display font-black text-[11px] sm:text-xs tracking-tight uppercase text-text-muted">{evt.date}</p>
                   </div>
-                  {/* Dot */}
                   <div className="relative shrink-0">
                     <div className={`w-3 h-3 border-2 ${
                       evt.type === "trade" ? "border-brand-red bg-brand-red/20" :
-                      evt.type === "draft" ? "border-brand-orange bg-brand-orange/20" :
+                      evt.type === "draft" ? "border-accent-blue bg-accent-blue/20" :
                       "border-text-muted bg-text-muted/20"
                     }`} />
                   </div>
-                  {/* Content */}
                   <div className="flex-1 min-w-0 -mt-0.5">
                     <p className="font-display font-bold text-sm uppercase tracking-tight text-text-primary">{evt.event}</p>
                     <p className="text-text-muted text-xs font-body mt-0.5">{evt.detail}</p>
@@ -555,10 +508,8 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
         </div>
       </section>
 
-      <div className="section-divider" />
-
-      {/* ── CATEGORIES + ARTICLES (side by side) ── */}
-      <section className="bg-bg-primary px-4 sm:px-8 py-12">
+      {/* ── BROWSE + ARTICLES (side by side) ── */}
+      <section className="bg-bg-primary px-4 sm:px-8 py-10 border-b border-black/5">
         <div className="max-w-6xl mx-auto grid md:grid-cols-5 gap-8">
           {/* Categories */}
           <div className="md:col-span-2">
@@ -611,22 +562,32 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
 
       {/* ── WHAT CHANGED ── */}
       {changelog.length > 0 && (
-        <>
-          <div className="section-divider" />
-          <section className="bg-bg-primary px-4 sm:px-8 py-12">
-            <div className="max-w-6xl mx-auto">
-              <div className="flex items-center gap-2 mb-6">
-                <span className="material-symbols-outlined text-brand-red text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>update</span>
-                <h2 className="font-display font-black text-sm tracking-[0.1em] uppercase text-text-secondary">What Changed</h2>
-              </div>
-              <KBChangelog entries={changelog} />
+        <section className="bg-bg-primary px-4 sm:px-8 py-10 border-b border-black/5">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="material-symbols-outlined text-brand-red text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>update</span>
+              <h2 className="font-display font-black text-sm tracking-[0.1em] uppercase text-text-secondary">What Changed</h2>
             </div>
-          </section>
-        </>
+            <KBChangelog entries={changelog} />
+          </div>
+        </section>
       )}
 
+      {/* ── SUBMIT CTA ── */}
+      <section className="bg-bg-primary px-4 sm:px-8 py-10 border-b border-black/5">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-2 border-brand-red/20 p-6">
+          <div>
+            <p className="font-display font-black text-sm uppercase tracking-tight text-text-primary">Found something Nets-related?</p>
+            <p className="text-text-muted text-xs font-body mt-1">Drop a link — articles, tweets, scouting reports, trade rumors. The best ones get compiled into the wiki.</p>
+          </div>
+          <Link href="/kb/submit" className="bg-brand-red text-white font-display font-bold text-xs uppercase tracking-wider px-6 py-2.5 hover:bg-brand-red/80 transition-colors shrink-0">
+            Submit a Source
+          </Link>
+        </div>
+      </section>
+
       {/* ── GRAPH CTA ── */}
-      <section className="bg-black text-white px-4 sm:px-8 py-12">
+      <section className="bg-black text-white px-4 sm:px-8 py-10">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <div className="flex items-center gap-2 mb-2">
@@ -637,7 +598,7 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
               See how everything<br /><span className="text-brand-red">connects.</span>
             </p>
             <p className="text-white/30 text-xs font-body mt-2 max-w-md">
-              Every player, trade, pick, and concept — visualized as an interactive network. Click any node to dive deeper.
+              Every player, trade, pick, and concept — visualized as an interactive network.
             </p>
           </div>
           <Link href="/kb/graph" className="bg-brand-red text-white font-display font-bold text-sm uppercase tracking-wider px-8 py-3 hover:bg-brand-red/80 transition-colors shrink-0">
@@ -646,10 +607,10 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
         </div>
       </section>
 
-      {/* ── BOTTOM CTA ── */}
+      {/* ── FOOTER ── */}
       <section className="bg-black text-white px-4 sm:px-8 py-6 border-t border-white/5">
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-white/30 text-[10px] tracking-[0.3em] uppercase font-bold mb-2">Updated daily by AI agents</p>
+          <p className="text-white/30 text-[10px] tracking-[0.3em] uppercase font-bold mb-2">AI-compiled · Human-curated</p>
           <p className="font-display font-black text-lg sm:text-xl uppercase tracking-tight">
             The war room every Nets fan deserves.
           </p>

@@ -21,8 +21,8 @@ export const kbPlayers: KBPlayer[] = [
     pos: "G",
     stat: "10.3 PPG",
     status: "Franchise bet",
-    statusColor: "tag-orange",
-    href: "/kb/draft/2025-nba-draft",
+    statusColor: "tag-red",
+    href: "/kb/players/egor-demin",
   },
   {
     name: "Nolan Traore",
@@ -30,7 +30,7 @@ export const kbPlayers: KBPlayer[] = [
     stat: "8.5 PPG",
     status: "Explosive rookie",
     statusColor: "tag-blue",
-    href: "/kb/draft/2025-nba-draft",
+    href: "/kb/players/nolan-traore",
   },
   {
     name: "Noah Clowney",
@@ -38,7 +38,7 @@ export const kbPlayers: KBPlayer[] = [
     stat: "12.5 PPG",
     status: "Year 2 leap",
     statusColor: "tag-green",
-    href: "/kb/seasons/2025-26-season",
+    href: "/kb/players/noah-clowney",
   },
   {
     name: "Danny Wolf",
@@ -46,14 +46,14 @@ export const kbPlayers: KBPlayer[] = [
     stat: "8.9 PPG",
     status: "Modern big",
     statusColor: "tag-blue",
-    href: "/kb/draft/2025-nba-draft",
+    href: "/kb/players/danny-wolf",
   },
   {
     name: "Nic Claxton",
     pos: "C",
     stat: "11.8 PPG",
     status: "Interior anchor",
-    statusColor: "tag-gold",
-    href: "/kb/seasons/2025-26-season",
+    statusColor: "tag-blue",
+    href: "/kb/players/nic-claxton",
   },
 ];
