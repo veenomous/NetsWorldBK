@@ -11,7 +11,7 @@ import KBWireTakes from "@/components/KBWireTakes";
 
 const confidenceColor = {
   high: "tag-green",
-  medium: "tag-gold",
+  medium: "tag-blue",
   low: "tag-red",
 };
 

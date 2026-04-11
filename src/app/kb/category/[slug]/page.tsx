@@ -4,7 +4,7 @@ import { getAllArticles, getCategories } from "@/lib/kb";
 import { DEFAULT_KB_CONFIG } from "@/lib/kb-config";
 import type { Metadata } from "next";
 
-const confColor = { high: "tag-green", medium: "tag-gold", low: "tag-red" };
+const confColor = { high: "tag-green", medium: "tag-blue", low: "tag-red" };
 
 const categoryIcon: Record<string, string> = {
   players: "person",

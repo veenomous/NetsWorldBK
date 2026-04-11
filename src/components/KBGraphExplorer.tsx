@@ -15,6 +15,7 @@ interface GraphNode {
   y: number;
   vx: number;
   vy: number;
+  pinned?: boolean;
 }
 
 interface GraphEdge {
@@ -100,7 +101,7 @@ export default function KBGraphExplorer({ graph }: { graph: KBGraph }) {
 
     function tick() {
       iteration++;
-      const cooling = Math.max(0.01, 1 - iteration / 300);
+      const cooling = Math.max(0.005, 1 - iteration / 500);
 
       // Repulsion (all pairs)
       for (let i = 0; i < nodes.length; i++) {
@@ -110,7 +111,7 @@ export default function KBGraphExplorer({ graph }: { graph: KBGraph }) {
           let dx = b.x - a.x;
           let dy = b.y - a.y;
           const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-          const force = (8000 / (dist * dist)) * cooling;
+          const force = (4000 / (dist * dist)) * cooling;
           dx = (dx / dist) * force;
           dy = (dy / dist) * force;
           a.vx -= dx;
@@ -146,8 +147,9 @@ export default function KBGraphExplorer({ graph }: { graph: KBGraph }) {
       // Apply velocity
       for (const node of nodes) {
         if (dragRef.current?.node.id === node.id) continue;
-        node.vx *= 0.85;
-        node.vy *= 0.85;
+        if (node.pinned) continue;
+        node.vx *= 0.7;
+        node.vy *= 0.7;
         node.x += node.vx;
         node.y += node.vy;
         // Keep in bounds
@@ -296,6 +298,11 @@ export default function KBGraphExplorer({ graph }: { graph: KBGraph }) {
   );
 
   const handleMouseUp = useCallback(() => {
+    if (dragRef.current && didDragRef.current) {
+      dragRef.current.node.pinned = true;
+      dragRef.current.node.vx = 0;
+      dragRef.current.node.vy = 0;
+    }
     dragRef.current = null;
   }, []);
 

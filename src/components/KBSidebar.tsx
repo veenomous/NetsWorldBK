@@ -14,7 +14,7 @@ interface EntityResult {
 
 const confColor: Record<string, string> = {
   high: "bg-[rgba(22,163,74,0.15)] text-[#16a34a]",
-  medium: "bg-[rgba(217,119,6,0.15)] text-[#d97706]",
+  medium: "bg-[rgba(0,71,171,0.1)] text-[#0047AB]",
   low: "bg-[rgba(228,60,62,0.15)] text-[#E43C3E]",
 };
 

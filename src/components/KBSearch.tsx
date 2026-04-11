@@ -15,7 +15,7 @@ interface SearchResult {
 
 const confBg = {
   high: "bg-[rgba(22,163,74,0.15)] text-[#16a34a]",
-  medium: "bg-[rgba(217,119,6,0.15)] text-[#d97706]",
+  medium: "bg-[rgba(0,71,171,0.1)] text-[#0047AB]",
   low: "bg-[rgba(228,60,62,0.15)] text-[#E43C3E]",
 };
 
@@ -141,7 +141,7 @@ export default function KBSearch() {
     <>
       <div className="relative w-full max-w-lg">
         <div className="relative">
-          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-white/30 text-lg">
+          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-lg">
             search
           </span>
           <input
@@ -151,7 +151,7 @@ export default function KBSearch() {
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => { if (results.length > 0) { setIsOpen(true); updatePosition(); } }}
             placeholder="Search the wiki..."
-            className="w-full bg-white/5 border border-white/10 text-white placeholder:text-white/30 pl-10 pr-4 py-2.5 font-body text-sm focus:outline-none focus:border-[#E43C3E]/50 transition-colors"
+            className="w-full bg-bg-input border border-black/10 text-text-primary placeholder:text-text-muted/50 pl-10 pr-4 py-2.5 font-body text-sm focus:outline-none focus:border-brand-red/50 transition-colors"
           />
           {isLoading && (
             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 text-sm animate-pulse-soft">
