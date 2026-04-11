@@ -1,11 +1,11 @@
 name: KB Weekly Health Check
 
 on:
-  schedule:
-    # Run every Sunday at 12:00 UTC
-    - cron: '0 12 * * 0'
+  # Disabled by default — uncomment cron to activate weekly runs
+  # schedule:
+  #   - cron: '0 12 * * 0'
   workflow_dispatch:
-    # Manual trigger for testing
+    # Manual trigger only (conservative — uses ~$0.50 per run)
 
 permissions:
   contents: read
