@@ -8,7 +8,7 @@ create table if not exists kb_submissions (
   source_type text default 'article',
   submitted_by text default 'anonymous',
   visitor_id text,
-  status text default 'pending' check (status in ('pending', 'approved', 'rejected')),
+  status text default 'pending' check (status in ('pending', 'approved', 'rejected', 'compiled')),
   upvotes int default 0,
   created_at timestamptz default now()
 );
@@ -28,3 +28,19 @@ create policy "Anyone can upvote" on kb_submissions
 -- Index for sorting
 create index idx_kb_submissions_status on kb_submissions(status, created_at desc);
 create index idx_kb_submissions_upvotes on kb_submissions(upvotes desc);
+
+-- Auto-approve submissions with 3+ upvotes
+create or replace function auto_approve_submission()
+returns trigger as $$
+begin
+  if NEW.upvotes >= 3 and NEW.status = 'pending' then
+    NEW.status := 'approved';
+  end if;
+  return NEW;
+end;
+$$ language plpgsql;
+
+create trigger trigger_auto_approve
+  before update on kb_submissions
+  for each row
+  execute function auto_approve_submission();

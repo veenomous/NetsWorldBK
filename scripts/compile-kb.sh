@@ -45,8 +45,12 @@ done
 
 # ─── Step 1: Fetch fresh data ───
 if [ "$COMPILE_ONLY" = false ]; then
-  echo "$LOG_PREFIX Step 1: Fetching data from ESPN..."
+  echo "$LOG_PREFIX Step 1a: Fetching data from ESPN..."
   npx tsx scripts/fetch-espn.ts --type all
+  echo ""
+
+  echo "$LOG_PREFIX Step 1b: Fetching approved fan submissions..."
+  npx tsx scripts/fetch-submissions.ts
   echo ""
 fi
 
