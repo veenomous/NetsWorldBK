@@ -172,10 +172,10 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
             <div className="flex-1">
               <Image src="/logo2.png" alt="BK Grit" width={160} height={80} priority className="w-[120px] sm:w-[140px] h-auto mb-4" />
               <h1 className="font-display font-black text-text-primary uppercase tracking-[-0.03em] leading-[0.85] text-2xl sm:text-4xl mb-3">
-                The Brooklyn Nets<br /><span className="text-brand-red">Rebuild Bible.</span>
+                The Brooklyn Nets<br /><span className="text-brand-red">Wiki.</span>
               </h1>
               <p className="text-text-muted font-body text-sm max-w-md leading-relaxed mb-5">
-                Every trade, every pick, every prospect, every decision — traced, connected, and updated.
+                Every trade, every pick, every prospect — traced, connected, and updated.
               </p>
               <KBSearch />
             </div>
