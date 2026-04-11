@@ -47,7 +47,7 @@ export const netsPicks: NetsPickYear[] = [
   {
     year: 2032,
     picks: [
-      { label: "DEN", source: "mavs", note: "From Cam trade", href: "/kb/trades/kevin-durant-trade-tree" },
+      { label: "DEN", source: "own", note: "From Cam trade", href: "/kb/trades/kevin-durant-trade-tree" },
     ],
   },
 ];
