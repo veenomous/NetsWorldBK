@@ -284,3 +284,9 @@ body {
   font-weight: 500;
 }
 .kb-article a.wikilink-broken:hover { border-bottom-style: solid; }
+
+/* Trade tree responsive — SVG only on wide screens */
+@media (min-width: 900px) {
+  .trade-tree-desktop { display: block !important; }
+  .trade-tree-mobile { display: none !important; }
+}
