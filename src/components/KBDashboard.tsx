@@ -87,7 +87,10 @@ function TradeTree() {
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
 
   return (
-    <div className="relative w-full overflow-x-auto">
+    <div className="relative w-full">
+      {/* Scroll hint gradient — right edge */}
+      <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none sm:hidden" />
+      <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
       <div className="relative" style={{ width: 800, height: 680 }}>
         {/* SVG connection lines — coordinates match node centers exactly */}
         <svg className="absolute inset-0" width="800" height="680" fill="none">
@@ -230,6 +233,7 @@ function TradeTree() {
             <p className="text-[10px] text-white/30 mt-1">+ 2 SWAPS + MPJ</p>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
