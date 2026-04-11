@@ -59,6 +59,42 @@ export const KB_ENTITIES: KBEntity[] = [
     slug: "sean-marks-era",
   },
   {
+    name: "Danny Wolf",
+    aliases: ["Wolf"],
+    category: "draft",
+    slug: "2025-nba-draft",
+  },
+  {
+    name: "Drake Powell",
+    aliases: ["Powell"],
+    category: "draft",
+    slug: "2025-nba-draft",
+  },
+  {
+    name: "Ben Saraf",
+    aliases: ["Saraf"],
+    category: "draft",
+    slug: "2025-nba-draft",
+  },
+  {
+    name: "Jordi Fernandez",
+    aliases: ["Fernandez", "Coach Fernandez"],
+    category: "front-office",
+    slug: "jordi-fernandez",
+  },
+  {
+    name: "Kyrie Irving",
+    aliases: ["Kyrie"],
+    category: "trades",
+    slug: "kyrie-irving-trade",
+  },
+  {
+    name: "James Harden",
+    aliases: ["Harden"],
+    category: "trades",
+    slug: "james-harden-trade",
+  },
+  {
     name: "Tank Math",
     aliases: ["tanking", "tank"],
     category: "concepts",

@@ -88,113 +88,147 @@ function TradeTree() {
 
   return (
     <div className="relative w-full overflow-x-auto">
-      <div className="relative min-w-[700px] h-[520px]">
-        {/* SVG connection lines */}
-        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 700 520" fill="none" preserveAspectRatio="xMidYMid meet">
-          {/* KD → Suns deal */}
-          <path d="M 350 60 L 350 120" stroke="#E43C3E" strokeWidth="2" strokeDasharray="6 3" opacity="0.6" />
-          {/* Suns deal → branches */}
-          <path d="M 350 170 L 150 230" stroke="#e87a2e" strokeWidth="2" opacity="0.4" />
-          <path d="M 350 170 L 350 230" stroke="#e87a2e" strokeWidth="2" opacity="0.4" />
-          <path d="M 350 170 L 550 230" stroke="#e87a2e" strokeWidth="2" opacity="0.4" />
-          {/* Bridges → Knicks deal */}
-          <path d="M 150 290 L 150 340" stroke="#E43C3E" strokeWidth="2" strokeDasharray="6 3" opacity="0.6" />
-          {/* Knicks deal → branches */}
-          <path d="M 150 390 L 80 440" stroke="#0047AB" strokeWidth="2" opacity="0.4" />
-          <path d="M 150 390 L 220 440" stroke="#0047AB" strokeWidth="2" opacity="0.4" />
-          {/* Animate pulse on main trunk */}
+      <div className="relative" style={{ width: 800, height: 680 }}>
+        {/* SVG connection lines — coordinates match node centers exactly */}
+        <svg className="absolute inset-0" width="800" height="680" fill="none">
+          {/* KD (400,40) → Suns Return (400,130) */}
+          <path d="M 400 65 L 400 125" stroke="#E43C3E" strokeWidth="2" strokeDasharray="6 3" opacity="0.6" />
+          {/* Suns Return (400,150) → Bridges (140,260), CamJ (400,260), Picks (660,260) */}
+          <path d="M 400 155 L 140 240" stroke="#e87a2e" strokeWidth="2" opacity="0.4" />
+          <path d="M 400 155 L 400 240" stroke="#e87a2e" strokeWidth="2" opacity="0.4" />
+          <path d="M 400 155 L 660 240" stroke="#e87a2e" strokeWidth="2" opacity="0.4" />
+          {/* Bridges (140,290) → Knicks Return (140,370) */}
+          <path d="M 140 295 L 140 365" stroke="#E43C3E" strokeWidth="2" strokeDasharray="6 3" opacity="0.6" />
+          {/* Knicks Return (140,390) → NYK Picks (80,460), NYK Swap (200,460) */}
+          <path d="M 140 395 L 80 450" stroke="#0047AB" strokeWidth="2" opacity="0.4" />
+          <path d="M 140 395 L 200 450" stroke="#0047AB" strokeWidth="2" opacity="0.4" />
+          {/* CamJ (400,290) → Denver Return (400,370) */}
+          <path d="M 400 295 L 400 365" stroke="#E43C3E" strokeWidth="2" strokeDasharray="6 3" opacity="0.6" />
+          {/* Denver Return (400,390) → MPJ (340,460), DEN Pick (470,460) */}
+          <path d="M 400 395 L 340 450" stroke="#7c3aed" strokeWidth="2" opacity="0.4" />
+          <path d="M 400 395 L 470 450" stroke="#7c3aed" strokeWidth="2" opacity="0.4" />
+          {/* Animated pulses */}
           <circle r="3" fill="#E43C3E" opacity="0.8">
-            <animateMotion dur="3s" repeatCount="indefinite" path="M 350 60 L 350 170" />
+            <animateMotion dur="2.5s" repeatCount="indefinite" path="M 400 65 L 400 155" />
           </circle>
           <circle r="3" fill="#E43C3E" opacity="0.8">
-            <animateMotion dur="3s" repeatCount="indefinite" path="M 150 290 L 150 390" />
+            <animateMotion dur="2.5s" repeatCount="indefinite" path="M 140 295 L 140 395" />
+          </circle>
+          <circle r="3" fill="#E43C3E" opacity="0.8">
+            <animateMotion dur="2.5s" repeatCount="indefinite" path="M 400 295 L 400 395" />
+          </circle>
+          <circle r="3" fill="#e87a2e" opacity="0.6">
+            <animateMotion dur="3s" repeatCount="indefinite" path="M 400 155 L 140 240" />
+          </circle>
+          <circle r="3" fill="#e87a2e" opacity="0.6">
+            <animateMotion dur="3s" repeatCount="indefinite" path="M 400 155 L 660 240" />
           </circle>
         </svg>
 
-        {/* KD Node (root) */}
-        <Link
-          href="/kb/trades/kevin-durant-trade-tree"
-          className="absolute left-1/2 top-0 -translate-x-1/2"
-          onMouseEnter={() => setHoveredNode("kd")}
-          onMouseLeave={() => setHoveredNode(null)}
-        >
-          <div className={`bg-black border-2 transition-all px-5 py-2.5 ${hoveredNode === "kd" ? "border-brand-red shadow-[0_0_20px_rgba(228,60,62,0.3)]" : "border-white/20"}`}>
-            <p className="font-display font-black text-white text-sm tracking-tight uppercase text-center">Kevin Durant</p>
-            <p className="text-[10px] text-white/40 text-center tracking-widest uppercase mt-0.5">FEB 2023 → PHX</p>
+        {/* ── NODES (absolute, pixel-positioned to match SVG) ── */}
+
+        {/* KD — center 400, top 15 */}
+        <Link href="/kb/trades/kevin-durant-trade-tree"
+          className="absolute" style={{ left: 310, top: 10 }}
+          onMouseEnter={() => setHoveredNode("kd")} onMouseLeave={() => setHoveredNode(null)}>
+          <div className={`bg-black border-2 transition-all px-6 py-3 w-[180px] text-center ${hoveredNode === "kd" ? "border-brand-red shadow-[0_0_24px_rgba(228,60,62,0.3)]" : "border-white/20"}`}>
+            <p className="font-display font-black text-white text-base tracking-tight uppercase">Kevin Durant</p>
+            <p className="text-[10px] text-white/40 tracking-widest uppercase mt-0.5">FEB 2023 → PHX</p>
           </div>
         </Link>
 
-        {/* Suns Return (hub) */}
-        <div className="absolute left-1/2 top-[120px] -translate-x-1/2">
-          <div className="bg-brand-orange/10 border border-brand-orange/30 px-4 py-2">
-            <p className="font-display font-bold text-brand-orange text-[10px] tracking-[0.2em] uppercase text-center">Suns Return</p>
+        {/* Suns Return — center 400, top 120 */}
+        <div className="absolute" style={{ left: 340, top: 120 }}>
+          <div className="bg-brand-orange/10 border border-brand-orange/30 px-5 py-2 w-[120px] text-center">
+            <p className="font-display font-bold text-brand-orange text-[10px] tracking-[0.2em] uppercase">Suns Return</p>
           </div>
         </div>
 
-        {/* Branch 1: Mikal Bridges */}
-        <Link
-          href="/kb/trades/kevin-durant-trade-tree"
-          className="absolute left-[80px] top-[230px]"
-          onMouseEnter={() => setHoveredNode("bridges")}
-          onMouseLeave={() => setHoveredNode(null)}
-        >
-          <div className={`bg-black border-2 transition-all px-4 py-2.5 w-[140px] ${hoveredNode === "bridges" ? "border-brand-red shadow-[0_0_20px_rgba(228,60,62,0.3)]" : "border-white/20"}`}>
-            <p className="font-display font-black text-white text-xs tracking-tight uppercase">Mikal Bridges</p>
+        {/* Bridges — center 140, top 235 */}
+        <Link href="/kb/trades/kevin-durant-trade-tree"
+          className="absolute" style={{ left: 60, top: 235 }}
+          onMouseEnter={() => setHoveredNode("bridges")} onMouseLeave={() => setHoveredNode(null)}>
+          <div className={`bg-black border-2 transition-all px-4 py-3 w-[160px] text-center ${hoveredNode === "bridges" ? "border-brand-red shadow-[0_0_20px_rgba(228,60,62,0.3)]" : "border-white/20"}`}>
+            <p className="font-display font-black text-white text-sm tracking-tight uppercase">Mikal Bridges</p>
             <p className="text-[10px] text-brand-red font-bold mt-1">→ TRADED TO NYK</p>
           </div>
         </Link>
 
-        {/* Branch 2: Cam Johnson */}
-        <Link
-          href="/kb/players/cameron-johnson"
-          className="absolute left-1/2 top-[230px] -translate-x-1/2"
-          onMouseEnter={() => setHoveredNode("cam")}
-          onMouseLeave={() => setHoveredNode(null)}
-        >
-          <div className={`bg-black border-2 transition-all px-4 py-2.5 w-[140px] ${hoveredNode === "cam" ? "border-brand-red shadow-[0_0_20px_rgba(228,60,62,0.3)]" : "border-accent-green/50"}`}>
-            <p className="font-display font-black text-white text-xs tracking-tight uppercase">Cam Johnson</p>
-            <p className="text-[10px] text-accent-green font-bold mt-1">ON ROSTER</p>
+        {/* Cam Johnson — center 400, top 235 */}
+        <Link href="/kb/players/cameron-johnson"
+          className="absolute" style={{ left: 320, top: 235 }}
+          onMouseEnter={() => setHoveredNode("cam")} onMouseLeave={() => setHoveredNode(null)}>
+          <div className={`bg-black border-2 transition-all px-4 py-3 w-[160px] text-center ${hoveredNode === "cam" ? "border-brand-red shadow-[0_0_20px_rgba(228,60,62,0.3)]" : "border-white/20"}`}>
+            <p className="font-display font-black text-white text-sm tracking-tight uppercase">Cam Johnson</p>
+            <p className="text-[10px] text-brand-red font-bold mt-1">→ TRADED TO DEN</p>
           </div>
         </Link>
 
-        {/* Branch 3: 4 Suns Picks */}
-        <div className="absolute right-[60px] top-[230px]">
-          <div className="bg-black border-2 border-brand-orange/50 px-4 py-2.5 w-[160px]">
-            <p className="font-display font-black text-white text-xs tracking-tight uppercase">4 Suns FRPs</p>
+        {/* 4 Suns Picks — center 660, top 235 */}
+        <div className="absolute" style={{ left: 575, top: 235 }}>
+          <div className="bg-black border-2 border-brand-orange/50 px-4 py-3 w-[170px] text-center">
+            <p className="font-display font-black text-white text-sm tracking-tight uppercase">4 Suns FRPs</p>
             <p className="text-[10px] text-brand-orange font-bold mt-1">&apos;25, &apos;27, &apos;29 + &apos;28 SWAP</p>
             <p className="text-[9px] text-white/30 mt-0.5">ALL UNPROTECTED</p>
           </div>
         </div>
 
-        {/* Knicks Return (hub) */}
-        <div className="absolute left-[100px] top-[340px]">
-          <div className="bg-accent-blue/10 border border-accent-blue/30 px-4 py-2">
-            <p className="font-display font-bold text-accent-blue text-[10px] tracking-[0.2em] uppercase text-center">Knicks Return</p>
+        {/* Knicks Return — center 140, top 360 */}
+        <div className="absolute" style={{ left: 80, top: 360 }}>
+          <div className="bg-accent-blue/10 border border-accent-blue/30 px-4 py-2 w-[120px] text-center">
+            <p className="font-display font-bold text-accent-blue text-[10px] tracking-[0.2em] uppercase">Knicks Return</p>
           </div>
         </div>
 
-        {/* Knicks Branch 1: 4 Picks */}
-        <div className="absolute left-[10px] top-[440px]">
-          <div className="bg-black border-2 border-accent-blue/50 px-4 py-2.5 w-[140px]">
+        {/* Denver Return — center 400, top 360 */}
+        <div className="absolute" style={{ left: 335, top: 360 }}>
+          <div className="bg-accent-purple/10 border border-accent-purple/30 px-4 py-2 w-[130px] text-center">
+            <p className="font-display font-bold text-accent-purple text-[10px] tracking-[0.2em] uppercase">Denver Return</p>
+          </div>
+        </div>
+
+        {/* 4 Knicks FRPs — center 80, top 445 */}
+        <div className="absolute" style={{ left: 10, top: 445 }}>
+          <div className="bg-black border-2 border-accent-blue/50 px-3 py-3 w-[140px] text-center">
             <p className="font-display font-black text-white text-xs tracking-tight uppercase">4 Knicks FRPs</p>
             <p className="text-[10px] text-accent-blue font-bold mt-1">&apos;25, &apos;27, &apos;29, &apos;31</p>
             <p className="text-[9px] text-white/30 mt-0.5">ALL UNPROTECTED</p>
           </div>
         </div>
 
-        {/* Knicks Branch 2: Swap */}
-        <div className="absolute left-[170px] top-[440px]">
-          <div className="bg-black border-2 border-accent-blue/30 px-3 py-2.5 w-[110px]">
+        {/* Knicks Swap — center 200, top 445 */}
+        <div className="absolute" style={{ left: 160, top: 445 }}>
+          <div className="bg-black border-2 border-accent-blue/30 px-3 py-3 w-[100px] text-center">
             <p className="font-display font-bold text-white text-xs tracking-tight uppercase">&apos;28 Swap</p>
-            <p className="text-[10px] text-accent-blue/60 font-bold mt-1">NYK PICK SWAP</p>
+            <p className="text-[10px] text-accent-blue/60 font-bold mt-1">NYK</p>
           </div>
         </div>
 
-        {/* Total counter - floating badge */}
-        <div className="absolute right-0 bottom-0 bg-black border-2 border-brand-red px-5 py-4">
-          <p className="text-[10px] text-white/40 tracking-[0.2em] uppercase font-bold">Total from KD</p>
-          <p className="font-display font-black text-brand-red text-3xl tracking-tight leading-none mt-1">8 FRPs</p>
-          <p className="text-[10px] text-white/30 mt-1">+ 2 SWAPS + CAM JOHNSON</p>
+        {/* MPJ — center 340, top 445 */}
+        <Link href="/kb/players/michael-porter-jr"
+          className="absolute" style={{ left: 275, top: 445 }}
+          onMouseEnter={() => setHoveredNode("mpj")} onMouseLeave={() => setHoveredNode(null)}>
+          <div className={`bg-black border-2 transition-all px-3 py-3 w-[130px] text-center ${hoveredNode === "mpj" ? "border-brand-red shadow-[0_0_20px_rgba(228,60,62,0.3)]" : "border-accent-green/50"}`}>
+            <p className="font-display font-black text-white text-xs tracking-tight uppercase">Michael Porter Jr</p>
+            <p className="text-[10px] text-accent-green font-bold mt-1">ON ROSTER · 24.2 PPG</p>
+          </div>
+        </Link>
+
+        {/* 2032 Denver Pick — center 470, top 445 */}
+        <div className="absolute" style={{ left: 415, top: 445 }}>
+          <div className="bg-black border-2 border-accent-purple/50 px-3 py-3 w-[120px] text-center">
+            <p className="font-display font-black text-white text-xs tracking-tight uppercase">&apos;32 DEN 1st</p>
+            <p className="text-[9px] text-accent-purple/60 font-bold mt-1">FROM CAM TRADE</p>
+          </div>
+        </div>
+
+        {/* Total badge — bottom right */}
+        <div className="absolute" style={{ right: 0, bottom: 0 }}>
+          <div className="bg-black border-2 border-brand-red px-6 py-4 text-center">
+            <p className="text-[10px] text-white/40 tracking-[0.2em] uppercase font-bold">Total from KD</p>
+            <p className="font-display font-black text-brand-red text-3xl tracking-tight leading-none mt-1">9 FRPs</p>
+            <p className="text-[10px] text-white/30 mt-1">+ 2 SWAPS + MPJ</p>
+          </div>
         </div>
       </div>
     </div>

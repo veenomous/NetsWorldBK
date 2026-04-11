@@ -1,21 +1,21 @@
 ---
 title: Tank Math
 tags: [concepts, tanking, lottery, odds, draft, strategy]
-sources: [raw/beat-reporters/nets-rebuild-timeline.md]
+sources: [raw/beat-reporters/nets-rebuild-timeline.md, raw/transactions/2025-nba-draft-results.md]
 confidence: high
-last_updated: 2026-04-09
-needs_review: true
+last_updated: 2026-04-11
 ---
 
 ## Summary
-Tank math is the strategic calculus behind losing games to improve draft lottery odds. Under the current NBA lottery system (introduced in 2019), the three worst teams each have a 14% chance at the #1 pick, with diminishing odds from there. The Nets' 2024-25 tank was a deliberate effort to maximize their chances in the loaded 2025 draft class.
+Tank math is the strategic calculus behind losing games to improve draft lottery odds. The Nets' experience in 2024-25 illustrates both the promise and peril: they finished with the 2nd-worst record (14% chance at #1) but fell to #8 in the lottery, missing Cooper Flagg entirely. The lottery is a probabilistic game — even perfect tanking doesn't guarantee a top pick. But the Nets' strategy was validated by volume: five first-round picks in the [[2025 NBA Draft]] meant the lottery disappointment was survivable.
 
 ## Key Insights
 - The bottom 3 teams share equal 14% odds at #1 — there's no incentive to be THE worst, just bottom 3
-- The lottery can only drop a team a maximum of 4 spots (worst record can pick no lower than #5)
-- Tanking is a probabilistic game: even the worst team has only a 52.1% chance of a top-3 pick
-- The 2019 lottery reform was specifically designed to reduce tanking incentive, but teams still tank because the math favors it
-- For the Nets, the 2025 draft is a once-in-a-decade opportunity — the class is strong and they have the most to gain
+- The lottery can drop a team a maximum of 4 spots (worst record can pick no lower than #5)
+- The Nets had the 2nd-worst record in 2024-25 but fell to #8 — a worst-case lottery outcome
+- Despite the lottery miss, the Nets drafted [[Egor Demin]] at #8 — who may end up being a franchise player anyway
+- Volume hedge: having 5 first-round picks meant one bad lottery result didn't derail the rebuild
+- The 2019 lottery reform was designed to reduce tanking incentive, and the Nets' experience shows why — the lottery is genuinely random
 
 ## Details
 
@@ -27,32 +27,37 @@ Tank math is the strategic calculus behind losing games to improve draft lottery
 | 3rd worst | 14.0% | 52.1% |
 | 4th worst | 12.5% | 47.9% |
 | 5th worst | 10.5% | 42.1% |
-| 6th worst | 9.0% | 37.2% |
 
-### Why the Nets Tanked
-1. **The 2025 class is loaded** — Flagg, Harper, Bailey are all potential franchise players
-2. **The pick haul means they can afford to be bad** — future picks from Suns/Knicks provide insurance
-3. **The competitive ceiling was a play-in at best** — even with Bridges, this wasn't a contender
-4. **Every win costs lottery position** — a single win can drop you from #2 odds to #5 odds
+### The Nets' 2025 Lottery Experience
+The Nets finished 2nd-worst, giving them:
+- 14.0% chance at #1 (Cooper Flagg)
+- 52.1% chance at top 4
+- They fell to **#8** — outside the top 4 entirely
 
-### The Anti-Tank Argument
-Critics argue tanking:
-- Destroys player development (losing culture is hard to reverse)
-- Hurts ticket sales and fan engagement
-- Isn't guaranteed to work (lottery is random, and drafting well is hard)
+This was the worst realistic outcome. But the rebuild survived because:
+1. [[Egor Demin]] at #8 has franchise-player upside (6'8" point guard, set rookie records)
+2. The Suns pick (#19) and Knicks pick (#26) provided additional first-rounders
+3. The Rockets pick (#27) and another trade pick (#22) filled out the class
+4. Five first-rounders in one draft means you only need 1-2 to hit
 
-The Nets' counter: they have SO many picks that they only need to hit on 1-2 lottery selections. The sheer volume of assets hedges against individual bust risk.
+### Why Volume Beats Position
+The traditional tank assumes: worse record = higher pick = better player. But the 2019 lottery reform broke that equation. Now the math favors **having more picks** over **having a higher pick**:
+- One 14% chance at #1 is worse than five chances at getting a good player somewhere in the first round
+- The Nets' 5-pick strategy was essentially: "we'll take our shots across the whole first round"
+- Historically, All-Stars come from picks 1-30, not just 1-5. [[Nic Claxton]] was pick #31.
 
-### Historical Context
-The 76ers' "Process" (2013-2017) is the most famous tank. It took 4 years of tanking to get Embiid and Simmons. The Nets' version is compressed — they only need 1-2 tank years because the pick haul from trades provides the rest of the assets.
+### The Anti-Tank Argument (Revisited)
+Critics argued tanking destroys culture and fan engagement. The Nets' counter was always: the pick haul is so large that one tank year is enough. And it was — they tanked once (2024-25), drafted the core, and moved on. Compare this to Philadelphia's "Process" which lasted 4 years.
 
 ## Related
 - [[2025 NBA Draft]]
 - [[2024-25 Season]]
-- [[Sean Marks Era]]
+- [[Egor Demin]]
 - [[Nets Pick Inventory]]
+- [[Rebuild Timeline]]
+- [[Sean Marks Era]]
 
 ## Open Questions
-- Is one tank year enough, or will the Nets need to tank again in 2025-26?
-- How do you balance tanking with developing young players (losing on purpose vs. competing)?
-- What's the minimum lottery odds threshold where the Nets should consider trading up?
+- Would the Nets' rebuild trajectory be fundamentally different with the #1 pick instead of #8?
+- Is the "volume over position" strategy the new model for rebuilding teams?
+- Should the NBA further reform the lottery to prevent tanking, or does the current system already provide enough randomness?
