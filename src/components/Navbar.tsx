@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { useSession, signIn, signOut } from "next-auth/react";
@@ -67,17 +66,9 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="bg-black text-white flex justify-between items-center w-full px-4 sm:px-6 py-0.5 sticky top-0 z-50">
-      {/* Home link */}
-      <Link href="/" className="shrink-0">
-        <Image
-          src="/logo2.png"
-          alt="BK Grit"
-          width={100}
-          height={50}
-          className="w-[80px] sm:w-[100px] h-auto"
-        />
-      </Link>
+    <nav className="bg-black text-white flex justify-between items-center w-full px-4 sm:px-6 py-1 sticky top-0 z-50">
+      {/* Spacer — logo is in the hero, not the nav */}
+      <div className="shrink-0 w-0 md:hidden" />
 
       {/* Desktop nav */}
       <div className="hidden md:flex items-center gap-5">
