@@ -30,18 +30,20 @@ interface KBGraph {
 
 const CATEGORY_COLORS: Record<string, string> = {
   players: "#E43C3E",
-  seasons: "#d97706",
-  trades: "#e87a2e",
-  "front-office": "#7c3aed",
-  draft: "#16a34a",
+  seasons: "#1a1c1c",
+  trades: "#E43C3E",
+  "front-office": "#1a1c1c",
+  draft: "#0047AB",
   rivalries: "#0047AB",
-  concepts: "#0891b2",
+  concepts: "#16a34a",
+  rumors: "#E43C3E",
 };
 
 const CATEGORY_LABELS: Record<string, string> = {
   players: "Players",
   seasons: "Seasons",
   trades: "Trades",
+  rumors: "Rumors",
   "front-office": "Front Office",
   draft: "Draft",
   rivalries: "Rivalries",
@@ -174,7 +176,7 @@ export default function KBGraphExplorer({ graph }: { graph: KBGraph }) {
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
         ctx.lineTo(b.x, b.y);
-        ctx.strokeStyle = isHovered ? "rgba(228,60,62,0.5)" : "rgba(255,255,255,0.08)";
+        ctx.strokeStyle = isHovered ? "rgba(228,60,62,0.5)" : "rgba(0,0,0,0.08)";
         ctx.lineWidth = isHovered ? 2 : 1;
         ctx.stroke();
       }
@@ -194,31 +196,35 @@ export default function KBGraphExplorer({ graph }: { graph: KBGraph }) {
 
         // Glow for hovered/connected
         if (isHovered || isConnected) {
+          const hex = color;
+          const rr = parseInt(hex.slice(1,3),16), gg = parseInt(hex.slice(3,5),16), bb = parseInt(hex.slice(5,7),16);
           ctx.beginPath();
           ctx.arc(node.x, node.y, radius + 8, 0, Math.PI * 2);
-          ctx.fillStyle = color.replace(")", ",0.15)").replace("rgb", "rgba");
+          ctx.fillStyle = `rgba(${rr},${gg},${bb},0.12)`;
           ctx.fill();
         }
 
         // Node circle
         ctx.beginPath();
         ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
-        ctx.fillStyle = isHovered ? "#fff" : color;
+        ctx.fillStyle = isHovered ? "#000" : color;
         ctx.fill();
 
         // Border
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
-        ctx.strokeStyle = isHovered ? color : "rgba(255,255,255,0.2)";
-        ctx.lineWidth = isHovered ? 2 : 1;
-        ctx.stroke();
+        if (isHovered) {
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
+          ctx.strokeStyle = color;
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        }
 
         // Label — smaller on mobile
         const dimmed = hoveredNode && !isHovered && !isConnected;
         const isMobile = w < 600;
         ctx.font = isMobile ? "bold 9px 'Space Grotesk', sans-serif" : "bold 11px 'Space Grotesk', sans-serif";
         ctx.textAlign = "center";
-        ctx.fillStyle = dimmed ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.8)";
+        ctx.fillStyle = dimmed ? "rgba(0,0,0,0.1)" : "rgba(0,0,0,0.7)";
         // Truncate long titles on mobile
         const label = isMobile && node.title.length > 15
           ? node.title.toUpperCase().slice(0, 14) + "..."
@@ -379,7 +385,7 @@ export default function KBGraphExplorer({ graph }: { graph: KBGraph }) {
         {Object.entries(CATEGORY_COLORS).map(([cat, color]) => (
           <div key={cat} className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5" style={{ background: color }} />
-            <span className="text-[10px] text-white/40 tracking-[0.1em] uppercase font-bold font-body">
+            <span className="text-[10px] text-text-muted tracking-[0.1em] uppercase font-bold font-body">
               {CATEGORY_LABELS[cat] || cat}
             </span>
           </div>
@@ -389,20 +395,20 @@ export default function KBGraphExplorer({ graph }: { graph: KBGraph }) {
       {/* Hover tooltip */}
       {hoveredNode && (
         <div
-          className="absolute pointer-events-none bg-[#111] border border-white/15 px-4 py-3 shadow-[0_8px_24px_rgba(0,0,0,0.6)]"
+          className="absolute pointer-events-none bg-black text-white px-4 py-3 shadow-[0_8px_24px_rgba(0,0,0,0.3)]"
           style={{
             left: Math.max(8, Math.min(mouseRef.current.x + 16, dimensions.w - 260)),
             top: Math.max(8, Math.min(mouseRef.current.y - 10, dimensions.h - 100)),
             maxWidth: Math.min(260, dimensions.w - 16),
           }}
         >
-          <p className="text-white/40 text-[10px] tracking-[0.12em] uppercase font-bold font-body">
+          <p className="text-white/50 text-[10px] tracking-[0.12em] uppercase font-bold font-body">
             {CATEGORY_LABELS[hoveredNode.category] || hoveredNode.category}
           </p>
           <p className="font-display font-bold text-sm text-white uppercase tracking-tight mt-0.5">
             {hoveredNode.title}
           </p>
-          <p className="text-white/25 text-[10px] font-body mt-1">
+          <p className="text-white/40 text-[10px] font-body mt-1">
             {hoveredNode.linkCount} connections &middot; Click to read
           </p>
         </div>
