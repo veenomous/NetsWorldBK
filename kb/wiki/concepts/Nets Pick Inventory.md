@@ -22,8 +22,8 @@ The Brooklyn Nets' draft capital haul is historically unprecedented. After using
 | Pick | Source | Player Drafted |
 |------|--------|----------------|
 | #8 | Own pick | Egor Demin |
-| #19 | Phoenix Suns (KD trade) | Nolan Traore |
-| #22 | Via trade chain | Drake Powell |
+| #19 | Via Milwaukee (multi-team chain) | Nolan Traore |
+| #22 | Via Atlanta (originally LAL/AD trade) | Drake Powell |
 | #26 | New York Knicks (Bridges trade) | Ben Saraf |
 | #27 | Houston Rockets (Harden trade) | Danny Wolf |
 

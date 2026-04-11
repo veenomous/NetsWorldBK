@@ -394,18 +394,35 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
             ))}
           </div>
 
-          {/* Timeline */}
-          <div className="overflow-x-auto scrollbar-hide -mx-4 px-4">
+          {/* Timeline — vertical on mobile, horizontal on desktop */}
+          <div className="space-y-4 sm:hidden">
+            {PICKS.map((yearGroup) => (
+              <div key={yearGroup.year} className="border border-black/10 p-4">
+                <p className="font-display font-black text-xl tracking-tight text-text-primary mb-3">{yearGroup.year}</p>
+                <div className="flex flex-wrap gap-2">
+                  {yearGroup.picks.map((pick, pi) => (
+                    <Link key={pi} href={pick.href}>
+                      <div className={`${sourceColor[pick.source]} px-3 py-2 text-center ${(pick as { isSwap?: boolean }).isSwap ? "opacity-60 border border-dashed border-black/20 bg-transparent !text-text-muted" : ""}`}
+                        style={(pick as { isSwap?: boolean }).isSwap ? { background: "transparent" } : {}}
+                      >
+                        <p className="font-display font-bold text-[11px] tracking-wider uppercase">{pick.label}</p>
+                        <p className={`text-[9px] mt-0.5 ${(pick as { isSwap?: boolean }).isSwap ? "text-text-muted" : "text-white/70"}`}>{pick.note}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* Desktop horizontal timeline */}
+          <div className="hidden sm:block overflow-x-auto scrollbar-hide">
             <div className="flex gap-0 min-w-[700px]">
               {PICKS.map((yearGroup, yi) => (
                 <div key={yearGroup.year} className="flex-1 relative">
-                  {/* Year header */}
                   <div className="text-center mb-4">
                     <p className="font-display font-black text-2xl tracking-tight text-text-primary">{yearGroup.year}</p>
-                    {/* Vertical line */}
                     <div className="w-px h-4 bg-black/10 mx-auto mt-1" />
                   </div>
-                  {/* Picks */}
                   <div className="flex flex-col items-center gap-2">
                     {yearGroup.picks.map((pick, pi) => (
                       <Link key={pi} href={pick.href} className="group">
@@ -418,7 +435,6 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
                       </Link>
                     ))}
                   </div>
-                  {/* Connector to next year */}
                   {yi < PICKS.length - 1 && (
                     <div className="absolute top-[22px] right-0 w-full h-px bg-black/10 translate-x-1/2" />
                   )}

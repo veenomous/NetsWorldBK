@@ -43,10 +43,10 @@ The stretch big. Wolf is a 6'11" forward with passing ability and outside shooti
 | Pick | Source | Origin |
 |------|--------|--------|
 | #8 | Own pick | 2024-25 tank |
-| #19 | Phoenix Suns | [[Kevin Durant Trade Tree]] |
-| #22 | Via trade chain | Originally Atlanta, routed to Brooklyn |
+| #19 | Via Milwaukee (multi-team chain) | Routed through NYK, DET, POR, NOP |
+| #22 | Via Atlanta (from LAL) | Originally Lakers' pick from Anthony Davis trade |
 | #26 | New York Knicks | [[Kevin Durant Trade Tree]] (Bridges flip) |
-| #27 | Houston Rockets | Harden trade (top-4 protection lifted) |
+| #27 | Houston Rockets | [[James Harden Trade]] (top-4 protection lifted) |
 
 ## Related
 - [[Kevin Durant Trade Tree]]

@@ -211,12 +211,17 @@ export default function KBGraphExplorer({ graph }: { graph: KBGraph }) {
         ctx.lineWidth = isHovered ? 2 : 1;
         ctx.stroke();
 
-        // Label
+        // Label — smaller on mobile
         const dimmed = hoveredNode && !isHovered && !isConnected;
-        ctx.font = "bold 11px 'Space Grotesk', sans-serif";
+        const isMobile = w < 600;
+        ctx.font = isMobile ? "bold 9px 'Space Grotesk', sans-serif" : "bold 11px 'Space Grotesk', sans-serif";
         ctx.textAlign = "center";
-        ctx.fillStyle = dimmed ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.8)";
-        ctx.fillText(node.title.toUpperCase(), node.x, node.y + radius + 16);
+        ctx.fillStyle = dimmed ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.8)";
+        // Truncate long titles on mobile
+        const label = isMobile && node.title.length > 15
+          ? node.title.toUpperCase().slice(0, 14) + "..."
+          : node.title.toUpperCase();
+        ctx.fillText(label, node.x, node.y + radius + 14);
       }
 
       tick();
@@ -379,8 +384,9 @@ export default function KBGraphExplorer({ graph }: { graph: KBGraph }) {
         <div
           className="absolute pointer-events-none bg-[#111] border border-white/15 px-4 py-3 shadow-[0_8px_24px_rgba(0,0,0,0.6)]"
           style={{
-            left: Math.min(mouseRef.current.x + 16, dimensions.w - 250),
-            top: Math.min(mouseRef.current.y - 10, dimensions.h - 80),
+            left: Math.max(8, Math.min(mouseRef.current.x + 16, dimensions.w - 260)),
+            top: Math.max(8, Math.min(mouseRef.current.y - 10, dimensions.h - 100)),
+            maxWidth: Math.min(260, dimensions.w - 16),
           }}
         >
           <p className="text-white/40 text-[10px] tracking-[0.12em] uppercase font-bold font-body">

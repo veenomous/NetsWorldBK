@@ -95,10 +95,10 @@ export default async function KBArticlePage({
   return (
     <div>
       {/* Dark header */}
-      <div className="bg-black text-white px-4 sm:px-8 pt-6 pb-8">
+      <div className="bg-black text-white px-4 sm:px-8 pt-4 sm:pt-6 pb-6 sm:pb-8">
         <div className="max-w-3xl mx-auto">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-xs font-body mb-6">
+          <nav className="flex items-center gap-2 text-xs font-body mb-4 sm:mb-6">
             <Link
               href="/kb"
               className="text-white/40 hover:text-white transition-colors"
@@ -121,7 +121,7 @@ export default async function KBArticlePage({
           </nav>
 
           {/* Title */}
-          <h1 className="font-display font-black text-2xl sm:text-4xl uppercase tracking-tight leading-[0.9] mb-4">
+          <h1 className="font-display font-black text-xl sm:text-4xl uppercase tracking-tight leading-[0.9] mb-3 sm:mb-4">
             {article.title}
           </h1>
 

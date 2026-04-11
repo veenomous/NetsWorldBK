@@ -10,7 +10,7 @@ last_updated: 2026-04-11
 Drake Powell is a 6'5" two-way wing drafted 22nd overall in the [[2025 NBA Draft]], selected for his defensive versatility and long-term upside. A North Carolina product, Powell won't fill a stat sheet (6.0 PPG as a rookie) but his ability to guard positions 1 through 3 makes him a rotation piece from day one. In a rebuilding team full of score-first players, Powell is the guy who does the dirty work.
 
 ## Key Insights
-- Drafted 22nd overall — pick acquired through a trade chain routed to Brooklyn
+- Drafted 22nd overall — originally the Lakers' pick (from Anthony Davis trade), routed through Atlanta to Brooklyn
 - 6'5", 195 lbs — prototypical 3-and-D wing frame
 - UNC pedigree — developed in a winning program with defensive expectations
 - 6.0 PPG, 1.7 RPG as a rookie — modest stats but defensive impact is visible

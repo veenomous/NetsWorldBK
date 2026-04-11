@@ -26,7 +26,7 @@ The Kevin Durant trade to the Phoenix Suns on February 9, 2023, is the foundatio
 - Cam Johnson → traded to Denver (July 2025)
 - Jalen Smith
 - 2023 PHX 1st (unprotected) — used in 2023 draft
-- 2025 PHX 1st (unprotected) — became pick #19, used on **Nolan Traore**
+- 2025 PHX 1st (unprotected) — conveyed in 2025 draft
 - 2027 PHX 1st (unprotected) — still owed
 - 2029 PHX 1st (unprotected) — still owed
 - 2028 PHX pick swap
@@ -50,8 +50,7 @@ The Kevin Durant trade to the Phoenix Suns on February 9, 2023, is the foundatio
 
 ### Players Now on the Roster from KD Trade Chain
 - **Michael Porter Jr.** — via Cam Johnson → Denver trade
-- **Nolan Traore** — drafted #19 with Suns 2025 pick
-- **Ben Saraf** — drafted #26 with Knicks 2025 pick
+- **Ben Saraf** — drafted #26 with Knicks 2025 pick (from Bridges flip)
 
 ### Picks Still Owed (From KD Tree)
 | Year | Team | Protection | Status |

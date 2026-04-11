@@ -10,7 +10,7 @@ last_updated: 2026-04-11
 Nolan Traore is a 19-year-old French point guard selected 19th overall in the [[2025 NBA Draft]] with the Nets' pick from the Phoenix Suns (via the [[Kevin Durant Trade Tree]]). The most explosive athlete in Brooklyn's rookie class, Traore brings electric speed and finishing ability but is the rawest of the five first-rounders. He spent part of his rookie season with the Long Island Nets in the G League, developing his half-court game while adjusting to the NBA.
 
 ## Key Insights
-- Drafted 19th overall with a Suns pick from the KD trade — one of the trade tree's direct products
+- Drafted 19th overall via a multi-team pick chain (through Milwaukee, NYK, DET, POR, NOP)
 - 6'3" point guard from France with elite athleticism and speed
 - Played professionally in France's top league (LNB Pro A) with Saint-Quentin before the draft
 - Named Basketball Champions League Best Young Player (2025)
