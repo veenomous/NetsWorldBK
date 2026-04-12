@@ -207,7 +207,7 @@ export default function KBMiniGraph() {
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setHovered(null)}
         onClick={handleClick}
-        style={{ width: DISPLAY_W, height: DISPLAY_H }}
+        style={{ width: "100%", maxWidth: DISPLAY_W, height: DISPLAY_H }}
       />
 
       {/* Hover tooltip */}
