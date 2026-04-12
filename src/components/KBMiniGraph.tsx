@@ -21,16 +21,16 @@ interface MiniEdge {
 }
 
 const NODES: MiniNode[] = [
-  { id: "marks", label: "SEAN MARKS", x: 0.12, y: 0.3, color: "#E43C3E", size: 10, href: "/kb/front-office/sean-marks-era", description: "GM — Architect of the rebuild" },
-  { id: "kd", label: "KD TRADE", x: 0.35, y: 0.18, color: "#E43C3E", size: 12, href: "/kb/trades/kevin-durant-trade-tree", description: "The foundational trade" },
-  { id: "kyrie", label: "KYRIE", x: 0.22, y: 0.7, color: "#E43C3E", size: 6, href: "/kb/trades/kyrie-irving-trade", description: "2029 Dallas first-rounder" },
-  { id: "harden", label: "HARDEN", x: 0.08, y: 0.75, color: "#E43C3E", size: 6, href: "/kb/trades/james-harden-trade", description: "Rockets pick → Danny Wolf" },
-  { id: "picks", label: "PICKS", x: 0.55, y: 0.3, color: "#0047AB", size: 10, href: "/kb/assets/nets-pick-inventory", description: "Picks owed through 2032" },
-  { id: "mpj", label: "MPJ", x: 0.6, y: 0.6, color: "#16a34a", size: 8, href: "/kb/players/michael-porter-jr", description: "24.2 PPG — Veteran anchor" },
-  { id: "demin", label: "DEMIN", x: 0.78, y: 0.22, color: "#0047AB", size: 9, href: "/kb/players/egor-demin", description: "#8 pick — Franchise bet" },
-  { id: "draft", label: "DRAFT", x: 0.88, y: 0.48, color: "#0047AB", size: 7, href: "/kb/draft/2025-nba-draft", description: "5 first-rounders in one draft" },
-  { id: "knicks", label: "KNICKS", x: 0.42, y: 0.75, color: "#0047AB", size: 7, href: "/kb/rivalries/nets-vs-knicks", description: "4 unprotected picks through 2031" },
-  { id: "timeline", label: "2027-28", x: 0.92, y: 0.75, color: "#16a34a", size: 8, href: "/kb/strategy/rebuild-timeline", description: "Target competitive window" },
+  { id: "marks", label: "SEAN MARKS", x: 0.12, y: 0.3, color: "#E43C3E", size: 9, href: "/kb/front-office/sean-marks-era", description: "GM — Architect of the rebuild" },
+  { id: "kd", label: "KD TRADE", x: 0.32, y: 0.18, color: "#E43C3E", size: 11, href: "/kb/trades/kevin-durant-trade-tree", description: "The foundational trade" },
+  { id: "kyrie", label: "KYRIE", x: 0.2, y: 0.68, color: "#E43C3E", size: 5, href: "/kb/trades/kyrie-irving-trade", description: "2029 Dallas first-rounder" },
+  { id: "harden", label: "HARDEN", x: 0.08, y: 0.78, color: "#E43C3E", size: 5, href: "/kb/trades/james-harden-trade", description: "Rockets pick → Danny Wolf" },
+  { id: "picks", label: "PICKS", x: 0.5, y: 0.32, color: "#0047AB", size: 9, href: "/kb/assets/nets-pick-inventory", description: "Picks owed through 2032" },
+  { id: "mpj", label: "MPJ", x: 0.55, y: 0.58, color: "#16a34a", size: 7, href: "/kb/players/michael-porter-jr", description: "24.2 PPG — Veteran anchor" },
+  { id: "demin", label: "DEMIN", x: 0.72, y: 0.22, color: "#0047AB", size: 8, href: "/kb/players/egor-demin", description: "#8 pick — Franchise bet" },
+  { id: "draft", label: "DRAFT", x: 0.82, y: 0.48, color: "#0047AB", size: 6, href: "/kb/draft/2025-nba-draft", description: "5 first-rounders in one draft" },
+  { id: "knicks", label: "KNICKS", x: 0.38, y: 0.72, color: "#0047AB", size: 6, href: "/kb/rivalries/nets-vs-knicks", description: "4 unprotected picks through 2031" },
+  { id: "timeline", label: "2027-28", x: 0.82, y: 0.75, color: "#16a34a", size: 7, href: "/kb/strategy/rebuild-timeline", description: "Target competitive window" },
 ];
 
 const EDGES: MiniEdge[] = [
@@ -201,7 +201,7 @@ export default function KBMiniGraph() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative overflow-hidden">
       <canvas
         ref={canvasRef}
         onMouseMove={handleMouseMove}
