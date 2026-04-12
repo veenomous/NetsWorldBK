@@ -37,6 +37,12 @@ jobs:
       - name: Fetch ESPN data
         run: npx tsx scripts/fetch-espn.ts --type all
 
+      - name: Fetch RSS feeds
+        run: npx tsx scripts/fetch-rss.ts
+
+      - name: Fetch YouTube channels
+        run: npx tsx scripts/fetch-youtube.ts
+
       - name: Compile Fan Pulse
         run: npx tsx scripts/compile-fan-pulse.ts
 

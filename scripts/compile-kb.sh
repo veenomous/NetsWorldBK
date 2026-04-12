@@ -49,11 +49,19 @@ if [ "$COMPILE_ONLY" = false ]; then
   npx tsx scripts/fetch-espn.ts --type all
   echo ""
 
-  echo "$LOG_PREFIX Step 1b: Fetching approved fan submissions..."
+  echo "$LOG_PREFIX Step 1b: Fetching RSS feeds (ESPN, HoopsHype, NBA.com)..."
+  npx tsx scripts/fetch-rss.ts
+  echo ""
+
+  echo "$LOG_PREFIX Step 1c: Fetching YouTube channels (Locked On Nets, etc.)..."
+  npx tsx scripts/fetch-youtube.ts
+  echo ""
+
+  echo "$LOG_PREFIX Step 1d: Fetching approved fan submissions..."
   npx tsx scripts/fetch-submissions.ts
   echo ""
 
-  echo "$LOG_PREFIX Step 1c: Compiling Fan Pulse..."
+  echo "$LOG_PREFIX Step 1e: Compiling Fan Pulse..."
   npx tsx scripts/compile-fan-pulse.ts
   echo ""
 fi
