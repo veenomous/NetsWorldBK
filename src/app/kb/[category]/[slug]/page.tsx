@@ -7,8 +7,7 @@ import {
   buildArticleIndex,
 } from "@/lib/kb";
 import type { Metadata } from "next";
-import KBWireTakes from "@/components/KBWireTakes";
-import KBArticleChat from "@/components/KBArticleChat";
+import KBArticleWire from "@/components/KBArticleWire";
 
 const confidenceColor = {
   high: "tag-green",
@@ -261,17 +260,8 @@ export default async function KBArticlePage({
           </div>
         )}
 
-        {/* Wire takes mentioning this article's topics */}
-        <KBWireTakes
-          keywords={[
-            article.title,
-            ...article.title.split(" ").filter((w) => w.length > 3),
-            ...article.tags.filter((t) => t.length > 3).slice(0, 5),
-          ]}
-        />
-
-        {/* Article Discussion */}
-        <KBArticleChat articleSlug={slug} articleTitle={article.title} />
+        {/* Discussion — unified Wire integration */}
+        <KBArticleWire articleSlug={slug} articleTitle={article.title} category={category} />
 
         {/* Navigation */}
         <div className="mt-10 flex items-center justify-between">
