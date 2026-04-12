@@ -156,7 +156,7 @@ function TradeTree() {
 }
 
 export default function KBDashboard({ articles, categories, changelog }: KBDashboardProps) {
-  const [showTradeTree, setShowTradeTree] = useState(true);
+  const [showTradeTree, setShowTradeTree] = useState(false);
   const rumors = articles.filter(a => a.category === "rumors");
   const tradeArticles = articles.filter(a => a.category === "trades");
   const playerArticles = articles.filter(a => a.category === "players");
