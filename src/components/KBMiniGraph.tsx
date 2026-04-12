@@ -129,6 +129,7 @@ export default function KBMiniGraph() {
 
       // Animated pulses along key paths
       function drawPulse(fromId: string, toId: string, color: string, speed: number, offset: number) {
+        if (!ctx) return;
         const from = NODES.find(n => n.id === fromId)!;
         const to = NODES.find(n => n.id === toId)!;
         const t = ((pulseRef.current * speed) + offset) % 1;

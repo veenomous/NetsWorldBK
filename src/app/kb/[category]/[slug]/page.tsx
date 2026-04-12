@@ -8,6 +8,7 @@ import {
 } from "@/lib/kb";
 import type { Metadata } from "next";
 import KBWireTakes from "@/components/KBWireTakes";
+import KBArticleChat from "@/components/KBArticleChat";
 
 const confidenceColor = {
   high: "tag-green",
@@ -268,6 +269,9 @@ export default async function KBArticlePage({
             ...article.tags.filter((t) => t.length > 3).slice(0, 5),
           ]}
         />
+
+        {/* Article Discussion */}
+        <KBArticleChat articleSlug={slug} articleTitle={article.title} />
 
         {/* Navigation */}
         <div className="mt-10 flex items-center justify-between">
