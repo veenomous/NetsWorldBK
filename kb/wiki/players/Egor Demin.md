@@ -36,8 +36,13 @@ The Real Madrid academy gave him European fundamentals — court awareness, off-
 | 3PT% | 38.5% |
 | FT% | 83.1% |
 
+### Rookie Highlights
+- **Dec 29 vs Golden State**: Shot 7-for-14 from three — broke the Nets franchise record for three-pointers by a rookie in a single game
+- **Jan 30 vs Utah Jazz**: 25 points, 10 rebounds, 5 threes in a 106-99 win. Made it 34 consecutive games with a made three-pointer — an NBA rookie record
+- **45 starts in 52 games** — trusted as the starting point guard from nearly day one
+
 ### The Injury
-Plantar fasciitis shut Demin down on March 9, 2026. It's not a catastrophic injury, but it's a chronic one — it can linger and affect explosiveness. The Nets will need to manage his workload carefully in Year 2.
+Plantar fasciitis shut Demin down on March 9, 2026 after 52 games. It's not a catastrophic injury, but it's a chronic one — it can linger and affect explosiveness. The Nets will need to manage his workload carefully in Year 2. He missed the final 30 games of the season.
 
 ### Franchise Player Projection
 The Nets didn't get Cooper Flagg (#1 to Dallas), but Demin has a legitimate path to becoming a franchise cornerstone. His size + shooting + playmaking combination is the archetype of modern NBA success (Luka, Shai, Jalen Brunson with more size). If the shot stays consistent and he adds muscle, he projects as an All-Star caliber player.

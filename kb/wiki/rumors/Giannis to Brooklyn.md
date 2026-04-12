@@ -11,11 +11,18 @@ status: active
 Giannis Antetokounmpo's future in Milwaukee is genuinely uncertain for the first time in his career. The Bucks went 32-49 in 2025-26, missing the playoffs for the first time since 2016. Giannis deleted all Bucks-related content from his social media. Trade rumors swirled at the deadline but the Bucks kept him. With Brooklyn holding the largest asset chest in the NBA — multiple first-round picks, young players, and cap flexibility — the Nets are a logical trade partner if Milwaukee decides to rebuild.
 
 ## What We Know
-- Bucks went 32-49 in 2025-26, worst record since 2015-16
-- Giannis deleted all Bucks social media content — a signal of discontent
-- Trade deadline 2026: Bucks kept Giannis but the rumors were real
+- Bucks went 32-49 in 2025-26 — first losing season since 2015-16, missed playoffs for first time since 2016
+- Started 5-2 then collapsed, finishing 11th in the East
+- Giannis deleted all Bucks social media content after his calf injury — widely interpreted as a signal of frustration
+- Trade rumors circulated at the 2026 deadline but the Bucks kept him
 - Giannis is under contract through 2026-27 ($51.9M) with a player option for 2027-28
-- Milwaukee already traded Lillard (waived), Middleton (to Washington), Lopez (free agent to LAC) — the supporting cast is gone
+- **The supporting cast is gutted:**
+  - Damian Lillard: waived (torn Achilles rehab), returned to Portland
+  - Khris Middleton: traded mid-season to Washington for Kyle Kuzma
+  - Brook Lopez: left in free agency to LA Clippers
+  - Pat Connaughton: traded to Charlotte
+- When healthy, Giannis was still elite: 37 points in the season opener vs Washington, multiple 40-point games
+- Injuries (groin strain in November, calf strain in December) limited him severely — triggered a seven-game losing streak
 - ESPN's offseason preview specifically mentions Giannis as a trade target for multiple teams
 
 ## Why Brooklyn Makes Sense

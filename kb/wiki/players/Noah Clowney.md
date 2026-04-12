@@ -20,9 +20,9 @@ Noah Clowney is the Brooklyn Nets' most improved young player — a 6'10" power 
 ## Details
 
 ### Development Arc
-- **Year 1 (2023-24)**: Mostly G League development. Averaged 17.4 PPG with Long Island Nets, showing he could dominate at that level. Limited NBA minutes.
-- **Year 2 (2024-25)**: 46 games, 20 starts. Averaged 9.1 PPG, 3.9 RPG. Started carving out a rotation role before an ankle sprain ended his season.
-- **Year 3 (2025-26)**: The leap. 12.5 PPG with improved shooting. The Knicks game (31 points, 7 threes) showed his ceiling — a stretch four who can score from all three levels.
+- **Year 1 (2023-24)**: Mostly G League development. Averaged 17.4 PPG with Long Island Nets. NBA breakthrough: 22 points and 10 rebounds in 17 minutes vs Indiana (April 3, 2024), going 7-for-9. Showed he could produce when given minutes.
+- **Year 2 (2024-25)**: 46 games, 20 starts. Averaged 9.1 PPG, 3.9 RPG but shot just 35.8% from the field — consistency wasn't there. Right ankle sprain ended his season April 2.
+- **Year 3 (2025-26)**: The leap. Starting 60 of 66 games, 27.0 MPG, 12.3 PPG, 4.1 RPG. Three-point shooting at 32.9%. Career-high 31 points with 7 threes vs Knicks (November 24, 2025) — the statement game that announced him as a legitimate NBA starter.
 
 ### Fit on the Rebuild
 Clowney's timeline is perfect. At 21, he'll be 24-25 when the Nets should be competing. His skillset (switchable defense, developing shooting, athletic finishing) complements [[Egor Demin]] and [[Nic Claxton]]. A frontcourt of Clowney + Claxton gives the Nets size and versatility.
