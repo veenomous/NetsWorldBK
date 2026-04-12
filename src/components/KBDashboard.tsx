@@ -156,7 +156,7 @@ function TradeTree() {
 }
 
 export default function KBDashboard({ articles, categories, changelog }: KBDashboardProps) {
-  const [showTradeTree, setShowTradeTree] = useState(false);
+  const [showTradeTree, setShowTradeTree] = useState(true);
   const rumors = articles.filter(a => a.category === "rumors");
   const tradeArticles = articles.filter(a => a.category === "trades");
   const playerArticles = articles.filter(a => a.category === "players");
@@ -269,8 +269,61 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
             </span>
           </button>
           {showTradeTree && (
-            <div className="mb-6 overflow-x-auto scrollbar-hide animate-slide-up">
-              <TradeTree />
+            <div className="mb-6 animate-slide-up">
+              {/* Desktop: SVG trade tree */}
+              <div style={{ display: "none" }} className="trade-tree-desktop overflow-x-auto scrollbar-hide">
+                <TradeTree />
+              </div>
+              {/* Mobile: vertical card layout */}
+              <div className="trade-tree-mobile space-y-2">
+                <Link href="/kb/trades/kevin-durant-trade-tree" className="block bg-black text-white p-4">
+                  <p className="font-display font-black text-sm uppercase">Kevin Durant</p>
+                  <p className="text-[10px] text-white/40 uppercase mt-0.5">FEB 2023 → PHX</p>
+                </Link>
+                <div className="flex items-center gap-2 pl-4 py-1">
+                  <div className="w-3 h-3 bg-brand-red rounded-full animate-pulse-soft" />
+                  <span className="text-[10px] text-brand-red font-bold tracking-[0.15em] uppercase">Suns Return</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2 pl-4">
+                  <Link href="/kb/trades/kevin-durant-trade-tree" className="bg-black text-white p-3">
+                    <p className="font-display font-bold text-xs uppercase">Mikal Bridges</p>
+                    <p className="text-[10px] text-brand-red font-bold mt-1">→ NYK</p>
+                  </Link>
+                  <Link href="/kb/players/cameron-johnson" className="bg-black text-white p-3">
+                    <p className="font-display font-bold text-xs uppercase">Cam Johnson</p>
+                    <p className="text-[10px] text-brand-red font-bold mt-1">→ DEN</p>
+                  </Link>
+                </div>
+                <div className="pl-4 bg-black text-white p-3">
+                  <p className="font-display font-bold text-xs uppercase">4 Suns FRPs</p>
+                  <p className="text-[10px] text-brand-red font-bold mt-1">&apos;25, &apos;27, &apos;29 + &apos;28 SWAP</p>
+                </div>
+                <div className="flex items-center gap-2 pl-8 py-1">
+                  <div className="w-3 h-3 bg-accent-blue rounded-full animate-pulse-soft" style={{ animationDelay: "0.5s" }} />
+                  <span className="text-[10px] text-accent-blue font-bold tracking-[0.15em] uppercase">Bridges → Knicks</span>
+                </div>
+                <div className="pl-8 bg-black text-white p-3">
+                  <p className="font-display font-bold text-xs uppercase">4 Knicks FRPs</p>
+                  <p className="text-[10px] text-accent-blue font-bold mt-1">&apos;25, &apos;27, &apos;29, &apos;31 + &apos;28 SWAP</p>
+                </div>
+                <div className="flex items-center gap-2 pl-8 py-1">
+                  <div className="w-3 h-3 bg-accent-green rounded-full animate-pulse-soft" style={{ animationDelay: "1s" }} />
+                  <span className="text-[10px] text-text-secondary font-bold tracking-[0.15em] uppercase">Cam J → Denver</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2 pl-8">
+                  <Link href="/kb/players/michael-porter-jr" className="bg-black text-white p-3 border border-accent-green/30">
+                    <p className="font-display font-bold text-xs uppercase">MPJ</p>
+                    <p className="text-[10px] text-accent-green font-bold mt-1">24.2 PPG</p>
+                  </Link>
+                  <div className="bg-black text-white p-3">
+                    <p className="font-display font-bold text-xs uppercase">&apos;32 DEN 1st</p>
+                  </div>
+                </div>
+                <div className="bg-black border-2 border-brand-red p-3 text-center mt-2" style={{ animation: "glow-pulse 3s ease-in-out infinite" }}>
+                  <p className="text-[10px] text-white/40 tracking-[0.2em] uppercase font-bold">Total from KD</p>
+                  <p className="font-display font-black text-brand-red text-xl leading-none mt-1">6 FRPs + MPJ</p>
+                </div>
+              </div>
             </div>
           )}
 
