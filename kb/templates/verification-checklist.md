@@ -64,6 +64,13 @@ inflated trade haul numbers, and had inconsistencies between articles.
 - [ ] Lottery positions are correct
 - [ ] This is a FALLBACK — live API should override
 
+## Content Source Quality Check
+- [ ] Are we pulling from LOCAL beat writers (NY Post, NYDN, SNY, Newsday), not just national?
+- [ ] Are we pulling from team-specific RSS feeds, not just league-wide?
+- [ ] Are we capturing podcast/video analysis, not just text articles?
+- [ ] Have we searched Google for "[topic] Brooklyn Nets" to find sources we're missing?
+- [ ] Are rumor articles based on real reporting, not our own speculation?
+
 ## Common Mistakes We've Made
 1. Claiming inflated pick totals ("9 FRPs" when some were traded to Houston)
 2. Missing the Rockets pick restructure trade entirely
@@ -72,3 +79,5 @@ inflated trade haul numbers, and had inconsistencies between articles.
 5. Stale roster data with players on wrong teams
 6. Not dating statistical claims
 7. Saying "confidence: high" on speculative content
+8. Using only ESPN national when local NYC beat writers have the real intel
+9. Building the pipeline before researching the best sources
