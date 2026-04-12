@@ -1,20 +1,15 @@
 name: KB Daily Compile
 
 on:
-  # Disabled by default — uncomment cron to activate daily runs
-  # schedule:
-  #   - cron: '0 10 * * *'
+  schedule:
+    # Run daily at 6 AM ET (10:00 UTC)
+    - cron: '0 10 * * *'
   workflow_dispatch:
-    # Manual trigger only for now (conservative mode)
     inputs:
-      fetch_only:
-        description: 'Only fetch data, skip AI compilation (free)'
+      compile:
+        description: 'Run AI compilation after fetch (uses ~$0.30 API credits)'
         required: false
         default: 'true'
-      compile:
-        description: 'Run AI compilation after fetch (uses API credits)'
-        required: false
-        default: 'false'
 
 permissions:
   contents: write
@@ -42,16 +37,22 @@ jobs:
       - name: Fetch ESPN data
         run: npx tsx scripts/fetch-espn.ts --type all
 
+      - name: Compile Fan Pulse
+        run: npx tsx scripts/compile-fan-pulse.ts
+
+      - name: Fetch approved submissions
+        run: npx tsx scripts/fetch-submissions.ts
+
       - name: Install Claude Code
-        if: ${{ github.event.inputs.compile == 'true' }}
+        if: ${{ github.event.inputs.compile != 'false' }}
         run: npm install -g @anthropic-ai/claude-code
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
       - name: Compile KB (Sonnet — ~$0.30 per run)
-        if: ${{ github.event.inputs.compile == 'true' }}
+        if: ${{ github.event.inputs.compile != 'false' }}
         run: |
-          claude --model claude-sonnet-4-6 --print "Read the file kb/templates/compile-prompt.md and follow its instructions. Read all new files in kb/raw/ (files dated today or not yet referenced in any wiki article's sources), then update the relevant wiki articles. Update kb/CHANGELOG.md and kb/wiki/INDEX.md."
+          claude --model claude-sonnet-4-6 --print "Read the file kb/templates/compile-prompt.md and follow its instructions. Also read kb/templates/verification-checklist.md and verify accuracy. Read all new files in kb/raw/ (files dated today or not yet referenced in any wiki article's sources), then update the relevant wiki articles. Include both first-round and second-round picks in all trade articles. Update kb/CHANGELOG.md and kb/wiki/INDEX.md."
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
