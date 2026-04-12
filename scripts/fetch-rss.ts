@@ -18,17 +18,23 @@ const TODAY = new Date().toISOString().split("T")[0];
 // RSS feeds to monitor — add more as we find them
 const FEEDS = [
   {
+    name: "NY Post Nets",
+    url: "https://nypost.com/tag/brooklyn-nets/feed/",
+    dir: "beat-reporters",
+    netsOnly: true, // Already Nets-filtered, skip keyword check
+  },
+  {
+    name: "NY Daily News Nets",
+    url: "https://www.nydailynews.com/tag/brooklyn-nets/feed/",
+    dir: "beat-reporters",
+    netsOnly: true,
+  },
+  {
     name: "ESPN NBA",
     url: "https://www.espn.com/espn/rss/nba/news",
     dir: "beat-reporters",
+    netsOnly: false,
   },
-  {
-    name: "HoopsHype",
-    url: "https://hoopshype.com/feed",
-    dir: "beat-reporters",
-  },
-  // ESPN Nets-specific (JSON API, not RSS — handled separately below)
-  // Add more feeds as they're discovered and verified
 ];
 
 // Nets-related keywords to filter articles
@@ -107,7 +113,9 @@ async function fetchFeed(feed: typeof FEEDS[0]): Promise<number> {
 
     const xml = await res.text();
     const items = parseRSS(xml);
-    const netsItems = items.filter(item => isNetsRelated(item.title, item.description));
+    const netsItems = (feed as any).netsOnly
+      ? items
+      : items.filter(item => isNetsRelated(item.title, item.description));
 
     if (netsItems.length === 0) {
       console.log(`    No Nets-related articles found (${items.length} total)`);
