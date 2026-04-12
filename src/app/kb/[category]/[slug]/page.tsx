@@ -51,14 +51,29 @@ export async function generateMetadata({
   const { category, slug } = await params;
   const article = getArticle(category, slug);
   if (!article) return { title: "Not Found — BK Grit" };
+  const desc = article.content
+    .replace(/^#+\s.*$/gm, "")
+    .replace(/\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/g, "$1")
+    .replace(/[*_`#\-]/g, "")
+    .trim()
+    .slice(0, 160);
+  const ogUrl = `https://bkgrit.com/api/og?type=wiki&title=${encodeURIComponent(article.title)}&category=${encodeURIComponent(category)}&confidence=${encodeURIComponent(article.confidence)}&v=${Date.now()}`;
+
   return {
-    title: `${article.title} — BK Grit KB`,
-    description: article.content
-      .replace(/^#+\s.*$/gm, "")
-      .replace(/\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/g, "$1")
-      .replace(/[*_`#\-]/g, "")
-      .trim()
-      .slice(0, 160),
+    title: `${article.title} — BK Grit`,
+    description: desc,
+    openGraph: {
+      title: `${article.title} — BK Grit`,
+      description: desc,
+      images: [ogUrl],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${article.title} — BK Grit`,
+      description: desc,
+      images: [ogUrl],
+    },
   };
 }
 
