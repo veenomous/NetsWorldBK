@@ -180,8 +180,12 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
                 Every trade, every pick, every prospect — traced, connected, and updated.
               </p>
               <KBSearch />
+              {/* Mini graph — below search on mobile */}
+              <div className="sm:hidden mt-4">
+                <KBMiniGraph />
+              </div>
             </div>
-            {/* Mini Knowledge Graph */}
+            {/* Mini graph — beside content on desktop */}
             <div className="hidden sm:block shrink-0">
               <KBMiniGraph />
             </div>
