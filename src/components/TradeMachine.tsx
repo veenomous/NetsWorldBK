@@ -6,6 +6,7 @@ import { checkTradeValidity } from "@/lib/tradeRules";
 import { supabase, getVisitorId } from "@/lib/supabase";
 import { useSession } from "next-auth/react";
 import ShareOnX from "@/components/ShareOnX";
+import KBSidebar from "@/components/KBSidebar";
 
 const netsTeam = getNetsTeam();
 const otherTeams = getOtherTeams();
@@ -22,6 +23,7 @@ export default function TradeMachine() {
   const [picksReceive, setPicksReceive] = useState<DraftPick[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [kbEntity, setKbEntity] = useState<string | null>(null);
 
   // Salary calculations
   const outSalary = netsSend.reduce((s, p) => s + p.salary, 0);
@@ -30,6 +32,7 @@ export default function TradeMachine() {
   const salaryDiff = inSalary - outSalary;
 
   function togglePlayer(player: NBAPlayer, side: "send" | "receive") {
+    setKbEntity(player.name);
     if (side === "send") {
       setNetsSend((prev) => prev.some((p) => p.name === player.name) ? prev.filter((p) => p.name !== player.name) : [...prev, player]);
     } else {
@@ -295,6 +298,13 @@ export default function TradeMachine() {
               </div>
             </div>
           </div>
+
+          {/* KB Intel Sidebar */}
+          {kbEntity && (
+            <div className="border-t border-gray-200">
+              <KBSidebar entity={kbEntity} onClose={() => setKbEntity(null)} />
+            </div>
+          )}
         </div>
       )}
     </div>

@@ -150,6 +150,8 @@ function PostForm({ onPost }: { onPost: () => void }) {
   const xHandle = (session?.user as { xHandle?: string })?.xHandle;
   const [guestName, setGuestNameState] = useState<string | null>(null);
   const [text, setText] = useState("");
+  const [sourceUrl, setSourceUrl] = useState("");
+  const [showSourceField, setShowSourceField] = useState(false);
   const [tag, setTag] = useState("Take");
   const [submitting, setSubmitting] = useState(false);
   const TAGS = ["Take", "Hot Take", "Draft", "Roster", "Strategy", "Trade", "Spicy"];
@@ -178,10 +180,27 @@ function PostForm({ onPost }: { onPost: () => void }) {
     e.preventDefault();
     if (!text.trim() || submitting) return;
     setSubmitting(true);
+
+    // Save the take
+    const takeText = sourceUrl.trim()
+      ? `${text.trim()}\n\n${sourceUrl.trim()}`
+      : text.trim();
     await supabase.from("hot_takes").insert({
-      text: text.trim(), author: displayName || "Anonymous", tag, ip_hash: getVisitorId(),
+      text: takeText, author: displayName || "Anonymous", tag, ip_hash: getVisitorId(),
     });
-    setText(""); setTag("Take"); setSubmitting(false);
+
+    // If source URL attached, also submit to KB
+    if (sourceUrl.trim()) {
+      await supabase.from("kb_submissions").insert({
+        url: sourceUrl.trim(),
+        note: text.trim().slice(0, 200),
+        source_type: "article",
+        submitted_by: displayName || "anonymous",
+        visitor_id: getVisitorId(),
+      });
+    }
+
+    setText(""); setSourceUrl(""); setShowSourceField(false); setTag("Take"); setSubmitting(false);
     onPost();
   }
 
@@ -204,8 +223,29 @@ function PostForm({ onPost }: { onPost: () => void }) {
         placeholder="Drop a take, share an X post, start a thread..."
         rows={2}
         maxLength={500}
-        className="w-full bg-transparent text-sm outline-none resize-none placeholder:text-black/20 mb-3"
+        className="w-full bg-transparent text-sm outline-none resize-none placeholder:text-black/20 mb-2"
       />
+      {/* Source URL attachment */}
+      {showSourceField ? (
+        <div className="flex items-center gap-2 mb-3">
+          <span className="material-symbols-outlined text-text-muted text-sm">link</span>
+          <input
+            type="url"
+            value={sourceUrl}
+            onChange={(e) => setSourceUrl(e.target.value)}
+            placeholder="Paste a link to back up your take..."
+            className="flex-1 bg-gray-50 text-xs px-3 py-2 outline-none placeholder:text-black/20 border border-black/5 focus:border-brand-red/30"
+          />
+          <button type="button" onClick={() => { setShowSourceField(false); setSourceUrl(""); }} className="text-text-muted text-xs hover:text-brand-red">
+            <span className="material-symbols-outlined text-sm">close</span>
+          </button>
+        </div>
+      ) : (
+        <button type="button" onClick={() => setShowSourceField(true)} className="flex items-center gap-1 text-[10px] text-text-muted hover:text-brand-red font-bold uppercase tracking-wider mb-3 transition-colors">
+          <span className="material-symbols-outlined text-xs">attach_file</span>
+          Attach a source
+        </button>
+      )}
       <div className="flex items-center justify-between">
         <div className="flex gap-1 flex-wrap">
           {TAGS.map((t) => (

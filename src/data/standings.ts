@@ -1,6 +1,6 @@
-// 2025-26 NBA Standings data (static fallback, updated March 29, 2026)
+// 2025-26 NBA Standings data (static fallback, updated April 11, 2026)
 // Live data fetched from ESPN via /api/standings — this is the offline fallback
-// Bottom teams relevant for lottery
+// Season ends April 12, 2026
 
 export interface TeamStanding {
   team: string;
@@ -12,12 +12,12 @@ export interface TeamStanding {
   conference: string;
 }
 
-// Current standings as of March 29, 2026 (bottom 14 teams for lottery)
+// Near-final standings as of April 11, 2026 (bottom 14 teams for lottery)
 // Source: ESPN standings API — sorted by win% (lowest first)
 export const lotteryTeams: TeamStanding[] = [
-  { team: "Indiana Pacers", abbrev: "IND", wins: 16, losses: 58, gamesRemaining: 8, currentPick: 1, conference: "East" },
-  { team: "Brooklyn Nets", abbrev: "BKN", wins: 17, losses: 57, gamesRemaining: 8, currentPick: 2, conference: "East" },
-  { team: "Washington Wizards", abbrev: "WAS", wins: 17, losses: 56, gamesRemaining: 9, currentPick: 3, conference: "East" },
+  { team: "Indiana Pacers", abbrev: "IND", wins: 19, losses: 62, gamesRemaining: 1, currentPick: 1, conference: "East" },
+  { team: "Washington Wizards", abbrev: "WAS", wins: 19, losses: 61, gamesRemaining: 2, currentPick: 2, conference: "East" },
+  { team: "Brooklyn Nets", abbrev: "BKN", wins: 20, losses: 61, gamesRemaining: 1, currentPick: 3, conference: "East" },
   { team: "Sacramento Kings", abbrev: "SAC", wins: 19, losses: 56, gamesRemaining: 7, currentPick: 4, conference: "West" },
   { team: "Utah Jazz", abbrev: "UTA", wins: 21, losses: 53, gamesRemaining: 8, currentPick: 5, conference: "West" },
   { team: "Dallas Mavericks", abbrev: "DAL", wins: 23, losses: 48, gamesRemaining: 11, currentPick: 6, conference: "West" },

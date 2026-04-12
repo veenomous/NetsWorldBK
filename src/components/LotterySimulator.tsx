@@ -9,10 +9,10 @@ import Link from "next/link";
 
 // Historical lottery data
 const HISTORY = [
+  { year: 2025, team: "Dallas Mavericks", odds: "6.0%", outcome: "JUMPED +2", jumped: true },
+  { year: 2024, team: "Atlanta Hawks", odds: "3.0%", outcome: "JUMPED +7", jumped: true },
   { year: 2023, team: "San Antonio Spurs", odds: "14.0%", outcome: "STAYED #1", jumped: false },
   { year: 2022, team: "Orlando Magic", odds: "14.0%", outcome: "STAYED #1", jumped: false },
-  { year: 2021, team: "Detroit Pistons", odds: "14.0%", outcome: "STAYED #1", jumped: false },
-  { year: 2019, team: "New Orleans Pelicans", odds: "6.0%", outcome: "JUMPED +6", jumped: true },
 ];
 
 // ─── Share Dropdown ───
@@ -223,55 +223,26 @@ export default function LotterySimulator() {
 
             {result && !isSpinning && top4 && (
               <div className="animate-slide-up">
-                {/* Top 4 Picks Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {top4.map((r, i) => {
-                    const isBKN = r.abbrev === "BKN";
-                    const isPick1 = i === 0;
-                    const spotDiff = r.originalSlot - r.lotteryPick;
-
-                    return (
-                      <div
-                        key={r.abbrev}
-                        className={`p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden ${
-                          isPick1 && isBKN
-                            ? "bg-black text-white sm:col-span-1 min-h-[220px]"
-                            : isPick1
-                            ? "bg-black text-white min-h-[220px]"
-                            : "bg-gray-100 border border-gray-200 min-h-[200px]"
-                        }`}
-                      >
-                        <div className="relative z-10">
-                          <span className={`text-[10px] font-bold tracking-[0.3em] ${isPick1 ? "opacity-50" : "text-black/30"}`}>
-                            PICK {String(i + 1).padStart(2, "0")}
-                          </span>
-                          <h3 className={`text-3xl sm:text-4xl font-black italic font-display mt-2 leading-tight ${
-                            isPick1 ? "text-white" : isBKN ? "text-brand-red" : "text-black"
-                          }`}>
-                            {r.team.split(" ").slice(-1)[0]?.toUpperCase()}<br />{r.team.split(" ").slice(0, -1).join(" ").toUpperCase()}
-                          </h3>
-                          {isBKN && isPick1 && (
-                            <p className="mt-2 text-accent-blue font-bold text-sm">POSSIBILITY: +{r.originalSlot - r.lotteryPick} SPOTS</p>
-                          )}
-                        </div>
-                        <div className="flex items-center gap-2 mt-4">
-                          <span className={`w-3 h-3 ${isBKN ? "bg-brand-red" : "bg-accent-blue"}`} />
-                          <span className={`text-[10px] font-bold uppercase tracking-[0.15em] ${isPick1 ? "text-white/50" : "text-black/30"}`}>
-                            {spotDiff > 0 ? `+${spotDiff} SPOT${spotDiff > 1 ? "S" : ""}` : spotDiff < 0 ? `${spotDiff} SPOT${spotDiff < -1 ? "S" : ""}` : "NO CHANGE"}
-                          </span>
-                        </div>
-                        {isPick1 && isBKN && (
-                          <div className="absolute top-4 right-4 bg-accent-blue text-white px-3 py-1 text-[9px] font-bold tracking-wider">WINNER</div>
-                        )}
-                        {isPick1 && (
-                          <span className="material-symbols-outlined absolute -right-4 -bottom-4 text-[10rem] opacity-5" style={{ fontVariationSettings: "'FILL' 1" }}>
-                            sports_basketball
-                          </span>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
+                {/* Nets result highlight */}
+                {(() => {
+                  const netsResult = result.results.find(r => r.abbrev === "BKN");
+                  if (!netsResult) return null;
+                  return (
+                    <div className={`p-5 mb-6 text-center ${netsResult.lotteryPick <= 3 ? "bg-black text-white" : "bg-brand-red/5 border-2 border-brand-red"}`}>
+                      <p className={`text-[10px] font-bold tracking-[0.3em] uppercase ${netsResult.lotteryPick <= 3 ? "text-white/50" : "text-text-muted"}`}>Brooklyn Nets</p>
+                      <p className={`font-display font-black text-5xl tracking-tight mt-1 ${netsResult.lotteryPick <= 3 ? "text-brand-red" : "text-brand-red"}`}>#{netsResult.lotteryPick}</p>
+                      <p className={`text-sm font-body mt-1 ${netsResult.lotteryPick <= 3 ? "text-white/40" : "text-text-muted"}`}>
+                        {netsResult.lotteryPick <= 3 ? "Top 3! " : ""}
+                        {netsResult.originalSlot - netsResult.lotteryPick > 0
+                          ? `Jumped ${netsResult.originalSlot - netsResult.lotteryPick} spots`
+                          : netsResult.originalSlot - netsResult.lotteryPick < 0
+                            ? `Dropped ${Math.abs(netsResult.originalSlot - netsResult.lotteryPick)} spots`
+                            : "Stayed in place"
+                        }
+                      </p>
+                    </div>
+                  );
+                })()}
 
                 {/* Full Results */}
                 <div className="mt-8 space-y-0">

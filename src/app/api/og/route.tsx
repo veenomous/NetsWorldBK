@@ -87,6 +87,44 @@ export async function GET(request: Request) {
     );
   }
 
+  // Wiki article OG image
+  if (type === "wiki") {
+    const title = url.searchParams.get("title") || "Brooklyn Nets Wiki";
+    const category = url.searchParams.get("category") || "";
+    const confidence = url.searchParams.get("confidence") || "";
+    const confColor = confidence === "high" ? "#16a34a" : confidence === "low" ? RED : BLUE;
+
+    return new ImageResponse(
+      <div style={{ display: "flex", width: "100%", height: "100%", backgroundColor: "#000", color: "#fff" }}>
+        {/* Left: logo + branding */}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "35%", borderRight: `6px solid ${RED}` }}>
+          {logo}
+          <div style={{ display: "flex", fontSize: 12, color: "#666", marginTop: 16, letterSpacing: 4 }}>NETS WIKI</div>
+        </div>
+        {/* Right: article info */}
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", width: "65%", padding: "40px 50px" }}>
+          {category && (
+            <div style={{ display: "flex", fontSize: 12, color: RED, fontWeight: 700, letterSpacing: 3, textTransform: "uppercase", marginBottom: 12 }}>
+              {category.replace("-", " ")}
+            </div>
+          )}
+          <div style={{ display: "flex", fontSize: title.length > 30 ? 36 : 48, fontWeight: 900, lineHeight: 1.1, letterSpacing: -1, textTransform: "uppercase" }}>
+            {title}
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 20 }}>
+            {confidence && (
+              <div style={{ display: "flex", fontSize: 11, fontWeight: 700, color: confColor, backgroundColor: `${confColor}20`, padding: "4px 12px", letterSpacing: 2, textTransform: "uppercase" }}>
+                {confidence} confidence
+              </div>
+            )}
+            <div style={{ display: "flex", fontSize: 12, color: "#555" }}>bkgrit.com</div>
+          </div>
+        </div>
+      </div>,
+      { width: 1200, height: 630, headers: cacheHeaders },
+    );
+  }
+
   // Default OG image
   return new ImageResponse(
     <div style={{ display: "flex", width: "100%", height: "100%", backgroundColor: "#fff", color: "#000" }}>

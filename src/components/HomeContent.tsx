@@ -553,7 +553,7 @@ export default function HomeContent() {
 
       {/* ═══ TOOL CARDS ═══ */}
       <section className="w-full px-3 py-6 sm:px-6 border-t-[4px] border-brand-red">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-5">
           <Link href="/gm-mode" className="bg-white border-t-4 border-brand-red p-5 shadow-sm hover:shadow-md transition-shadow">
             <p className="text-[9px] font-black tracking-[0.2em] uppercase text-black/30 mb-2">War Room</p>
             <p className="text-xl font-black uppercase font-display">Play GM</p>
@@ -572,6 +572,10 @@ export default function HomeContent() {
           <Link href="/simulator" className="bg-accent-blue p-5 flex flex-col justify-between">
             <p className="text-[9px] font-black tracking-[0.2em] uppercase text-white/40 mb-2">Lottery Sim</p>
             <p className="text-white text-base font-bold leading-tight uppercase italic font-display">&quot;Run the lottery. See where Brooklyn lands.&quot;</p>
+          </Link>
+          <Link href="/kb" className="bg-black p-5 flex flex-col justify-between">
+            <p className="text-[9px] font-black tracking-[0.2em] uppercase text-white/40 mb-2">Nets Wiki</p>
+            <p className="text-brand-red text-base font-bold leading-tight uppercase italic font-display">&quot;Every thread of the rebuild. All connected.&quot;</p>
           </Link>
         </div>
       </section>
