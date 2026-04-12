@@ -1,11 +1,10 @@
 name: KB Weekly Health Check
 
 on:
-  # Disabled by default — uncomment cron to activate weekly runs
-  # schedule:
-  #   - cron: '0 12 * * 0'
+  schedule:
+    # Run every Sunday at 12:00 UTC (8 AM ET)
+    - cron: '0 12 * * 0'
   workflow_dispatch:
-    # Manual trigger only (conservative — uses ~$0.50 per run)
 
 permissions:
   contents: read
@@ -30,7 +29,7 @@ jobs:
       - name: Run health check
         id: health
         run: |
-          REPORT=$(claude --print "Read the file kb/templates/health-check-prompt.md and follow its instructions to audit the knowledge base. Output the health check report in markdown format.")
+          REPORT=$(claude --model claude-sonnet-4-6 --print "Read the file kb/templates/health-check-prompt.md and follow its instructions to audit the knowledge base. Also read kb/templates/verification-checklist.md and check for accuracy issues. Output the health check report in markdown format.")
           echo "report<<EOF" >> $GITHUB_OUTPUT
           echo "$REPORT" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
