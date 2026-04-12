@@ -21,16 +21,16 @@ interface MiniEdge {
 }
 
 const NODES: MiniNode[] = [
-  { id: "marks", label: "SEAN MARKS", x: 0.15, y: 0.3, color: "#E43C3E", size: 6, href: "/kb/front-office/sean-marks-era", description: "GM — Architect of the rebuild" },
-  { id: "kd", label: "KD TRADE", x: 0.35, y: 0.2, color: "#E43C3E", size: 8, href: "/kb/trades/kevin-durant-trade-tree", description: "9 FRPs + 2 swaps + MPJ" },
-  { id: "kyrie", label: "KYRIE", x: 0.25, y: 0.65, color: "#E43C3E", size: 5, href: "/kb/trades/kyrie-irving-trade", description: "2029 Dallas first-rounder" },
-  { id: "harden", label: "HARDEN", x: 0.1, y: 0.75, color: "#E43C3E", size: 5, href: "/kb/trades/james-harden-trade", description: "Rockets pick → Danny Wolf" },
-  { id: "picks", label: "9 FRPS", x: 0.55, y: 0.35, color: "#0047AB", size: 7, href: "/kb/concepts/nets-pick-inventory", description: "Picks owed through 2032" },
-  { id: "mpj", label: "MPJ", x: 0.6, y: 0.6, color: "#16a34a", size: 6, href: "/kb/players/michael-porter-jr", description: "24.2 PPG — Veteran anchor" },
-  { id: "demin", label: "DEMIN", x: 0.75, y: 0.25, color: "#0047AB", size: 6, href: "/kb/players/egor-demin", description: "#8 pick — Franchise bet" },
-  { id: "draft", label: "2025 DRAFT", x: 0.85, y: 0.5, color: "#0047AB", size: 5, href: "/kb/draft/2025-nba-draft", description: "5 first-rounders in one draft" },
-  { id: "knicks", label: "KNICKS", x: 0.45, y: 0.75, color: "#0047AB", size: 5, href: "/kb/rivalries/nets-vs-knicks", description: "4 unprotected picks through 2031" },
-  { id: "timeline", label: "2027-28", x: 0.9, y: 0.75, color: "#16a34a", size: 5, href: "/kb/concepts/rebuild-timeline", description: "Target competitive window" },
+  { id: "marks", label: "SEAN MARKS", x: 0.12, y: 0.3, color: "#E43C3E", size: 10, href: "/kb/front-office/sean-marks-era", description: "GM — Architect of the rebuild" },
+  { id: "kd", label: "KD TRADE", x: 0.35, y: 0.18, color: "#E43C3E", size: 12, href: "/kb/trades/kevin-durant-trade-tree", description: "The foundational trade" },
+  { id: "kyrie", label: "KYRIE", x: 0.22, y: 0.7, color: "#E43C3E", size: 6, href: "/kb/trades/kyrie-irving-trade", description: "2029 Dallas first-rounder" },
+  { id: "harden", label: "HARDEN", x: 0.08, y: 0.75, color: "#E43C3E", size: 6, href: "/kb/trades/james-harden-trade", description: "Rockets pick → Danny Wolf" },
+  { id: "picks", label: "PICKS", x: 0.55, y: 0.3, color: "#0047AB", size: 10, href: "/kb/assets/nets-pick-inventory", description: "Picks owed through 2032" },
+  { id: "mpj", label: "MPJ", x: 0.6, y: 0.6, color: "#16a34a", size: 8, href: "/kb/players/michael-porter-jr", description: "24.2 PPG — Veteran anchor" },
+  { id: "demin", label: "DEMIN", x: 0.78, y: 0.22, color: "#0047AB", size: 9, href: "/kb/players/egor-demin", description: "#8 pick — Franchise bet" },
+  { id: "draft", label: "DRAFT", x: 0.88, y: 0.48, color: "#0047AB", size: 7, href: "/kb/draft/2025-nba-draft", description: "5 first-rounders in one draft" },
+  { id: "knicks", label: "KNICKS", x: 0.42, y: 0.75, color: "#0047AB", size: 7, href: "/kb/rivalries/nets-vs-knicks", description: "4 unprotected picks through 2031" },
+  { id: "timeline", label: "2027-28", x: 0.92, y: 0.75, color: "#16a34a", size: 8, href: "/kb/strategy/rebuild-timeline", description: "Target competitive window" },
 ];
 
 const EDGES: MiniEdge[] = [
@@ -127,16 +127,30 @@ export default function KBMiniGraph() {
         ctx.fillText(node.label, px, py + r + 13);
       }
 
-      // Pulse
-      const t = (pulseRef.current * 0.2) % 1;
-      const marks = NODES.find(n => n.id === "marks")!;
-      const kd = NODES.find(n => n.id === "kd")!;
-      const ppx = marks.x * DISPLAY_W + (kd.x * DISPLAY_W - marks.x * DISPLAY_W) * t;
-      const ppy = marks.y * DISPLAY_H + (kd.y * DISPLAY_H - marks.y * DISPLAY_H) * t;
-      ctx.beginPath();
-      ctx.arc(ppx, ppy, 2.5, 0, Math.PI * 2);
-      ctx.fillStyle = "#E43C3E";
-      ctx.fill();
+      // Animated pulses along key paths
+      function drawPulse(fromId: string, toId: string, color: string, speed: number, offset: number) {
+        const from = NODES.find(n => n.id === fromId)!;
+        const to = NODES.find(n => n.id === toId)!;
+        const t = ((pulseRef.current * speed) + offset) % 1;
+        const px = from.x * DISPLAY_W + (to.x * DISPLAY_W - from.x * DISPLAY_W) * t;
+        const py = from.y * DISPLAY_H + (to.y * DISPLAY_H - from.y * DISPLAY_H) * t;
+        ctx.beginPath();
+        ctx.arc(px, py, 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = color;
+        ctx.fill();
+      }
+
+      // Red: marks → kd → picks
+      drawPulse("marks", "kd", "#E43C3E", 0.2, 0);
+      drawPulse("kd", "picks", "#E43C3E", 0.18, 0.3);
+
+      // Blue: picks → demin, picks → draft
+      drawPulse("picks", "demin", "#0047AB", 0.15, 0.1);
+      drawPulse("picks", "draft", "#0047AB", 0.16, 0.5);
+
+      // Green: demin → timeline, mpj → timeline
+      drawPulse("demin", "timeline", "#16a34a", 0.14, 0.2);
+      drawPulse("mpj", "timeline", "#16a34a", 0.13, 0.7);
 
       animRef.current = requestAnimationFrame(draw);
     }
