@@ -37,12 +37,16 @@ wiki_articles: 29
 ## Rivalries
 - [[Nets vs Knicks]] — Unprotected Knicks picks through 2031 turn every Knicks loss into a Nets win
 
-## Concepts
-- [[Tank Math]] — The lottery odds calculus behind the tank and why bottom-3 is the target
-- [[Nets Pick Inventory]] — 6+ first-round picks and 2 swaps still owed from 2027-2032
-- [[Rebuild Timeline]] — Projected competitive by 2027-28; development clock, pick calendar, and risks
+## Cap & Assets
+- [[Nets Pick Inventory]] — First-round picks + 9 second-rounders controlled through 2032
 - [[Salary Cap Situation]] — MPJ + Claxton anchors, rookie-scale flexibility, cap space outlook through 2029
-- [[Fan Pulse]] — Live fan sentiment from Wire takes, player ratings, and polls — auto-compiled from community data
+
+## Strategy
+- [[Tank Math]] — The lottery odds calculus behind the tank and why bottom-3 is the target
+- [[Rebuild Timeline]] — Projected competitive by 2027-28; development clock, pick calendar, and risks
+
+## Community
+- [[Fan Pulse]] — Live fan sentiment from Wire takes, player ratings, and polls — auto-compiled
 
 ## Rumor Mill
 - [[MPJ Trade Buzz]] — Will the Nets trade their best scorer to a contender this offseason?

@@ -29,7 +29,9 @@ const categoryIcon: Record<string, string> = {
   "front-office": "corporate_fare",
   draft: "format_list_numbered",
   rivalries: "swords",
-  concepts: "school",
+  assets: "payments",
+  strategy: "strategy",
+  community: "groups",
   rumors: "local_fire_department",
 };
 

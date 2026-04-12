@@ -35,7 +35,9 @@ const CATEGORY_COLORS: Record<string, string> = {
   "front-office": "#1a1c1c",
   draft: "#0047AB",
   rivalries: "#0047AB",
-  concepts: "#16a34a",
+  assets: "#0047AB",
+  strategy: "#16a34a",
+  community: "#1a1c1c",
   rumors: "#E43C3E",
 };
 
@@ -43,6 +45,9 @@ const CATEGORY_LABELS: Record<string, string> = {
   players: "Players",
   seasons: "Seasons",
   trades: "Trades",
+  assets: "Cap & Assets",
+  strategy: "Strategy",
+  community: "Community",
   rumors: "Rumors",
   "front-office": "Front Office",
   draft: "Draft",
@@ -73,7 +78,9 @@ export default function KBGraphExplorer({ graph }: { graph: KBGraph }) {
       "front-office": { x: 0.1, y: 0.4 },
       seasons: { x: 0.15, y: 0.7 },
       trades: { x: 0.35, y: 0.7 },
-      concepts: { x: 0.3, y: 0.2 },
+      assets: { x: 0.3, y: 0.2 },
+      strategy: { x: 0.25, y: 0.15 },
+      community: { x: 0.5, y: 0.1 },
       players: { x: 0.65, y: 0.35 },
       draft: { x: 0.75, y: 0.65 },
       rivalries: { x: 0.5, y: 0.5 },
@@ -103,6 +110,7 @@ export default function KBGraphExplorer({ graph }: { graph: KBGraph }) {
         y: zone.y * h + Math.sin(angle) * spread * Math.min(count, 4) * 0.5,
         vx: 0,
         vy: 0,
+        pinned: true, // Start pinned — organized layout holds
       };
     });
   }, [graph.nodes]);
@@ -327,7 +335,8 @@ export default function KBGraphExplorer({ graph }: { graph: KBGraph }) {
   );
 
   const handleMouseUp = useCallback(() => {
-    if (dragRef.current && didDragRef.current) {
+    if (dragRef.current) {
+      // Keep pinned where dropped
       dragRef.current.node.pinned = true;
       dragRef.current.node.vx = 0;
       dragRef.current.node.vy = 0;

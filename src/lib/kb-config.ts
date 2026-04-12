@@ -23,7 +23,9 @@ const NBA_CATEGORIES: KBCategory[] = [
   { slug: "front-office", label: "Front Office", icon: "corporate_fare" },
   { slug: "draft", label: "Draft", icon: "format_list_numbered" },
   { slug: "rivalries", label: "Rivalries", icon: "swords" },
-  { slug: "concepts", label: "Concepts", icon: "school" },
+  { slug: "assets", label: "Cap & Assets", icon: "payments" },
+  { slug: "strategy", label: "Strategy", icon: "strategy" },
+  { slug: "community", label: "Community", icon: "groups" },
   { slug: "rumors", label: "Rumor Mill", icon: "local_fire_department" },
 ];
 
