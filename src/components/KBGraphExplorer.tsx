@@ -73,18 +73,20 @@ export default function KBGraphExplorer({ graph }: { graph: KBGraph }) {
     const h = window.innerHeight - 120;
     setDimensions({ w, h });
 
-    // Category zones — organized layout
+    // Category zones — organized layout, pulled inward for mobile
+    const isMobile = w < 600;
+    const pad = isMobile ? 0.08 : 0.05; // padding from edges
     const categoryZones: Record<string, { x: number; y: number }> = {
-      "front-office": { x: 0.1, y: 0.4 },
-      seasons: { x: 0.15, y: 0.7 },
-      trades: { x: 0.35, y: 0.7 },
-      assets: { x: 0.3, y: 0.2 },
-      strategy: { x: 0.25, y: 0.15 },
-      community: { x: 0.5, y: 0.1 },
-      players: { x: 0.65, y: 0.35 },
-      draft: { x: 0.75, y: 0.65 },
-      rivalries: { x: 0.5, y: 0.5 },
-      rumors: { x: 0.55, y: 0.15 },
+      "front-office": { x: pad + 0.05, y: 0.35 },
+      seasons: { x: pad + 0.08, y: 0.65 },
+      trades: { x: 0.3, y: 0.7 },
+      assets: { x: 0.28, y: 0.2 },
+      strategy: { x: 0.22, y: 0.12 },
+      community: { x: 0.48, y: 0.08 },
+      players: { x: 0.58, y: 0.35 },
+      draft: { x: 0.65, y: 0.6 },
+      rivalries: { x: 0.45, y: 0.48 },
+      rumors: { x: 0.5, y: 0.15 },
     };
 
     // Group nodes by category and position within their zone
@@ -100,14 +102,14 @@ export default function KBGraphExplorer({ graph }: { graph: KBGraph }) {
       const idx = siblings.indexOf(n);
       const count = siblings.length;
 
-      // Spread within zone
-      const spread = Math.min(w, h) * 0.08;
+      // Spread within zone — tighter on mobile
+      const spread = Math.min(w, h) * (isMobile ? 0.05 : 0.07);
       const angle = count > 1 ? (idx / count) * Math.PI * 2 : 0;
 
       return {
         ...n,
-        x: zone.x * w + Math.cos(angle) * spread * Math.min(count, 4) * 0.5,
-        y: zone.y * h + Math.sin(angle) * spread * Math.min(count, 4) * 0.5,
+        x: Math.max(50, Math.min(w - 50, zone.x * w + Math.cos(angle) * spread * Math.min(count, 4) * 0.5)),
+        y: Math.max(50, Math.min(h - 50, zone.y * h + Math.sin(angle) * spread * Math.min(count, 4) * 0.5)),
         vx: 0,
         vy: 0,
         pinned: true, // Start pinned — organized layout holds
