@@ -5,13 +5,13 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { supabase } from "@/lib/supabase";
 
-const ALLOWED_UPLOADERS = ["veenomous"]; // Add trusted handles here
+const ALLOWED_UPLOADERS = ["veenomous", "jfrombk"]; // Add trusted handles here
 
 type UploadPhase = "form" | "uploading" | "transcribing" | "summarizing" | "ready" | "error";
 
 export default function SpaceUploadForm() {
   const { data: session } = useSession();
-  const xHandle = (session?.user as { xHandle?: string })?.xHandle || "";
+  const xHandle = (session?.user as { xHandle?: string })?.xHandle || (session?.user?.name || "");
 
   const [title, setTitle] = useState("");
   const [opponent, setOpponent] = useState("");
@@ -24,7 +24,7 @@ export default function SpaceUploadForm() {
   const pollRef = useRef<ReturnType<typeof setInterval>>(undefined);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const isAllowed = ALLOWED_UPLOADERS.includes(xHandle.toLowerCase());
+  const isAllowed = ALLOWED_UPLOADERS.some(h => h.toLowerCase() === xHandle.toLowerCase()) || xHandle.toLowerCase().includes("veenomous");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -144,6 +144,7 @@ export default function SpaceUploadForm() {
         <div className="h-1 bg-brand-red" />
         <div className="max-w-3xl mx-auto px-4 py-12 text-center">
           <p className="text-text-muted font-body">Upload access is restricted to trusted contributors.</p>
+          <p className="text-text-muted/50 text-xs font-body mt-2">Signed in as: &quot;{xHandle}&quot;</p>
         </div>
       </div>
     );
