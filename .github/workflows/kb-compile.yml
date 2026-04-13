@@ -61,7 +61,7 @@ jobs:
       - name: Compile KB (Sonnet — ~$0.30 per run)
         if: ${{ github.event.inputs.compile != 'false' }}
         run: |
-          claude --model claude-sonnet-4-6 --print "Read the file kb/templates/compile-prompt.md and follow its instructions. Also read kb/templates/verification-checklist.md and verify accuracy. Read all new files in kb/raw/ (files dated today or not yet referenced in any wiki article's sources), then update the relevant wiki articles. Include both first-round and second-round picks in all trade articles. Update kb/CHANGELOG.md and kb/wiki/INDEX.md."
+          claude --model claude-sonnet-4-6 --dangerously-skip-permissions --print "Read the file kb/templates/compile-prompt.md and follow its instructions. Also read kb/templates/verification-checklist.md and verify accuracy. Read all new files in kb/raw/ (files dated today or not yet referenced in any wiki article's sources), then update the relevant wiki articles. Include both first-round and second-round picks in all trade articles. Update kb/CHANGELOG.md and kb/wiki/INDEX.md."
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
