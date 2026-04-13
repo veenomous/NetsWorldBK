@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { supabase } from "@/lib/supabase";
 
-const ALLOWED_UPLOADERS = ["veenomous", "jfrombk"]; // Add trusted handles here
+const ALLOWED_UPLOADERS = ["veenomous", "jfrombk", "bkgrit"]; // Add trusted handles here
 
 type UploadPhase = "form" | "uploading" | "transcribing" | "summarizing" | "ready" | "error";
 
