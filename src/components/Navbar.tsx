@@ -9,6 +9,7 @@ const navLinks = [
   { href: "/", label: "Wiki" },
   { href: "/wire", label: "The Wire" },
   { href: "/press", label: "The Press" },
+  { href: "/spaces", label: "Spaces" },
   { href: "/kb/graph", label: "Graph" },
   { href: "/gm-mode", label: "War Room" },
   { href: "/simulator", label: "Lottery Sim" },

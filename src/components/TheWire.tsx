@@ -40,6 +40,7 @@ const TAG_COLORS: Record<string, string> = {
   "Trade": "bg-brand-red text-white",
   "Spicy": "bg-brand-red text-white",
   "Take": "bg-black/10 text-black/40",
+  "Spaces": "bg-accent-blue text-white",
 };
 
 // ─── Take Content ───
