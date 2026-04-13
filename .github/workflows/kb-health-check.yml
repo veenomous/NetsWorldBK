@@ -19,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: feature/knowledge-base
+          ref: main
 
       - name: Install Claude Code
         run: npm install -g @anthropic-ai/claude-code
