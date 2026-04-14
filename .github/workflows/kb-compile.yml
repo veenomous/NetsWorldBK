@@ -61,7 +61,7 @@ jobs:
       - name: Compile KB (Sonnet — ~$0.30 per run)
         if: ${{ github.event.inputs.compile != 'false' }}
         run: |
-          claude --model claude-sonnet-4-6 --dangerously-skip-permissions --print "Read the file kb/templates/compile-prompt.md and follow its instructions. Also read kb/templates/verification-checklist.md and verify accuracy. Read all new files in kb/raw/ (files dated today or not yet referenced in any wiki article's sources), then update the relevant wiki articles. Include both first-round and second-round picks in all trade articles. Update kb/CHANGELOG.md and kb/wiki/INDEX.md."
+          claude --model claude-haiku-4-5-20251001 --dangerously-skip-permissions --print "You are updating the BKGrit Nets Wiki. ONLY read files in kb/raw/ dated today ($(date +%Y-%m-%d)). For each new raw file, determine which wiki article in kb/wiki/ it relates to and make minimal, targeted updates — add new facts, update stats, adjust confidence levels. Do NOT rewrite entire articles. Do NOT read old raw files. Create new player articles only if a raw source specifically profiles a player not yet in the wiki. Update kb/CHANGELOG.md with today's changes and kb/wiki/INDEX.md if articles were added. Be concise and efficient."
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
