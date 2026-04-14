@@ -78,3 +78,7 @@ jobs:
           Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
             git push
           fi
+
+      - name: Trigger Vercel deploy
+        if: ${{ secrets.VERCEL_DEPLOY_HOOK != '' }}
+        run: curl -s -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
