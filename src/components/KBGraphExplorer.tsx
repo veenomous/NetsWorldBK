@@ -10,12 +10,6 @@ interface GraphNode {
   slug: string;
   confidence: "high" | "medium" | "low";
   linkCount: number;
-  // Simulation state
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  pinned?: boolean;
 }
 
 interface GraphEdge {
@@ -24,7 +18,7 @@ interface GraphEdge {
 }
 
 interface KBGraph {
-  nodes: { id: string; title: string; category: string; slug: string; confidence: "high" | "medium" | "low"; linkCount: number }[];
+  nodes: GraphNode[];
   edges: GraphEdge[];
 }
 
@@ -45,378 +39,314 @@ const CATEGORY_LABELS: Record<string, string> = {
   players: "Players",
   seasons: "Seasons",
   trades: "Trades",
+  "front-office": "Front Office",
+  draft: "Draft",
+  rivalries: "Rivalries",
   assets: "Cap & Assets",
   strategy: "Strategy",
   community: "Community",
   rumors: "Rumors",
-  "front-office": "Front Office",
-  draft: "Draft",
-  rivalries: "Rivalries",
-  concepts: "Concepts",
 };
+
+interface CategoryBubble {
+  name: string;
+  label: string;
+  color: string;
+  x: number;
+  y: number;
+  radius: number;
+  articles: GraphNode[];
+  expanded: boolean;
+  articlePositions: { node: GraphNode; x: number; y: number }[];
+}
 
 export default function KBGraphExplorer({ graph }: { graph: KBGraph }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const nodesRef = useRef<GraphNode[]>([]);
-  const animRef = useRef<number>(0);
   const router = useRouter();
-
-  const [hoveredNode, setHoveredNode] = useState<GraphNode | null>(null);
   const [dimensions, setDimensions] = useState({ w: 800, h: 600 });
-  const dragRef = useRef<{ node: GraphNode; offsetX: number; offsetY: number } | null>(null);
-  const didDragRef = useRef(false);
-  const mouseRef = useRef({ x: 0, y: 0 });
+  const [hoveredItem, setHoveredItem] = useState<{ type: "category" | "article"; label: string; description: string } | null>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const bubblesRef = useRef<CategoryBubble[]>([]);
+  const animRef = useRef(0);
+  const pulseRef = useRef(0);
 
-  // Initialize nodes with organized positions by category
+  // Build category bubbles
   useEffect(() => {
     const w = window.innerWidth;
     const h = window.innerHeight - 120;
     setDimensions({ w, h });
 
-    // Category zones — organized layout, pulled inward for mobile
-    const isMobile = w < 600;
-    const pad = isMobile ? 0.08 : 0.05; // padding from edges
-    const categoryZones: Record<string, { x: number; y: number }> = {
-      "front-office": { x: pad + 0.05, y: 0.35 },
-      seasons: { x: pad + 0.08, y: 0.65 },
-      trades: { x: 0.3, y: 0.7 },
-      assets: { x: 0.28, y: 0.2 },
-      strategy: { x: 0.22, y: 0.12 },
-      community: { x: 0.48, y: 0.08 },
-      players: { x: 0.58, y: 0.35 },
-      draft: { x: 0.65, y: 0.6 },
-      rivalries: { x: 0.45, y: 0.48 },
-      rumors: { x: 0.5, y: 0.15 },
-    };
-
-    // Group nodes by category and position within their zone
-    const categoryNodes: Record<string, typeof graph.nodes> = {};
+    const categories = new Map<string, GraphNode[]>();
     for (const node of graph.nodes) {
-      if (!categoryNodes[node.category]) categoryNodes[node.category] = [];
-      categoryNodes[node.category].push(node);
+      if (!categories.has(node.category)) categories.set(node.category, []);
+      categories.get(node.category)!.push(node);
     }
 
-    nodesRef.current = graph.nodes.map((n) => {
-      const zone = categoryZones[n.category] || { x: 0.5, y: 0.5 };
-      const siblings = categoryNodes[n.category] || [];
-      const idx = siblings.indexOf(n);
-      const count = siblings.length;
+    const catList = [...categories.entries()];
+    const cx = w / 2;
+    const cy = h / 2;
+    const layoutRadius = Math.min(w, h) * 0.28;
 
-      // Spread within zone — tighter on mobile
-      const spread = Math.min(w, h) * (isMobile ? 0.05 : 0.07);
-      const angle = count > 1 ? (idx / count) * Math.PI * 2 : 0;
+    bubblesRef.current = catList.map(([name, articles], i) => {
+      const angle = (i / catList.length) * Math.PI * 2 - Math.PI / 2;
+      const x = cx + Math.cos(angle) * layoutRadius;
+      const y = cy + Math.sin(angle) * layoutRadius;
+      const radius = 18 + articles.length * 5;
 
       return {
-        ...n,
-        x: Math.max(50, Math.min(w - 50, zone.x * w + Math.cos(angle) * spread * Math.min(count, 4) * 0.5)),
-        y: Math.max(50, Math.min(h - 50, zone.y * h + Math.sin(angle) * spread * Math.min(count, 4) * 0.5)),
-        vx: 0,
-        vy: 0,
-        pinned: true, // Start pinned — organized layout holds
+        name,
+        label: CATEGORY_LABELS[name] || name,
+        color: CATEGORY_COLORS[name] || "#E43C3E",
+        x: Math.max(radius + 20, Math.min(w - radius - 20, x)),
+        y: Math.max(radius + 20, Math.min(h - radius - 20, y)),
+        radius,
+        articles,
+        expanded: false,
+        articlePositions: [],
       };
     });
   }, [graph.nodes]);
 
-  // Force simulation + rendering
+  // Render loop
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const nodes = nodesRef.current;
-    const edges = graph.edges;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = dimensions.w * dpr;
+    canvas.height = dimensions.h * dpr;
+    canvas.style.width = `${dimensions.w}px`;
+    canvas.style.height = `${dimensions.h}px`;
+    ctx.scale(dpr, dpr);
+
     const { w, h } = dimensions;
-
-    let iteration = 0;
-
-    function getNode(id: string): GraphNode | undefined {
-      return nodes.find((n) => n.id === id);
-    }
-
-    function tick() {
-      iteration++;
-      const cooling = Math.max(0.005, 1 - iteration / 500);
-
-      // Repulsion (all pairs)
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const a = nodes[i];
-          const b = nodes[j];
-          let dx = b.x - a.x;
-          let dy = b.y - a.y;
-          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-          const force = (4000 / (dist * dist)) * cooling;
-          dx = (dx / dist) * force;
-          dy = (dy / dist) * force;
-          a.vx -= dx;
-          a.vy -= dy;
-          b.vx += dx;
-          b.vy += dy;
-        }
-      }
-
-      // Attraction (edges)
-      for (const edge of edges) {
-        const a = getNode(edge.source);
-        const b = getNode(edge.target);
-        if (!a || !b) continue;
-        let dx = b.x - a.x;
-        let dy = b.y - a.y;
-        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-        const force = (dist - 150) * 0.005 * cooling;
-        dx = (dx / dist) * force;
-        dy = (dy / dist) * force;
-        a.vx += dx;
-        a.vy += dy;
-        b.vx -= dx;
-        b.vy -= dy;
-      }
-
-      // Center gravity
-      for (const node of nodes) {
-        node.vx += (w / 2 - node.x) * 0.001 * cooling;
-        node.vy += (h / 2 - node.y) * 0.001 * cooling;
-      }
-
-      // Apply velocity
-      for (const node of nodes) {
-        if (dragRef.current?.node.id === node.id) continue;
-        if (node.pinned) continue;
-        node.vx *= 0.7;
-        node.vy *= 0.7;
-        node.x += node.vx;
-        node.y += node.vy;
-        // Keep in bounds
-        node.x = Math.max(60, Math.min(w - 60, node.x));
-        node.y = Math.max(60, Math.min(h - 60, node.y));
-      }
-    }
 
     function draw() {
       if (!ctx) return;
+      pulseRef.current += 0.012;
       ctx.clearRect(0, 0, w, h);
+      const bubbles = bubblesRef.current;
 
-      // Draw edges
-      for (const edge of edges) {
-        const a = getNode(edge.source);
-        const b = getNode(edge.target);
-        if (!a || !b) continue;
-
-        const isHovered =
-          hoveredNode && (hoveredNode.id === a.id || hoveredNode.id === b.id);
-
-        ctx.beginPath();
-        ctx.moveTo(a.x, a.y);
-        ctx.lineTo(b.x, b.y);
-        ctx.strokeStyle = isHovered ? "rgba(228,60,62,0.5)" : "rgba(0,0,0,0.08)";
-        ctx.lineWidth = isHovered ? 2 : 1;
-        ctx.stroke();
+      // Lines between connected categories
+      for (let i = 0; i < bubbles.length; i++) {
+        for (let j = i + 1; j < bubbles.length; j++) {
+          const a = bubbles[i];
+          const b = bubbles[j];
+          const hasConnection = graph.edges.some(e =>
+            (a.articles.some(n => n.id === e.source) && b.articles.some(n => n.id === e.target)) ||
+            (a.articles.some(n => n.id === e.target) && b.articles.some(n => n.id === e.source))
+          );
+          if (hasConnection) {
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = "rgba(0,0,0,0.06)";
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
       }
 
-      // Draw nodes
-      for (const node of nodes) {
-        const color = CATEGORY_COLORS[node.category] || "#E43C3E";
-        const isHovered = hoveredNode?.id === node.id;
-        const isConnected =
-          hoveredNode &&
-          edges.some(
-            (e) =>
-              (e.source === hoveredNode.id && e.target === node.id) ||
-              (e.target === hoveredNode.id && e.source === node.id)
-          );
-        const radius = 6 + node.linkCount * 1.5;
-
-        // Glow for hovered/connected
-        if (isHovered || isConnected) {
-          const hex = color;
-          const rr = parseInt(hex.slice(1,3),16), gg = parseInt(hex.slice(3,5),16), bb = parseInt(hex.slice(5,7),16);
-          ctx.beginPath();
-          ctx.arc(node.x, node.y, radius + 8, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${rr},${gg},${bb},0.12)`;
-          ctx.fill();
+      // Lines between expanded article nodes
+      for (const edge of graph.edges) {
+        let ax: number | null = null, ay: number | null = null;
+        let bx: number | null = null, by: number | null = null;
+        for (const bubble of bubbles) {
+          if (!bubble.expanded) continue;
+          for (const ap of bubble.articlePositions) {
+            if (ap.node.id === edge.source) { ax = ap.x; ay = ap.y; }
+            if (ap.node.id === edge.target) { bx = ap.x; by = ap.y; }
+          }
         }
-
-        // Node circle
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
-        ctx.fillStyle = isHovered ? "#000" : color;
-        ctx.fill();
-
-        // Border
-        if (isHovered) {
+        if (ax !== null && ay !== null && bx !== null && by !== null) {
           ctx.beginPath();
-          ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
-          ctx.strokeStyle = color;
-          ctx.lineWidth = 2;
+          ctx.moveTo(ax, ay);
+          ctx.lineTo(bx, by);
+          ctx.strokeStyle = "rgba(228,60,62,0.15)";
+          ctx.lineWidth = 1;
           ctx.stroke();
         }
-
-        // Label — smaller on mobile
-        const dimmed = hoveredNode && !isHovered && !isConnected;
-        const isMobile = w < 600;
-        ctx.font = isMobile ? "bold 9px 'Space Grotesk', sans-serif" : "bold 11px 'Space Grotesk', sans-serif";
-        ctx.textAlign = "center";
-        ctx.fillStyle = dimmed ? "rgba(0,0,0,0.1)" : "rgba(0,0,0,0.7)";
-        // Truncate long titles on mobile
-        const label = isMobile && node.title.length > 15
-          ? node.title.toUpperCase().slice(0, 14) + "..."
-          : node.title.toUpperCase();
-        ctx.fillText(label, node.x, node.y + radius + 14);
       }
 
-      tick();
+      // Draw bubbles
+      for (const bubble of bubbles) {
+        const pulse = 1 + Math.sin(pulseRef.current + bubble.x * 0.008) * 0.04;
+        const r = bubble.radius * pulse;
+        const hex = bubble.color;
+        const cr = parseInt(hex.slice(1, 3), 16), cg = parseInt(hex.slice(3, 5), 16), cb = parseInt(hex.slice(5, 7), 16);
+
+        if (!bubble.expanded) {
+          // Glow
+          ctx.beginPath();
+          ctx.arc(bubble.x, bubble.y, r + 5, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${cr},${cg},${cb},0.06)`;
+          ctx.fill();
+
+          // Circle
+          ctx.beginPath();
+          ctx.arc(bubble.x, bubble.y, r, 0, Math.PI * 2);
+          ctx.fillStyle = bubble.color;
+          ctx.fill();
+
+          // Label
+          ctx.font = "bold 10px 'Space Grotesk', sans-serif";
+          ctx.textAlign = "center";
+          ctx.fillStyle = "#fff";
+          ctx.fillText(bubble.label.toUpperCase(), bubble.x, bubble.y - 2);
+          ctx.font = "9px 'Space Grotesk', sans-serif";
+          ctx.fillStyle = "rgba(255,255,255,0.6)";
+          ctx.fillText(`${bubble.articles.length} articles`, bubble.x, bubble.y + 12);
+        } else {
+          // Expanded: faded ring
+          ctx.beginPath();
+          ctx.arc(bubble.x, bubble.y, r + 30 + bubble.articles.length * 5, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(${cr},${cg},${cb},0.1)`;
+          ctx.lineWidth = 1;
+          ctx.setLineDash([4, 4]);
+          ctx.stroke();
+          ctx.setLineDash([]);
+
+          // Center dot
+          ctx.beginPath();
+          ctx.arc(bubble.x, bubble.y, 8, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${cr},${cg},${cb},0.3)`;
+          ctx.fill();
+
+          // Category label above
+          ctx.font = "bold 11px 'Space Grotesk', sans-serif";
+          ctx.textAlign = "center";
+          ctx.fillStyle = bubble.color;
+          ctx.fillText(bubble.label.toUpperCase(), bubble.x, bubble.y - r - 15);
+
+          // Article nodes
+          for (const ap of bubble.articlePositions) {
+            const nodeR = 4 + ap.node.linkCount * 0.7;
+            const nodePulse = 1 + Math.sin(pulseRef.current * 2 + ap.x * 0.01) * 0.1;
+
+            ctx.beginPath();
+            ctx.arc(ap.x, ap.y, nodeR * nodePulse, 0, Math.PI * 2);
+            ctx.fillStyle = bubble.color;
+            ctx.fill();
+
+            ctx.font = "bold 8px 'Space Grotesk', sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillStyle = "rgba(0,0,0,0.5)";
+            const label = ap.node.title.length > 16 ? ap.node.title.slice(0, 15) + "..." : ap.node.title;
+            ctx.fillText(label.toUpperCase(), ap.x, ap.y + nodeR + 11);
+          }
+        }
+      }
+
       animRef.current = requestAnimationFrame(draw);
     }
 
     animRef.current = requestAnimationFrame(draw);
     return () => cancelAnimationFrame(animRef.current);
-  }, [graph.edges, dimensions, hoveredNode]);
+  }, [dimensions, graph.edges]);
 
-  // Mouse interaction
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLCanvasElement>) => {
-      const canvas = canvasRef.current;
-      if (!canvas) return;
-      const rect = canvas.getBoundingClientRect();
-      const mx = e.clientX - rect.left;
-      const my = e.clientY - rect.top;
-      mouseRef.current = { x: mx, y: my };
+  const handleClick = useCallback((e: React.MouseEvent<HTMLCanvasElement>) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+    const bubbles = bubblesRef.current;
 
-      // Dragging
-      if (dragRef.current) {
-        didDragRef.current = true;
-        dragRef.current.node.x = mx - dragRef.current.offsetX;
-        dragRef.current.node.y = my - dragRef.current.offsetY;
-        dragRef.current.node.vx = 0;
-        dragRef.current.node.vy = 0;
-        return;
-      }
-
-      // Hover detection
-      const nodes = nodesRef.current;
-      let found: GraphNode | null = null;
-      for (const node of nodes) {
-        const dx = mx - node.x;
-        const dy = my - node.y;
-        const r = 6 + node.linkCount * 1.5 + 5;
+    // Check expanded article nodes first
+    for (const bubble of bubbles) {
+      if (!bubble.expanded) continue;
+      for (const ap of bubble.articlePositions) {
+        const dx = mx - ap.x;
+        const dy = my - ap.y;
+        const r = 4 + ap.node.linkCount * 0.7 + 10;
         if (dx * dx + dy * dy < r * r) {
-          found = node;
-          break;
-        }
-      }
-      setHoveredNode(found);
-      canvas.style.cursor = found ? "pointer" : "grab";
-    },
-    []
-  );
-
-  const handleMouseDown = useCallback(
-    (e: React.MouseEvent<HTMLCanvasElement>) => {
-      const canvas = canvasRef.current;
-      if (!canvas) return;
-      const rect = canvas.getBoundingClientRect();
-      const mx = e.clientX - rect.left;
-      const my = e.clientY - rect.top;
-
-      didDragRef.current = false;
-
-      const nodes = nodesRef.current;
-      for (const node of nodes) {
-        const dx = mx - node.x;
-        const dy = my - node.y;
-        const r = 6 + node.linkCount * 1.5 + 5;
-        if (dx * dx + dy * dy < r * r) {
-          dragRef.current = { node, offsetX: dx, offsetY: dy };
-          canvas.style.cursor = "grabbing";
+          router.push(`/kb/${ap.node.category}/${ap.node.slug}`);
           return;
         }
       }
-    },
-    []
-  );
-
-  const handleMouseUp = useCallback(() => {
-    if (dragRef.current) {
-      // Keep pinned where dropped
-      dragRef.current.node.pinned = true;
-      dragRef.current.node.vx = 0;
-      dragRef.current.node.vy = 0;
     }
-    dragRef.current = null;
+
+    // Check category bubbles
+    for (const bubble of bubbles) {
+      const dx = mx - bubble.x;
+      const dy = my - bubble.y;
+      if (dx * dx + dy * dy < bubble.radius * bubble.radius) {
+        bubble.expanded = !bubble.expanded;
+        if (bubble.expanded) {
+          const expandR = bubble.radius + 25 + bubble.articles.length * 4;
+          bubble.articlePositions = bubble.articles.map((node, i) => {
+            const angle = (i / bubble.articles.length) * Math.PI * 2 - Math.PI / 2;
+            return {
+              node,
+              x: Math.max(30, Math.min(dimensions.w - 30, bubble.x + Math.cos(angle) * expandR)),
+              y: Math.max(30, Math.min(dimensions.h - 30, bubble.y + Math.sin(angle) * expandR)),
+            };
+          });
+        } else {
+          bubble.articlePositions = [];
+        }
+        return;
+      }
+    }
+  }, [router, dimensions]);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLCanvasElement>) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+    setMousePos({ x: mx, y: my });
+    const bubbles = bubblesRef.current;
+
+    for (const bubble of bubbles) {
+      if (!bubble.expanded) continue;
+      for (const ap of bubble.articlePositions) {
+        const dx = mx - ap.x;
+        const dy = my - ap.y;
+        if (dx * dx + dy * dy < 200) {
+          setHoveredItem({ type: "article", label: ap.node.title, description: `${ap.node.linkCount} connections · Click to read` });
+          canvas.style.cursor = "pointer";
+          return;
+        }
+      }
+    }
+
+    for (const bubble of bubbles) {
+      const dx = mx - bubble.x;
+      const dy = my - bubble.y;
+      if (dx * dx + dy * dy < bubble.radius * bubble.radius) {
+        setHoveredItem({ type: "category", label: bubble.label, description: `${bubble.articles.length} articles · Click to ${bubble.expanded ? "collapse" : "expand"}` });
+        canvas.style.cursor = "pointer";
+        return;
+      }
+    }
+
+    setHoveredItem(null);
+    canvas.style.cursor = "default";
   }, []);
 
-  const handleClick = useCallback(
-    (e: React.MouseEvent<HTMLCanvasElement>) => {
-      // If we just dragged, don't navigate
-      if (didDragRef.current) {
-        didDragRef.current = false;
-        return;
-      }
-
-      const canvas = canvasRef.current;
-      if (!canvas) return;
-      const rect = canvas.getBoundingClientRect();
-      const mx = e.clientX - rect.left;
-      const my = e.clientY - rect.top;
-
-      const nodes = nodesRef.current;
-      for (const node of nodes) {
-        const dx = mx - node.x;
-        const dy = my - node.y;
-        const r = 6 + node.linkCount * 1.5 + 5;
-        if (dx * dx + dy * dy < r * r) {
-          router.push(`/kb/${node.category}/${node.slug}`);
-          return;
-        }
-      }
-    },
-    [router]
-  );
-
-  // Resize handler
   useEffect(() => {
-    function handleResize() {
-      setDimensions({ w: window.innerWidth, h: window.innerHeight - 120 });
-    }
+    const handleResize = () => setDimensions({ w: window.innerWidth, h: window.innerHeight - 120 });
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
-    <div className="relative">
+    <div className="relative overflow-hidden">
       <canvas
         ref={canvasRef}
-        width={dimensions.w}
-        height={dimensions.h}
         onMouseMove={handleMouseMove}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
         onClick={handleClick}
-        onTouchStart={(e) => {
-          const touch = e.touches[0];
-          const rect = canvasRef.current?.getBoundingClientRect();
-          if (!rect) return;
-          handleMouseDown({ clientX: touch.clientX, clientY: touch.clientY, } as unknown as React.MouseEvent<HTMLCanvasElement>);
-        }}
-        onTouchMove={(e) => {
-          const touch = e.touches[0];
-          handleMouseMove({ clientX: touch.clientX, clientY: touch.clientY } as unknown as React.MouseEvent<HTMLCanvasElement>);
-          e.preventDefault();
-        }}
-        onTouchEnd={() => {
-          handleMouseUp();
-          if (!didDragRef.current && hoveredNode) {
-            router.push(`/kb/${hoveredNode.category}/${hoveredNode.slug}`);
-          }
-          didDragRef.current = false;
-        }}
-        className="block touch-none"
+        className="block"
       />
 
-      {/* Legend */}
       <div className="absolute bottom-4 left-4 flex flex-wrap gap-3">
-        {Object.entries(CATEGORY_COLORS).map(([cat, color]) => (
+        {Object.entries(CATEGORY_COLORS).filter(([cat]) =>
+          graph.nodes.some(n => n.category === cat)
+        ).map(([cat, color]) => (
           <div key={cat} className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5" style={{ background: color }} />
             <span className="text-[10px] text-text-muted tracking-[0.1em] uppercase font-bold font-body">
@@ -426,25 +356,16 @@ export default function KBGraphExplorer({ graph }: { graph: KBGraph }) {
         ))}
       </div>
 
-      {/* Hover tooltip */}
-      {hoveredNode && (
+      {hoveredItem && (
         <div
-          className="absolute pointer-events-none bg-black text-white px-4 py-3 shadow-[0_8px_24px_rgba(0,0,0,0.3)]"
+          className="absolute pointer-events-none bg-black text-white px-3 py-2 shadow-lg"
           style={{
-            left: Math.max(8, Math.min(mouseRef.current.x + 16, dimensions.w - 260)),
-            top: Math.max(8, Math.min(mouseRef.current.y - 10, dimensions.h - 100)),
-            maxWidth: Math.min(260, dimensions.w - 16),
+            left: Math.max(8, Math.min(mousePos.x + 16, dimensions.w - 200)),
+            top: Math.max(8, Math.min(mousePos.y - 10, dimensions.h - 60)),
           }}
         >
-          <p className="text-white/50 text-[10px] tracking-[0.12em] uppercase font-bold font-body">
-            {CATEGORY_LABELS[hoveredNode.category] || hoveredNode.category}
-          </p>
-          <p className="font-display font-bold text-sm text-white uppercase tracking-tight mt-0.5">
-            {hoveredNode.title}
-          </p>
-          <p className="text-white/40 text-[10px] font-body mt-1">
-            {hoveredNode.linkCount} connections &middot; Click to read
-          </p>
+          <p className="font-display font-bold text-[11px] uppercase tracking-tight">{hoveredItem.label}</p>
+          <p className="text-white/50 text-[10px] font-body mt-0.5">{hoveredItem.description}</p>
         </div>
       )}
     </div>

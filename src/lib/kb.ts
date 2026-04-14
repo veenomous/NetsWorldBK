@@ -368,6 +368,33 @@ export function getChangelog(): KBChangelogEntry[] {
   return entries;
 }
 
+// Resolve raw file paths to source URLs
+export interface ResolvedSource {
+  path: string;
+  title: string;
+  url: string | null;
+}
+
+export function resolveSourceURLs(sources: string[]): ResolvedSource[] {
+  return sources.map((src) => {
+    const filePath = path.join(process.cwd(), src);
+    let title = src.split("/").pop()?.replace(/\.md$/, "").replace(/^\d{4}-\d{2}-\d{2}-(?:espn-|rss-|fan-)?/, "") || src;
+    let url: string | null = null;
+
+    try {
+      if (fs.existsSync(filePath)) {
+        const raw = fs.readFileSync(filePath, "utf-8");
+        const urlMatch = raw.match(/^source_url:\s*(.+)$/m);
+        if (urlMatch) url = urlMatch[1].trim();
+        const titleMatch = raw.match(/^title:\s*"?(.+?)"?\s*$/m);
+        if (titleMatch) title = titleMatch[1].trim();
+      }
+    } catch {}
+
+    return { path: src, title, url };
+  });
+}
+
 // Knowledge graph generation
 export interface KBGraphNode {
   id: string;

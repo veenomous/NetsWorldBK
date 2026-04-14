@@ -5,6 +5,7 @@ import {
   getArticle,
   renderMarkdown,
   buildArticleIndex,
+  resolveSourceURLs,
 } from "@/lib/kb";
 import type { Metadata } from "next";
 import KBArticleWire from "@/components/KBArticleWire";
@@ -186,29 +187,32 @@ export default async function KBArticlePage({
         />
 
         {/* Sources */}
-        {article.sources.length > 0 && (
-          <div className="mt-12 pt-6 border-t border-black/10">
-            <h3 className="font-display font-bold text-[10px] uppercase tracking-[0.15em] text-text-muted mb-3 flex items-center gap-1.5">
-              <span
-                className="material-symbols-outlined text-sm"
-                style={{ fontVariationSettings: "'FILL' 1" }}
-              >
-                source
-              </span>
-              Sources
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {article.sources.map((src) => (
-                <code
-                  key={src}
-                  className="text-[10px] bg-bg-input text-text-muted px-2 py-1"
-                >
-                  {src}
-                </code>
-              ))}
+        {article.sources.length > 0 && (() => {
+          const resolved = resolveSourceURLs(article.sources);
+          return (
+            <div className="mt-12 pt-6 border-t border-black/10">
+              <h3 className="font-display font-bold text-[10px] uppercase tracking-[0.15em] text-text-muted mb-3 flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>source</span>
+                Sources
+              </h3>
+              <div className="space-y-2">
+                {resolved.map((src) => (
+                  <div key={src.path} className="flex items-start gap-2">
+                    <span className="material-symbols-outlined text-text-muted/30 text-sm mt-0.5 shrink-0">article</span>
+                    {src.url ? (
+                      <a href={src.url} target="_blank" rel="noopener noreferrer"
+                        className="text-sm font-body text-accent-blue hover:underline break-all">
+                        {src.title}
+                      </a>
+                    ) : (
+                      <span className="text-sm font-body text-text-muted">{src.title}</span>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          );
+        })()}
 
         {/* Backlinks — articles that reference this one */}
         {backlinks.length > 0 && (
