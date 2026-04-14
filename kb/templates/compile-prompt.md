@@ -83,6 +83,8 @@ Update `kb/wiki/INDEX.md` with:
 7. **Specify protections** — "unprotected", "top-4 protected", etc. on every pick
 8. **Note picks traded away** — if a pick was later traded to another team, say so
 9. **Verify before publishing** — read `kb/templates/verification-checklist.md` and run through it before finalizing any article
+10. **Wikilinks must match exact article titles** — use `[[Sean Marks Era]]` not `[[Sean Marks]]`. Check existing filenames in kb/wiki/ before creating wikilinks.
+11. **Include source URLs** — when a raw file has a `source_url` field, include it as a clickable link in the wiki article. Format: `[Article Title](url)` so fans can read the original source.
 
 ### Confidence Rules
 

@@ -14,7 +14,7 @@ The Nets finished 20-62 in 2025-26, locking in the #3 lottery position (as of 20
 - The Nets' final record is 20-62, sitting 3rd in the NBA lottery standings (as of 2026-04-14)
 - Lottery odds are determined after the regular season ends; lottery draw happens in May 2026
 - The 2026 draft class consensus is still forming — early reports suggest it's guard-heavy at the top
-- [[Sean Marks]] has explicitly refused to commit to a timeline or direction for 2026-27 (tank vs. compete)
+- [[Sean Marks Era]] has explicitly refused to commit to a timeline or direction for 2026-27 (tank vs. compete)
 - [[Egor Demin]]'s plantar fasciitis recovery will influence roster strategy
 - Three 2027 first-rounders (Suns, Knicks, Mavs) arrive next year regardless of Nets' record
 - ESPN's NBA offseason 2026 preview (4/13/26) listed the Nets among the 10 franchises with their summer plans under scrutiny
