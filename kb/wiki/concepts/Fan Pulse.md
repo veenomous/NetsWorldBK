@@ -3,7 +3,7 @@ title: Fan Pulse
 tags: [fan-pulse, sentiment, community, wire, ratings]
 sources: []
 confidence: high
-last_updated: 2026-04-13
+last_updated: 2026-04-14
 ---
 
 ## Summary
@@ -11,7 +11,7 @@ A weekly snapshot of Brooklyn Nets fan sentiment compiled from Wire takes, playe
 
 ## Key Insights
 - 11 recent takes on The Wire
-- Total engagement: 2224 agrees, 1017 disagrees
+- Total engagement: 2225 agrees, 1017 disagrees
 - Most discussed topics: Hot Take (3), Roster (3), Draft (2)
 - 4 players rated by fans
 - 12 polls with responses
@@ -20,7 +20,7 @@ A weekly snapshot of Brooklyn Nets fan sentiment compiled from Wire takes, playe
 
 > "MPJ trade was a steal. 24 PPG and a future first? Denver got fleeced." — @BKScouting (421 agrees, 135 disagrees)
 
-> "We should trade this pick for an established star. Enough rebuilding." — @NetsLifer (157 agrees, 298 disagrees)
+> "We should trade this pick for an established star. Enough rebuilding." — @NetsLifer (158 agrees, 298 disagrees)
 
 > "This front office has no plan. We're just tanking with no vision." — @BarclaysSad (198 agrees, 247 disagrees)
 

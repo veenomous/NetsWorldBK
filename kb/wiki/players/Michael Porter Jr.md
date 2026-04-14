@@ -1,9 +1,9 @@
 ---
 title: Michael Porter Jr.
 tags: [player, forward, mpj, current-roster, scorer]
-sources: [raw/transactions/2025-cam-johnson-mpj-trade.md]
+sources: [raw/transactions/2025-cam-johnson-mpj-trade.md, raw/beat-reporters/2026-04-14-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md]
 confidence: high
-last_updated: 2026-04-10
+last_updated: 2026-04-14
 ---
 
 ## Summary
@@ -33,7 +33,7 @@ MPJ's presence is paradoxical — he's too good for a 20-win team but not a fran
 - Has posted multiple 30+ point games, including 38-point outburst
 
 ### The Denver Connection
-MPJ won a championship with Denver in 2023. Coming to Brooklyn mid-rebuild was a significant adjustment. By all reports, he's embraced the mentor role and played hard despite the team's 20-60 record.
+MPJ won a championship with Denver in 2023. Coming to Brooklyn mid-rebuild was a significant adjustment. By all reports, he's embraced the mentor role and played hard despite the team's 20-62 final record.
 
 ## Related
 - [[Cameron Johnson]]
@@ -42,6 +42,6 @@ MPJ won a championship with Denver in 2023. Coming to Brooklyn mid-rebuild was a
 - [[Sean Marks Era]]
 
 ## Open Questions
-- Will MPJ be traded to a contender before his value peaks?
+- Will MPJ be traded to a contender this offseason? NY Post (4/13/26) framed it as the "MPJ conundrum" — Porter reportedly has clarity on what HE wants; Marks is "a mystery" on his plans. See [[MPJ Trade Buzz]].
 - Can he co-exist with the young guards (Demin, Traore) long-term?
 - Is he a "bridge veteran" who gets moved in 2026-27, or does he stay through the competitive window?

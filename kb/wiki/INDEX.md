@@ -1,14 +1,14 @@
 ---
-last_compiled: 2026-04-11
-raw_sources: 9
-wiki_articles: 29
+last_compiled: 2026-04-14
+raw_sources: 22
+wiki_articles: 30
 ---
 
 # BKGrit Knowledge Base — Index
 
 ## Players
 - [[Cameron Johnson]] — Traded to Denver (July 2025) for MPJ + 2032 first; the last KD trade return exits Brooklyn
-- [[Michael Porter Jr.]] — Acquired from Denver for Cam Johnson; leading scorer at 24.2 PPG, the veteran anchor
+- [[Michael Porter Jr.]] — Acquired from Denver for Cam Johnson; 24.2 PPG veteran anchor; trade buzz growing, Marks noncommittal
 - [[Egor Demin]] — Franchise bet: 6'8" point guard, #8 pick, 10.3 PPG rookie season, set consecutive 3PT record
 - [[Nic Claxton]] — Defensive anchor, $100M contract, longest-tenured Net, bridge to the competitive window
 - [[Nolan Traore]] — Explosive French point guard, #19 pick from Suns, G League development track
@@ -16,11 +16,12 @@ wiki_articles: 29
 - [[Danny Wolf]] — 6'11" stretch big, #27 pick from Harden trade chain, 8.9 PPG rookie
 - [[Drake Powell]] — Two-way wing from UNC, #22 pick, defensive specialist
 - [[Ben Saraf]] — Youngest Net at 19, crafty Israeli guard, #26 pick from Knicks via KD tree
+- [[Josh Minott]] — Acquired from Boston (Feb 2026), $2.4M forward; NY Post calls him potentially "the best player of the lot"
 
 ## Seasons
 - [[The Superstar Era]] — KD, Kyrie, Harden: 16 games together, zero titles, but the exit funded the rebuild
 - [[2024-25 Season]] — Year One: deliberate tank, youth development, positioning for the 2025 draft
-- [[2025-26 Season]] — Year Two: five rookies, MPJ leading scorer, 20-60 record, Cam Thomas waived
+- [[2025-26 Season]] — Year Two complete: five rookies, MPJ 24.2 PPG, final record 20-62, #3 lottery, season ended at Toronto 4/13
 
 ## Trades
 - [[Kevin Durant Trade Tree]] — The foundational transaction: 9 FRPs, 2 swaps, MPJ, and 3 current roster players
@@ -49,16 +50,18 @@ wiki_articles: 29
 - [[Fan Pulse]] — Live fan sentiment from Wire takes, player ratings, and polls — auto-compiled
 
 ## Rumor Mill
-- [[MPJ Trade Buzz]] — Will the Nets trade their best scorer to a contender this offseason?
-- [[2026 Draft Positioning]] — Nets hold the #3 pick. Tank again or start competing?
+- [[MPJ Trade Buzz]] — MPJ conundrum: Porter has clarity on his situation; Marks is "a mystery." No deal reported yet.
+- [[2026 Draft Positioning]] — Nets hold the #3 lottery slot (20-62 final record). Marks deliberately murky on 2026-27 direction.
 - [[Claxton Extension Decision]] — Keep the defensive anchor or trade him while value is high?
 
 ---
 
 ## Key Themes
 - **The KD trade tree keeps growing** — Now extends to 2032 via Denver, with 9 FRPs + 2 swaps + MPJ
-- **Five rookies define the future** — Demin is the franchise bet, Clowney is leaping, Traore is developing
-- **MPJ is the bridge** — 24 PPG scorer mentoring rookies, but also a trade chip
+- **Year Two complete at 20-62** — Season ended April 13 vs. Toronto; #3 lottery slot locked in
+- **Marks is deliberately murky** — "You just never know" on rebuild timeline; MPJ decision and 2026-27 direction unclear
+- **MPJ is the bridge — or the trade chip** — 24 PPG scorer mentoring rookies, but his own situation has "clarity" while Marks' does not
+- **Josh Minott is the sleeper** — Acquired for nothing in February, NY Post says he may be the best young player in Brooklyn
 - **Claxton is the anchor** — $100M contract, defensive identity, timeline aligns with the young core
 - **The superstar era's true legacy is the rebuild** — 16 games together, but the exits produced historic assets
 - **Fernandez is building the culture** — Development-first coaching for a development-first team

@@ -1,9 +1,9 @@
 ---
 title: Sean Marks Era
 tags: [front-office, sean-marks, gm, rebuild, strategy]
-sources: [raw/beat-reporters/nets-rebuild-timeline.md, raw/transactions/2023-kd-trade.md, raw/transactions/2024-mikal-bridges-trade.md, raw/transactions/2025-cam-johnson-mpj-trade.md, raw/transactions/2025-nba-draft-results.md]
+sources: [raw/beat-reporters/nets-rebuild-timeline.md, raw/transactions/2023-kd-trade.md, raw/transactions/2024-mikal-bridges-trade.md, raw/transactions/2025-cam-johnson-mpj-trade.md, raw/transactions/2025-nba-draft-results.md, raw/beat-reporters/2026-04-14-rss-sean-marks-leaves-nets-8217-rebuild-timeline-murky-8216-you.md, raw/beat-reporters/2026-04-14-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md]
 confidence: high
-last_updated: 2026-04-11
+last_updated: 2026-04-14
 ---
 
 ## Summary
@@ -40,6 +40,12 @@ The current phase. Five first-rounders drafted in 2025. MPJ acquired as the vete
 3. Manage the [[Salary Cap Situation]] to maintain flexibility
 4. Keep ownership patient through 2-3 more losing seasons
 
+### The "Murky Timeline" Problem (April 2026)
+After Year Two ended at 20-62, Nets fans want to know whether the team will accelerate the rebuild. Marks is deliberately noncommittal. Per NY Post (April 14, 2026): Marks "leaves Nets' rebuild timeline murky: 'You just never know.'" This is either a shrewd negotiating posture (keeping all options open heading into the offseason) or genuine uncertainty about the best path forward. The MPJ question sits at the center: NY Post noted that "what Nets GM Sean Marks wants is a mystery" — while Porter himself apparently has more clarity about his own situation. Marks has public accountability for three decisions arriving simultaneously:
+- Whether to trade [[Michael Porter Jr.]] to a contender
+- Whether to tank again in 2026-27 for a fourth high pick
+- Whether the 2025 draft class has proven enough to start competing
+
 ### The Development Question
 This is the defining test. Marks has proven he can:
 - Acquire assets at elite value (best in the league)
@@ -66,7 +72,9 @@ The 2026-27 and 2027-28 seasons will define his legacy.
 - [[Salary Cap Situation]]
 
 ## Open Questions
-- When does Marks shift from accumulation to competition — 2027 draft?
+- When does Marks shift from accumulation to competition — 2027 draft? He's not saying ("you just never know").
+- Will the Nets trade MPJ to a contender this offseason? Marks is a "mystery" on this per NY Post; MPJ himself is apparently less ambiguous.
 - Will ownership (Joe Tsai) stay patient through 2-3 more losing seasons?
 - Is Marks the right GM for the competitive phase, or will the Nets need a "win now" executive?
 - Can the front office's scouting/development infrastructure match the quality of its trade-making?
+- Is Josh Minott actually the best young player on the roster? If so, what does that mean for the draft-pick-centric rebuild narrative?

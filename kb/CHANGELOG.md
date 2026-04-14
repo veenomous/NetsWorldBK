@@ -1,5 +1,14 @@
 # Knowledge Base Changelog
 
+## 2026-04-14
+- **2025-26 Season** — Season finalized: record updated to 20-62, season-ending loss at Toronto 136-101 (4/13), Josh Minott emergence section added, lottery slot #3 confirmed
+- **2026 Draft Positioning** — Record corrected to 20-62; Marks' murky timeline quotes added; ESPN offseason preview context; lottery timeline updated
+- **MPJ Trade Buzz** — Added NY Post MPJ conundrum framing: "What Nets GM Sean Marks wants is a mystery. For Porter himself, not so much." Trade section restructured with three-option framework
+- **Sean Marks Era** — Added "Murky Timeline Problem" section with post-season-end Marks quotes; MPJ decision and 2026-27 direction questions added to Open Questions
+- **Rebuild Timeline** — Year 2 final record updated (20-62); Marks' "you just never know" quote added; Josh Minott open question added
+- **Josh Minott** — New article: forward acquired from Boston (Feb 2026), NY Post 4/14 calls him potentially "the best player of the lot" among Brooklyn's young core
+- **INDEX.md** — Updated to 30 articles, compiled 2026-04-14; Josh Minott added to Players section; Key Themes refreshed with season-end and Marks-murky-timeline themes
+
 ## 2026-04-10
 - **Kevin Durant Trade Tree** — Updated with Cam Johnson → Denver trade, MPJ acquisition, 2032 Denver pick, current roster players from tree
 - **Cameron Johnson** — Updated: traded to Denver (July 2025) for MPJ + 2032 first. No longer on roster.

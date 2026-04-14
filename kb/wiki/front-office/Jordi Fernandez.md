@@ -3,18 +3,18 @@ title: Jordi Fernandez
 tags: [coach, head-coach, jordi-fernandez, development, spanish]
 sources: [raw/beat-reporters/nets-rebuild-timeline.md]
 confidence: medium
-last_updated: 2026-04-11
+last_updated: 2026-04-14
 ---
 
 ## Summary
-Jordi Fernandez is the Brooklyn Nets' head coach, hired on April 22, 2024 — the first Spanish-born head coach in NBA history. A developmental specialist with a PhD-track background in sports psychology, he's the perfect hire for a rebuilding team: his job isn't to win now, it's to develop [[Egor Demin]], [[Nolan Traore]], [[Noah Clowney]], and the rest of the young core into NBA players. His combined record through two seasons (approximately 46-116) reflects the roster, not his coaching.
+Jordi Fernandez is the Brooklyn Nets' head coach, hired on April 22, 2024 — the first Spanish-born head coach in NBA history. A developmental specialist with a PhD-track background in sports psychology, he's the perfect hire for a rebuilding team: his job isn't to win now, it's to develop [[Egor Demin]], [[Nolan Traore]], [[Noah Clowney]], and the rest of the young core into NBA players. His combined record through two seasons (approximately 46-118) reflects the roster, not his coaching.
 
 ## Key Insights
 - First Spanish-born head coach in NBA history
 - Hired April 22, 2024, replacing interim coach Kevin Ollie
 - Background: Cleveland (player development, worked with Kyrie Irving and LeBron), Denver (assistant under Malone), Sacramento (associate head coach)
 - Holds a degree in sports sciences, nearly completed PhD in sports psychology
-- 2024-25 record: ~26-56 | 2025-26 record: 20-60
+- 2024-25 record: ~26-56 | 2025-26 final record: 20-62
 - His coaching staff includes Juwan Howard as assistant
 - Development-first philosophy — perfect fit for a rebuild, but untested for winning
 
