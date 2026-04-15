@@ -15,7 +15,7 @@ export const netsPicks: NetsPickYear[] = [
   {
     year: 2026,
     picks: [
-      { label: "OWN", source: "own", note: "#3 pick", href: "/kb/concepts/nets-pick-inventory" },
+      { label: "OWN", source: "own", note: "#3 pick", href: "/kb/assets/nets-pick-inventory" },
     ],
   },
   {
