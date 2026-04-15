@@ -2,6 +2,7 @@
 title: Beat Reporter Consensus — Nets Rebuild Timeline
 tags: [rebuild, timeline, front-office, beat-reporters]
 source_type: beat-report
+source_url: https://en.wikipedia.org/wiki/2024%E2%80%9325_Brooklyn_Nets_season
 clipped_date: 2025-02-20
 ---
 

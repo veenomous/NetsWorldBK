@@ -2,6 +2,7 @@
 title: 2025 NBA Draft — Nets Select 5 First-Rounders
 tags: [draft, 2025, egor-demin, nolan-traore, drake-powell, ben-saraf, danny-wolf]
 source_type: transaction
+source_url: https://en.wikipedia.org/wiki/2024%E2%80%9325_Brooklyn_Nets_season
 clipped_date: 2025-06-25
 ---
 

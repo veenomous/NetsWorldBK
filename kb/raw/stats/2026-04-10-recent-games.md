@@ -2,6 +2,7 @@
 title: Nets Recent Games — 2026-04-10
 tags: [scores, games, bkn]
 source_type: stats
+source_url: https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/bkn
 clipped_date: 2026-04-10
 ---
 

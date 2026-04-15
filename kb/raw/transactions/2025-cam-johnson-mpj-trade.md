@@ -2,6 +2,7 @@
 title: Cameron Johnson Traded to Denver for Michael Porter Jr.
 tags: [trade, cameron-johnson, michael-porter-jr, denver, rebuild]
 source_type: transaction
+source_url: https://en.wikipedia.org/wiki/2024%E2%80%9325_Brooklyn_Nets_season
 clipped_date: 2025-07-08
 ---
 

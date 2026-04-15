@@ -2,6 +2,7 @@
 title: Mikal Bridges Trade to New York Knicks
 tags: [trade, mikal-bridges, knicks, picks, rebuild]
 source_type: transaction
+source_url: https://en.wikipedia.org/wiki/2024%E2%80%9325_Brooklyn_Nets_season
 clipped_date: 2024-06-26
 ---
 

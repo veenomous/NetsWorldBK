@@ -2,6 +2,7 @@
 title: Nets-Rockets Pick Swap Trade (June 2024)
 tags: [trade, rockets, picks, swap]
 source_type: transaction
+source_url: https://en.wikipedia.org/wiki/2024%E2%80%9325_Brooklyn_Nets_season
 clipped_date: 2024-06-26
 ---
 

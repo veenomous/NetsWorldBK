@@ -2,6 +2,7 @@
 title: 2025 NBA Draft Class Overview — Nets Perspective
 tags: [draft, 2025, prospects, cooper-flagg, dylan-harper, ace-bailey]
 source_type: scouting
+source_url: https://en.wikipedia.org/wiki/2024%E2%80%9325_Brooklyn_Nets_season
 clipped_date: 2025-03-15
 ---
 

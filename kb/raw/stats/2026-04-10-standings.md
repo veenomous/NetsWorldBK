@@ -2,6 +2,7 @@
 title: NBA Standings — 2026-04-10
 tags: [standings, lottery, 2026-04-10]
 source_type: stats
+source_url: https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/bkn
 clipped_date: 2026-04-10
 ---
 

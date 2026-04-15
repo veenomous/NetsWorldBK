@@ -2,6 +2,7 @@
 title: Kevin Durant Trade to Phoenix Suns
 tags: [trade, kevin-durant, mikal-bridges, cam-johnson, picks]
 source_type: transaction
+source_url: https://en.wikipedia.org/wiki/2024%E2%80%9325_Brooklyn_Nets_season
 clipped_date: 2023-02-09
 ---
 

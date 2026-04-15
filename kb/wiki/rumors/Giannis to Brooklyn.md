@@ -1,7 +1,7 @@
 ---
 title: Giannis to Brooklyn?
 tags: [rumor, trade, giannis, bucks, blockbuster]
-sources: []
+sources: [raw/beat-reporters/2026-04-13-rss-giannis-vents-about-bucks-won-t-rule-out-return.md]
 confidence: low
 last_updated: 2026-04-11
 status: active

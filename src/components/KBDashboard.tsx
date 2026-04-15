@@ -229,6 +229,16 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
                   </div>
                 </Link>
               ))}
+              {/* Fan Pulse link */}
+              <Link href="/kb/community/fan-pulse" className="block border-l-4 border-l-accent-blue border border-black/5 p-4 hover:bg-bg-surface transition-colors group">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <p className="font-display font-black text-base uppercase tracking-tight text-text-primary group-hover:text-accent-blue transition-colors">Fan Pulse</p>
+                    <p className="text-text-muted text-xs font-body mt-1">Live fan sentiment from Wire takes, player ratings, and polls</p>
+                  </div>
+                  <span className="material-symbols-outlined text-text-muted/30 group-hover:text-accent-blue text-lg transition-colors mt-1">arrow_forward</span>
+                </div>
+              </Link>
             </div>
           </div>
         </section>
