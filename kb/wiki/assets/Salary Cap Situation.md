@@ -50,7 +50,7 @@ MPJ at $38.3M is the biggest cap question. Options:
 - [[Michael Porter Jr.]]
 - [[Nic Claxton]]
 - [[Rebuild Timeline]]
-- [[Sean Marks Era]]
+- [[Sean Marks Era|Sean Marks]]
 - [[Nets Pick Inventory]]
 
 ## Open Questions

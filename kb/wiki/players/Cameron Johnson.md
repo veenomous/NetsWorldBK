@@ -32,7 +32,7 @@ With Cam Johnson gone, no players from the original KD return remain on the Nets
 - [[Kevin Durant Trade Tree]]
 - [[Michael Porter Jr.]]
 - [[2024-25 Season]]
-- [[Sean Marks Era]]
+- [[Sean Marks Era|Sean Marks]]
 
 ## Open Questions
 - How will Cam Johnson perform in Denver alongside Jokic?

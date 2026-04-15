@@ -42,7 +42,7 @@ When [[Noah Clowney]] dropped a career-high 31 points with 7 threes against the 
 - [[Kevin Durant Trade Tree]]
 - [[Ben Saraf]]
 - [[Nets Pick Inventory]]
-- [[Sean Marks Era]]
+- [[Sean Marks Era|Sean Marks]]
 - [[Rebuild Timeline]]
 
 ## Open Questions

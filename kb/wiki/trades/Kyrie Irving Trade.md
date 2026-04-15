@@ -46,7 +46,7 @@ For all the chaos, Kyrie's time in Brooklyn was transformative:
 
 ## Related
 - [[Kevin Durant Trade Tree]]
-- [[Sean Marks Era]]
+- [[Sean Marks Era|Sean Marks]]
 - [[Nets Pick Inventory]]
 - [[2024-25 Season]]
 

@@ -44,7 +44,7 @@ The saving grace. Houston's first-round pick was top-4 protected, meaning it wou
 - [[Kevin Durant Trade Tree]]
 - [[Kyrie Irving Trade]]
 - [[2025 NBA Draft]]
-- [[Sean Marks Era]]
+- [[Sean Marks Era|Sean Marks]]
 - [[Nets Pick Inventory]]
 
 ## Open Questions

@@ -41,7 +41,7 @@ The NY Post's April 14, 2026 piece represented a meaningful reassessment. With t
 - [[Noah Clowney]]
 - [[Drake Powell]]
 - [[Egor Demin]]
-- [[Sean Marks Era]]
+- [[Sean Marks Era|Sean Marks]]
 - [[Rebuild Timeline]]
 
 ## Open Questions

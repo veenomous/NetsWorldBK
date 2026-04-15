@@ -55,7 +55,7 @@ If the young core shows promise by 2027 but needs one more piece, the Nets can p
 The Nets' advantage over these teams: they have picks from OTHER teams that are unprotected. OKC only had their own picks. Brooklyn has 6+ from Suns/Knicks/Mavs/Denver.
 
 ## Related
-- [[Sean Marks Era]]
+- [[Sean Marks Era|Sean Marks]]
 - [[Nets Pick Inventory]]
 - [[Egor Demin]]
 - [[2025-26 Season]]

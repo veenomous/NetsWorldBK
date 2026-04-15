@@ -14,7 +14,7 @@ The "MPJ conundrum" is now the defining offseason question for the Brooklyn Nets
 - MPJ averaged a career-high 24.2 PPG in 2025-26 — his value as a trade chip is at its peak
 - His contract ($38.3M) is large but tradeable to teams with cap space or matching salaries
 - NY Post (4/13/26): Porter himself has apparent clarity about what HE wants — the mystery is what Marks plans to do
-- [[Sean Marks Era]] has explicitly refused to commit to a rebuild timeline ("you just never know"), which clouds the MPJ decision too
+- [[Sean Marks Era|Sean Marks]] has explicitly refused to commit to a rebuild timeline ("you just never know"), which clouds the MPJ decision too
 - The Nets have no incentive to rush — they can hold MPJ into next season and trade at the deadline if offers improve
 - No specific trade offers or destinations have been reported as of April 14, 2026
 - The ESPN 2026 offseason preview (4/13/26) named the Nets among teams with key offseason decisions ahead
@@ -38,7 +38,7 @@ The NY Post framing suggests MPJ may prefer one path while Marks has not committ
 - [[Michael Porter Jr.]]
 - [[Salary Cap Situation]]
 - [[Rebuild Timeline]]
-- [[Sean Marks Era]]
+- [[Sean Marks Era|Sean Marks]]
 
 ## Timeline
 - **Apr 2026**: Season ends. Offseason speculation begins.

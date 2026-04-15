@@ -87,7 +87,7 @@ Some KD-origin Suns picks were redirected to Houston:
 - [[Michael Porter Jr.]]
 - [[Nets Pick Inventory]]
 - [[Nets vs Knicks]]
-- [[Sean Marks Era]]
+- [[Sean Marks Era|Sean Marks]]
 - [[2025 NBA Draft]]
 
 ## Open Questions

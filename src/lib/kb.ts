@@ -377,7 +377,8 @@ export interface ResolvedSource {
 
 export function resolveSourceURLs(sources: string[]): ResolvedSource[] {
   return sources.map((src) => {
-    const filePath = path.join(process.cwd(), src);
+    // Sources reference paths like "raw/beat-reporters/..." which live under "kb/"
+    const filePath = path.join(process.cwd(), "kb", src);
     let title = src.split("/").pop()?.replace(/\.md$/, "").replace(/^\d{4}-\d{2}-\d{2}-(?:espn-|rss-|fan-)?/, "") || src;
     let url: string | null = null;
 

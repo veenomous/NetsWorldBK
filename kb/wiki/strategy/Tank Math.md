@@ -55,7 +55,7 @@ Critics argued tanking destroys culture and fan engagement. The Nets' counter wa
 - [[Egor Demin]]
 - [[Nets Pick Inventory]]
 - [[Rebuild Timeline]]
-- [[Sean Marks Era]]
+- [[Sean Marks Era|Sean Marks]]
 
 ## Open Questions
 - Would the Nets' rebuild trajectory be fundamentally different with the #1 pick instead of #8?

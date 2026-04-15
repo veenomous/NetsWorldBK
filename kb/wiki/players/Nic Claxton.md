@@ -35,7 +35,7 @@ Claxton + [[Egor Demin]] pick-and-roll is the Nets' best offensive action. Demin
 
 ## Related
 - [[2025-26 Season]]
-- [[Sean Marks Era]]
+- [[Sean Marks Era|Sean Marks]]
 - [[Egor Demin]]
 - [[Michael Porter Jr.]]
 

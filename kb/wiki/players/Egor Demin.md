@@ -51,7 +51,7 @@ The Nets didn't get Cooper Flagg (#1 to Dallas), but Demin has a legitimate path
 - [[2025 NBA Draft]]
 - [[2025-26 Season]]
 - [[Michael Porter Jr.]]
-- [[Sean Marks Era]]
+- [[Sean Marks Era|Sean Marks]]
 
 ## Open Questions
 - How does the plantar fasciitis affect his Year 2 development?

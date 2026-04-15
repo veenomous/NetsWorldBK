@@ -95,7 +95,7 @@ The June 2024 Rockets trade was strategic: the Nets gave up future Suns picks to
 ## Related
 - [[Kevin Durant Trade Tree]]
 - [[2025 NBA Draft]]
-- [[Sean Marks Era]]
+- [[Sean Marks Era|Sean Marks]]
 - [[Tank Math]]
 - [[Nets vs Knicks]]
 - [[Rebuild Timeline]]

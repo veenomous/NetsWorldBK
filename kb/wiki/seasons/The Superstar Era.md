@@ -36,7 +36,7 @@ The Big Three played exactly 16 games together. Injuries, rest days, and Kyrie's
 - **2022-23**: Kyrie's antisemitic content suspension (8 games) was the final embarrassment. KD requested a trade, rescinded it, then was traded anyway in February 2023.
 
 ### The Silver Lining
-The superstar era failed on the court but succeeded in one crucial way: the exit. [[Sean Marks Era]] extracted extraordinary value from every departure:
+The superstar era failed on the court but succeeded in one crucial way: the exit. [[Sean Marks Era|Sean Marks]] extracted extraordinary value from every departure:
 - [[James Harden Trade]]: Ben Simmons (bust), but also the Rockets pick → Danny Wolf
 - [[Kyrie Irving Trade]]: 2029 Dallas first, Dorian Finney-Smith (later flipped)
 - [[Kevin Durant Trade Tree]]: Mikal Bridges → Knicks picks, Cam Johnson → MPJ + 2032 Denver pick, 4 Suns firsts
@@ -47,7 +47,7 @@ The superstar era's true legacy is the rebuild it funded.
 - [[Kevin Durant Trade Tree]]
 - [[Kyrie Irving Trade]]
 - [[James Harden Trade]]
-- [[Sean Marks Era]]
+- [[Sean Marks Era|Sean Marks]]
 - [[2024-25 Season]]
 
 ## Open Questions

@@ -23,9 +23,11 @@ export default function AdminDashboard({ articleCount, categories, changelog, ra
   const [submissions, setSubmissions] = useState<any[]>([]);
   const [wireCount, setWireCount] = useState(0);
   const [spacesCount, setSpacesCount] = useState(0);
+  const [compileStatus, setCompileStatus] = useState<"idle" | "triggering" | "triggered" | "error">("idle");
+  const [qualityIssues, setQualityIssues] = useState<any>(null);
+  const [qualityLoading, setQualityLoading] = useState(false);
 
   useEffect(() => {
-    // Fetch live stats from Supabase
     supabase.from("kb_submissions").select("id, url, status, upvotes, created_at").order("created_at", { ascending: false }).limit(10)
       .then(({ data }) => { if (data) setSubmissions(data); });
     supabase.from("hot_takes").select("id", { count: "exact", head: true })
@@ -33,6 +35,26 @@ export default function AdminDashboard({ articleCount, categories, changelog, ra
     supabase.from("spaces").select("id", { count: "exact", head: true })
       .then(({ count }) => { if (count) setSpacesCount(count); });
   }, []);
+
+  async function triggerCompile() {
+    setCompileStatus("triggering");
+    try {
+      const res = await fetch("/api/admin/trigger-compile", { method: "POST" });
+      const data = await res.json();
+      if (data.status === "triggered") setCompileStatus("triggered");
+      else setCompileStatus("error");
+    } catch { setCompileStatus("error"); }
+  }
+
+  async function runQualityCheck() {
+    setQualityLoading(true);
+    try {
+      const res = await fetch("/api/admin/content-quality");
+      const data = await res.json();
+      setQualityIssues(data);
+    } catch {}
+    setQualityLoading(false);
+  }
 
   if (!session) {
     return (
@@ -99,42 +121,109 @@ export default function AdminDashboard({ articleCount, categories, changelog, ra
           </div>
         </div>
 
-        {/* Health Alerts */}
+        {/* Pipeline Control */}
         <div className="mb-8">
-          <h2 className="font-display font-black text-sm tracking-[0.1em] uppercase text-text-secondary mb-3">Content Health</h2>
-          <div className="space-y-2">
-            {staleArticles.length > 0 && (
-              <div className="border-l-4 border-l-brand-red border border-black/5 p-3">
-                <p className="font-display font-bold text-xs uppercase text-brand-red">{staleArticles.length} Stale Articles (&gt;14 days)</p>
-                <p className="text-text-muted text-xs font-body mt-1">
-                  {staleArticles.slice(0, 5).map(a => a.title).join(", ")}
-                  {staleArticles.length > 5 && ` +${staleArticles.length - 5} more`}
-                </p>
+          <h2 className="font-display font-black text-sm tracking-[0.1em] uppercase text-text-secondary mb-3">Pipeline Control</h2>
+          <div className="border border-black/10 p-4">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <p className="font-display font-bold text-sm uppercase">Daily Compile</p>
+                <p className="text-text-muted text-xs font-body mt-0.5">Fetch ESPN + RSS → Compile with AI → Push to site</p>
               </div>
+              <button
+                onClick={triggerCompile}
+                disabled={compileStatus === "triggering"}
+                className={`px-5 py-2 font-display font-bold text-xs uppercase tracking-wider transition-colors shrink-0 ${
+                  compileStatus === "triggered" ? "bg-accent-green text-white" :
+                  compileStatus === "error" ? "bg-brand-red text-white" :
+                  "bg-black text-white hover:bg-brand-red"
+                }`}
+              >
+                {compileStatus === "idle" && "Run Now"}
+                {compileStatus === "triggering" && "Triggering..."}
+                {compileStatus === "triggered" && "Triggered!"}
+                {compileStatus === "error" && "Failed"}
+              </button>
+            </div>
+            {compileStatus === "triggered" && (
+              <p className="text-accent-green text-xs font-body mt-2">Compile triggered. Check GitHub Actions for progress.</p>
             )}
-            {unsourced.length > 0 && (
-              <div className="border-l-4 border-l-accent-blue border border-black/5 p-3">
-                <p className="font-display font-bold text-xs uppercase text-accent-blue">{unsourced.length} Articles Without Sources</p>
-                <p className="text-text-muted text-xs font-body mt-1">
-                  {unsourced.slice(0, 5).map(a => a.title).join(", ")}
-                </p>
-              </div>
-            )}
-            {lowConf.length > 0 && (
-              <div className="border-l-4 border-l-brand-red border border-black/5 p-3">
-                <p className="font-display font-bold text-xs uppercase text-brand-red">{lowConf.length} Low Confidence Articles</p>
-                <p className="text-text-muted text-xs font-body mt-1">
-                  {lowConf.map(a => a.title).join(", ")}
-                </p>
-              </div>
-            )}
-            {staleArticles.length === 0 && unsourced.length === 0 && lowConf.length === 0 && (
-              <div className="border-l-4 border-l-accent-green border border-black/5 p-3">
-                <p className="font-display font-bold text-xs uppercase text-accent-green">All Clear</p>
-                <p className="text-text-muted text-xs font-body mt-1">No health issues detected.</p>
-              </div>
+            {compileStatus === "error" && (
+              <p className="text-brand-red text-xs font-body mt-2">Could not trigger. Add GITHUB_PAT to Vercel env vars for direct triggering.</p>
             )}
           </div>
+        </div>
+
+        {/* Content Quality */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="font-display font-black text-sm tracking-[0.1em] uppercase text-text-secondary">Content Quality</h2>
+            <button onClick={runQualityCheck} disabled={qualityLoading}
+              className="bg-black text-white px-4 py-1.5 font-display font-bold text-[10px] uppercase tracking-wider hover:bg-brand-red transition-colors disabled:opacity-30">
+              {qualityLoading ? "Scanning..." : "Run Audit"}
+            </button>
+          </div>
+
+          {!qualityIssues && !qualityLoading && (
+            <div className="border border-black/5 p-4 text-center">
+              <p className="text-text-muted text-xs font-body">Click "Run Audit" to scan for content issues.</p>
+            </div>
+          )}
+
+          {qualityIssues && (
+            <div className="space-y-2">
+              {/* Summary */}
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 mb-3">
+                <div className={`border p-2 text-center ${qualityIssues.byType.broken > 0 ? "border-brand-red bg-brand-red/5" : "border-black/10"}`}>
+                  <p className="font-display font-black text-lg">{qualityIssues.byType.broken}</p>
+                  <p className="text-[9px] text-text-muted uppercase font-bold">Broken Links</p>
+                </div>
+                <div className={`border p-2 text-center ${qualityIssues.byType.stale > 0 ? "border-brand-red bg-brand-red/5" : "border-black/10"}`}>
+                  <p className="font-display font-black text-lg">{qualityIssues.byType.stale}</p>
+                  <p className="text-[9px] text-text-muted uppercase font-bold">Stale</p>
+                </div>
+                <div className={`border p-2 text-center ${qualityIssues.byType.lowConfidence > 0 ? "border-accent-blue bg-accent-blue/5" : "border-black/10"}`}>
+                  <p className="font-display font-black text-lg">{qualityIssues.byType.lowConfidence}</p>
+                  <p className="text-[9px] text-text-muted uppercase font-bold">Low Conf</p>
+                </div>
+                <div className={`border p-2 text-center border-black/10`}>
+                  <p className="font-display font-black text-lg">{qualityIssues.byType.noSources}</p>
+                  <p className="text-[9px] text-text-muted uppercase font-bold">No Sources</p>
+                </div>
+                <div className={`border p-2 text-center border-black/10`}>
+                  <p className="font-display font-black text-lg">{qualityIssues.byType.noSourceUrl}</p>
+                  <p className="text-[9px] text-text-muted uppercase font-bold">No URLs</p>
+                </div>
+              </div>
+
+              {/* Issue list */}
+              {qualityIssues.total === 0 ? (
+                <div className="border-l-4 border-l-accent-green border border-black/5 p-3">
+                  <p className="font-display font-bold text-xs uppercase text-accent-green">All Clear — No issues found</p>
+                </div>
+              ) : (
+                <div className="max-h-[400px] overflow-y-auto border border-black/5">
+                  {qualityIssues.issues.map((issue: any, i: number) => (
+                    <Link key={i} href={`/kb/${issue.category}/${issue.slug}`}
+                      className="flex items-start gap-3 px-3 py-2 border-b border-black/5 last:border-0 hover:bg-bg-surface transition-colors">
+                      <span className={`tag shrink-0 mt-0.5 ${
+                        issue.type === "broken-link" ? "tag-red" :
+                        issue.type === "stale" ? "tag-red" :
+                        issue.type === "low-confidence" ? "tag-blue" :
+                        "tag-blue"
+                      }`} style={{ fontSize: "8px", padding: "1px 6px" }}>
+                        {issue.type.replace("-", " ")}
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-display font-bold text-xs uppercase truncate">{issue.article}</p>
+                        <p className="text-text-muted text-[10px] font-body">{issue.detail}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Raw Sources by Category */}

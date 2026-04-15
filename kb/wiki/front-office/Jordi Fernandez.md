@@ -34,7 +34,7 @@ Fernandez emphasizes "systematic observation" — using data and sports psycholo
 Fernandez has never coached a winning NBA team as head coach. The question is whether he can transition from developer to winner when the roster is ready to compete (projected 2027-28). Some coaches are great at development but can't manage egos and rotations on a contender. That test is still years away.
 
 ## Related
-- [[Sean Marks Era]]
+- [[Sean Marks Era|Sean Marks]]
 - [[Egor Demin]]
 - [[2025-26 Season]]
 - [[Nolan Traore]]

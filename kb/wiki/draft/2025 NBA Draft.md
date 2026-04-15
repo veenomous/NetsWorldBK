@@ -52,7 +52,7 @@ The stretch big. Wolf is a 6'11" forward with passing ability and outside shooti
 - [[Kevin Durant Trade Tree]]
 - [[Nets Pick Inventory]]
 - [[2025-26 Season]]
-- [[Sean Marks Era]]
+- [[Sean Marks Era|Sean Marks]]
 - [[Tank Math]]
 
 ## Open Questions

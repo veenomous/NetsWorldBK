@@ -29,7 +29,7 @@ wiki_articles: 30
 - [[James Harden Trade]] — February 2022 to Philadelphia: Ben Simmons (bust), Rockets pick → Danny Wolf
 
 ## Front Office
-- [[Sean Marks Era]] — From post-Billy King wasteland through the superstar gamble to Rebuild 2.0
+- [[Sean Marks Era|Sean Marks]] — From post-Billy King wasteland through the superstar gamble to Rebuild 2.0
 - [[Jordi Fernandez]] — First Spanish NBA head coach, development specialist, sports psychology background
 
 ## Draft

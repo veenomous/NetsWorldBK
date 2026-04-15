@@ -50,7 +50,7 @@ Would Sean Marks trade the rebuild's assets for a generational talent, or stay t
 - [[Nets Pick Inventory]]
 - [[Michael Porter Jr.]]
 - [[Egor Demin]]
-- [[Sean Marks Era]]
+- [[Sean Marks Era|Sean Marks]]
 - [[Rebuild Timeline]]
 
 ## Timeline

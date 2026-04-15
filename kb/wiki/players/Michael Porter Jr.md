@@ -39,7 +39,7 @@ MPJ won a championship with Denver in 2023. Coming to Brooklyn mid-rebuild was a
 - [[Cameron Johnson]]
 - [[Kevin Durant Trade Tree]]
 - [[2025-26 Season]]
-- [[Sean Marks Era]]
+- [[Sean Marks Era|Sean Marks]]
 
 ## Open Questions
 - Will MPJ be traded to a contender this offseason? NY Post (4/13/26) framed it as the "MPJ conundrum" — Porter reportedly has clarity on what HE wants; Marks is "a mystery" on his plans. See [[MPJ Trade Buzz]].
