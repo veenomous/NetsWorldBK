@@ -175,17 +175,21 @@ export default function AdminDashboard({ articleCount, categories, changelog, ra
           </div>
         </div>
 
-        {/* Tweet Queue Link */}
-        <div className="mb-8">
-          <Link href="/admin/tweets" className="flex items-center justify-between border border-black/10 p-4 hover:border-brand-red/30 transition-colors group">
-            <div className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-brand-red text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>edit_note</span>
-              <div>
-                <p className="font-display font-bold text-sm uppercase group-hover:text-brand-red transition-colors">Tweet Queue</p>
-                <p className="text-text-muted text-xs font-body">{tweetDrafts.length} drafts ready to post</p>
-              </div>
+        {/* Generate Article + Tweet Queue */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+          <Link href="/admin/generate" className="flex items-center gap-3 border border-black/10 p-4 hover:border-brand-red/30 transition-colors group">
+            <span className="material-symbols-outlined text-brand-red text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
+            <div>
+              <p className="font-display font-bold text-sm uppercase group-hover:text-brand-red transition-colors">Generate Article</p>
+              <p className="text-text-muted text-xs font-body">Paste a URL or topic → AI writes it</p>
             </div>
-            <span className="material-symbols-outlined text-text-muted/30 group-hover:text-brand-red transition-colors">arrow_forward</span>
+          </Link>
+          <Link href="/admin/tweets" className="flex items-center gap-3 border border-black/10 p-4 hover:border-brand-red/30 transition-colors group">
+            <span className="material-symbols-outlined text-brand-red text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>edit_note</span>
+            <div>
+              <p className="font-display font-bold text-sm uppercase group-hover:text-brand-red transition-colors">Tweet Queue</p>
+              <p className="text-text-muted text-xs font-body">{tweetDrafts.length} drafts ready</p>
+            </div>
           </Link>
         </div>
 
