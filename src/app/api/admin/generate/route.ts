@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
 
 export const dynamic = "force-dynamic";
 
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY || "";
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://kijbuyyzetkxgcrphtjd.supabase.co";
+const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtpamJ1eXl6ZXRreGdjcnBodGpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzMzg2NTksImV4cCI6MjA4OTkxNDY1OX0.8qJe14118lGBo_QsZ5_VAm00NmIbnGraeteQGRiWyeU";
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 export async function POST(req: NextRequest) {
   if (!ANTHROPIC_KEY) {
@@ -121,6 +125,20 @@ Also generate a tweet (under 280 chars) that promotes this article with a link t
     const parts = content.split("---TWEET---");
     const article = parts[0].trim();
     const tweet = parts[1]?.trim() || "";
+
+    // Extract title from article frontmatter
+    const titleMatch = article.match(/^title:\s*(.+)$/m);
+    const articleTitle = titleMatch ? titleMatch[1].trim() : input.slice(0, 60);
+
+    // Auto-save tweet draft to Supabase
+    if (tweet) {
+      await supabase.from("tweet_drafts").insert({
+        tweet_text: tweet,
+        article_title: articleTitle,
+        article_url: `https://bkgrit.com`,
+        status: "draft",
+      });
+    }
 
     return NextResponse.json({ article, tweet });
   } catch (err: any) {
