@@ -139,7 +139,7 @@ export default function KBSearch() {
 
   return (
     <>
-      <div className="relative w-full max-w-lg" style={{ maxWidth: "100%" }}>
+      <div className="relative w-full">
         <div className="relative">
           <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-lg">
             search
