@@ -27,6 +27,9 @@ export default function AdminDashboard({ articleCount, categories, changelog, ra
   const [qualityIssues, setQualityIssues] = useState<any>(null);
   const [qualityLoading, setQualityLoading] = useState(false);
 
+  const [tweetDrafts, setTweetDrafts] = useState<any[]>([]);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
   useEffect(() => {
     supabase.from("kb_submissions").select("id, url, status, upvotes, created_at").order("created_at", { ascending: false }).limit(10)
       .then(({ data }) => { if (data) setSubmissions(data); });
@@ -34,7 +37,25 @@ export default function AdminDashboard({ articleCount, categories, changelog, ra
       .then(({ count }) => { if (count) setWireCount(count); });
     supabase.from("spaces").select("id", { count: "exact", head: true })
       .then(({ count }) => { if (count) setSpacesCount(count); });
+    supabase.from("tweet_drafts").select("*").eq("status", "draft").order("created_at", { ascending: false }).limit(20)
+      .then(({ data }) => { if (data) setTweetDrafts(data); });
   }, []);
+
+  async function copyTweet(id: string, text: string) {
+    await navigator.clipboard.writeText(text);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
+  }
+
+  async function markTweetPosted(id: string) {
+    await supabase.from("tweet_drafts").update({ status: "posted" }).eq("id", id);
+    setTweetDrafts(prev => prev.filter(t => t.id !== id));
+  }
+
+  async function skipTweet(id: string) {
+    await supabase.from("tweet_drafts").update({ status: "skipped" }).eq("id", id);
+    setTweetDrafts(prev => prev.filter(t => t.id !== id));
+  }
 
   async function triggerCompile() {
     setCompileStatus("triggering");
@@ -152,6 +173,20 @@ export default function AdminDashboard({ articleCount, categories, changelog, ra
               <p className="text-brand-red text-xs font-body mt-2">Could not trigger. Add GITHUB_PAT to Vercel env vars for direct triggering.</p>
             )}
           </div>
+        </div>
+
+        {/* Tweet Queue Link */}
+        <div className="mb-8">
+          <Link href="/admin/tweets" className="flex items-center justify-between border border-black/10 p-4 hover:border-brand-red/30 transition-colors group">
+            <div className="flex items-center gap-3">
+              <span className="material-symbols-outlined text-brand-red text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>edit_note</span>
+              <div>
+                <p className="font-display font-bold text-sm uppercase group-hover:text-brand-red transition-colors">Tweet Queue</p>
+                <p className="text-text-muted text-xs font-body">{tweetDrafts.length} drafts ready to post</p>
+              </div>
+            </div>
+            <span className="material-symbols-outlined text-text-muted/30 group-hover:text-brand-red transition-colors">arrow_forward</span>
+          </Link>
         </div>
 
         {/* Content Quality */}
