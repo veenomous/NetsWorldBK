@@ -16,7 +16,9 @@ export default function SpaceUploadForm() {
   const [title, setTitle] = useState("");
   const [opponent, setOpponent] = useState("");
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
+  const [sourceType, setSourceType] = useState<"file" | "youtube">("file");
   const [file, setFile] = useState<File | null>(null);
+  const [youtubeUrl, setYoutubeUrl] = useState("");
   const [phase, setPhase] = useState<UploadPhase>("form");
   const [spaceId, setSpaceId] = useState<string | null>(null);
   const [error, setError] = useState("");
@@ -28,42 +30,51 @@ export default function SpaceUploadForm() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!file || !title.trim()) return;
+    if (sourceType === "file" && !file) return;
+    if (sourceType === "youtube" && !youtubeUrl.trim()) return;
+    if (!title.trim()) return;
 
     setError("");
     setPhase("uploading");
 
     try {
-      // 1. Get audio duration
+      let audioUrl = "";
       let durationMins = 0;
-      try {
-        const audio = new Audio();
-        audio.src = URL.createObjectURL(file);
-        await new Promise<void>((resolve) => {
-          audio.addEventListener("loadedmetadata", () => {
-            durationMins = Math.round(audio.duration / 60);
-            resolve();
+
+      if (sourceType === "youtube") {
+        // YouTube: pass URL directly to AssemblyAI (they accept YouTube URLs)
+        audioUrl = youtubeUrl.trim();
+        setPhase("transcribing");
+      } else {
+        // File upload: get duration, upload to Supabase Storage
+        try {
+          const audio = new Audio();
+          audio.src = URL.createObjectURL(file!);
+          await new Promise<void>((resolve) => {
+            audio.addEventListener("loadedmetadata", () => {
+              durationMins = Math.round(audio.duration / 60);
+              resolve();
+            });
+            audio.addEventListener("error", () => resolve());
           });
-          audio.addEventListener("error", () => resolve());
-        });
-      } catch {}
+        } catch {}
 
-      // 2. Upload to Supabase Storage
-      const fileName = `${Date.now()}-${file.name.replace(/[^a-z0-9.]/gi, "-")}`;
-      const { error: uploadError } = await supabase.storage
-        .from("spaces-audio")
-        .upload(fileName, file);
+        const fileName = `${Date.now()}-${file!.name.replace(/[^a-z0-9.]/gi, "-")}`;
+        const { error: uploadError } = await supabase.storage
+          .from("spaces-audio")
+          .upload(fileName, file!);
 
-      if (uploadError) throw new Error(`Upload failed: ${uploadError.message}`);
+        if (uploadError) throw new Error(`Upload failed: ${uploadError.message}`);
 
-      const { data: urlData } = supabase.storage
-        .from("spaces-audio")
-        .getPublicUrl(fileName);
+        const { data: urlData } = supabase.storage
+          .from("spaces-audio")
+          .getPublicUrl(fileName);
 
-      const audioUrl = urlData.publicUrl;
+        audioUrl = urlData.publicUrl;
+        setPhase("transcribing");
+      }
 
-      // 3. Submit to API
-      setPhase("transcribing");
+      // Submit to API
       const res = await fetch("/api/spaces/upload", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -183,16 +194,40 @@ export default function SpaceUploadForm() {
               <input type="date" value={date} onChange={(e) => setDate(e.target.value)}
                 className="w-full border border-black/10 px-4 py-3 font-body text-sm focus:outline-none focus:border-brand-red/50" />
             </div>
+            {/* Source type toggle */}
             <div>
-              <label className="font-display font-bold text-[10px] uppercase tracking-[0.15em] text-text-muted mb-1.5 block">Audio File *</label>
-              <input type="file" accept=".mp3,.m4a,.wav,.webm,.ogg" required
-                onChange={(e) => setFile(e.target.files?.[0] || null)}
-                className="w-full border border-black/10 px-4 py-3 font-body text-sm" />
-              <p className="text-text-muted text-[10px] font-body mt-1">MP3, M4A, WAV, or WebM. Max ~100MB.</p>
+              <label className="font-display font-bold text-[10px] uppercase tracking-[0.15em] text-text-muted mb-1.5 block">Source *</label>
+              <div className="flex gap-1 mb-3">
+                <button type="button" onClick={() => setSourceType("file")}
+                  className={`px-4 py-2 font-display font-bold text-xs uppercase tracking-wider ${sourceType === "file" ? "bg-black text-white" : "bg-bg-surface text-text-muted"}`}>
+                  Audio File
+                </button>
+                <button type="button" onClick={() => setSourceType("youtube")}
+                  className={`px-4 py-2 font-display font-bold text-xs uppercase tracking-wider ${sourceType === "youtube" ? "bg-black text-white" : "bg-bg-surface text-text-muted"}`}>
+                  YouTube URL
+                </button>
+              </div>
+              {sourceType === "file" ? (
+                <>
+                  <input type="file" accept=".mp3,.m4a,.wav,.webm,.ogg"
+                    onChange={(e) => setFile(e.target.files?.[0] || null)}
+                    className="w-full border border-black/10 px-4 py-3 font-body text-sm" />
+                  <p className="text-text-muted text-[10px] font-body mt-1">MP3, M4A, WAV, or WebM. Max ~100MB.</p>
+                </>
+              ) : (
+                <>
+                  <input type="url" value={youtubeUrl} onChange={(e) => setYoutubeUrl(e.target.value)}
+                    placeholder="https://www.youtube.com/watch?v=..."
+                    className="w-full border border-black/10 px-4 py-3 font-body text-sm focus:outline-none focus:border-brand-red/50" />
+                  <p className="text-text-muted text-[10px] font-body mt-1">Paste a YouTube video URL. Works with podcasts, interviews, post-game shows.</p>
+                </>
+              )}
             </div>
-            <button type="submit" disabled={!file || !title.trim()}
+            <button type="submit" disabled={
+              !title.trim() || (sourceType === "file" && !file) || (sourceType === "youtube" && !youtubeUrl.trim())
+            }
               className="bg-black text-white font-display font-bold text-xs uppercase tracking-wider px-8 py-3 hover:bg-brand-red transition-colors disabled:opacity-30">
-              Upload & Transcribe
+              {sourceType === "youtube" ? "Transcribe Video" : "Upload & Transcribe"}
             </button>
           </form>
         )}
