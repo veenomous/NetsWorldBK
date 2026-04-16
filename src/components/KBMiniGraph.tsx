@@ -27,10 +27,10 @@ const NODES: MiniNode[] = [
   { id: "harden", label: "HARDEN", x: 0.08, y: 0.78, color: "#E43C3E", size: 5, href: "/kb/trades/james-harden-trade", description: "Rockets pick → Danny Wolf" },
   { id: "picks", label: "PICKS", x: 0.5, y: 0.32, color: "#0047AB", size: 9, href: "/kb/assets/nets-pick-inventory", description: "Picks owed through 2032" },
   { id: "mpj", label: "MPJ", x: 0.55, y: 0.58, color: "#16a34a", size: 7, href: "/kb/players/michael-porter-jr", description: "24.2 PPG — Veteran anchor" },
-  { id: "demin", label: "DEMIN", x: 0.72, y: 0.22, color: "#0047AB", size: 8, href: "/kb/players/egor-demin", description: "#8 pick — Franchise bet" },
-  { id: "draft", label: "DRAFT", x: 0.82, y: 0.48, color: "#0047AB", size: 6, href: "/kb/draft/2025-nba-draft", description: "5 first-rounders in one draft" },
+  { id: "demin", label: "DEMIN", x: 0.68, y: 0.22, color: "#0047AB", size: 8, href: "/kb/players/egor-demin", description: "#8 pick — Franchise bet" },
+  { id: "draft", label: "DRAFT", x: 0.75, y: 0.48, color: "#0047AB", size: 6, href: "/kb/draft/2025-nba-draft", description: "5 first-rounders in one draft" },
   { id: "knicks", label: "KNICKS", x: 0.38, y: 0.72, color: "#0047AB", size: 6, href: "/kb/rivalries/nets-vs-knicks", description: "4 unprotected picks through 2031" },
-  { id: "timeline", label: "2027-28", x: 0.82, y: 0.75, color: "#16a34a", size: 7, href: "/kb/strategy/rebuild-timeline", description: "Target competitive window" },
+  { id: "timeline", label: "2027-28", x: 0.75, y: 0.75, color: "#16a34a", size: 7, href: "/kb/strategy/rebuild-timeline", description: "Target competitive window" },
 ];
 
 const EDGES: MiniEdge[] = [

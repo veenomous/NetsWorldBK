@@ -168,8 +168,8 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
     <div className="min-h-screen bg-bg-primary">
 
       {/* ═══ 1. HERO ═══ */}
-      <section className="bg-bg-primary px-4 sm:px-8 pt-6 pb-8 border-b border-black/10">
-        <div className="max-w-4xl mx-auto">
+      <section className="bg-bg-primary px-4 sm:px-8 pt-6 pb-8 border-b border-black/10 overflow-hidden">
+        <div className="max-w-4xl mx-auto overflow-hidden">
           <div className="flex flex-col sm:flex-row gap-6 sm:gap-10 items-start">
             <div className="flex-1">
               <Image src="/logo2.png" alt="BK Grit" width={160} height={80} priority className="w-[120px] sm:w-[140px] h-auto mb-4" />
