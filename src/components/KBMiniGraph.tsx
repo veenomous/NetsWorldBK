@@ -55,11 +55,13 @@ const DISPLAY_H = 220;
 
 export default function KBMiniGraph() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const animRef = useRef(0);
   const pulseRef = useRef(0);
   const [hovered, setHovered] = useState<MiniNode | null>(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+  const sizeRef = useRef({ w: DISPLAY_W, h: DISPLAY_H });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -68,16 +70,23 @@ export default function KBMiniGraph() {
     if (!ctx) return;
 
     const dpr = window.devicePixelRatio || 1;
-    canvas.width = DISPLAY_W * dpr;
-    canvas.height = DISPLAY_H * dpr;
-    canvas.style.width = `${DISPLAY_W}px`;
-    canvas.style.height = `${DISPLAY_H}px`;
+    const cw = containerRef.current?.clientWidth || DISPLAY_W;
+    const actualW = Math.min(cw, DISPLAY_W);
+    const actualH = Math.round(actualW * (DISPLAY_H / DISPLAY_W));
+    canvas.width = actualW * dpr;
+    canvas.height = actualH * dpr;
+    canvas.style.width = `${actualW}px`;
+    canvas.style.height = `${actualH}px`;
     ctx.scale(dpr, dpr);
+
+    const W = actualW;
+    const H = actualH;
+    sizeRef.current = { w: W, h: H };
 
     function draw() {
       if (!ctx) return;
       pulseRef.current += 0.015;
-      ctx.clearRect(0, 0, DISPLAY_W, DISPLAY_H);
+      ctx.clearRect(0, 0, W, H);
 
       // Edges
       for (const edge of EDGES) {
@@ -85,8 +94,8 @@ export default function KBMiniGraph() {
         const b = NODES.find(n => n.id === edge.to)!;
         const isHighlighted = hovered && (hovered.id === a.id || hovered.id === b.id);
         ctx.beginPath();
-        ctx.moveTo(a.x * DISPLAY_W, a.y * DISPLAY_H);
-        ctx.lineTo(b.x * DISPLAY_W, b.y * DISPLAY_H);
+        ctx.moveTo(a.x * W, a.y * H);
+        ctx.lineTo(b.x * W, b.y * H);
         ctx.strokeStyle = isHighlighted ? "rgba(228,60,62,0.3)" : "rgba(0,0,0,0.07)";
         ctx.lineWidth = isHighlighted ? 2 : 1;
         ctx.stroke();
@@ -96,8 +105,8 @@ export default function KBMiniGraph() {
       for (const node of NODES) {
         const pulse = 1 + Math.sin(pulseRef.current + node.x * 5) * 0.1;
         const r = node.size * pulse;
-        const px = node.x * DISPLAY_W;
-        const py = node.y * DISPLAY_H;
+        const px = node.x * W;
+        const py = node.y * H;
         const isHov = hovered?.id === node.id;
 
         // Glow
@@ -133,8 +142,8 @@ export default function KBMiniGraph() {
         const from = NODES.find(n => n.id === fromId)!;
         const to = NODES.find(n => n.id === toId)!;
         const t = ((pulseRef.current * speed) + offset) % 1;
-        const px = from.x * DISPLAY_W + (to.x * DISPLAY_W - from.x * DISPLAY_W) * t;
-        const py = from.y * DISPLAY_H + (to.y * DISPLAY_H - from.y * DISPLAY_H) * t;
+        const px = from.x * W + (to.x * W - from.x * W) * t;
+        const py = from.y * H + (to.y * H - from.y * H) * t;
         ctx.beginPath();
         ctx.arc(px, py, 2.5, 0, Math.PI * 2);
         ctx.fillStyle = color;
@@ -164,13 +173,15 @@ export default function KBMiniGraph() {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
-    const mx = e.clientX - rect.left;
-    const my = e.clientY - rect.top;
+    const scaleX = sizeRef.current.w / rect.width;
+    const scaleY = sizeRef.current.h / rect.height;
+    const mx = (e.clientX - rect.left) * scaleX;
+    const my = (e.clientY - rect.top) * scaleY;
 
     let found: MiniNode | null = null;
     for (const node of NODES) {
-      const dx = mx - node.x * DISPLAY_W;
-      const dy = my - node.y * DISPLAY_H;
+      const dx = mx - node.x * sizeRef.current.w;
+      const dy = my - node.y * sizeRef.current.h;
       if (dx * dx + dy * dy < (node.size + 12) * (node.size + 12)) {
         found = node;
         break;
@@ -178,7 +189,7 @@ export default function KBMiniGraph() {
     }
     setHovered(found);
     if (found) {
-      setTooltipPos({ x: found.x * DISPLAY_W, y: found.y * DISPLAY_H });
+      setTooltipPos({ x: found.x * sizeRef.current.w, y: found.y * sizeRef.current.h });
     }
     if (canvas) canvas.style.cursor = found ? "pointer" : "default";
   }, []);
@@ -187,12 +198,14 @@ export default function KBMiniGraph() {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
-    const mx = e.clientX - rect.left;
-    const my = e.clientY - rect.top;
+    const scaleX = sizeRef.current.w / rect.width;
+    const scaleY = sizeRef.current.h / rect.height;
+    const mx = (e.clientX - rect.left) * scaleX;
+    const my = (e.clientY - rect.top) * scaleY;
 
     for (const node of NODES) {
-      const dx = mx - node.x * DISPLAY_W;
-      const dy = my - node.y * DISPLAY_H;
+      const dx = mx - node.x * sizeRef.current.w;
+      const dy = my - node.y * sizeRef.current.h;
       if (dx * dx + dy * dy < (node.size + 12) * (node.size + 12)) {
         router.push(node.href);
         return;
@@ -201,13 +214,13 @@ export default function KBMiniGraph() {
   }
 
   return (
-    <div className="relative overflow-hidden">
+    <div ref={containerRef} className="relative overflow-hidden w-full">
       <canvas
         ref={canvasRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setHovered(null)}
         onClick={handleClick}
-        style={{ width: "100%", maxWidth: DISPLAY_W, height: DISPLAY_H }}
+        style={{ width: "100%", height: "auto" }}
       />
 
       {/* Hover tooltip */}
@@ -215,7 +228,7 @@ export default function KBMiniGraph() {
         <div
           className="absolute pointer-events-none bg-black text-white px-3 py-2 shadow-lg"
           style={{
-            left: Math.min(tooltipPos.x + 12, DISPLAY_W - 180),
+            left: Math.min(tooltipPos.x + 12, (containerRef.current?.clientWidth || DISPLAY_W) - 180),
             top: Math.max(tooltipPos.y - 40, 4),
             maxWidth: 180,
           }}
