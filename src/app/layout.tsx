@@ -56,14 +56,22 @@ export default function RootLayout({
           <main>
             {children}
           </main>
-          <footer className="bg-black text-white flex flex-col md:flex-row justify-between items-center w-full px-8 py-12 border-t border-white/10">
-            <div className="text-[10px] uppercase tracking-[0.2em] font-medium mb-6 md:mb-0">
-              © 2026 BK GRIT. NOT AFFILIATED WITH THE BROOKLYN NETS OR NBA.
+          <footer className="bg-black text-white flex flex-col gap-6 w-full px-8 py-12 border-t border-white/10">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+              <div className="text-[10px] uppercase tracking-[0.2em] font-medium">
+                © 2026 BK GRIT. NOT AFFILIATED WITH THE BROOKLYN NETS OR NBA.
+              </div>
+              <div className="flex gap-8">
+                <a className="text-[10px] uppercase tracking-[0.2em] font-medium text-white/50 hover:text-brand-red transition-colors" href="#">Terms</a>
+                <a className="text-[10px] uppercase tracking-[0.2em] font-medium text-white/50 hover:text-brand-red transition-colors" href="#">Privacy</a>
+                <a className="text-[10px] uppercase tracking-[0.2em] font-medium text-white/50 hover:text-brand-red transition-colors" href="#">Contact</a>
+              </div>
             </div>
-            <div className="flex gap-8">
-              <a className="text-[10px] uppercase tracking-[0.2em] font-medium text-white/50 hover:text-brand-red transition-colors" href="#">Terms</a>
-              <a className="text-[10px] uppercase tracking-[0.2em] font-medium text-white/50 hover:text-brand-red transition-colors" href="#">Privacy</a>
-              <a className="text-[10px] uppercase tracking-[0.2em] font-medium text-white/50 hover:text-brand-red transition-colors" href="#">Contact</a>
+            <div className="text-[10px] text-white/40 font-body italic leading-relaxed max-w-3xl">
+              BKGrit is a non-commercial Brooklyn Nets fan wiki. Podcast and Space content shown here is indexed for
+              commentary, discovery, and cross-linking to wiki articles — original episodes live on their creators&apos; channels.
+              If you&apos;re a podcast host and want to collaborate or have your show removed,{" "}
+              <a href="mailto:contact@bkgrit.com" className="text-brand-red hover:underline">contact@bkgrit.com</a>.
             </div>
           </footer>
         </AuthProvider>
