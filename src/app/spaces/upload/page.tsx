@@ -1,10 +1,10 @@
-import SpaceUploadForm from "@/components/SpaceUploadForm";
+import UploadForm from "@/components/UploadForm";
 
 export const metadata = {
-  title: "Upload Space — BK Grit",
-  description: "Upload a post-game fan reaction Space recording.",
+  title: "Add Content — BK Grit",
+  description: "Upload a Twitter Space, podcast episode, or RSS feed.",
 };
 
 export default function UploadPage() {
-  return <SpaceUploadForm />;
+  return <UploadForm defaultType="space" />;
 }
