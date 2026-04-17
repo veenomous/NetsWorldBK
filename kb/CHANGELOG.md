@@ -1,5 +1,9 @@
 # Knowledge Base Changelog
 
+## 2026-04-17
+- **2025-26 Season** — Updated sources to include final 2026-04-17 roster snapshot and standings; season record 20-62, lottery position #3 confirmed
+- **Josh Minott** — Updated roster snapshot source to 2026-04-17; salary $2.4M confirmed on active roster
+
 ## 2026-04-14
 - **2025-26 Season** — Season finalized: record updated to 20-62, season-ending loss at Toronto 136-101 (4/13), Josh Minott emergence section added, lottery slot #3 confirmed
 - **2026 Draft Positioning** — Record corrected to 20-62; Marks' murky timeline quotes added; ESPN offseason preview context; lottery timeline updated
