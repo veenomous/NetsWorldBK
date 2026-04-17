@@ -7,12 +7,11 @@ import { useSession, signIn, signOut } from "next-auth/react";
 
 const navLinks = [
   { href: "/", label: "Wiki" },
+  { href: "/hot-mic", label: "Hot Mic" },
   { href: "/wire", label: "The Wire" },
   { href: "/press", label: "The Press" },
-  { href: "/hot-mic", label: "Hot Mic" },
+  { href: "/gm-mode", label: "The War Room" },
   { href: "/kb/graph", label: "Graph" },
-  { href: "/gm-mode", label: "War Room" },
-  { href: "/simulator", label: "Lottery Sim" },
   { href: "/kb/submit", label: "Submit" },
 ];
 

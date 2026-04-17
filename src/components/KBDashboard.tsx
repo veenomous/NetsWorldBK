@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 import KBSearch from "@/components/KBSearch";
-import KBMiniGraph from "@/components/KBMiniGraph";
 import KBChangelog from "@/components/KBChangelog";
 import { netsPicks, totalFirstRoundPicks, totalSwaps } from "@/data/picks";
 import { kbPlayers } from "@/data/kb-players";
@@ -55,10 +54,46 @@ interface KBChangelogEntry {
   changes: { article: string; description: string }[];
 }
 
+interface LatestEpisode {
+  title: string;
+  slug: string;
+  show_slug: string;
+  show_name: string;
+  thumbnail_url: string | null;
+  hot_moments_count: number;
+}
+
+interface FeaturedMoment {
+  quote: string;
+  topic: string;
+  fire_level: number;
+  show_name: string;
+  show_slug: string;
+  episode_slug: string;
+  timestamp_ms: number;
+}
+
+interface HomeStats {
+  articles: number;
+  picks: number;
+  lastPickYear: number;
+  shows: number;
+  episodes: number;
+  hotMoments: number;
+}
+
 interface KBDashboardProps {
   articles: KBArticleProps[];
   categories: KBCategoryProps[];
   changelog: KBChangelogEntry[];
+  latestEpisode?: LatestEpisode | null;
+  featuredMoment?: FeaturedMoment | null;
+  stats?: HomeStats;
+}
+
+function formatTs(ms: number): string {
+  const s = Math.floor(ms / 1000);
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
 }
 
 /* ═══════════════════════════════════════════
@@ -155,43 +190,46 @@ function TradeTree() {
   );
 }
 
-export default function KBDashboard({ articles, categories, changelog }: KBDashboardProps) {
-  const [showTradeTree, setShowTradeTree] = useState(true);
+export default function KBDashboard({ articles, categories, changelog, latestEpisode, featuredMoment, stats }: KBDashboardProps) {
+  const [showTradeTree, setShowTradeTree] = useState(false);
   const rumors = articles.filter(a => a.category === "rumors");
-  const tradeArticles = articles.filter(a => a.category === "trades");
-  const playerArticles = articles.filter(a => a.category === "players");
-  const conceptArticles = articles.filter(a => a.category === "concepts");
-  const draftArticles = articles.filter(a => a.category === "draft");
-  const seasonArticles = articles.filter(a => a.category === "seasons");
+
+  const topRumor = rumors[0] || null;
+  const latestChange = changelog[0]?.changes[0] || null;
+  const latestChangeDate = changelog[0]?.date || null;
+
+  const todayHasContent = Boolean(topRumor || latestEpisode || latestChange);
 
   return (
     <div className="min-h-screen bg-bg-primary">
 
       {/* ═══ 1. HERO ═══ */}
-      <section className="bg-bg-primary px-4 sm:px-8 pt-6 pb-8 border-b border-black/10 overflow-hidden">
-        <div className="max-w-4xl mx-auto overflow-hidden">
-          <div className="flex flex-col sm:flex-row gap-6 sm:gap-10 items-start">
-            <div className="flex-1">
-              <Image src="/logo2.png" alt="BK Grit" width={160} height={80} priority className="w-[120px] sm:w-[140px] h-auto mb-4" />
-              <h1 className="font-display font-black text-text-primary uppercase tracking-[-0.03em] leading-[0.85] text-2xl sm:text-4xl mb-3">
-                The Brooklyn Nets<br /><span className="text-brand-red">Wiki.</span>
-              </h1>
-              <p className="text-text-muted font-body text-sm max-w-md leading-relaxed mb-5">
-                Every trade, every pick, every prospect — traced, connected, and updated.
-              </p>
-              <KBSearch />
-              {/* Mini graph — below search on mobile */}
-              <div className="sm:hidden mt-4">
-                <KBMiniGraph />
-              </div>
-            </div>
-            {/* Mini graph — beside content on desktop */}
-            <div className="hidden sm:block shrink-0">
-              <KBMiniGraph />
-            </div>
+      <section className="bg-bg-primary px-4 sm:px-8 pt-8 pb-10 border-b border-black/10">
+        <div className="max-w-4xl mx-auto">
+          <Image src="/logo2.png" alt="BK Grit" width={160} height={80} priority className="w-[120px] sm:w-[140px] h-auto mb-5" />
+          <h1 className="font-display font-black text-text-primary uppercase tracking-[-0.03em] leading-[0.85] text-3xl sm:text-5xl mb-3">
+            The Brooklyn Nets <span className="text-brand-red">Wiki.</span>
+          </h1>
+          <p className="text-text-muted font-body text-sm sm:text-base max-w-xl leading-relaxed mb-6">
+            Every trade, every pick, every prospect — traced, connected, and updated.
+          </p>
+          <div className="max-w-md">
+            <KBSearch />
           </div>
         </div>
       </section>
+
+      {/* ═══ STATS STRIP ═══ */}
+      {stats && (
+        <section className="bg-black text-white px-4 sm:px-8 py-5 border-b-4 border-brand-red">
+          <div className="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <StatItem value={stats.articles} label="Wiki Articles" />
+            <StatItem value={stats.picks} label={`Picks thru ${stats.lastPickYear}`} color="text-brand-red" />
+            <StatItem value={stats.episodes} label="Podcast Episodes" />
+            <StatItem value={stats.hotMoments} label="Hot Moments" color="text-brand-red" />
+          </div>
+        </section>
+      )}
 
       {/* ═══ 2. THE STORY SO FAR ═══ */}
       <section className="bg-bg-primary px-4 sm:px-8 py-10 border-b-4 border-brand-red">
@@ -202,67 +240,149 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
         </div>
       </section>
 
-      {/* ═══ 3. WHAT'S HAPPENING NOW ═══ */}
-      {rumors.length > 0 && (
-        <section className="bg-bg-primary px-4 sm:px-8 py-10 border-b border-black/5">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="font-display font-black text-xl sm:text-2xl uppercase tracking-tight text-text-primary">
-                <span className="text-brand-red">What&apos;s</span> Happening Now
-              </h2>
-              <Link href="/kb/category/rumors" className="text-[10px] text-brand-red font-bold uppercase tracking-wider hover:underline">All Rumors</Link>
-            </div>
-            <div className="space-y-3">
-              {rumors.map(rumor => (
-                <Link key={rumor.slug} href={`/kb/${rumor.category}/${rumor.slug}`} className="block border-l-4 border-l-brand-red border border-black/5 p-4 hover:bg-bg-surface transition-colors group">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <p className="font-display font-black text-base uppercase tracking-tight text-text-primary group-hover:text-brand-red transition-colors">{rumor.title}</p>
-                      <div className="flex items-center gap-2 mt-2">
-                        <span className={`tag ${confColor[rumor.confidence]}`} style={{ fontSize: "9px" }}>{rumor.confidence} confidence</span>
-                        {rumor.tags.filter(t => t !== "rumor").slice(0, 2).map(tag => (
-                          <span key={tag} className="tag tag-blue" style={{ fontSize: "8px", padding: "1px 6px" }}>{tag}</span>
-                        ))}
-                      </div>
-                    </div>
-                    <span className="material-symbols-outlined text-text-muted/30 group-hover:text-brand-red text-lg transition-colors mt-1">arrow_forward</span>
-                  </div>
-                </Link>
-              ))}
-              {/* Fan Pulse link */}
-              <Link href="/kb/community/fan-pulse" className="block border-l-4 border-l-accent-blue border border-black/5 p-4 hover:bg-bg-surface transition-colors group">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex-1">
-                    <p className="font-display font-black text-base uppercase tracking-tight text-text-primary group-hover:text-accent-blue transition-colors">Fan Pulse</p>
-                    <p className="text-text-muted text-xs font-body mt-1">Live fan sentiment from Wire takes, player ratings, and polls</p>
-                  </div>
-                  <span className="material-symbols-outlined text-text-muted/30 group-hover:text-accent-blue text-lg transition-colors mt-1">arrow_forward</span>
-                </div>
+      {/* ═══ FEATURED HOT MOMENT ═══ */}
+      {featuredMoment && (
+        <section className="bg-black text-white px-4 sm:px-8 py-10 border-b border-white/10 relative overflow-hidden">
+          <div className="absolute -top-20 -right-10 w-96 h-96 bg-brand-red/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="max-w-4xl mx-auto relative">
+            <div className="flex items-center justify-between mb-5 flex-wrap gap-2">
+              <div className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-brand-red text-base" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  local_fire_department
+                </span>
+                <span className="font-display font-bold text-[10px] uppercase tracking-[0.3em] text-brand-red">
+                  Quote of the Moment
+                </span>
+              </div>
+              <Link
+                href="/hot-mic"
+                className="text-[10px] text-brand-red font-display font-bold uppercase tracking-wider hover:underline"
+              >
+                More on Hot Mic →
               </Link>
             </div>
+            <Link
+              href={`/podcasts/${featuredMoment.show_slug}/${featuredMoment.episode_slug}`}
+              className="block group"
+            >
+              <blockquote className="border-l-4 border-brand-red pl-5 sm:pl-7">
+                <p className="font-display font-black text-xl sm:text-3xl leading-[1.15] uppercase tracking-[-0.01em] text-white group-hover:text-brand-red transition-colors">
+                  &ldquo;{featuredMoment.quote}&rdquo;
+                </p>
+              </blockquote>
+              <div className="flex items-center justify-between mt-5 pl-5 sm:pl-7 flex-wrap gap-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-display font-bold uppercase tracking-wider bg-brand-red text-white px-2 py-0.5">
+                    {featuredMoment.topic}
+                  </span>
+                  <span className="text-white/40 text-[10px] font-body">
+                    {featuredMoment.show_name} · {formatTs(featuredMoment.timestamp_ms)}
+                  </span>
+                </div>
+                <div className="flex gap-0.5">
+                  {[1, 2, 3, 4, 5].map((n) => (
+                    <div
+                      key={n}
+                      className={`h-2 w-3 ${n <= featuredMoment.fire_level ? "bg-brand-red" : "bg-white/10"}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </Link>
           </div>
         </section>
       )}
 
-      {/* ═══ CONTRIBUTE CTA ═══ */}
-      <section className="bg-bg-primary px-4 sm:px-8 py-8 border-b border-black/5">
-        <div className="max-w-4xl mx-auto">
-          <Link href="/kb/submit" className="block bg-black p-6 hover:bg-black/90 transition-colors group">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div className="flex items-start gap-4">
-                <span className="material-symbols-outlined text-brand-red text-3xl mt-0.5" style={{ fontVariationSettings: "'FILL' 1" }}>add_circle</span>
-                <div>
-                  <p className="font-display font-black text-white text-base sm:text-lg uppercase tracking-tight group-hover:text-brand-red transition-colors">Help Build the Wiki</p>
-                  <p className="text-white/40 text-xs font-body mt-1 max-w-md">Found a Nets article, tweet, scouting report, or trade rumor? Submit it. The best sources get compiled into the wiki by our AI agents.</p>
-                </div>
-              </div>
-              <span className="bg-brand-red text-white font-display font-bold text-xs uppercase tracking-wider px-5 py-2.5 shrink-0 group-hover:bg-white group-hover:text-black transition-colors">
-                Submit a Source
-              </span>
+      {/* ═══ 2. TODAY ═══ */}
+      {todayHasContent && (
+        <section className="bg-bg-primary px-4 sm:px-8 py-8 border-b border-black/5">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="font-display font-black text-xl sm:text-2xl uppercase tracking-tight text-text-primary">
+                <span className="text-brand-red">Today</span> on BKGrit
+              </h2>
+              <span className="text-[10px] text-text-muted font-bold uppercase tracking-[0.15em]">Updated daily</span>
             </div>
-          </Link>
-        </div>
-      </section>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              {/* Rumor */}
+              {topRumor && (
+                <Link
+                  href={`/kb/${topRumor.category}/${topRumor.slug}`}
+                  className="group block border-l-4 border-l-brand-red border border-black/5 p-4 hover:bg-bg-surface transition-colors"
+                >
+                  <p className="text-[9px] font-display font-bold uppercase tracking-[0.2em] text-brand-red mb-2">
+                    Top Rumor
+                  </p>
+                  <p className="font-display font-black text-sm uppercase tracking-tight text-text-primary group-hover:text-brand-red transition-colors leading-tight line-clamp-3">
+                    {topRumor.title}
+                  </p>
+                  <div className="flex items-center gap-1.5 mt-3">
+                    <span className={`tag ${confColor[topRumor.confidence]}`} style={{ fontSize: "9px" }}>
+                      {topRumor.confidence} confidence
+                    </span>
+                  </div>
+                </Link>
+              )}
+
+              {/* Latest Hot Mic Episode */}
+              {latestEpisode && (
+                <Link
+                  href={`/podcasts/${latestEpisode.show_slug}/${latestEpisode.slug}`}
+                  className="group block border-l-4 border-l-accent-blue border border-black/5 hover:bg-bg-surface transition-colors overflow-hidden"
+                >
+                  {latestEpisode.thumbnail_url && (
+                    <div className="relative aspect-video bg-black overflow-hidden">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={latestEpisode.thumbnail_url}
+                        alt=""
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute top-2 left-2 bg-accent-blue text-white font-display font-bold text-[9px] uppercase tracking-[0.2em] px-2 py-0.5">
+                        Latest on Hot Mic
+                      </div>
+                    </div>
+                  )}
+                  <div className="p-4">
+                    {!latestEpisode.thumbnail_url && (
+                      <p className="text-[9px] font-display font-bold uppercase tracking-[0.2em] text-accent-blue mb-2">
+                        Latest on Hot Mic
+                      </p>
+                    )}
+                    <p className="font-display font-black text-sm uppercase tracking-tight text-text-primary group-hover:text-accent-blue transition-colors leading-tight line-clamp-2">
+                      {latestEpisode.title}
+                    </p>
+                    <div className="flex items-center gap-2 mt-2 text-[10px] text-text-muted font-bold uppercase tracking-wider">
+                      <span className="truncate">{latestEpisode.show_name}</span>
+                      {latestEpisode.hot_moments_count > 0 && (
+                        <>
+                          <span>·</span>
+                          <span className="shrink-0">{latestEpisode.hot_moments_count} hot moments</span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </Link>
+              )}
+
+              {/* Latest Wiki Update */}
+              {latestChange && (
+                <div className="border-l-4 border-l-accent-green border border-black/5 p-4">
+                  <p className="text-[9px] font-display font-bold uppercase tracking-[0.2em] text-accent-green mb-2">
+                    Wiki Update {latestChangeDate ? `· ${latestChangeDate}` : ""}
+                  </p>
+                  <p className="font-display font-black text-sm uppercase tracking-tight text-text-primary leading-tight line-clamp-2">
+                    {latestChange.article}
+                  </p>
+                  <p className="text-text-muted text-xs font-body mt-2 line-clamp-2 leading-snug">
+                    {latestChange.description}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ═══ 4. HOW WE GOT HERE — Trades ═══ */}
       <section className="bg-bg-primary px-4 sm:px-8 py-10 border-b border-black/5">
@@ -418,7 +538,7 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
             <span className="material-symbols-outlined text-sm text-brand-red" style={{ fontVariationSettings: "'FILL' 1" }}>groups</span>
             The Core
           </h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
             {PLAYERS.map(player => (
               <Link key={player.name} href={player.href} className="border border-black/10 p-4 hover:border-brand-red/30 transition-colors group">
                 <p className="font-display font-black text-sm tracking-tight uppercase group-hover:text-brand-red transition-colors">{player.name}</p>
@@ -430,20 +550,17 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
               </Link>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* ═══ 6. THE PEOPLE ═══ */}
-      <section className="bg-bg-primary px-4 sm:px-8 py-10 border-b border-black/5">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="font-display font-black text-xl sm:text-2xl uppercase tracking-tight text-text-primary mb-6">
-            Who&apos;s <span className="text-brand-red">Steering</span>
-          </h2>
+          {/* Leadership — folded from the former "Who's Steering" section */}
+          <h3 className="font-display font-bold text-[10px] uppercase tracking-[0.15em] text-text-muted mb-3 flex items-center gap-1.5">
+            <span className="material-symbols-outlined text-sm text-brand-red" style={{ fontVariationSettings: "'FILL' 1" }}>corporate_fare</span>
+            Leadership
+          </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Link href="/kb/front-office/sean-marks-era" className="border border-black/10 p-5 hover:border-brand-red/30 transition-colors group">
               <p className="font-display font-black text-base uppercase tracking-tight group-hover:text-brand-red transition-colors">Sean Marks</p>
               <p className="text-text-muted text-[10px] uppercase tracking-wider font-bold mt-0.5">General Manager</p>
-              <p className="text-text-secondary text-xs font-body mt-2 leading-relaxed">Best trade-maker in the NBA. Master trade-maker behind the rebuild&apos;s asset haul. Now faces the test he&apos;s never passed: developing draft picks into stars.</p>
+              <p className="text-text-secondary text-xs font-body mt-2 leading-relaxed">Master trade-maker behind the rebuild&apos;s asset haul. Now faces the test he&apos;s never passed: developing draft picks into stars.</p>
             </Link>
             <Link href="/kb/front-office/jordi-fernandez" className="border border-black/10 p-5 hover:border-brand-red/30 transition-colors group">
               <p className="font-display font-black text-base uppercase tracking-tight group-hover:text-brand-red transition-colors">Jordi Fernandez</p>
@@ -454,11 +571,11 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
         </div>
       </section>
 
-      {/* ═══ 7. DEEP DIVES — Browse the Wiki ═══ */}
+      {/* ═══ 6. BROWSE THE WIKI ═══ */}
       <section className="bg-bg-primary px-4 sm:px-8 py-10 border-b border-black/5">
         <div className="max-w-4xl mx-auto">
           <h2 className="font-display font-black text-xl sm:text-2xl uppercase tracking-tight text-text-primary mb-6">
-            Deep <span className="text-brand-red">Dives</span>
+            Browse the <span className="text-brand-red">Wiki</span>
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {categories.map(cat => (
@@ -487,29 +604,6 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
         </section>
       )}
 
-      {/* ═══ 9. EXPLORE ═══ */}
-      <section className="bg-bg-primary px-4 sm:px-8 py-10 border-b border-black/5">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <Link href="/kb/graph" className="bg-black text-white p-5 hover:bg-black/90 transition-colors group text-center">
-              <span className="material-symbols-outlined text-brand-red text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>hub</span>
-              <p className="font-display font-black text-sm uppercase tracking-tight mt-2 group-hover:text-brand-red transition-colors">Knowledge Graph</p>
-              <p className="text-white/30 text-xs font-body mt-1">See how everything connects</p>
-            </Link>
-            <Link href="/kb/submit" className="bg-black text-white p-5 hover:bg-black/90 transition-colors group text-center">
-              <span className="material-symbols-outlined text-brand-red text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>add_circle</span>
-              <p className="font-display font-black text-sm uppercase tracking-tight mt-2 group-hover:text-brand-red transition-colors">Submit a Source</p>
-              <p className="text-white/30 text-xs font-body mt-1">Help build the wiki</p>
-            </Link>
-            <Link href="/wire" className="bg-black text-white p-5 hover:bg-black/90 transition-colors group text-center">
-              <span className="material-symbols-outlined text-brand-red text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>forum</span>
-              <p className="font-display font-black text-sm uppercase tracking-tight mt-2 group-hover:text-brand-red transition-colors">The Wire</p>
-              <p className="text-white/30 text-xs font-body mt-1">Fan takes and discussion</p>
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* ═══ FOOTER ═══ */}
       <section className="bg-bg-primary px-4 sm:px-8 py-5 border-t border-black/10">
         <div className="max-w-4xl mx-auto text-center">
@@ -518,6 +612,19 @@ export default function KBDashboard({ articles, categories, changelog }: KBDashb
           </p>
         </div>
       </section>
+    </div>
+  );
+}
+
+function StatItem({ value, label, color = "text-white" }: { value: number; label: string; color?: string }) {
+  return (
+    <div>
+      <div className={`font-display font-black text-2xl sm:text-3xl leading-none tabular-nums ${color}`}>
+        {value}
+      </div>
+      <div className="text-[10px] text-white/40 font-bold uppercase tracking-[0.15em] mt-1">
+        {label}
+      </div>
     </div>
   );
 }
