@@ -1,5 +1,12 @@
 # Knowledge Base Changelog
 
+## 2026-04-18
+- **2025-26 Season** — Added 2026-04-18 roster snapshot and standings as sources; final record 20-62 and #3 lottery locked in
+- **Michael Porter Jr.** — Added 2026-04-18 raw article reference; conundrum article now sourced from both 04-14 and 04-18 clips
+- **Josh Minott** — Added 2026-04-18 roster snapshot source; NY Post article confirms he remains on active roster
+- **Rebuild Timeline** — Added Sean Marks rebuild timeline quotes from 2026-04-18 sources; Year 3 outlook remains unclear per Marks
+- **2026 Draft Positioning** — Confidence upgraded to high (was medium); 2026-04-18 standings and offseason draft article added; #3 slot confirmed
+
 ## 2026-04-17
 - **2025-26 Season** — Updated sources to include final 2026-04-17 roster snapshot and standings; season record 20-62, lottery position #3 confirmed
 - **Josh Minott** — Updated roster snapshot source to 2026-04-17; salary $2.4M confirmed on active roster

@@ -1,9 +1,9 @@
 ---
 title: 2026 Draft Positioning
 tags: [rumor, draft, "2026", lottery, tank]
-sources: [raw/stats/2026-04-14-standings.md, raw/beat-reporters/2026-04-14-rss-nets-accomplished-their-two-season-goals-with-lottery-fate-a.md, raw/beat-reporters/2026-04-14-espn-nba-offseason-2026-draft-free-agency-trade-targets-for-every.md]
-confidence: medium
-last_updated: 2026-04-14
+sources: [raw/stats/2026-04-14-standings.md, raw/beat-reporters/2026-04-14-rss-nets-accomplished-their-two-season-goals-with-lottery-fate-a.md, raw/beat-reporters/2026-04-14-espn-nba-offseason-2026-draft-free-agency-trade-targets-for-every.md, raw/stats/2026-04-18-standings.md, raw/beat-reporters/2026-04-18-espn-nba-offseason-draft-free-agency-trade-targets-for-eliminated.md]
+confidence: high
+last_updated: 2026-04-18
 status: active
 ---
 
