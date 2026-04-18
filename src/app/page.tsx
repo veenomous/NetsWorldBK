@@ -1,6 +1,7 @@
 import KBDashboard from "@/components/KBDashboard";
 import { getAllArticles, getCategories, getChangelog } from "@/lib/kb";
 import { getRecentEpisodes, getTopHotMoments, getHotMicStats } from "@/lib/podcasts-server";
+import { isThrowback } from "@/lib/podcasts";
 import { netsPicks, totalFirstRoundPicks, totalSwaps } from "@/data/picks";
 
 export const dynamic = "force-dynamic";
@@ -31,18 +32,19 @@ export default async function Home() {
 
   try {
     const [eps, moments, stats] = await Promise.all([
-      getRecentEpisodes(1),
+      getRecentEpisodes(10),
       getTopHotMoments(1),
       getHotMicStats(),
     ]);
-    if (eps[0] && eps[0].podcasts) {
+    const latest = eps.find((e) => e.podcasts && !isThrowback(e.created_at, e.published_at));
+    if (latest && latest.podcasts) {
       latestEpisode = {
-        title: eps[0].title,
-        slug: eps[0].slug,
-        show_slug: eps[0].podcasts.slug,
-        show_name: eps[0].podcasts.name,
-        thumbnail_url: eps[0].thumbnail_url,
-        hot_moments_count: Array.isArray(eps[0].hot_moments) ? eps[0].hot_moments.length : 0,
+        title: latest.title,
+        slug: latest.slug,
+        show_slug: latest.podcasts.slug,
+        show_name: latest.podcasts.name,
+        thumbnail_url: latest.thumbnail_url,
+        hot_moments_count: Array.isArray(latest.hot_moments) ? latest.hot_moments.length : 0,
       };
     }
     if (moments[0]) {
