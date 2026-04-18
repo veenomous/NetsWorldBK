@@ -135,7 +135,7 @@ export async function getPodcastBySlug(slug: string): Promise<Podcast | null> {
 
 export async function getEpisodesByPodcast(podcastId: string): Promise<PodcastEpisode[]> {
   return sbFetch<PodcastEpisode[]>(
-    `podcast_episodes?podcast_id=eq.${podcastId}&status=eq.ready&select=*&order=created_at.desc`,
+    `podcast_episodes?podcast_id=eq.${podcastId}&status=eq.ready&select=*&order=published_at.desc.nullslast,created_at.desc`,
   );
 }
 
