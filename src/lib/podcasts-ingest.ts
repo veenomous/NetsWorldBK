@@ -230,7 +230,7 @@ export async function submitAssemblyAI(audioUrl: string): Promise<string | null>
   const res = await fetch("https://api.assemblyai.com/v2/transcript", {
     method: "POST",
     headers: { Authorization: ASSEMBLYAI_KEY, "Content-Type": "application/json" },
-    body: JSON.stringify({ audio_url: audioUrl, speaker_labels: true }),
+    body: JSON.stringify({ audio_url: audioUrl, speaker_labels: true, speech_models: ["universal-2"] }),
   });
   if (!res.ok) {
     console.error("AssemblyAI submit failed:", res.status, (await res.text()).slice(0, 300));
