@@ -61,7 +61,7 @@ export default async function EpisodePage({
       <div className="bg-black text-white px-4 sm:px-8 pt-4 pb-6">
         <div className="max-w-5xl mx-auto">
           <nav className="flex items-center gap-2 text-xs font-body mb-4 flex-wrap">
-            <Link href="/podcasts" className="text-white/40 hover:text-white transition-colors">Podcasts</Link>
+            <Link href="/hot-mic" className="text-white/40 hover:text-white transition-colors">Hot Mic</Link>
             <span className="text-white/20">/</span>
             {ep.podcasts && (
               <>
