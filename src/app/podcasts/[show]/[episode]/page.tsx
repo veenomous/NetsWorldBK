@@ -26,13 +26,23 @@ export async function generateMetadata({
   const { show, episode } = await params;
   const ep = await getEpisode(show, episode);
   if (!ep) return { title: "Episode — BK Grit" };
+  const title = `${ep.title} — ${ep.podcasts?.name || "Podcast"} on BK Grit`;
+  const description = ep.summary || "Nets podcast episode on BKGrit";
+  const ogImage = `/api/podcasts/episodes/${ep.id}/og`;
   return {
-    title: `${ep.title} — ${ep.podcasts?.name || "Podcast"} on BK Grit`,
-    description: ep.summary || "Nets podcast episode on BKGrit",
+    title,
+    description,
     openGraph: {
       title: ep.title,
-      description: ep.summary || "",
-      images: ep.thumbnail_url ? [ep.thumbnail_url] : [],
+      description,
+      images: [{ url: ogImage, width: 1200, height: 630 }],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: ep.title,
+      description,
+      images: [ogImage],
     },
   };
 }
