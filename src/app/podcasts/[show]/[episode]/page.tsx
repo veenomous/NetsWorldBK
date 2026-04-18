@@ -1,10 +1,20 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getEpisode } from "@/lib/podcasts-server";
-import { detectWikiLinks } from "@/lib/podcasts";
+import { detectWikiLinks, isThrowback, episodeDisplayDate } from "@/lib/podcasts";
 import { formatTimestamp } from "@/lib/youtube";
 import EpisodeHotMoments from "@/components/EpisodeHotMoments";
 import EpisodeTranscript from "@/components/EpisodeTranscript";
+import EpisodeChapters from "@/components/EpisodeChapters";
+import { EpisodePlayerProvider } from "@/components/EpisodePlayerProvider";
+
+function formatEpDate(iso: string): string {
+  try {
+    return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  } catch {
+    return iso;
+  }
+}
 
 export const dynamic = "force-dynamic";
 
@@ -41,6 +51,9 @@ export default async function EpisodePage({
   const hotMoments = ep.hot_moments || [];
   const chapters = ep.chapters || [];
   const youtubeId = ep.youtube_id;
+  const audioUrl = !youtubeId ? ep.audio_url : null;
+  const throwback = isThrowback(ep.created_at, ep.published_at);
+  const displayDate = episodeDisplayDate(ep.created_at, ep.published_at);
 
   return (
     <div className="min-h-screen bg-bg-primary">
@@ -64,6 +77,16 @@ export default async function EpisodePage({
             {ep.title}
           </h1>
           <div className="flex items-center gap-3 mt-3 flex-wrap">
+            {throwback && (
+              <span className="bg-accent-blue/20 text-accent-blue border border-accent-blue/40 text-[10px] font-display font-bold uppercase tracking-[0.15em] px-2 py-1">
+                Throwback · {formatEpDate(displayDate)}
+              </span>
+            )}
+            {!throwback && ep.published_at && (
+              <span className="text-white/40 text-[10px] font-display font-bold uppercase tracking-[0.15em]">
+                {formatEpDate(ep.published_at)}
+              </span>
+            )}
             {ep.podcasts && (
               <Link
                 href={`/podcasts/${ep.podcasts.slug}`}
@@ -102,6 +125,7 @@ export default async function EpisodePage({
       <div className="h-1 bg-brand-red" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-8 py-8">
+        <EpisodePlayerProvider audioUrl={audioUrl}>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {/* MAIN COLUMN */}
           <div className="lg:col-span-2 space-y-6">
@@ -149,30 +173,7 @@ export default async function EpisodePage({
           <div className="space-y-6">
             {/* Chapters */}
             {chapters.length > 0 && (
-              <section className="border border-black/10 p-4">
-                <h2 className="font-display font-black text-xs uppercase tracking-[0.15em] text-text-muted mb-3">
-                  Chapters
-                </h2>
-                <ul className="space-y-2">
-                  {chapters.map((ch, i) => (
-                    <li key={i}>
-                      <a
-                        href={youtubeId ? `https://www.youtube.com/watch?v=${youtubeId}&t=${Math.floor(ch.start_ms / 1000)}s` : "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-start gap-2 group"
-                      >
-                        <span className="text-brand-red text-[10px] font-bold uppercase tracking-wider font-display tabular-nums shrink-0 mt-0.5">
-                          {formatTimestamp(ch.start_ms)}
-                        </span>
-                        <span className="text-text-primary text-xs font-body group-hover:text-brand-red transition-colors">
-                          {ch.title}
-                        </span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </section>
+              <EpisodeChapters chapters={chapters} youtubeId={youtubeId} />
             )}
 
             {/* Wiki Cross-Links */}
@@ -214,6 +215,7 @@ export default async function EpisodePage({
             )}
           </div>
         </div>
+        </EpisodePlayerProvider>
       </div>
     </div>
   );

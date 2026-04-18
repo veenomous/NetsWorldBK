@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { HotMoment } from "@/lib/podcasts";
 import { formatTimestamp } from "@/lib/youtube";
+import { useEpisodePlayer } from "./EpisodePlayerProvider";
 
 interface Props {
   episodeId: string;
@@ -34,6 +35,7 @@ export default function EpisodeHotMoments({
 }: Props) {
   const [copiedIdx, setCopiedIdx] = useState<number | null>(null);
   const [copiedThread, setCopiedThread] = useState(false);
+  const { seekTo, hasAudio } = useEpisodePlayer();
 
   function copyTweet(moment: HotMoment, idx: number) {
     const ytLink = youtubeId
@@ -81,7 +83,15 @@ export default function EpisodeHotMoments({
                   <span className="text-[10px] font-display font-bold uppercase tracking-wider bg-black text-white px-2 py-0.5">
                     {m.topic}
                   </span>
-                  {ytLink ? (
+                  {hasAudio ? (
+                    <button
+                      onClick={() => seekTo(m.timestamp_ms / 1000)}
+                      className="text-brand-red text-[11px] font-body font-bold tabular-nums hover:underline flex items-center gap-1"
+                    >
+                      <span className="material-symbols-outlined text-sm">play_arrow</span>
+                      {formatTimestamp(m.timestamp_ms)}
+                    </button>
+                  ) : ytLink ? (
                     <a
                       href={ytLink}
                       target="_blank"

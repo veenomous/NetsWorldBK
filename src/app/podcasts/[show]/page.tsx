@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPodcastBySlug, getEpisodesByPodcast } from "@/lib/podcasts-server";
+import { isThrowback, episodeDisplayDate } from "@/lib/podcasts";
 
 export const dynamic = "force-dynamic";
 
@@ -92,8 +93,13 @@ export default async function ShowPage({ params }: { params: Promise<{ show: str
                   )}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1 flex-wrap">
+                      {isThrowback(ep.created_at, ep.published_at) && (
+                        <span className="bg-accent-blue/15 text-accent-blue border border-accent-blue/30 text-[9px] tracking-[0.15em] uppercase font-bold px-1.5 py-0.5">
+                          Throwback
+                        </span>
+                      )}
                       <span className="text-text-muted text-[10px] tracking-[0.15em] uppercase font-bold">
-                        {formatDate(ep.created_at)}
+                        {formatDate(episodeDisplayDate(ep.created_at, ep.published_at))}
                       </span>
                       {ep.duration_seconds && (
                         <>

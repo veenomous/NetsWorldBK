@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { formatTimestamp } from "@/lib/youtube";
+import { useEpisodePlayer } from "./EpisodePlayerProvider";
 
 interface Props {
   segments: { text: string; offsetMs: number; durationMs: number }[];
@@ -11,6 +12,7 @@ interface Props {
 export default function EpisodeTranscript({ segments, youtubeId }: Props) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const { seekTo, hasAudio } = useEpisodePlayer();
 
   const filtered = query
     ? segments.filter((s) => s.text.toLowerCase().includes(query.toLowerCase()))
@@ -45,7 +47,14 @@ export default function EpisodeTranscript({ segments, youtubeId }: Props) {
           <div className="max-h-[500px] overflow-y-auto space-y-1">
             {filtered.slice(0, 500).map((s, i) => (
               <div key={i} className="flex gap-3 text-xs">
-                {youtubeId ? (
+                {hasAudio ? (
+                  <button
+                    onClick={() => seekTo(s.offsetMs / 1000)}
+                    className="text-brand-red font-body font-bold tabular-nums shrink-0 w-12 text-left hover:underline"
+                  >
+                    {formatTimestamp(s.offsetMs)}
+                  </button>
+                ) : youtubeId ? (
                   <a
                     href={`https://www.youtube.com/watch?v=${youtubeId}&t=${Math.floor(s.offsetMs / 1000)}s`}
                     target="_blank"
