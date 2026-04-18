@@ -34,6 +34,18 @@ export function slugify(name: string): string {
     .replace(/-+$/, "");
 }
 
+export function isThrowback(createdAt: string, publishedAt: string | null): boolean {
+  if (!publishedAt) return false;
+  const created = new Date(createdAt).getTime();
+  const published = new Date(publishedAt).getTime();
+  if (!created || !published) return false;
+  return created - published > 30 * 24 * 60 * 60 * 1000;
+}
+
+export function episodeDisplayDate(createdAt: string, publishedAt: string | null): string {
+  return publishedAt || createdAt;
+}
+
 export function channelUrlToSlug(channelUrl: string, channelName: string): string {
   const handleMatch = channelUrl.match(/\/@([^/?#]+)/);
   if (handleMatch) return slugify(handleMatch[1]);

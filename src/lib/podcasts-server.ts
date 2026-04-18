@@ -19,6 +19,7 @@ export interface PodcastEpisode {
   podcast_id: string;
   slug: string;
   youtube_id: string | null;
+  audio_url: string | null;
   source_url: string;
   title: string;
   description: string | null;
