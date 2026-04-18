@@ -5,7 +5,9 @@ import {
   getRecentSpaces,
   getTopHotMoments,
   getHotMicStats,
+  type PodcastEpisode,
 } from "@/lib/podcasts-server";
+import { isThrowback, episodeDisplayDate } from "@/lib/podcasts";
 
 export const metadata = {
   title: "Hot Mic — BK Grit",
@@ -37,13 +39,21 @@ function formatTs(ms: number): string {
 export default async function HotMicPage() {
   const [shows, episodes, spaces, hotMoments, stats] = await Promise.all([
     getAllPodcasts(),
-    getRecentEpisodes(12),
+    getRecentEpisodes(30),
     getRecentSpaces(6),
     getTopHotMoments(6),
     getHotMicStats(),
   ]);
 
-  const featured = episodes[0];
+  const newEpisodes = episodes
+    .filter((ep) => !isThrowback(ep.created_at, ep.published_at))
+    .sort((a, b) => {
+      const aDate = a.published_at || a.created_at;
+      const bDate = b.published_at || b.created_at;
+      return new Date(bDate).getTime() - new Date(aDate).getTime();
+    });
+  const throwbacks = episodes.filter((ep) => isThrowback(ep.created_at, ep.published_at));
+  const featured = newEpisodes[0];
 
   return (
     <div className="min-h-screen bg-bg-primary">
@@ -123,7 +133,7 @@ export default async function HotMicPage() {
                     </span>
                     <span className="text-text-muted text-[10px]">·</span>
                     <span className="text-text-muted text-[10px] font-bold uppercase tracking-wider">
-                      {formatDate(featured.created_at)}
+                      {formatDate(episodeDisplayDate(featured.created_at, featured.published_at))}
                     </span>
                     {featured.duration_seconds && (
                       <>
@@ -248,50 +258,32 @@ export default async function HotMicPage() {
           </section>
         )}
 
-        {/* EPISODES */}
-        {episodes.length > 1 && (
+        {/* NEW EPISODES */}
+        {newEpisodes.length > 1 && (
           <section>
-            <div className="flex items-center justify-between mb-6">
-              <SectionLabel noMargin>Recent Episodes</SectionLabel>
-              <Link href="/podcasts" className="text-[10px] text-brand-red font-display font-bold uppercase tracking-wider hover:underline">
-                All Episodes →
-              </Link>
+            <SectionLabel>New Episodes</SectionLabel>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {newEpisodes.slice(1, 9).map((ep) => (
+                <EpisodeRow key={ep.id} ep={ep} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* THROWBACKS */}
+        {throwbacks.length > 0 && (
+          <section>
+            <div className="flex items-baseline gap-3 mb-6 flex-wrap">
+              <SectionLabel noMargin>
+                <span className="text-accent-blue">Throwback</span> Picks
+              </SectionLabel>
+              <p className="text-text-muted text-[11px] font-body italic">
+                Classics pulled back into the feed for context.
+              </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {episodes.slice(1, 9).map((ep) => (
-                <Link
-                  key={ep.id}
-                  href={`/podcasts/${ep.podcasts?.slug}/${ep.slug}`}
-                  className="group flex gap-3 border border-black/10 bg-white p-3 hover:border-brand-red/40 transition-colors"
-                >
-                  {ep.thumbnail_url && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={ep.thumbnail_url}
-                      alt=""
-                      className="w-24 h-16 object-cover flex-shrink-0"
-                    />
-                  )}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-brand-red text-[9px] font-display font-bold uppercase tracking-wider truncate">
-                        {ep.podcasts?.name}
-                      </span>
-                      <span className="text-text-muted text-[9px]">·</span>
-                      <span className="text-text-muted text-[9px] font-bold uppercase tracking-wider shrink-0">
-                        {formatDate(ep.created_at)}
-                      </span>
-                    </div>
-                    <p className="font-display font-black text-xs uppercase tracking-tight text-text-primary group-hover:text-brand-red transition-colors line-clamp-2 leading-tight">
-                      {ep.title}
-                    </p>
-                    {ep.hot_moments && (
-                      <p className="text-text-muted text-[10px] font-bold uppercase tracking-wider mt-1">
-                        {ep.hot_moments.length} hot moments
-                      </p>
-                    )}
-                  </div>
-                </Link>
+              {throwbacks.slice(0, 6).map((ep) => (
+                <EpisodeRow key={ep.id} ep={ep} />
               ))}
             </div>
           </section>
@@ -375,6 +367,49 @@ export default async function HotMicPage() {
         )}
       </div>
     </div>
+  );
+}
+
+function EpisodeRow({ ep }: { ep: PodcastEpisode }) {
+  const throwback = isThrowback(ep.created_at, ep.published_at);
+  return (
+    <Link
+      href={`/podcasts/${ep.podcasts?.slug}/${ep.slug}`}
+      className="group flex gap-3 border border-black/10 bg-white p-3 hover:border-brand-red/40 transition-colors"
+    >
+      {ep.thumbnail_url && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={ep.thumbnail_url}
+          alt=""
+          className="w-24 h-16 object-cover flex-shrink-0"
+        />
+      )}
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-2 mb-1 flex-wrap">
+          {throwback && (
+            <span className="bg-accent-blue/15 text-accent-blue border border-accent-blue/30 text-[9px] tracking-[0.15em] uppercase font-bold px-1.5 py-0.5">
+              Throwback
+            </span>
+          )}
+          <span className="text-brand-red text-[9px] font-display font-bold uppercase tracking-wider truncate">
+            {ep.podcasts?.name}
+          </span>
+          <span className="text-text-muted text-[9px]">·</span>
+          <span className="text-text-muted text-[9px] font-bold uppercase tracking-wider shrink-0">
+            {formatDate(episodeDisplayDate(ep.created_at, ep.published_at))}
+          </span>
+        </div>
+        <p className="font-display font-black text-xs uppercase tracking-tight text-text-primary group-hover:text-brand-red transition-colors line-clamp-2 leading-tight">
+          {ep.title}
+        </p>
+        {ep.hot_moments && (
+          <p className="text-text-muted text-[10px] font-bold uppercase tracking-wider mt-1">
+            {ep.hot_moments.length} hot moments
+          </p>
+        )}
+      </div>
+    </Link>
   );
 }
 

@@ -41,7 +41,7 @@ export default async function ShowPage({ params }: { params: Promise<{ show: str
       <div className="bg-black text-white px-4 sm:px-8 pt-4 pb-6">
         <div className="max-w-4xl mx-auto">
           <nav className="flex items-center gap-2 text-xs font-body mb-4">
-            <Link href="/podcasts" className="text-white/40 hover:text-white transition-colors">&larr; Podcasts</Link>
+            <Link href="/hot-mic" className="text-white/40 hover:text-white transition-colors">&larr; Hot Mic</Link>
           </nav>
           <h1 className="font-display font-black text-2xl sm:text-4xl uppercase tracking-tight">
             {podcast.name}
