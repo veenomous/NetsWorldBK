@@ -95,6 +95,14 @@ export default function TweetsPage() {
               <div key={tweet.id} className="border border-black/10 p-4">
                 <p className="text-text-primary text-sm font-body leading-relaxed mb-3">{tweet.tweet_text}</p>
                 <div className="flex items-center gap-2 flex-wrap">
+                  <a
+                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet.tweet_text)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1.5 bg-brand-red text-white font-display font-bold text-[10px] uppercase tracking-wider hover:bg-black transition-colors inline-flex items-center gap-1"
+                  >
+                    Post on X ↗
+                  </a>
                   <button onClick={() => copyTweet(tweet.id, tweet.tweet_text)}
                     className={`px-3 py-1.5 font-display font-bold text-[10px] uppercase tracking-wider transition-colors ${
                       copiedId === tweet.id ? "bg-accent-green text-white" : "bg-black text-white hover:bg-brand-red"
