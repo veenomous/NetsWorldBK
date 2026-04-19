@@ -3,16 +3,16 @@ title: Fan Pulse
 tags: [fan-pulse, sentiment, community, wire, ratings]
 sources: []
 confidence: high
-last_updated: 2026-04-18
+last_updated: 2026-04-19
 ---
 
 ## Summary
 A weekly snapshot of Brooklyn Nets fan sentiment compiled from Wire takes, player ratings, and community polls on BKGrit. This article is auto-generated from real fan data — no editorial spin, just what the community is saying.
 
 ## Key Insights
-- 35 recent takes on The Wire
+- 45 recent takes on The Wire
 - Total engagement: 2225 agrees, 1017 disagrees
-- Most discussed topics: Podcast (24), Hot Take (3), Roster (3)
+- Most discussed topics: Podcast (34), Hot Take (3), Roster (3)
 - 4 players rated by fans
 - 12 polls with responses
 

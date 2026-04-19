@@ -1,9 +1,9 @@
 ---
 title: MPJ Trade Buzz
 tags: [rumor, trade, michael-porter-jr, offseason]
-sources: [raw/beat-reporters/2026-04-14-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md]
+sources: [raw/beat-reporters/2026-04-14-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/beat-reporters/2026-04-19-espn-nba-offseason-draft-free-agency-trade-targets-for-eliminated.md]
 confidence: low
-last_updated: 2026-04-14
+last_updated: 2026-04-19
 status: active
 ---
 

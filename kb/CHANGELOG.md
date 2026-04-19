@@ -1,5 +1,13 @@
 # Knowledge Base Changelog
 
+## 2026-04-19
+- **2025-26 Season** — Added 2026-04-19 roster snapshot and standings sources; season final record confirmed 20-62, #3 lottery
+- **Sean Marks Era** — Added 2026-04-19 RSS article recirculation; rebuild timeline posture remains unchanged
+- **Josh Minott** — Added 2026-04-19 sources; NY Post article recirculated via RSS feed
+- **Michael Porter Jr.** — Added 2026-04-19 RSS article recirculation and roster snapshot; trade buzz remains status: low but active
+- **Rebuild Timeline** — Added 2026-04-19 standings confirmation; Year 2 complete, Year 3 direction still murky per Marks
+- **MPJ Trade Buzz** — Added ESPN offseason preview as source; no new trade developments reported
+
 ## 2026-04-18
 - **2025-26 Season** — Added 2026-04-18 roster snapshot and standings as sources; final record 20-62 and #3 lottery locked in
 - **Michael Porter Jr.** — Added 2026-04-18 raw article reference; conundrum article now sourced from both 04-14 and 04-18 clips

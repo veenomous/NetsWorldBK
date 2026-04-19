@@ -1,9 +1,9 @@
 ---
 title: Sean Marks Era
 tags: [front-office, sean-marks, gm, rebuild, strategy]
-sources: [raw/beat-reporters/nets-rebuild-timeline.md, raw/transactions/2023-kd-trade.md, raw/transactions/2024-mikal-bridges-trade.md, raw/transactions/2025-cam-johnson-mpj-trade.md, raw/transactions/2025-nba-draft-results.md, raw/beat-reporters/2026-04-14-rss-sean-marks-leaves-nets-8217-rebuild-timeline-murky-8216-you.md, raw/beat-reporters/2026-04-14-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md]
+sources: [raw/beat-reporters/nets-rebuild-timeline.md, raw/transactions/2023-kd-trade.md, raw/transactions/2024-mikal-bridges-trade.md, raw/transactions/2025-cam-johnson-mpj-trade.md, raw/transactions/2025-nba-draft-results.md, raw/beat-reporters/2026-04-14-rss-sean-marks-leaves-nets-8217-rebuild-timeline-murky-8216-you.md, raw/beat-reporters/2026-04-14-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/beat-reporters/2026-04-19-rss-sean-marks-leaves-nets-8217-rebuild-timeline-murky-8216-you.md]
 confidence: high
-last_updated: 2026-04-14
+last_updated: 2026-04-19
 ---
 
 ## Summary
