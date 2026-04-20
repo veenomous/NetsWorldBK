@@ -11,6 +11,7 @@ const navLinks = [
   { href: "/wire", label: "The Wire" },
   { href: "/press", label: "The Press" },
   { href: "/gm-mode", label: "The War Room" },
+  { href: "/simulator", label: "Lottery Sim" },
   { href: "/kb/graph", label: "Graph" },
   { href: "/kb/submit", label: "Submit" },
 ];
