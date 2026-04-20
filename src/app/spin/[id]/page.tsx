@@ -6,7 +6,9 @@ import type { Metadata } from "next";
 export const dynamic = "force-dynamic";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://kijbuyyzetkxgcrphtjd.supabase.co";
-const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+const SUPABASE_KEY =
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtpamJ1eXl6ZXRreGdjcnBodGpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzMzg2NTksImV4cCI6MjA4OTkxNDY1OX0.8qJe14118lGBo_QsZ5_VAm00NmIbnGraeteQGRiWyeU";
 
 interface SpinRow {
   id: string;
@@ -21,13 +23,17 @@ interface SpinRow {
 
 async function getSpin(id: string): Promise<SpinRow | null> {
   if (!id) return null;
-  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-  const { data } = await supabase
-    .from("lottery_spins")
-    .select("id, nets_pick, top_4, original_slot, spot_change, display_name, x_handle, spun_at")
-    .eq("id", id)
-    .maybeSingle();
-  return (data as SpinRow | null) ?? null;
+  try {
+    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+    const { data } = await supabase
+      .from("lottery_spins")
+      .select("id, nets_pick, top_4, original_slot, spot_change, display_name, x_handle, spun_at")
+      .eq("id", id)
+      .maybeSingle();
+    return (data as SpinRow | null) ?? null;
+  } catch {
+    return null;
+  }
 }
 
 export async function generateMetadata({
