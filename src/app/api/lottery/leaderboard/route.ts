@@ -36,6 +36,7 @@ export async function GET(req: NextRequest) {
   const { data, error } = await supabase
     .from("lottery_spins")
     .select("visitor_id, x_handle, display_name, nets_pick, top_4, spun_at")
+    .not("x_handle", "is", null)
     .order("spun_at", { ascending: false })
     .limit(5000);
 
