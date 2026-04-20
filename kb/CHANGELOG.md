@@ -1,5 +1,11 @@
 # Knowledge Base Changelog
 
+## 2026-04-20
+- **2025-26 Season** — Added 2026-04-20 roster snapshot and standings as final-season sources; regular season record confirmed 20-62, #3 lottery locked in
+- **Michael Porter Jr.** — Added 2026-04-20 roster snapshot as source; $38.3M salary confirmed on final roster
+- **Josh Minott** — Added 2026-04-20 roster snapshot as source; $2.4M salary confirmed on final roster as of season close
+- **INDEX.md** — Updated last_compiled to 2026-04-20
+
 ## 2026-04-19
 - **2025-26 Season** — Added 2026-04-19 roster snapshot and standings sources; season final record confirmed 20-62, #3 lottery
 - **Sean Marks Era** — Added 2026-04-19 RSS article recirculation; rebuild timeline posture remains unchanged
