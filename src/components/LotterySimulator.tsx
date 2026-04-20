@@ -165,14 +165,6 @@ export default function LotterySimulator() {
                   {remaining}/{spin?.cap ?? 10} left today
                 </span>
               )}
-              {spin && (
-                <button
-                  onClick={reset}
-                  className="text-[11px] font-display font-bold uppercase tracking-wider text-white/60 hover:text-brand-red transition-colors"
-                >
-                  Reset
-                </button>
-              )}
               <Link
                 href="/simulator/leaderboard"
                 className="text-[11px] font-display font-bold uppercase tracking-wider text-white/60 hover:text-brand-red transition-colors"
@@ -314,19 +306,29 @@ export default function LotterySimulator() {
         {/* Spin button + session strip + share */}
         <section className="border border-black/10 bg-white p-6 sm:p-8">
           <div className="flex flex-col items-center gap-4">
-            <button
-              onClick={runSim}
-              disabled={isSpinning || remaining === 0}
-              className={`font-display font-black text-2xl sm:text-3xl uppercase tracking-tight px-12 py-6 transition-colors w-full sm:w-auto ${
-                isSpinning
-                  ? "bg-black/10 text-black/30 cursor-wait"
-                  : remaining === 0
-                  ? "bg-black/10 text-black/30 cursor-not-allowed"
-                  : "bg-brand-red text-white hover:bg-black"
-              }`}
-            >
-              {isSpinning ? "Drawing..." : spin ? "Spin Again" : "Spin Lottery"}
-            </button>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+              <button
+                onClick={runSim}
+                disabled={isSpinning || remaining === 0}
+                className={`font-display font-black text-2xl sm:text-3xl uppercase tracking-tight px-12 py-6 transition-colors ${
+                  isSpinning
+                    ? "bg-black/10 text-black/30 cursor-wait"
+                    : remaining === 0
+                    ? "bg-black/10 text-black/30 cursor-not-allowed"
+                    : "bg-brand-red text-white hover:bg-black"
+                }`}
+              >
+                {isSpinning ? "Drawing..." : spin ? "Spin Again" : "Spin Lottery"}
+              </button>
+              {spin && (
+                <button
+                  onClick={reset}
+                  className="font-display font-black text-2xl sm:text-3xl uppercase tracking-tight px-12 py-6 border-2 border-black bg-white text-black hover:bg-black hover:text-white transition-colors"
+                >
+                  Reset
+                </button>
+              )}
+            </div>
 
             {error && <p className="text-brand-red text-xs font-body">{error}</p>}
 
