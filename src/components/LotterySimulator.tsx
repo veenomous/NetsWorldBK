@@ -4,6 +4,8 @@ import { useState, useCallback, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { getVisitorId } from "@/lib/supabase";
+import { useStandings } from "@/lib/useStandings";
+import { lotteryOdds } from "@/data/standings";
 import type { SimulationResult } from "@/lib/lottery";
 
 interface SpinResponse {
@@ -19,6 +21,7 @@ export default function LotterySimulator() {
   const { data: session } = useSession();
   const sessionUser = session?.user as { xHandle?: string; name?: string } | undefined;
   const xHandle = sessionUser?.xHandle || sessionUser?.name || null;
+  const { lottery, isLoading: standingsLoading } = useStandings();
 
   const [spin, setSpin] = useState<SpinResponse | null>(null);
   const [isSpinning, setIsSpinning] = useState(false);
@@ -115,6 +118,71 @@ export default function LotterySimulator() {
       <div className="h-1 bg-brand-red" />
 
       <div className="max-w-3xl mx-auto px-4 sm:px-8 py-8 space-y-8">
+        {/* Odds table */}
+        <section>
+          <div className="flex items-baseline justify-between mb-3">
+            <h2 className="font-display font-black text-xs uppercase tracking-[0.15em] text-text-muted">
+              Lottery <span className="text-brand-red">Odds</span>
+            </h2>
+            <span className="text-[10px] font-display font-bold uppercase tracking-wider text-text-muted">
+              {standingsLoading ? "Loading" : "Current standings"}
+            </span>
+          </div>
+          <div className="border border-black/10 bg-white overflow-x-auto">
+            <table className="w-full text-xs font-body tabular-nums">
+              <thead>
+                <tr className="border-b border-black/10 bg-bg-surface/50">
+                  <th className="text-left px-3 py-2 font-display font-bold text-[10px] uppercase tracking-wider text-text-muted">#</th>
+                  <th className="text-left px-2 py-2 font-display font-bold text-[10px] uppercase tracking-wider text-text-muted">Team</th>
+                  <th className="text-right px-2 py-2 font-display font-bold text-[10px] uppercase tracking-wider text-text-muted">Rec</th>
+                  <th className="text-right px-2 py-2 font-display font-bold text-[10px] uppercase tracking-wider text-brand-red">#1</th>
+                  <th className="text-right px-2 py-2 font-display font-bold text-[10px] uppercase tracking-wider text-text-muted hidden sm:table-cell">#2</th>
+                  <th className="text-right px-2 py-2 font-display font-bold text-[10px] uppercase tracking-wider text-text-muted hidden sm:table-cell">#3</th>
+                  <th className="text-right px-2 py-2 font-display font-bold text-[10px] uppercase tracking-wider text-text-muted hidden sm:table-cell">#4</th>
+                  <th className="text-right px-3 py-2 font-display font-bold text-[10px] uppercase tracking-wider text-text-muted">Top-4</th>
+                </tr>
+              </thead>
+              <tbody>
+                {lottery.map((team) => {
+                  const odds = lotteryOdds[team.lotteryRank] || [];
+                  const o1 = odds[0] ?? 0;
+                  const o2 = odds[1] ?? 0;
+                  const o3 = odds[2] ?? 0;
+                  const o4 = odds[3] ?? 0;
+                  const top4 = o1 + o2 + o3 + o4;
+                  const isBKN = team.abbrev === "BKN";
+                  return (
+                    <tr
+                      key={team.abbrev}
+                      className={`border-b border-black/5 last:border-b-0 ${isBKN ? "bg-brand-red/5" : ""}`}
+                    >
+                      <td className={`px-3 py-1.5 font-display font-black ${isBKN ? "text-brand-red" : "text-black/30"}`}>
+                        {team.lotteryRank}
+                      </td>
+                      <td className={`px-2 py-1.5 font-display font-bold ${isBKN ? "text-brand-red" : "text-text-primary"}`}>
+                        <span className="sm:hidden">{team.abbrev}</span>
+                        <span className="hidden sm:inline">{team.team}</span>
+                      </td>
+                      <td className="px-2 py-1.5 text-right text-text-muted">
+                        {team.wins}-{team.losses}
+                      </td>
+                      <td className={`px-2 py-1.5 text-right font-bold ${isBKN ? "text-brand-red" : "text-text-primary"}`}>
+                        {o1.toFixed(1)}
+                      </td>
+                      <td className="px-2 py-1.5 text-right text-text-muted hidden sm:table-cell">{o2.toFixed(1)}</td>
+                      <td className="px-2 py-1.5 text-right text-text-muted hidden sm:table-cell">{o3.toFixed(1)}</td>
+                      <td className="px-2 py-1.5 text-right text-text-muted hidden sm:table-cell">{o4.toFixed(1)}</td>
+                      <td className={`px-3 py-1.5 text-right font-bold ${isBKN ? "text-brand-red" : "text-text-primary"}`}>
+                        {top4.toFixed(1)}%
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
         {/* Spin button + session strip */}
         <section className="border border-black/10 bg-white p-6 sm:p-8">
           <div className="flex flex-col items-center gap-4">

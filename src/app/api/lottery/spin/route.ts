@@ -6,11 +6,14 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://kijbuyyzetkxgcrphtjd.supabase.co";
-const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+const SUPABASE_KEY =
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtpamJ1eXl6ZXRreGdjcnBodGpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzMzg2NTksImV4cCI6MjA4OTkxNDY1OX0.8qJe14118lGBo_QsZ5_VAm00NmIbnGraeteQGRiWyeU";
 
 const DAILY_CAP = 10;
 
 export async function POST(req: NextRequest) {
+  try {
   const body = await req.json().catch(() => ({}));
   const visitorId = typeof body.visitor_id === "string" ? body.visitor_id.slice(0, 64) : "";
   const xHandle = typeof body.x_handle === "string" ? body.x_handle.slice(0, 60) : null;
@@ -72,4 +75,8 @@ export async function POST(req: NextRequest) {
     remaining,
     cap: DAILY_CAP,
   });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    return NextResponse.json({ error: msg || "Server error" }, { status: 500 });
+  }
 }
