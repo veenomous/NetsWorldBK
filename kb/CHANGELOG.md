@@ -1,5 +1,10 @@
 # Knowledge Base Changelog
 
+## 2026-04-21
+- **Jordi Fernandez** — Added 2026-04-21 contract extension sources (ESPN, RSS); signed multiyear extension with entire coaching staff
+- **2025-26 Season** — Added 2026-04-21 roster snapshot and standings as final-season sources; record confirmed 20-62, #3 lottery locked in
+- **Rebuild Timeline** — Added 2026-04-21 standings confirmation; Year 2 complete with final record and lottery positioning
+
 ## 2026-04-20
 - **2025-26 Season** — Added 2026-04-20 roster snapshot and standings as final-season sources; regular season record confirmed 20-62, #3 lottery locked in
 - **Michael Porter Jr.** — Added 2026-04-20 roster snapshot as source; $38.3M salary confirmed on final roster

@@ -1,9 +1,9 @@
 ---
 title: Michael Porter Jr.
 tags: [player, forward, mpj, current-roster, scorer]
-sources: [raw/transactions/2025-cam-johnson-mpj-trade.md, raw/beat-reporters/2026-04-14-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/beat-reporters/2026-04-19-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/stats/2026-04-19-roster-snapshot.md, raw/stats/2026-04-20-roster-snapshot.md]
+sources: [raw/transactions/2025-cam-johnson-mpj-trade.md, raw/beat-reporters/2026-04-14-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/beat-reporters/2026-04-19-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/stats/2026-04-19-roster-snapshot.md, raw/stats/2026-04-20-roster-snapshot.md, raw/stats/2026-04-21-roster-snapshot.md]
 confidence: high
-last_updated: 2026-04-20
+last_updated: 2026-04-21
 ---
 
 ## Summary

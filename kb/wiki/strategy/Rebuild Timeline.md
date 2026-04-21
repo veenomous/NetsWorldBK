@@ -1,9 +1,9 @@
 ---
 title: Rebuild Timeline
 tags: [concepts, rebuild, timeline, projection, competitive-window]
-sources: [raw/beat-reporters/nets-rebuild-timeline.md, raw/transactions/2025-nba-draft-results.md, raw/beat-reporters/2026-04-14-rss-sean-marks-leaves-nets-8217-rebuild-timeline-murky-8216-you.md, raw/beat-reporters/2026-04-14-rss-nets-accomplished-their-two-season-goals-with-lottery-fate-a.md, raw/beat-reporters/2026-04-19-rss-sean-marks-leaves-nets-8217-rebuild-timeline-murky-8216-you.md, raw/stats/2026-04-19-standings.md]
+sources: [raw/beat-reporters/nets-rebuild-timeline.md, raw/transactions/2025-nba-draft-results.md, raw/beat-reporters/2026-04-14-rss-sean-marks-leaves-nets-8217-rebuild-timeline-murky-8216-you.md, raw/beat-reporters/2026-04-14-rss-nets-accomplished-their-two-season-goals-with-lottery-fate-a.md, raw/beat-reporters/2026-04-19-rss-sean-marks-leaves-nets-8217-rebuild-timeline-murky-8216-you.md, raw/stats/2026-04-19-standings.md, raw/stats/2026-04-21-standings.md]
 confidence: medium
-last_updated: 2026-04-19
+last_updated: 2026-04-21
 ---
 
 ## Summary
