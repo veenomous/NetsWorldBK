@@ -1,5 +1,10 @@
 # Knowledge Base Changelog
 
+## 2026-04-23
+- **2025-26 Season** — Added 2026-04-23 roster snapshot (19 players) and standings (20-62, #3 lottery confirmed); season documentation finalized
+- **Jordi Fernandez** — Added 2026-04-23 sources confirming multiyear contract extensions; confidence upgraded to high
+- **INDEX.md** — Updated last_compiled to 2026-04-23
+
 ## 2026-04-22
 - **Multiple articles** — Updated sources to include final 2026-04-22 roster snapshot and standings
 - **2025-26 Season** — Added 2026-04-22 roster snapshot as final-season source

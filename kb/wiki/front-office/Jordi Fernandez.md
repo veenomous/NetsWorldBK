@@ -1,9 +1,9 @@
 ---
 title: Jordi Fernandez
 tags: [coach, head-coach, jordi-fernandez, development, spanish]
-sources: [raw/beat-reporters/nets-rebuild-timeline.md, raw/beat-reporters/2026-04-20-espn-nets-sign-coach-jordi-fernandez-staff-to-contract-extensions.md, raw/beat-reporters/2026-04-20-rss-nets-extend-jordi-fernandez-staff-with-multi-year-contracts.md]
-confidence: medium
-last_updated: 2026-04-22
+sources: [raw/beat-reporters/nets-rebuild-timeline.md, raw/beat-reporters/2026-04-20-espn-nets-sign-coach-jordi-fernandez-staff-to-contract-extensions.md, raw/beat-reporters/2026-04-20-rss-nets-extend-jordi-fernandez-staff-with-multi-year-contracts.md, raw/beat-reporters/2026-04-23-espn-nets-sign-coach-jordi-fernandez-staff-to-contract-extensions.md, raw/beat-reporters/2026-04-23-rss-nets-extend-jordi-fernandez-staff-with-multi-year-contracts.md]
+confidence: high
+last_updated: 2026-04-23
 ---
 
 ## Summary
