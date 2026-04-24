@@ -1,5 +1,13 @@
 # Knowledge Base Changelog
 
+## 2026-04-24
+- **Multiple articles** — Updated sources and last_updated dates to reflect final 2026-04-24 roster snapshot and standings
+- **2025-26 Season** — Added 2026-04-24 roster (19 players) and standings (20-62, #3 lottery) as final season sources
+- **Jordi Fernandez** — Added 2026-04-24 ESPN/RSS sources confirming multiyear contract extension coverage continued into today's news cycle
+- **Sean Marks Era** — Added 2026-04-24 RSS article recirculation; rebuild timeline stance remains unchanged per "you just never know"
+- **Rebuild Timeline** — Added 2026-04-24 final standings confirmation; Year 2 complete
+- **Josh Minott** — Added 2026-04-24 roster snapshot as final season confirmation source
+
 ## 2026-04-23
 - **2025-26 Season** — Added 2026-04-23 roster snapshot (19 players) and standings (20-62, #3 lottery confirmed); season documentation finalized
 - **Jordi Fernandez** — Added 2026-04-23 sources confirming multiyear contract extensions; confidence upgraded to high

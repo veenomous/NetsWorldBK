@@ -1,9 +1,9 @@
 ---
 title: Jordi Fernandez
 tags: [coach, head-coach, jordi-fernandez, development, spanish]
-sources: [raw/beat-reporters/nets-rebuild-timeline.md, raw/beat-reporters/2026-04-20-espn-nets-sign-coach-jordi-fernandez-staff-to-contract-extensions.md, raw/beat-reporters/2026-04-20-rss-nets-extend-jordi-fernandez-staff-with-multi-year-contracts.md, raw/beat-reporters/2026-04-23-espn-nets-sign-coach-jordi-fernandez-staff-to-contract-extensions.md, raw/beat-reporters/2026-04-23-rss-nets-extend-jordi-fernandez-staff-with-multi-year-contracts.md]
+sources: [raw/beat-reporters/nets-rebuild-timeline.md, raw/beat-reporters/2026-04-20-espn-nets-sign-coach-jordi-fernandez-staff-to-contract-extensions.md, raw/beat-reporters/2026-04-20-rss-nets-extend-jordi-fernandez-staff-with-multi-year-contracts.md, raw/beat-reporters/2026-04-23-espn-nets-sign-coach-jordi-fernandez-staff-to-contract-extensions.md, raw/beat-reporters/2026-04-23-rss-nets-extend-jordi-fernandez-staff-with-multi-year-contracts.md, raw/beat-reporters/2026-04-24-espn-nets-sign-coach-jordi-fernandez-staff-to-contract-extensions.md, raw/beat-reporters/2026-04-24-rss-nets-extend-jordi-fernandez-staff-with-multi-year-contracts.md, raw/beat-reporters/2026-04-24-rss-jordi-fernandez-grateful-for-extension-sets-sights-on-next-s.md]
 confidence: high
-last_updated: 2026-04-23
+last_updated: 2026-04-24
 ---
 
 ## Summary
