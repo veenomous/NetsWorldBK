@@ -1,5 +1,10 @@
 # Knowledge Base Changelog
 
+## 2026-04-25
+- **Roster & Standings** — Final 2026-04-25 snapshot confirms: Nets 20-62 record, #3 lottery slot (19 players on active roster)
+- **Season documentation** — 2025-26 Season finalized; all season articles reflect complete Year Two data
+- **News digest** — Processed April 13-24 news archive; no new developments beyond previously documented sources
+
 ## 2026-04-24
 - **Multiple articles** — Updated sources and last_updated dates to reflect final 2026-04-24 roster snapshot and standings
 - **2025-26 Season** — Added 2026-04-24 roster (19 players) and standings (20-62, #3 lottery) as final season sources
