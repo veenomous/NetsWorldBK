@@ -1,5 +1,12 @@
 # Knowledge Base Changelog
 
+## 2026-04-26
+- **Roster & Standings** — 2026-04-26 final snapshot confirms: Nets 20-62 record, #3 lottery position (19 players on active roster, unchanged)
+- **Jordi Fernandez** — Added 2026-04-26 ESPN/RSS sources confirming coaching extension coverage continued through end of month
+- **Josh Minott** — Added 2026-04-26 final roster snapshot as season-end confirmation source
+- **2025-26 Season** — Added 2026-04-26 roster and standings as final season documentation sources
+- **INDEX.md** — Updated last_compiled to 2026-04-26
+
 ## 2026-04-25
 - **Roster & Standings** — Final 2026-04-25 snapshot confirms: Nets 20-62 record, #3 lottery slot (19 players on active roster)
 - **Season documentation** — 2025-26 Season finalized; all season articles reflect complete Year Two data
