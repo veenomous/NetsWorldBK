@@ -1,5 +1,11 @@
 # Knowledge Base Changelog
 
+## 2026-04-27
+- **Jordi Fernandez** — Added 2026-04-27 RSS sources recirculation (grateful for extension, staff extension coverage continues)
+- **Josh Minott** — Added 2026-04-27 roster snapshot as final season confirmation source
+- **Roster & Standings** — 2026-04-27 final snapshot confirms: Nets 20-62 record, #3 lottery position (19 players on active roster, unchanged)
+- **INDEX.md** — Updated last_compiled to 2026-04-27
+
 ## 2026-04-26
 - **Roster & Standings** — 2026-04-26 final snapshot confirms: Nets 20-62 record, #3 lottery position (19 players on active roster, unchanged)
 - **Jordi Fernandez** — Added 2026-04-26 ESPN/RSS sources confirming coaching extension coverage continued through end of month

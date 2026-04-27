@@ -1,9 +1,9 @@
 ---
 title: Josh Minott
 tags: [player, forward, current-roster, young-core, development]
-sources: [raw/beat-reporters/2026-04-14-rss-is-it-time-to-think-about-josh-minott-as-part-of-the-nets-82.md, raw/beat-reporters/2026-04-19-rss-is-it-time-to-think-about-josh-minott-as-part-of-the-nets-82.md, raw/stats/2026-04-17-roster-snapshot.md, raw/stats/2026-04-18-roster-snapshot.md, raw/stats/2026-04-19-roster-snapshot.md, raw/stats/2026-04-20-roster-snapshot.md, raw/stats/2026-04-21-roster-snapshot.md, raw/stats/2026-04-22-roster-snapshot.md, raw/stats/2026-04-24-roster-snapshot.md, raw/stats/2026-04-26-roster-snapshot.md]
+sources: [raw/beat-reporters/2026-04-14-rss-is-it-time-to-think-about-josh-minott-as-part-of-the-nets-82.md, raw/beat-reporters/2026-04-19-rss-is-it-time-to-think-about-josh-minott-as-part-of-the-nets-82.md, raw/stats/2026-04-17-roster-snapshot.md, raw/stats/2026-04-18-roster-snapshot.md, raw/stats/2026-04-19-roster-snapshot.md, raw/stats/2026-04-20-roster-snapshot.md, raw/stats/2026-04-21-roster-snapshot.md, raw/stats/2026-04-22-roster-snapshot.md, raw/stats/2026-04-24-roster-snapshot.md, raw/stats/2026-04-26-roster-snapshot.md, raw/stats/2026-04-27-roster-snapshot.md]
 confidence: medium
-last_updated: 2026-04-26
+last_updated: 2026-04-27
 ---
 
 ## Summary
