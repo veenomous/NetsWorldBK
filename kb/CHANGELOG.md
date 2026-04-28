@@ -1,5 +1,12 @@
 # Knowledge Base Changelog
 
+## 2026-04-28
+- **Jordi Fernandez** — Added 2026-04-28 ESPN source; coaching extension coverage final
+- **2025-26 Season** — Added 2026-04-28 final roster snapshot (19 players) and standings (20-62, #3 lottery); season documentation complete
+- **Josh Minott** — Added 2026-04-28 roster snapshot as final-season confirmation source
+- **Rebuild Timeline** — Added 2026-04-28 standings confirmation; Year 2 final positioning locked
+- **Sean Marks Era** — Added 2026-04-28 news digest source; rebuild narrative sources updated
+
 ## 2026-04-27
 - **Jordi Fernandez** — Added 2026-04-27 RSS sources recirculation (grateful for extension, staff extension coverage continues)
 - **Josh Minott** — Added 2026-04-27 roster snapshot as final season confirmation source
