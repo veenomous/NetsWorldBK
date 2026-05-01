@@ -1,5 +1,11 @@
 # Knowledge Base Changelog
 
+## 2026-05-01
+- **Jordi Fernandez** — Added 2026-05-01 ESPN/news digest sources (coaching extension coverage update)
+- **Josh Minott** — Added 2026-05-01 ESPN news digest and final roster snapshot as season completion confirmation
+- **2025-26 Season** — Added 2026-05-01 roster snapshot, standings, and draft lottery date confirmation (May 10, 2026 on ABC); final season documentation confirmed
+- **INDEX.md** — Updated last_compiled to 2026-05-01
+
 ## 2026-04-30
 - **Jordi Fernandez** — Added 2026-04-30 ESPN/RSS sources confirming coaching extension coverage continues to recirculate
 - **Josh Minott** — Added 2026-04-30 RSS source (article recirculation); final roster confirmation
