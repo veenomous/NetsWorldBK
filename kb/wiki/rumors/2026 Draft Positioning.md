@@ -1,9 +1,9 @@
 ---
 title: 2026 Draft Positioning
 tags: [rumor, draft, "2026", lottery, tank]
-sources: [raw/stats/2026-04-14-standings.md, raw/beat-reporters/2026-04-14-rss-nets-accomplished-their-two-season-goals-with-lottery-fate-a.md, raw/beat-reporters/2026-04-14-espn-nba-offseason-2026-draft-free-agency-trade-targets-for-every.md, raw/stats/2026-04-18-standings.md, raw/beat-reporters/2026-04-18-espn-nba-offseason-draft-free-agency-trade-targets-for-eliminated.md, raw/stats/2026-04-19-standings.md, raw/beat-reporters/2026-04-19-espn-nba-offseason-draft-free-agency-trade-targets-for-eliminated.md, raw/beat-reporters/2026-04-21-espn-nba-offseason-draft-free-agency-trade-targets-for-eliminated.md, raw/stats/2026-04-22-standings.md, raw/beat-reporters/2026-04-29-espn-nba-offseason-draft-free-agency-trade-targets-for-eliminated.md, raw/stats/2026-04-29-standings.md, raw/beat-reporters/2026-04-30-espn-nba-offseason-draft-free-agency-trade-targets-for-eliminated.md, raw/beat-reporters/2026-04-30-espn-2026-nba-mock-draft-risers-fallers-ahead-of-the-may-10-lotte.md, raw/stats/2026-04-30-standings.md]
+sources: [raw/stats/2026-04-14-standings.md, raw/beat-reporters/2026-04-14-rss-nets-accomplished-their-two-season-goals-with-lottery-fate-a.md, raw/beat-reporters/2026-04-14-espn-nba-offseason-2026-draft-free-agency-trade-targets-for-every.md, raw/stats/2026-04-18-standings.md, raw/beat-reporters/2026-04-18-espn-nba-offseason-draft-free-agency-trade-targets-for-eliminated.md, raw/stats/2026-04-19-standings.md, raw/beat-reporters/2026-04-19-espn-nba-offseason-draft-free-agency-trade-targets-for-eliminated.md, raw/beat-reporters/2026-04-21-espn-nba-offseason-draft-free-agency-trade-targets-for-eliminated.md, raw/stats/2026-04-22-standings.md, raw/beat-reporters/2026-04-29-espn-nba-offseason-draft-free-agency-trade-targets-for-eliminated.md, raw/stats/2026-04-29-standings.md, raw/beat-reporters/2026-04-30-espn-nba-offseason-draft-free-agency-trade-targets-for-eliminated.md, raw/beat-reporters/2026-04-30-espn-2026-nba-mock-draft-risers-fallers-ahead-of-the-may-10-lotte.md, raw/stats/2026-04-30-standings.md, raw/stats/2026-05-02-standings.md, raw/beat-reporters/2026-05-02-espn-news.md]
 confidence: high
-last_updated: 2026-04-30
+last_updated: 2026-05-02
 status: active
 ---
 
@@ -11,13 +11,14 @@ status: active
 The Nets finished 20-62 in 2025-26, locking in the #3 lottery position (as of 2026-04-14 standings — ahead of the May lottery draw). The 2026 NBA Draft is the next major event on the rebuild calendar. With three first-round picks still owed from other teams in 2027, the Nets' own 2026 pick is their primary asset this year. The question: do they tank again in 2026-27, or start pushing for the play-in? Sean Marks has pointedly refused to answer that question, saying "you just never know."
 
 ## What We Know
-- The Nets' final record is 20-62, sitting 3rd in the NBA lottery standings (as of 2026-04-14)
-- Lottery odds are determined after the regular season ends; lottery draw happens in May 2026
+- The Nets' final record is 20-62, sitting 3rd in the NBA lottery standings (confirmed as of 2026-05-02)
+- Lottery odds are determined after the regular season ends; lottery draw happens May 10, 2026 (ABC)
 - The 2026 draft class consensus is still forming — early reports suggest it's guard-heavy at the top
 - [[Sean Marks Era|Sean Marks]] has explicitly refused to commit to a timeline or direction for 2026-27 (tank vs. compete)
 - [[Egor Demin]]'s plantar fasciitis recovery will influence roster strategy
 - Three 2027 first-rounders (Suns, Knicks, Mavs) arrive next year regardless of Nets' record
 - ESPN's NBA offseason 2026 preview (4/13/26) listed the Nets among the 10 franchises with their summer plans under scrutiny
+- As of 2026-05-02, the #3 lottery position is locked in pending May 10 lottery draw
 
 ## Key Questions
 - Who goes #1 and #2 in the 2026 draft? Does the #3 pick still land a franchise player?

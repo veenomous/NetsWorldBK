@@ -1,5 +1,12 @@
 # Knowledge Base Changelog
 
+## 2026-05-02
+- **2026 Draft Positioning** — Added 2026-05-02 standings and ESPN news digest sources; #3 lottery position reconfirmed
+- **2025-26 Season** — Added 2026-05-02 roster snapshot (19 players) and standings sources; season final documentation updated
+- **Jordi Fernandez** — Added 2026-05-02 ESPN/RSS sources (recirculation of April 20-24 extension coverage)
+- **Josh Minott** — Added 2026-05-02 RSS source (article recirculation); roster and season confirmation updated
+- **INDEX.md** — Updated last_compiled to 2026-05-02
+
 ## 2026-05-01
 - **Jordi Fernandez** — Added 2026-05-01 ESPN/news digest sources (coaching extension coverage update)
 - **Josh Minott** — Added 2026-05-01 ESPN news digest and final roster snapshot as season completion confirmation
