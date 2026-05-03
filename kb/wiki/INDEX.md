@@ -1,5 +1,5 @@
 ---
-last_compiled: 2026-05-02
+last_compiled: 2026-05-03
 raw_sources: 188
 wiki_articles: 30
 ---
@@ -50,7 +50,7 @@ wiki_articles: 30
 - [[Fan Pulse]] — Live fan sentiment from Wire takes, player ratings, and polls — auto-compiled
 
 ## Rumor Mill
-- [[MPJ Trade Buzz]] — MPJ conundrum: Porter has clarity on his situation; Marks is "a mystery." No deal reported yet.
+- [[MPJ Trade Buzz]] — **ESCALATING**: Podcast incident on 5/2 has MPJ "looking for a new home." Confidence upgraded from low to medium.
 - [[2026 Draft Positioning]] — Nets hold the #3 lottery slot (20-62 final record). Marks deliberately murky on 2026-27 direction.
 - [[Claxton Extension Decision]] — Keep the defensive anchor or trade him while value is high?
 
@@ -58,10 +58,10 @@ wiki_articles: 30
 
 ## Key Themes
 - **The KD trade tree keeps growing** — Now extends to 2032 via Denver, with 9 FRPs + 2 swaps + MPJ
-- **Year Two complete at 20-62** — Season ended April 13 vs. Toronto; #3 lottery slot locked in
-- **Marks is deliberately murky** — "You just never know" on rebuild timeline; MPJ decision and 2026-27 direction unclear
-- **MPJ is the bridge — or the trade chip** — 24 PPG scorer mentoring rookies, but his own situation has "clarity" while Marks' does not
+- **Year Two complete at 20-62** — Season ended April 13 vs. Toronto; #3 lottery slot locked in, confirmed 2026-05-03
+- **MPJ NOW WANTS OUT** — Podcast incident (5/2) escalated the trade situation from speculation to apparent intent
+- **Marks is deliberately murky** — "You just never know" on rebuild timeline; how he responds to MPJ's apparent exit desire unclear
 - **Josh Minott is the sleeper** — Acquired for nothing in February, NY Post says he may be the best young player in Brooklyn
 - **Claxton is the anchor** — $100M contract, defensive identity, timeline aligns with the young core
 - **The superstar era's true legacy is the rebuild** — 16 games together, but the exits produced historic assets
-- **Fernandez is building the culture** — Development-first coaching for a development-first team
+- **Fernandez extended through rebuild completion** — April 2026 multiyear extension signals confidence in development timeline

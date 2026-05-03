@@ -1,13 +1,12 @@
 ---
 title: Michael Porter Jr.
 tags: [player, forward, mpj, current-roster, scorer]
-sources: [raw/transactions/2025-cam-johnson-mpj-trade.md, raw/beat-reporters/2026-04-13-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/beat-reporters/2026-04-14-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/beat-reporters/2026-04-19-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/stats/2026-04-19-roster-snapshot.md, raw/stats/2026-04-20-roster-snapshot.md, raw/stats/2026-04-21-roster-snapshot.md, raw/stats/2026-04-22-roster-snapshot.md]
+sources: [raw/transactions/2025-cam-johnson-mpj-trade.md, raw/beat-reporters/2026-04-13-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/beat-reporters/2026-04-14-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/beat-reporters/2026-04-19-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/beat-reporters/2026-05-02-rss-nets-star-michael-porter-jr-gets-doxxed-in-return-to-podcast.md, raw/stats/2026-04-19-roster-snapshot.md, raw/stats/2026-04-20-roster-snapshot.md, raw/stats/2026-04-21-roster-snapshot.md, raw/stats/2026-04-22-roster-snapshot.md, raw/stats/2026-05-03-roster-snapshot.md]
 confidence: high
-last_updated: 2026-04-22
+last_updated: 2026-05-03
 ---
 
-## Summary
-Michael Porter Jr. is the Brooklyn Nets' leading scorer and most talented player, acquired from the Denver Nuggets on July 8, 2025 in exchange for Cameron Johnson. At 27 years old, he's averaging a career-high 24.2 PPG with 7.1 RPG on .363 three-point shooting in his first season in Brooklyn. He serves as the offensive anchor while the Nets' five 2025 first-round picks develop around him.
+Michael Porter Jr. is the Brooklyn Nets' leading scorer and most talented player, acquired from the Denver Nuggets on July 8, 2025 in exchange for Cameron Johnson. At 27 years old, he averaged a career-high 24.2 PPG with 7.1 RPG on .363 three-point shooting in the 2025-26 season. As of May 2, 2026, reports indicate MPJ is "looking for a new home" following a podcasting incident, escalating the offseason trade speculation.
 
 ## Key Insights
 - Traded from Denver for [[Cameron Johnson]] + Brooklyn received a 2032 first-round pick
@@ -33,7 +32,10 @@ MPJ's presence is paradoxical — he's too good for a 20-win team but not a fran
 - Has posted multiple 30+ point games, including 38-point outburst
 
 ### The Denver Connection
-MPJ won a championship with Denver in 2023. Coming to Brooklyn mid-rebuild was a significant adjustment. By all reports, he's embraced the mentor role and played hard despite the team's 20-62 final record.
+MPJ won a championship with Denver in 2023. Coming to Brooklyn mid-rebuild was a significant adjustment. By all reports, he embraced the mentor role and played hard during the 2025-26 season despite the team's 20-62 final record.
+
+### The May 2026 Development
+As of May 2, 2026, a podcasting incident where MPJ was "doxxed" has reportedly led to him seeking a new team. This marks an escalation from previous trade speculation and suggests MPJ may be actively pushing for a trade rather than remaining open to either scenario.
 
 ## Related
 - [[Cameron Johnson]]
