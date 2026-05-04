@@ -1,5 +1,10 @@
 # Knowledge Base Changelog
 
+## 2026-05-04
+- **2025-26 Season** — Added 2026-05-04 roster snapshot and standings sources; last_updated bumped to 2026-05-04; lottery position reconfirmed
+- **2026 Draft Positioning** — Added 2026-05-04 news digest and lottery preparation sources; last_updated bumped to 2026-05-04; position unchanged
+- **INDEX.md** — Updated last_compiled to 2026-05-04; raw_sources count updated to 201
+
 ## 2026-05-03
 - **Michael Porter Jr.** — Updated with 2026-05-02 podcast incident (doxxing); new "Looking for a new home" development; escalates trade speculation to apparent intent
 - **MPJ Trade Buzz** — Escalated from low to medium confidence; added 2026-05-02 source; updated timeline with podcast incident (5/2) and draft lottery (5/10); status changed to "escalating"
