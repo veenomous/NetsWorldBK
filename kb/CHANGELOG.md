@@ -1,5 +1,10 @@
 # Knowledge Base Changelog
 
+## 2026-05-05
+- **Fan Pulse** — Auto-compiled with 2026-05-05 fan sentiment data from The Wire (45 takes, 2225 agrees, 1017 disagrees); player ratings and poll results updated
+- **All raw sources from 2026-05-05** — Processed 13 raw files (beat-reporters, stats). No new developments; all items were recirculation of previously documented news (Fernandez extension, MPJ trade buzz, draft lottery prep, standings confirmation)
+- No wiki article updates required; information already current as of 2026-05-04
+
 ## 2026-05-04
 - **2025-26 Season** — Added 2026-05-04 roster snapshot and standings sources; last_updated bumped to 2026-05-04; lottery position reconfirmed
 - **2026 Draft Positioning** — Added 2026-05-04 news digest and lottery preparation sources; last_updated bumped to 2026-05-04; position unchanged
