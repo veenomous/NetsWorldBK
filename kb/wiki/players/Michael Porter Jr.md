@@ -1,9 +1,9 @@
 ---
 title: Michael Porter Jr.
 tags: [player, forward, mpj, current-roster, scorer]
-sources: [raw/transactions/2025-cam-johnson-mpj-trade.md, raw/beat-reporters/2026-04-13-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/beat-reporters/2026-04-14-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/beat-reporters/2026-04-19-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/beat-reporters/2026-05-02-rss-nets-star-michael-porter-jr-gets-doxxed-in-return-to-podcast.md, raw/stats/2026-04-19-roster-snapshot.md, raw/stats/2026-04-20-roster-snapshot.md, raw/stats/2026-04-21-roster-snapshot.md, raw/stats/2026-04-22-roster-snapshot.md, raw/stats/2026-05-03-roster-snapshot.md]
+sources: [raw/transactions/2025-cam-johnson-mpj-trade.md, raw/beat-reporters/2026-04-13-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/beat-reporters/2026-04-14-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/beat-reporters/2026-04-19-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/beat-reporters/2026-05-02-rss-nets-star-michael-porter-jr-gets-doxxed-in-return-to-podcast.md, raw/beat-reporters/2026-05-05-rss-michael-porter-jr-shocked-by-disney-star-ex-girlfriend-8217.md, raw/beat-reporters/2026-05-06-rss-michael-porter-jr-shocked-by-disney-star-ex-girlfriend-8217.md, raw/stats/2026-04-19-roster-snapshot.md, raw/stats/2026-04-20-roster-snapshot.md, raw/stats/2026-04-21-roster-snapshot.md, raw/stats/2026-04-22-roster-snapshot.md, raw/stats/2026-05-03-roster-snapshot.md, raw/stats/2026-05-06-roster-snapshot.md]
 confidence: high
-last_updated: 2026-05-03
+last_updated: 2026-05-06
 ---
 
 Michael Porter Jr. is the Brooklyn Nets' leading scorer and most talented player, acquired from the Denver Nuggets on July 8, 2025 in exchange for Cameron Johnson. At 27 years old, he averaged a career-high 24.2 PPG with 7.1 RPG on .363 three-point shooting in the 2025-26 season. As of May 2, 2026, reports indicate MPJ is "looking for a new home" following a podcasting incident, escalating the offseason trade speculation.
@@ -35,7 +35,7 @@ MPJ's presence is paradoxical — he's too good for a 20-win team but not a fran
 MPJ won a championship with Denver in 2023. Coming to Brooklyn mid-rebuild was a significant adjustment. By all reports, he embraced the mentor role and played hard during the 2025-26 season despite the team's 20-62 final record.
 
 ### The May 2026 Development
-As of May 2, 2026, a podcasting incident where MPJ was "doxxed" has reportedly led to him seeking a new team. This marks an escalation from previous trade speculation and suggests MPJ may be actively pushing for a trade rather than remaining open to either scenario.
+As of May 2, 2026, a podcasting incident where MPJ was "doxxed" has reportedly led to him seeking a new team. Subsequently, on May 5, 2026, his ex-girlfriend Madison Pettis (former Disney Channel star) made public allegations calling him a "psychopath," which MPJ expressed shock and dismay about. This marks an escalation from previous trade speculation and suggests MPJ may be actively pushing for a trade rather than remaining open to either scenario. The personal turmoil heading into the offseason adds pressure to Brooklyn's summer decision-making.
 
 ## Related
 - [[Cameron Johnson]]

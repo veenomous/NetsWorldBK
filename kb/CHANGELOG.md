@@ -1,5 +1,11 @@
 # Knowledge Base Changelog
 
+## 2026-05-06
+- **Michael Porter Jr.** — Added 2026-05-05/06 NY Post sources: ex-girlfriend Madison Pettis (former Disney Channel star) made public allegations calling MPJ "psychopath"; MPJ expressed shock at accusations. Escalates personal turmoil heading into offseason decision-making.
+- **2025-26 Season** — Added 2026-05-06 roster snapshot and standings sources; last_updated bumped to 2026-05-06; final roster confirmation (19 players, 20-62 record, #3 lottery)
+- **2026 Draft Positioning** — Added 2026-05-06 draft lottery preparation sources and standings confirmation; last_updated bumped to 2026-05-06; #3 position reconfirmed
+- All remaining 2026-05-06 raw sources (ESPN news digest, standings, draft mock updates) were recirculation of previously documented coverage with no new Nets-specific developments
+
 ## 2026-05-05
 - **Fan Pulse** — Auto-compiled with 2026-05-05 fan sentiment data from The Wire (45 takes, 2225 agrees, 1017 disagrees); player ratings and poll results updated
 - **All raw sources from 2026-05-05** — Processed 13 raw files (beat-reporters, stats). No new developments; all items were recirculation of previously documented news (Fernandez extension, MPJ trade buzz, draft lottery prep, standings confirmation)

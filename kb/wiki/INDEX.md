@@ -1,6 +1,6 @@
 ---
-last_compiled: 2026-05-05
-raw_sources: 214
+last_compiled: 2026-05-06
+raw_sources: 227
 wiki_articles: 30
 ---
 
@@ -58,8 +58,8 @@ wiki_articles: 30
 
 ## Key Themes
 - **The KD trade tree keeps growing** — Now extends to 2032 via Denver, with 9 FRPs + 2 swaps + MPJ
-- **Year Two complete at 20-62** — Season ended April 13 vs. Toronto; #3 lottery slot locked in, confirmed 2026-05-03
-- **MPJ NOW WANTS OUT** — Podcast incident (5/2) escalated the trade situation from speculation to apparent intent
+- **Year Two complete at 20-62** — Season ended April 13 vs. Toronto; #3 lottery slot locked in, confirmed 2026-05-06
+- **MPJ'S PERSONAL CRISIS INTENSIFIES** — Podcast incident (5/2) + ex-girlfriend Madison Pettis public allegations (5/5) compound trade pressure
 - **Marks is deliberately murky** — "You just never know" on rebuild timeline; how he responds to MPJ's apparent exit desire unclear
 - **Josh Minott is the sleeper** — Acquired for nothing in February, NY Post says he may be the best young player in Brooklyn
 - **Claxton is the anchor** — $100M contract, defensive identity, timeline aligns with the young core
