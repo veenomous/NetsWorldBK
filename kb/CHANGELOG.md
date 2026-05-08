@@ -1,5 +1,12 @@
 # Knowledge Base Changelog
 
+## 2026-05-08
+- **Michael Porter Jr.** — Added May 7, 2026 statement where MPJ criticized Cam Thomas' personality and attitude as the reason for his departure from the Nets and Bucks. Updated sources to include 2026-05-08-rss-michael-porter-jr-says-cam-thomas article and 2026-05-08 roster snapshot; last_updated bumped to 2026-05-08
+- **2025-26 Season** — Added 2026-05-08 sources (espn-news digest, roster snapshot, standings); last_updated bumped to 2026-05-08; all season metrics remain stable (20-62 record, #3 lottery, 19-player roster)
+- **2026 Draft Positioning** — Added 2026-05-08 ESPN draft lottery odds, mock draft, and news digest sources; last_updated bumped to 2026-05-08; #3 position reconfirmed ahead of May 10 lottery draw
+- **Jordi Fernandez** — Added 2026-05-08 ESPN coaching extension source for source recirculation; last_updated bumped to 2026-05-08
+- All remaining 2026-05-08 raw sources (ESPN/RSS beat-reporter files, standings, roster snapshot) were either recirculations of previously documented news (draft coverage, coaching extension, Nets preparation for lottery) or confirmatory stats with no new Nets-specific developments
+
 ## 2026-05-07
 - **2025-26 Season** — Added 2026-05-07 final roster snapshot and standings confirmation; last_updated bumped to 2026-05-07; all season data locked in (20-62 record, #3 lottery position, 19-player roster)
 - **2026 Draft Positioning** — Added 2026-05-07 mock draft and draft lottery prep sources; last_updated bumped to 2026-05-07; position unchanged, lottery draw scheduled May 10, 2026 (ABC)
