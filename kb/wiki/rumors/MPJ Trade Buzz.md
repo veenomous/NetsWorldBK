@@ -1,9 +1,9 @@
 ---
 title: MPJ Trade Buzz
 tags: [rumor, trade, michael-porter-jr, offseason]
-sources: [raw/beat-reporters/2026-04-14-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/beat-reporters/2026-04-19-espn-nba-offseason-draft-free-agency-trade-targets-for-eliminated.md, raw/beat-reporters/2026-05-02-rss-nets-star-michael-porter-jr-gets-doxxed-in-return-to-podcast.md]
+sources: [raw/beat-reporters/2026-04-14-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/beat-reporters/2026-04-19-espn-nba-offseason-draft-free-agency-trade-targets-for-eliminated.md, raw/beat-reporters/2026-05-02-rss-nets-star-michael-porter-jr-gets-doxxed-in-return-to-podcast.md, raw/beat-reporters/2026-05-05-rss-michael-porter-jr-shocked-by-disney-star-ex-girlfriend-8217.md, raw/beat-reporters/2026-05-09-rss-michael-porter-jr-shocked-by-disney-star-ex-girlfriend-8217.md, raw/beat-reporters/2026-05-09-rss-michael-porter-jr-says-cam-thomas-8217-8216-personality-8217.md, raw/beat-reporters/2026-05-09-rss-nets-star-michael-porter-jr-gets-doxxed-in-return-to-podcast.md]
 confidence: medium
-last_updated: 2026-05-03
+last_updated: 2026-05-09
 status: escalating
 ---
 
@@ -15,9 +15,11 @@ The "MPJ conundrum" has escalated from speculation to apparent action. A NY Post
 - His contract ($38.3M) is large but tradeable to teams with cap space or matching salaries
 - NY Post (4/13/26): Porter himself has clarity about what he wants. By 5/2/26, reports indicate he's "looking for a new home"
 - May 2, 2026: A podcasting incident where MPJ was doxxed has apparently prompted him to seek a trade
+- May 5, 2026: Ex-girlfriend Madison Pettis (former Disney Channel star) publicly called MPJ a "psychopath" — MPJ expressed shock and dismay (NY Post 5/5/26)
+- May 7, 2026: MPJ offered commentary on ex-Nets teammate Cam Thomas, suggesting Thomas was "dumped by both Brooklyn and Milwaukee" due to personality/attitude issues rather than ability
 - [[Sean Marks Era|Sean Marks]] has explicitly refused to commit to a rebuild timeline ("you just never know"), which clouds his MPJ response
-- The Nets now face active trade pressure from MPJ rather than passive speculation
-- No specific trade offers or destinations have been reported as of May 3, 2026
+- The Nets now face active trade pressure from MPJ rather than passive speculation; personal turmoil adds urgency
+- No specific trade offers or destinations have been reported as of May 9, 2026
 - The ESPN 2026 offseason preview (4/13/26) named the Nets among teams with key offseason decisions ahead
 
 ## The Core Tension
