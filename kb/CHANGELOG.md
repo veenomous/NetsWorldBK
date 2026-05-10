@@ -1,5 +1,11 @@
 # Knowledge Base Changelog
 
+## 2026-05-10
+- **2026 Draft Positioning** — Added May 10, 2026 lottery draw context (time 3pm ET, ABC/ESPN); updated Timeline with NY Post frame of "new franchise face" pursuit; noted Nets' historical lottery success (2000); last_updated bumped to 2026-05-10
+- **Michael Porter Jr.** — Updated May 7-8 Cam Thomas criticism note to clarify dates; added May 10 context as draft lottery day; last_updated bumped to 2026-05-10
+- **2025-26 Season** — Updated summary to reflect May 10 lottery draw as completed event with confirmed #3 seed and ~14% #1 pick odds; last_updated bumped to 2026-05-10
+- All 2026-05-10 raw sources (beat-reporters, stats) provide updated roster snapshots and lottery context with no new Nets-specific developments beyond previously documented MPJ personal issues and draft positioning
+
 ## 2026-05-09
 - **Michael Porter Jr.** — Updated sources to include 2026-05-09 raw file recirculations of May 2/5/7/8 coverage (podcast doxxing, ex-girlfriend allegations, Cam Thomas criticism); last_updated bumped to 2026-05-09
 - **MPJ Trade Buzz** — Updated sources and "What We Know" section with May 5 Disney star (Madison Pettis) public allegations ("psychopath" claims) and May 7 MPJ commentary on Cam Thomas' personality/attitude issues; timeline now extends through May 9; last_updated bumped to 2026-05-09
