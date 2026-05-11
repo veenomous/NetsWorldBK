@@ -1,6 +1,6 @@
 ---
-last_compiled: 2026-05-10
-raw_sources: 276
+last_compiled: 2026-05-11
+raw_sources: 290
 wiki_articles: 30
 ---
 
@@ -51,14 +51,14 @@ wiki_articles: 30
 
 ## Rumor Mill
 - [[MPJ Trade Buzz]] — **ESCALATING**: Podcast incident on 5/2 has MPJ "looking for a new home." Confidence upgraded from low to medium.
-- [[2026 Draft Positioning]] — Nets hold the #3 lottery slot (20-62 final record). Marks deliberately murky on 2026-27 direction.
+- [[2026 Draft Positioning]] — NBA draft lottery completed 5/10/26: Wizards #1, Pacers #2, Nets confirmed #3 (20-62 final record). Marks deliberately murky on 2026-27 direction.
 - [[Claxton Extension Decision]] — Keep the defensive anchor or trade him while value is high?
 
 ---
 
 ## Key Themes
 - **The KD trade tree keeps growing** — Now extends to 2032 via Denver, with 9 FRPs + 2 swaps + MPJ
-- **Year Two complete at 20-62, May 10 lottery draw** — Season ended April 13 vs. Toronto; #3 lottery slot confirmed; draws May 10 with ~14% chance at #1 pick
+- **Year Two complete at 20-62, lottery completed May 10** — Season ended April 13 vs. Toronto; lottery occurred 5/10 with Nets at #3 (Wizards #1, Pacers #2)
 - **MPJ'S PERSONAL CRISIS INTENSIFIES** — Podcast incident (5/2) + ex-girlfriend Madison Pettis public allegations (5/5) + public criticism of Cam Thomas (5/7-8) compound trade pressure
 - **Marks is deliberately murky** — "You just never know" on rebuild timeline; how he responds to MPJ's apparent exit desire unclear
 - **Josh Minott is the sleeper** — Acquired for nothing in February, NY Post says he may be the best young player in Brooklyn

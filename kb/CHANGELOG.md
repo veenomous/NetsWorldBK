@@ -1,5 +1,11 @@
 # Knowledge Base Changelog
 
+## 2026-05-11
+- **2026 Draft Positioning** — Lottery completed: Washington Wizards won #1 pick, Indiana Pacers #2, Brooklyn Nets confirmed #3 (5/10/26 draw, ABC). Updated summary, What We Know, Timeline, and Confidence (upgraded to High). Added post-lottery mock draft and offseason articles. NYC Post: "Nets' tank fails again" reflects second consecutive lottery year without top-3 pick. last_updated bumped to 2026-05-11
+- **2025-26 Season** — Updated summary to confirm lottery results: Wizards #1, Pacers #2, Nets #3. Added 2026-05-11 post-lottery sources (ESPN offseason draft/free agency, NY Post tank-fails article, mock drafts, roster/standings confirmations). last_updated bumped to 2026-05-11
+- **INDEX.md** — Updated last_compiled to 2026-05-11; raw_sources count updated to 290 (14 new files processed); Key Themes updated to reflect completed lottery
+- All 2026-05-11 raw sources (beat-reporters, stats) provide post-lottery confirmation, draft mock updates, and offseason coverage with no new Nets-specific developments beyond lottery results
+
 ## 2026-05-10
 - **2026 Draft Positioning** — Added May 10, 2026 lottery draw context (time 3pm ET, ABC/ESPN); updated Timeline with NY Post frame of "new franchise face" pursuit; noted Nets' historical lottery success (2000); last_updated bumped to 2026-05-10
 - **Michael Porter Jr.** — Updated May 7-8 Cam Thomas criticism note to clarify dates; added May 10 context as draft lottery day; last_updated bumped to 2026-05-10
