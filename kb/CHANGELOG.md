@@ -1,5 +1,13 @@
 # Knowledge Base Changelog
 
+## 2026-05-12
+- **Salary Cap Situation** — Added 2026-05-12 roster snapshot source; confirmed 19-player roster and contract values (MPJ $38.3M, Claxton $25.4M anchoring payroll). last_updated bumped to 2026-05-12
+- **Sean Marks Era** — Added post-lottery offseason context: NY Post (5/11) "The lottery didn't save the Nets. Now they're going to have to save themselves. Or Sean Marks will." ESPN (5/12) offseason preview emphasizes Marks must execute at trade/draft table without lottery luck. Added sources for 2026-05-11/12 beat-reporter articles. last_updated bumped to 2026-05-12
+- **2026 Draft Positioning** — Updated sources to include all 2026-05-12 raw files (ESPN/NY Post articles covering draft lottery results, mock drafts, offseason analysis). Status changed to "post-lottery" reflecting May 10 completion. last_updated bumped to 2026-05-12
+- **2025-26 Season** — Added 2026-05-12 espn-news digest and offseason coverage to sources; final season record locked at 20-62 with #3 lottery pick confirmed. last_updated bumped to 2026-05-12
+- **INDEX.md** — Updated last_compiled to 2026-05-12; all references to lottery and draft positioning reflect completed draw (Wizards #1, Pacers #2, Nets #3)
+- All 2026-05-12 raw sources (ESPN news digest, beat-reporter articles, standings/roster snapshots) provide post-lottery offseason coverage and analysis with no new Nets-specific developments beyond Sean Marks' implicit pressure to execute
+
 ## 2026-05-11
 - **2026 Draft Positioning** — Lottery completed: Washington Wizards won #1 pick, Indiana Pacers #2, Brooklyn Nets confirmed #3 (5/10/26 draw, ABC). Updated summary, What We Know, Timeline, and Confidence (upgraded to High). Added post-lottery mock draft and offseason articles. NYC Post: "Nets' tank fails again" reflects second consecutive lottery year without top-3 pick. last_updated bumped to 2026-05-11
 - **2025-26 Season** — Updated summary to confirm lottery results: Wizards #1, Pacers #2, Nets #3. Added 2026-05-11 post-lottery sources (ESPN offseason draft/free agency, NY Post tank-fails article, mock drafts, roster/standings confirmations). last_updated bumped to 2026-05-11

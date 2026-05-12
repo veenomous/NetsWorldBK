@@ -1,6 +1,6 @@
 ---
-last_compiled: 2026-05-11
-raw_sources: 290
+last_compiled: 2026-05-12
+raw_sources: 303
 wiki_articles: 30
 ---
 
@@ -21,7 +21,7 @@ wiki_articles: 30
 ## Seasons
 - [[The Superstar Era]] — KD, Kyrie, Harden: 16 games together, zero titles, but the exit funded the rebuild
 - [[2024-25 Season]] — Year One: deliberate tank, youth development, positioning for the 2025 draft
-- [[2025-26 Season]] — Year Two complete: five rookies, MPJ 24.2 PPG, final record 20-62, #3 lottery, season ended at Toronto 4/13
+- [[2025-26 Season]] — Year Two complete: five rookies, MPJ 24.2 PPG, final record 20-62, #3 lottery (as of 2026-05-10 draw), season ended at Toronto 4/13
 
 ## Trades
 - [[Kevin Durant Trade Tree]] — The foundational transaction: 9 FRPs, 2 swaps, MPJ, and 3 current roster players
@@ -58,10 +58,10 @@ wiki_articles: 30
 
 ## Key Themes
 - **The KD trade tree keeps growing** — Now extends to 2032 via Denver, with 9 FRPs + 2 swaps + MPJ
-- **Year Two complete at 20-62, lottery completed May 10** — Season ended April 13 vs. Toronto; lottery occurred 5/10 with Nets at #3 (Wizards #1, Pacers #2)
-- **MPJ'S PERSONAL CRISIS INTENSIFIES** — Podcast incident (5/2) + ex-girlfriend Madison Pettis public allegations (5/5) + public criticism of Cam Thomas (5/7-8) compound trade pressure
-- **Marks is deliberately murky** — "You just never know" on rebuild timeline; how he responds to MPJ's apparent exit desire unclear
+- **Year Two complete at 20-62, lottery completed May 10** — Season ended April 13 vs. Toronto; lottery occurred 5/10 with Nets at #3 (Wizards #1, Pacers #2). Second consecutive lottery year without top-2 pick.
+- **Marks must self-execute post-lottery (May 2026)** — NY Post: "The lottery didn't save the Nets. Now they're going to have to save themselves. Or Sean Marks will." No luck; execution at trade/draft table becomes essential.
+- **MPJ'S PERSONAL CRISIS INTENSIFIES** — Podcast incident (5/2) + ex-girlfriend Madison Pettis public allegations (5/5) + public criticism of Cam Thomas (5/7-8) compound trade pressure. As of 5/10, remains one of Nets' most valuable assets.
 - **Josh Minott is the sleeper** — Acquired for nothing in February, NY Post says he may be the best young player in Brooklyn
-- **Claxton is the anchor** — $100M contract, defensive identity, timeline aligns with the young core
+- **Claxton is the anchor** — $25.4M contract through 2027-28, defensive identity, timeline aligns with the young core
 - **The superstar era's true legacy is the rebuild** — 16 games together, but the exits produced historic assets
 - **Fernandez extended through rebuild completion** — April 2026 multiyear extension signals confidence in development timeline
