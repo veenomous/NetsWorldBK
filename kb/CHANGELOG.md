@@ -1,5 +1,11 @@
 # Knowledge Base Changelog
 
+## 2026-05-13
+- **2026 Draft Positioning** — Added post-lottery strategy context: NY Post (5/11) "Marks must find Nets savior on his own" after lottery disappointment. Nets at draft combine focusing on guard prospects to anchor rebuild. Updated What We Know with Marks execution pressure and guard-heavy draft class strategy. Added sources for 2026-05-13 ESPN/RSS articles on draft combine and offseason. last_updated bumped to 2026-05-13
+- **Salary Cap Situation** — Added 2026-05-13 roster snapshot source. 19-player roster confirmed with same contract values (MPJ $38.3M, Claxton $25.4M, ancillary salary confirmed through 2026-05-13). last_updated bumped to 2026-05-13
+- **INDEX.md** — Updated last_compiled to 2026-05-13 (raw_sources 316); added Key Themes reference to Jason Collins' death (5/13, age 47) as historic Nets milestone — first openly gay NBA player, 8-year Net, teammate and mourned by coach Jason Kidd
+- All 2026-05-13 raw sources (13 new files: ESPN offseason/draft combine coverage, NY Post Nets draft strategy articles, NBA standings/roster snapshots, multiple Jason Collins obituaries/tributes) processed; post-lottery phase underway with no roster changes from 5/12 snapshot
+
 ## 2026-05-12
 - **Salary Cap Situation** — Added 2026-05-12 roster snapshot source; confirmed 19-player roster and contract values (MPJ $38.3M, Claxton $25.4M anchoring payroll). last_updated bumped to 2026-05-12
 - **Sean Marks Era** — Added post-lottery offseason context: NY Post (5/11) "The lottery didn't save the Nets. Now they're going to have to save themselves. Or Sean Marks will." ESPN (5/12) offseason preview emphasizes Marks must execute at trade/draft table without lottery luck. Added sources for 2026-05-11/12 beat-reporter articles. last_updated bumped to 2026-05-12

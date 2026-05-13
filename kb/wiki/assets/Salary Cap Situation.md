@@ -1,9 +1,9 @@
 ---
 title: Salary Cap Situation
 tags: [concepts, salary-cap, contracts, cap-space, cba]
-sources: [raw/stats/2026-04-10-roster-snapshot.md, raw/stats/2026-04-19-roster-snapshot.md, raw/stats/2026-05-12-roster-snapshot.md]
+sources: [raw/stats/2026-04-10-roster-snapshot.md, raw/stats/2026-04-19-roster-snapshot.md, raw/stats/2026-05-12-roster-snapshot.md, raw/stats/2026-05-13-roster-snapshot.md]
 confidence: medium
-last_updated: 2026-05-12
+last_updated: 2026-05-13
 ---
 
 ## Summary

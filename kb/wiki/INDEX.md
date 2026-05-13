@@ -1,6 +1,6 @@
 ---
-last_compiled: 2026-05-12
-raw_sources: 303
+last_compiled: 2026-05-13
+raw_sources: 316
 wiki_articles: 30
 ---
 
@@ -58,8 +58,9 @@ wiki_articles: 30
 
 ## Key Themes
 - **The KD trade tree keeps growing** — Now extends to 2032 via Denver, with 9 FRPs + 2 swaps + MPJ
-- **Year Two complete at 20-62, lottery completed May 10** — Season ended April 13 vs. Toronto; lottery occurred 5/10 with Nets at #3 (Wizards #1, Pacers #2). Second consecutive lottery year without top-2 pick.
-- **Marks must self-execute post-lottery (May 2026)** — NY Post: "The lottery didn't save the Nets. Now they're going to have to save themselves. Or Sean Marks will." No luck; execution at trade/draft table becomes essential.
+- **Year Two complete at 20-62, lottery completed May 10** — Season ended April 13 vs. Toronto; lottery occurred 5/10 with Nets at #3 (Wizards #1, Pacers #2). Second consecutive lottery year without top-2 pick. Nets moved to draft combine for execution phase.
+- **Marks must self-execute post-lottery (May 2026)** — NY Post (5/11): "The lottery didn't save the Nets. Now they're going to have to save themselves. Or Sean Marks will." Nets at draft combine focusing on guards to anchor rebuild.
+- **Jason Collins remembered** — NBA's first openly gay player died 5/13/26 at age 47 from Stage 4 glioblastoma. Former Nets coach Jason Kidd, his onetime teammate, mourned Collins as a "pioneer" of historic significance to the sport.
 - **MPJ'S PERSONAL CRISIS INTENSIFIES** — Podcast incident (5/2) + ex-girlfriend Madison Pettis public allegations (5/5) + public criticism of Cam Thomas (5/7-8) compound trade pressure. As of 5/10, remains one of Nets' most valuable assets.
 - **Josh Minott is the sleeper** — Acquired for nothing in February, NY Post says he may be the best young player in Brooklyn
 - **Claxton is the anchor** — $25.4M contract through 2027-28, defensive identity, timeline aligns with the young core
