@@ -1,5 +1,11 @@
 # Knowledge Base Changelog
 
+## 2026-05-14
+- **Jason Collins** — New article: NBA's first openly gay player and historic Nets legend died 5/13/26 at age 47 from Stage 4 glioblastoma. 8-season Nets tenure (2001–2008), mourned by coach Jason Kidd as a "pioneer." Created new player article with full memorial context, sources from ESPN/NY Post death coverage and Kidd tribute (5/14)
+- **2026 Draft Positioning** — Updated sources to include 2026-05-14 draft combine coverage (ESPN draft combine top prospects, mock drafts post-lottery; NY Post/RSS guard evaluation articles); added Darius Acuff Jr. as prospect under evaluation for #3 pick. Added draft combine phase context showing Nets' shift to execution-focused evaluation strategy. last_updated bumped to 2026-05-14
+- **INDEX.md** — Added Jason Collins to Players section; updated last_compiled to 2026-05-14 (raw_sources 329, wiki_articles 31); refreshed Key Themes to reflect Collins' death as historic Nets/NBA moment, updated draft combine phase status
+- All 2026-05-14 raw sources processed: 6 beat-reporter articles (ESPN/NY Post draft combine coverage, Darius Acuff Jr. prospect profile, Jason Collins memorial coverage), 2 stats files (roster snapshot, standings) confirmed no roster changes from 5/13 snapshot (19 players, 20-62 record confirmed)
+
 ## 2026-05-13
 - **2026 Draft Positioning** — Added post-lottery strategy context: NY Post (5/11) "Marks must find Nets savior on his own" after lottery disappointment. Nets at draft combine focusing on guard prospects to anchor rebuild. Updated What We Know with Marks execution pressure and guard-heavy draft class strategy. Added sources for 2026-05-13 ESPN/RSS articles on draft combine and offseason. last_updated bumped to 2026-05-13
 - **Salary Cap Situation** — Added 2026-05-13 roster snapshot source. 19-player roster confirmed with same contract values (MPJ $38.3M, Claxton $25.4M, ancillary salary confirmed through 2026-05-13). last_updated bumped to 2026-05-13
