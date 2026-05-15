@@ -1,5 +1,10 @@
 # Knowledge Base Changelog
 
+## 2026-05-15
+- **2025-26 Season** — Added 2026-05-15 roster snapshot and standings confirmation to sources; last_updated bumped to 2026-05-15; final season record confirmed 20-62 with 19-player roster, #3 lottery position locked (Wizards #1, Pacers #2)
+- **2026 Draft Positioning** — Updated draft combine phase coverage to extend through 2026-05-15 with ESPN second-day 5-on-5 scrimmages from Chicago; refined sources to reflect ongoing evaluation; last_updated bumped to 2026-05-15; guard-focused evaluation strategy emphasized with Darius Acuff Jr. highlighted
+- All 2026-05-15 raw sources (11 beat-reporter articles on draft combine phases 2-3, NBA offseason analysis; 2 stats files confirming 20-62 record and #3 lottery standings) processed; draft combine continuation provides no new Nets roster developments but confirms ongoing guard prospect evaluation
+
 ## 2026-05-14
 - **Jason Collins** — New article: NBA's first openly gay player and historic Nets legend died 5/13/26 at age 47 from Stage 4 glioblastoma. 8-season Nets tenure (2001–2008), mourned by coach Jason Kidd as a "pioneer." Created new player article with full memorial context, sources from ESPN/NY Post death coverage and Kidd tribute (5/14)
 - **2026 Draft Positioning** — Updated sources to include 2026-05-14 draft combine coverage (ESPN draft combine top prospects, mock drafts post-lottery; NY Post/RSS guard evaluation articles); added Darius Acuff Jr. as prospect under evaluation for #3 pick. Added draft combine phase context showing Nets' shift to execution-focused evaluation strategy. last_updated bumped to 2026-05-14
