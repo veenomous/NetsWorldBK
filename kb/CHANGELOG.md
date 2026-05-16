@@ -1,5 +1,9 @@
 # Knowledge Base Changelog
 
+## 2026-05-16
+- **2026 Draft Positioning** — Updated sources to include 2026-05-16 raw files (roster/standings snapshots, ESPN offseason coverage); added [[Mikel Brown Jr.]] (Louisville) as notable prospect with highest ceiling under evaluation at draft combine; last_updated bumped to 2026-05-16
+- All 2026-05-16 raw sources (13 beat-reporter articles, 2 stats snapshots) mostly contain recycled/archived content from 2026-05-13 through 2026-05-15 combined files. Truly new content limited to: roster confirmation (19 players, no changes), standings confirmation (20-62, #3, no changes), and general NBA offseason articles (not Nets-specific). Mikel Brown Jr. added as prospect reference in draft positioning.
+
 ## 2026-05-15
 - **2025-26 Season** — Added 2026-05-15 roster snapshot and standings confirmation to sources; last_updated bumped to 2026-05-15; final season record confirmed 20-62 with 19-player roster, #3 lottery position locked (Wizards #1, Pacers #2)
 - **2026 Draft Positioning** — Updated draft combine phase coverage to extend through 2026-05-15 with ESPN second-day 5-on-5 scrimmages from Chicago; refined sources to reflect ongoing evaluation; last_updated bumped to 2026-05-15; guard-focused evaluation strategy emphasized with Darius Acuff Jr. highlighted
