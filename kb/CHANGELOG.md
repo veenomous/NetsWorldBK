@@ -1,5 +1,14 @@
 # Knowledge Base Changelog
 
+## 2026-05-17
+- **2026 Draft Positioning** — Updated sources to include 2026-05-17 roster and standings snapshots; final season data confirmed (20-62, #3 lottery, 19-player roster). last_updated bumped to 2026-05-17
+- **2025-26 Season** — Updated sources to include 2026-05-17 roster and standings as final season confirmation. last_updated bumped to 2026-05-17
+- **Salary Cap Situation** — Added 2026-05-17 roster snapshot source; contract values confirmed unchanged. last_updated bumped to 2026-05-17
+- **Giannis to Brooklyn** — Added 2026-05-17 ESPN trade watch article (Bobby Marks on 10 potential Giannis suitors); continued low confidence but escalating speculation as lottery period ends. last_updated bumped to 2026-05-17
+- **INDEX.md** — Updated last_compiled to 2026-05-17
+- All 2026-05-17 raw sources (5 new files: 2 stats snapshots, 3 beat-reporter articles) processed; roster and standings confirm no changes from prior updates; Giannis trade speculation continuing in post-lottery phase
+# Knowledge Base Changelog
+
 ## 2026-05-16
 - **2026 Draft Positioning** — Updated sources to include 2026-05-16 raw files (roster/standings snapshots, ESPN offseason coverage); added [[Mikel Brown Jr.]] (Louisville) as notable prospect with highest ceiling under evaluation at draft combine; last_updated bumped to 2026-05-16
 - All 2026-05-16 raw sources (13 beat-reporter articles, 2 stats snapshots) mostly contain recycled/archived content from 2026-05-13 through 2026-05-15 combined files. Truly new content limited to: roster confirmation (19 players, no changes), standings confirmation (20-62, #3, no changes), and general NBA offseason articles (not Nets-specific). Mikel Brown Jr. added as prospect reference in draft positioning.
