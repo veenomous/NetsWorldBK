@@ -1,5 +1,11 @@
 # Knowledge Base Changelog
 
+## 2026-05-18
+- **2026 Draft Positioning** — Updated to note draft combine phase (5/13-15/26) is now complete as of 5/18/26; minor text adjustment reflecting post-combine assessment phase. last_updated bumped to 2026-05-18
+- **Giannis to Brooklyn** — Added 2026-05-18 ESPN Giannis trade watch source (Bobby Marks continued analysis). last_updated bumped to 2026-05-18
+- **INDEX.md** — Updated last_compiled to 2026-05-18
+- All 2026-05-18 raw sources (14 beat-reporter articles, 2 stats snapshots) processed: Jason Collins death and Nets tribute coverage (already documented 5/14), draft combine coverage (combine complete, assessed), offseason analysis (no new Nets developments), and Giannis trade speculation (ongoing rumor mill). No significant new Nets roster, standings, or strategic developments from today's raw content beyond combine completion timing.
+
 ## 2026-05-17
 - **2026 Draft Positioning** — Updated sources to include 2026-05-17 roster and standings snapshots; final season data confirmed (20-62, #3 lottery, 19-player roster). last_updated bumped to 2026-05-17
 - **2025-26 Season** — Updated sources to include 2026-05-17 roster and standings as final season confirmation. last_updated bumped to 2026-05-17

@@ -1,9 +1,9 @@
 ---
 title: Giannis to Brooklyn?
 tags: [rumor, trade, giannis, bucks, blockbuster]
-sources: [raw/beat-reporters/2026-04-13-rss-giannis-vents-about-bucks-won-t-rule-out-return.md, raw/beat-reporters/2026-05-17-rss-copy-of-giannis-trade-watch-reset-10-teams-to-monitor-bet.md]
+sources: [raw/beat-reporters/2026-04-13-rss-giannis-vents-about-bucks-won-t-rule-out-return.md, raw/beat-reporters/2026-05-17-rss-copy-of-giannis-trade-watch-reset-10-teams-to-monitor-bet.md, raw/beat-reporters/2026-05-18-rss-copy-of-giannis-trade-watch-reset-10-teams-to-monitor-bet.md]
 confidence: low
-last_updated: 2026-05-17
+last_updated: 2026-05-18
 status: active
 ---
 
