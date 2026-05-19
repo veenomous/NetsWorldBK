@@ -1,5 +1,11 @@
 # Knowledge Base Changelog
 
+## 2026-05-19
+- **2025-26 Season** — Added 2026-05-19 roster snapshot and standings sources as final season confirmation. last_updated bumped to 2026-05-19
+- **2026 Draft Positioning** — Updated post-combine phase closure: combine now complete as of 5/19/26 with ESPN post-combine mock draft (Jeremy Woo projecting all 60 picks). last_updated bumped to 2026-05-19
+- **INDEX.md** — Updated last_compiled to 2026-05-19
+- All 2026-05-19 raw sources (11 beat-reporter articles on NBA draft post-combine, mock drafts, offseason coverage; 2 stats files confirming 20-62 final record and #3 lottery positioning) processed; draft combine evaluation phase complete with no new Nets roster developments beyond existing documentation
+
 ## 2026-05-18
 - **2026 Draft Positioning** — Updated to note draft combine phase (5/13-15/26) is now complete as of 5/18/26; minor text adjustment reflecting post-combine assessment phase. last_updated bumped to 2026-05-18
 - **Giannis to Brooklyn** — Added 2026-05-18 ESPN Giannis trade watch source (Bobby Marks continued analysis). last_updated bumped to 2026-05-18
