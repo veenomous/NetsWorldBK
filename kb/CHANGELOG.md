@@ -1,5 +1,11 @@
 # Knowledge Base Changelog
 
+## 2026-05-20
+- **2025-26 Season** — Added 2026-05-20 final roster snapshot and standings sources (19-player roster confirmed, 20-62 record, #3 lottery finalized). last_updated bumped to 2026-05-20
+- **2026 Draft Positioning** — Added 2026-05-20 ESPN post-combine mock draft (Jeremy Woo), offseason coverage, and standings as sources. last_updated bumped to 2026-05-20; post-lottery phase continues with draft combine evaluation complete
+- **Salary Cap Situation** — Added 2026-05-20 roster snapshot source confirming salary contracts unchanged. last_updated bumped to 2026-05-20
+- All 2026-05-20 raw sources processed: 11 beat-reporter articles (draft combine post-analysis, mock drafts, NBA offseason coverage, Jason Collins recirculation, general news), 2 stats files confirming season finalization (20-62 record, #3 lottery, 19-player roster). No new Nets roster developments or draft positioning changes; files contain post-combine analysis and mock draft projections with no new draft strategy shifts from earlier reports. Jason Collins death was previously documented (2026-05-14); today's recirculation adds no new information.
+
 ## 2026-05-19
 - **2025-26 Season** — Added 2026-05-19 roster snapshot and standings sources as final season confirmation. last_updated bumped to 2026-05-19
 - **2026 Draft Positioning** — Updated post-combine phase closure: combine now complete as of 5/19/26 with ESPN post-combine mock draft (Jeremy Woo projecting all 60 picks). last_updated bumped to 2026-05-19
