@@ -1,5 +1,13 @@
 # Knowledge Base Changelog
 
+## 2026-05-21
+- **Darius Acuff Jr.** — New prospect article: Point guard candidate for #3 pick; "superstar point guard" aspirations documented; Nets close-up evaluation at combine (5/13–15/26); confidence level: medium
+- **Mikel Brown Jr.** — New prospect article: Louisville guard prospect for #3 pick; highest ceiling assessment from NY Post (5/15/26); Nets evaluation at combine; confidence level: medium
+- **2026 Draft Positioning** — Updated with post-combine mock draft info (Jeremy Woo ESPN projections as of 5/20/26); added references to Darius Acuff Jr. and Mikel Brown Jr. prospect evaluation; last_updated bumped to 2026-05-21
+- **2025-26 Season** — Updated last_updated to 2026-05-21 (final roster snapshot from 2026-05-21 added to sources)
+- **INDEX.md** — Updated last_compiled to 2026-05-21 (raw_sources 407, wiki_articles 33); added "2026 Draft Prospects" section with entries for Darius Acuff Jr. and Mikel Brown Jr.
+- All 2026-05-21 raw sources processed: 13 beat-reporter articles (mock drafts post-combine, draft combine analysis, Jason Collins recirculation, offseason coverage), 2 stats files (roster snapshot 19 players, standings #3 lottery 20-62 record). New prospect profiles added for forward thinking on draft evaluation; no roster changes from 2026-05-20
+
 ## 2026-05-20
 - **2025-26 Season** — Added 2026-05-20 final roster snapshot and standings sources (19-player roster confirmed, 20-62 record, #3 lottery finalized). last_updated bumped to 2026-05-20
 - **2026 Draft Positioning** — Added 2026-05-20 ESPN post-combine mock draft (Jeremy Woo), offseason coverage, and standings as sources. last_updated bumped to 2026-05-20; post-lottery phase continues with draft combine evaluation complete

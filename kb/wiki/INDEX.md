@@ -1,7 +1,7 @@
 ---
-last_compiled: 2026-05-20
-raw_sources: 394
-wiki_articles: 31
+last_compiled: 2026-05-21
+raw_sources: 407
+wiki_articles: 33
 ---
 
 # BKGrit Knowledge Base — Index
@@ -18,6 +18,10 @@ wiki_articles: 31
 - [[Ben Saraf]] — Youngest Net at 19, crafty Israeli guard, #26 pick from Knicks via KD tree
 - [[Josh Minott]] — Acquired from Boston (Feb 2026), $2.4M forward; NY Post calls him potentially "the best player of the lot"
 - [[Jason Collins]] — Nets legend (8 seasons, 2001–2008); NBA's first openly gay player; died May 13, 2026 (age 47)
+
+## 2026 Draft Prospects
+- [[Darius Acuff Jr.]] — Point guard prospect, #3 pick candidate; "superstar point guard" aspirations (as of 5/21/26)
+- [[Mikel Brown Jr.]] — Louisville guard prospect, #3 pick candidate; highest ceiling assessment per NY Post evaluation (as of 5/21/26)
 
 ## Seasons
 - [[The Superstar Era]] — KD, Kyrie, Harden: 16 games together, zero titles, but the exit funded the rebuild
