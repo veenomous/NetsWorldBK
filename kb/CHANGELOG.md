@@ -1,5 +1,11 @@
 # Knowledge Base Changelog
 
+## 2026-05-22
+- **2025 NBA Draft** — Updated with All-Rookie first-team recognition: Cooper Flagg (Mavericks, #1) and Kon Knueppel (Hornets, #2) earned honors in their rookie seasons; added summary note on 2026 update (as of 5/22/26). last_updated bumped to 2026-05-22
+- **2026 Draft Positioning** — Added 2026-05-22 sources (post-combine mock drafts from 2026-05-20 ESPN, leaguewide asset rankings from 2026-05-20 ESPN, post-combine roster/standings confirmations). last_updated bumped to 2026-05-22
+- **INDEX.md** — Updated last_compiled to 2026-05-22 (raw_sources 421, wiki_articles 33)
+- All 2026-05-22 raw sources processed: 14 beat-reporter articles (post-combine mock draft analysis, All-Rookie team awards for 2025 draft class, offseason coverage, governor Sherrill's NJ relocation comment dismissed), 2 stats files (standings and roster confirmation showing no changes—Nets remain 20-62, #3 lottery, 19-player roster). Key takeaway: Flagg's All-Rookie first-team honor validates the quality of the 2025 draft class; draft combine phase complete as of 5/15/26, now in post-combine mock draft analysis phase.
+
 ## 2026-05-21
 - **Darius Acuff Jr.** — New prospect article: Point guard candidate for #3 pick; "superstar point guard" aspirations documented; Nets close-up evaluation at combine (5/13–15/26); confidence level: medium
 - **Mikel Brown Jr.** — New prospect article: Louisville guard prospect for #3 pick; highest ceiling assessment from NY Post (5/15/26); Nets evaluation at combine; confidence level: medium

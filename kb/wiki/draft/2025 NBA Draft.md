@@ -1,16 +1,19 @@
 ---
 title: 2025 NBA Draft
 tags: [draft, "2025", egor-demin, nolan-traore, drake-powell, ben-saraf, danny-wolf, cooper-flagg]
-sources: [raw/transactions/2025-nba-draft-results.md, raw/scouting/2025-draft-class-overview.md]
+sources: [raw/transactions/2025-nba-draft-results.md, raw/scouting/2025-draft-class-overview.md, raw/beat-reporters/2026-05-22-rss-flagg-knueppel-lead-way-on-all-rookie-1st-team.md]
 confidence: high
-last_updated: 2026-04-10
+last_updated: 2026-05-22
 ---
 
 ## Summary
 The 2025 NBA Draft was the most important night of the Brooklyn Nets rebuild — and the results were mixed. Despite tanking for a top-3 pick, the Nets landed at #8 in the lottery, missing out on Cooper Flagg (#1 to Dallas), Dylan Harper, and Ace Bailey. But the sheer volume of picks was unprecedented: Brooklyn used FIVE first-round selections, drafting an entire potential starting lineup in one night. Egor Demin (#8) emerged as the centerpiece — a 6'8" Russian point guard with franchise-player upside.
 
+**2026 Update**: Year one in the NBA shows promise across the draft class. Cooper Flagg (Mavericks, #1) earned All-Rookie first-team honors, as did Kon Knueppel (Hornets, #2). The Nets' own five picks are still developing, but Demin's progression into his second season will be critical.
+
 ## Key Insights
-- Cooper Flagg went #1 overall to the Dallas Mavericks — the Nets' lottery luck failed them
+- Cooper Flagg went #1 overall to the Dallas Mavericks — the Nets' lottery luck failed them. Flagg earned All-Rookie first-team honors in 2025-26.
+- Kon Knueppel (Hornets, #2) also earned All-Rookie first-team honors, confirming top-tier talent in this draft class
 - The Nets picked #8 despite having a bottom-3 record — one of the worst lottery outcomes possible
 - Five first-round picks in one draft is unprecedented in modern NBA history
 - Egor Demin (#8, BYU) is the centerpiece: 6'8" point guard averaging 10.3 PPG and 3.3 APG as a rookie
