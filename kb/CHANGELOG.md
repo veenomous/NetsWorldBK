@@ -1,5 +1,10 @@
 # Knowledge Base Changelog
 
+## 2026-05-23
+- **2025-26 Season** — Added 2026-05-23 roster snapshot and standings sources. last_updated bumped to 2026-05-23. Confirms season finalized: 20-62 record, #3 lottery, 19-player roster (no changes from 2026-05-22)
+- **2026 Draft Positioning** — Added 2026-05-23 ESPN post-combine mock draft (Jeremy Woo: projecting all 60 picks post-combine) and leaguewide asset rankings sources. last_updated bumped to 2026-05-23. Post-combine analysis continues; no changes to Nets positioning or prospect evaluation direction
+- All 2026-05-23 raw sources processed: 11 beat-reporter articles (post-combine mock drafts, asset rankings, free agent rankings, offseason coverage, governor's NJ relocation comments), 2 stats files (roster/standings confirming no changes). No new Nets-specific developments; content is post-combine analysis phase
+
 ## 2026-05-22
 - **2025 NBA Draft** — Updated with All-Rookie first-team recognition: Cooper Flagg (Mavericks, #1) and Kon Knueppel (Hornets, #2) earned honors in their rookie seasons; added summary note on 2026 update (as of 5/22/26). last_updated bumped to 2026-05-22
 - **2026 Draft Positioning** — Added 2026-05-22 sources (post-combine mock drafts from 2026-05-20 ESPN, leaguewide asset rankings from 2026-05-20 ESPN, post-combine roster/standings confirmations). last_updated bumped to 2026-05-22
