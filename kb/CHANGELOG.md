@@ -1,5 +1,11 @@
 # Knowledge Base Changelog
 
+## 2026-05-24
+- **2025-26 Season** — Added 2026-05-24 roster snapshot and standings sources. last_updated bumped to 2026-05-24. Confirms season finalized: 20-62 record, #3 lottery, 19-player roster (no changes from 2026-05-23)
+- **2026 Draft Positioning** — Added 2026-05-24 sources (post-combine mock drafts, asset rankings, news digest). last_updated bumped to 2026-05-24. Post-combine analysis phase continues; Darius Acuff Jr. and Mikel Brown Jr. remain primary guard evaluation targets
+- **INDEX.md** — Updated last_compiled to 2026-05-24 (raw_sources 447, wiki_articles 33)
+- All 2026-05-24 raw sources processed: 11 beat-reporter articles (post-combine mock drafts, leaguewide asset rankings, free agent rankings, NJ relocation commentary, trivia articles), 2 stats files (roster/standings confirming 20-62 record, #3 lottery, 19-player roster with no changes). No new Nets-specific developments; content is post-combine analysis and offseason coverage
+
 ## 2026-05-23
 - **2025-26 Season** — Added 2026-05-23 roster snapshot and standings sources. last_updated bumped to 2026-05-23. Confirms season finalized: 20-62 record, #3 lottery, 19-player roster (no changes from 2026-05-22)
 - **2026 Draft Positioning** — Added 2026-05-23 ESPN post-combine mock draft (Jeremy Woo: projecting all 60 picks post-combine) and leaguewide asset rankings sources. last_updated bumped to 2026-05-23. Post-combine analysis continues; no changes to Nets positioning or prospect evaluation direction
