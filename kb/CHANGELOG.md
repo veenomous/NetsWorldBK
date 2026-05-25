@@ -1,5 +1,12 @@
 # Knowledge Base Changelog
 
+## 2026-05-25
+- **2026 Draft Positioning** — Added post-lottery offseason preview context (ESPN 5/25/26): team-building lessons from playoffs finalists (Thunder, Spurs, Knicks, Cavs), six-star trade proposals circulating, draft asset rankings confirm Nets in competitive tier. last_updated bumped to 2026-05-25
+- **Salary Cap Situation** — Added 2026-05-25 roster snapshot source (19 players confirmed); updated summary to reflect current roster count. last_updated bumped to 2026-05-25
+- **Nets Pick Inventory** — Updated with latest confirmed standings (2026-05-25). last_updated bumped to 2026-05-25
+- **Sean Marks Era** — Added offseason narrative context (5/25/26): ESPN published team-building lessons from 2026 playoffs finalists and six-star trade proposals; Bobby Marks' free-agent rankings highlight available talent; offseason is critical execution window for Marks on draft evaluation and potential mid-tier trades. last_updated bumped to 2026-05-25
+- All 2026-05-25 raw sources processed: 10 beat-reporter articles (ESPN offseason coverage: team-building lessons, six-star trades, free-agent rankings, asset rankings, mock drafts, NJ relocation update; NY Post draft/offseason analysis; sports trivia article), 2 stats files (roster snapshot: 19 players unchanged; standings: 20-62 record, #3 lottery confirmed). No new Nets roster or strategic developments; content is offseason analysis and comparison to successful build models
+
 ## 2026-05-24
 - **2025-26 Season** — Added 2026-05-24 roster snapshot and standings sources. last_updated bumped to 2026-05-24. Confirms season finalized: 20-62 record, #3 lottery, 19-player roster (no changes from 2026-05-23)
 - **2026 Draft Positioning** — Added 2026-05-24 sources (post-combine mock drafts, asset rankings, news digest). last_updated bumped to 2026-05-24. Post-combine analysis phase continues; Darius Acuff Jr. and Mikel Brown Jr. remain primary guard evaluation targets

@@ -3,7 +3,7 @@ title: Sean Marks Era
 tags: [front-office, sean-marks, gm, rebuild, strategy]
 sources: [raw/beat-reporters/nets-rebuild-timeline.md, raw/transactions/2023-kd-trade.md, raw/transactions/2024-mikal-bridges-trade.md, raw/transactions/2025-cam-johnson-mpj-trade.md, raw/transactions/2025-nba-draft-results.md, raw/beat-reporters/2026-04-14-rss-sean-marks-leaves-nets-8217-rebuild-timeline-murky-8216-you.md, raw/beat-reporters/2026-04-14-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/beat-reporters/2026-04-19-rss-sean-marks-leaves-nets-8217-rebuild-timeline-murky-8216-you.md, raw/beat-reporters/2026-04-24-rss-sean-marks-leaves-nets-8217-rebuild-timeline-murky-8216-you.md, raw/beat-reporters/2026-04-28-espn-news.md, raw/beat-reporters/2026-05-11-rss-sean-marks-must-find-nets-savior-on-his-own-after-draft-lott.md, raw/beat-reporters/2026-05-12-espn-nba-offseason-draft-free-agency-trade-targets-for-eliminated.md]
 confidence: high
-last_updated: 2026-05-12
+last_updated: 2026-05-25
 ---
 
 ## Summary
@@ -48,6 +48,8 @@ After Year Two ended at 20-62, Nets fans want to know whether the team will acce
 
 ### Post-Lottery Reality (May 2026)
 The 2026 NBA draft lottery (May 10, 2026) delivered a blow: the Nets landed #3 pick, missing the top two despite 20-62 record. Marks faces the reality of self-help in the offseason. Per NY Post (May 11, 2026): "The lottery didn't save the Nets. Now they're going to have to save themselves. Or Sean Marks will." ESPN's offseason coverage (May 12, 2026) previewed the critical decisions ahead for eliminated teams. The subtext is clear: Marks cannot rely on luck. He must execute at the trade and draft table.
+
+**Offseason narrative (May 25, 2026)**: ESPN published team-building lessons from 2026 playoffs finalists (Thunder, Spurs, Knicks, Cavs); the Nets' rebuilding pattern is now under direct comparison to successful models. Six-star trade proposals are circulating; Bobby Marks' free-agent rankings highlight talent available. The offseason is critical for Marks' execution on draft evaluation and potential mid-tier trades to accelerate the timeline.
 
 ### The Development Question
 This is the defining test. Marks has proven he can:

@@ -1,6 +1,6 @@
 ---
-last_compiled: 2026-05-24
-raw_sources: 447
+last_compiled: 2026-05-25
+raw_sources: 459
 wiki_articles: 33
 ---
 
@@ -64,7 +64,7 @@ wiki_articles: 33
 ## Key Themes
 - **The KD trade tree keeps growing** — Now extends to 2032 via Denver, with 9 FRPs + 2 swaps + MPJ
 - **Year Two complete at 20-62, lottery completed May 10** — Season ended April 13 vs. Toronto; lottery occurred 5/10 with Nets at #3 (Wizards #1, Pacers #2). Second consecutive lottery year without top-2 pick. Nets at draft combine (5/13-14) evaluating guard prospects.
-- **Marks must self-execute post-lottery (May 2026)** — NY Post (5/11): "The lottery didn't save the Nets. Now they're going to have to save themselves. Or Sean Marks will." Draft combine phase showcasing prospect evaluation as execution strategy.
+- **Marks enters critical offseason execution window (May 25, 2026)** — Post-lottery phase complete; ESPN analyzing team-building lessons from playoff finalists (Thunder, Spurs, Knicks, Cavs); six-star trade proposals circulating; Bobby Marks' free-agent rankings highlight available talent. Self-help strategy now in motion.
 - **Jason Collins dies at 47** — NBA's first openly gay player and historic figure died 5/13/26 from Stage 4 glioblastoma. Nets legend (8 seasons, 2001–2008); [[Jason Kidd]] mourned him as a "pioneer." 2026 marks year-long tribute phase.
 - **MPJ'S PERSONAL CRISIS INTENSIFIES** — Podcast incident (5/2) + ex-girlfriend Madison Pettis public allegations (5/5) + public criticism of Cam Thomas (5/7-8) compound trade pressure. As of 5/14, remains one of Nets' most valuable assets.
 - **Josh Minott is the sleeper** — Acquired for nothing in February, NY Post says he may be the best young player in Brooklyn

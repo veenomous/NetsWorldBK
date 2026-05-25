@@ -3,7 +3,7 @@ title: Nets Pick Inventory
 tags: [picks, draft, rebuild, assets, trade-capital]
 sources: [raw/transactions/2023-kd-trade.md, raw/transactions/2024-mikal-bridges-trade.md, raw/transactions/2024-rockets-nets-pick-trade.md, raw/transactions/2025-nba-draft-results.md, raw/transactions/2025-cam-johnson-mpj-trade.md, raw/stats/2026-04-19-standings.md]
 confidence: high
-last_updated: 2026-04-19
+last_updated: 2026-05-25
 ---
 
 ## Summary
