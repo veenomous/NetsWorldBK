@@ -1,5 +1,10 @@
 # Knowledge Base Changelog
 
+## 2026-05-27
+- **2025-26 Season** — Added 2026-05-27 roster snapshot and standings sources as final confirmation (19 players unchanged, 20-62 record, #3 lottery). last_updated bumped to 2026-05-27
+- **2026 Draft Positioning** — Added 2026-05-27 ESPN offseason coverage sources (leaguewide asset rankings, six-star trade ideas, free-agent rankings, team-building tips from playoffs finalists). last_updated bumped to 2026-05-27
+- All 2026-05-27 raw sources processed: 11 beat-reporter articles (ESPN offseason analysis: asset rankings, free-agent rankings, trade ideas, team-building lessons; NY Post articles: draft strategy, Mikie Sherrill NJ relocation commentary, sports trivia), 2 stats files (roster/standings confirming no changes—19 players, 20-62 record, #3 lottery). Content is post-lottery offseason analysis and general NBA coverage with no new Nets roster developments or strategic announcements
+
 ## 2026-05-25
 - **2026 Draft Positioning** — Added post-lottery offseason preview context (ESPN 5/25/26): team-building lessons from playoffs finalists (Thunder, Spurs, Knicks, Cavs), six-star trade proposals circulating, draft asset rankings confirm Nets in competitive tier. last_updated bumped to 2026-05-25
 - **Salary Cap Situation** — Added 2026-05-25 roster snapshot source (19 players confirmed); updated summary to reflect current roster count. last_updated bumped to 2026-05-25
