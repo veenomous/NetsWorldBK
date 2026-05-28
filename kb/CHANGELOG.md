@@ -1,5 +1,11 @@
 # Knowledge Base Changelog
 
+## 2026-05-28
+- **Keaton Wagler** — New prospect article: NY Post reports "best Nets draft option — even if it's not the best fit"; represents classic BPA (best player available) vs. fit debate; Nets actively evaluating for #3 pick; confidence level: medium
+- **2026 Draft Positioning** — Updated with post-combine evaluation updates (as of 5/28/26): Keaton Wagler added as emerging draft option; prediction markets favor one-and-done point guard with #3 pick; last_updated bumped to 2026-05-28
+- **INDEX.md** — Updated 2026 Draft Prospects section to include Keaton Wagler; last_compiled updated to 2026-05-28 (raw_sources 485, wiki_articles 34)
+- All 2026-05-28 raw sources processed: 13 beat-reporter articles (NY Post: draft options, prospect profiles, relocation commentary; ESPN: offseason analysis, mock drafts, trade ideas, team-building lessons, free-agent rankings, draft lottery reform), 2 stats files (roster snapshot: 19 players confirmed, standings: 20-62 record, #3 lottery confirmed). New Nets-specific developments: Keaton Wagler identified as draft option; prediction markets analysis of draft preferences. Mikie Sherrill (NJ Governor) relocation commentary noted but not substantive for wiki. Offseason analysis pieces are general NBA content not requiring Nets-specific article updates.
+
 ## 2026-05-27
 - **2025-26 Season** — Added 2026-05-27 roster snapshot and standings sources as final confirmation (19 players unchanged, 20-62 record, #3 lottery). last_updated bumped to 2026-05-27
 - **2026 Draft Positioning** — Added 2026-05-27 ESPN offseason coverage sources (leaguewide asset rankings, six-star trade ideas, free-agent rankings, team-building tips from playoffs finalists). last_updated bumped to 2026-05-27

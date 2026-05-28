@@ -1,7 +1,7 @@
 ---
-last_compiled: 2026-05-27
-raw_sources: 472
-wiki_articles: 33
+last_compiled: 2026-05-28
+raw_sources: 487
+wiki_articles: 34
 ---
 
 # BKGrit Knowledge Base — Index
@@ -20,6 +20,7 @@ wiki_articles: 33
 - [[Jason Collins]] — Nets legend (8 seasons, 2001–2008); NBA's first openly gay player; died May 13, 2026 (age 47)
 
 ## 2026 Draft Prospects
+- [[Keaton Wagler]] — "Best Nets draft option — even if it's not the best fit"; BPA vs. positional fit debate (as of 5/28/26)
 - [[Darius Acuff Jr.]] — Point guard prospect, #3 pick candidate; "superstar point guard" aspirations (as of 5/21/26)
 - [[Mikel Brown Jr.]] — Louisville guard prospect, #3 pick candidate; highest ceiling assessment per NY Post evaluation (as of 5/21/26)
 

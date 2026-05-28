@@ -24,6 +24,7 @@ The Nets finished 20-62 in 2025-26, locking in the #3 lottery position. The 2026
 - ESPN's NBA offseason 2026 preview (4/13/26) listed the Nets among the 10 franchises with their summer plans under scrutiny
 - **Post-combine mock drafts (as of 5/20-5/25/26)**: Jeremy Woo (ESPN) updated projections of all 60 picks after the combine; guard-heavy draft class maintains depth through #3 pick; Nets evaluating [[Darius Acuff Jr.]] and [[Mikel Brown Jr.]] among top guard options. Asset rankings show Nets in competitive tier for 2026 draft capital (ESPN 5/20/26)
 - **Offseason preview (5/25/26)**: ESPN published team-building lessons from 2026 playoffs finalists (Thunder, Spurs, Knicks, Cavs); six-star trade ideas for summer discussed by NBA insiders; draft-eligible team asset rankings ranked Nets among competitive rosters for 2026 capital control
+- **Draft combine evaluation updates (as of 5/28/26)**: NY Post reports [[Keaton Wagler]] could be "best Nets draft option — even if it's not the best fit"; prediction markets project Nets considering one-and-done point guard options with the #3 pick (NY Post, 5/27/26)
 
 ## Post-Lottery Strategy
 The Nets' lottery disappointment (second consecutive year without a top-2 pick) has shifted the narrative. Instead of hoping for luck, Sean Marks now faces execution expectations: **the Nets must self-execute at the draft combine and draft table**. NY Post (5/11/26): "The lottery didn't save the Nets. Now they're going to have to save themselves. Or Sean Marks will." 
