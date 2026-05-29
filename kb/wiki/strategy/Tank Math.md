@@ -3,11 +3,11 @@ title: Tank Math
 tags: [concepts, tanking, lottery, odds, draft, strategy]
 sources: [raw/beat-reporters/nets-rebuild-timeline.md, raw/transactions/2025-nba-draft-results.md]
 confidence: high
-last_updated: 2026-04-11
+last_updated: 2026-05-29
 ---
 
 ## Summary
-Tank math is the strategic calculus behind losing games to improve draft lottery odds. The Nets' experience in 2024-25 illustrates both the promise and peril: they finished with the 2nd-worst record (14% chance at #1) but fell to #8 in the lottery, missing Cooper Flagg entirely. The lottery is a probabilistic game — even perfect tanking doesn't guarantee a top pick. But the Nets' strategy was validated by volume: five first-round picks in the [[2025 NBA Draft]] meant the lottery disappointment was survivable.
+Tank math is the strategic calculus behind losing games to improve draft lottery odds. The Nets' experience in 2024-25 illustrates both the promise and peril: they finished with the 2nd-worst record (14% chance at #1) but fell to #8 in the lottery, missing Cooper Flagg entirely. The lottery is a probabilistic game — even perfect tanking doesn't guarantee a top pick. But the Nets' strategy was validated by volume: five first-round picks in the [[2025 NBA Draft]] meant the lottery disappointment was survivable. The NBA approved new anti-tanking lottery reforms for 2026 onward, aiming to disincentivize further tanking through modified odds structures.
 
 ## Key Insights
 - The bottom 3 teams share equal 14% odds at #1 — there's no incentive to be THE worst, just bottom 3

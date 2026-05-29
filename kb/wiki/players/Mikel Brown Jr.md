@@ -1,9 +1,9 @@
 ---
 title: Mikel Brown Jr.
 tags: [prospect, draft-2026, lottery-target, louisville]
-sources: [raw/beat-reporters/2026-05-21-rss-mikel-brown-jr-has-the-chance-to-salvage-the-nets-8217-nba-d.md]
+sources: [raw/beat-reporters/2026-05-21-rss-mikel-brown-jr-has-the-chance-to-salvage-the-nets-8217-nba-d.md, raw/beat-reporters/2026-05-29-rss-mikel-brown-jr-has-the-chance-to-salvage-the-nets-8217-nba-d.md]
 confidence: medium
-last_updated: 2026-05-21
+last_updated: 2026-05-29
 status: prospect
 ---
 

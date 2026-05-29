@@ -1,6 +1,6 @@
 ---
-last_compiled: 2026-05-28
-raw_sources: 487
+last_compiled: 2026-05-29
+raw_sources: 500
 wiki_articles: 34
 ---
 
@@ -20,9 +20,9 @@ wiki_articles: 34
 - [[Jason Collins]] — Nets legend (8 seasons, 2001–2008); NBA's first openly gay player; died May 13, 2026 (age 47)
 
 ## 2026 Draft Prospects
-- [[Keaton Wagler]] — "Best Nets draft option — even if it's not the best fit"; BPA vs. positional fit debate (as of 5/28/26)
+- [[Keaton Wagler]] — "Best Nets draft option — even if it's not the best fit"; BPA vs. positional fit debate (as of 5/29/26)
 - [[Darius Acuff Jr.]] — Point guard prospect, #3 pick candidate; "superstar point guard" aspirations (as of 5/21/26)
-- [[Mikel Brown Jr.]] — Louisville guard prospect, #3 pick candidate; highest ceiling assessment per NY Post evaluation (as of 5/21/26)
+- [[Mikel Brown Jr.]] — Louisville guard prospect, #3 pick candidate; highest ceiling assessment per NY Post evaluation (as of 5/29/26)
 
 ## Seasons
 - [[The Superstar Era]] — KD, Kyrie, Harden: 16 games together, zero titles, but the exit funded the rebuild
@@ -65,7 +65,7 @@ wiki_articles: 34
 ## Key Themes
 - **The KD trade tree keeps growing** — Now extends to 2032 via Denver, with 9 FRPs + 2 swaps + MPJ
 - **Year Two complete at 20-62, lottery completed May 10** — Season ended April 13 vs. Toronto; lottery occurred 5/10 with Nets at #3 (Wizards #1, Pacers #2). Second consecutive lottery year without top-2 pick. Nets at draft combine (5/13-14) evaluating guard prospects.
-- **Marks enters critical offseason execution window (May 25, 2026)** — Post-lottery phase complete; ESPN analyzing team-building lessons from playoff finalists (Thunder, Spurs, Knicks, Cavs); six-star trade proposals circulating; Bobby Marks' free-agent rankings highlight available talent. Self-help strategy now in motion.
+- **Marks enters critical offseason execution window (as of 5/29)** — Post-lottery phase in motion; NBA draft lottery reform approved with new anti-tanking measures; Keaton Wagler emerging as draft option; prediction markets favor one-and-done point guard at #3; team-building lessons from 2026 playoff finalists (Thunder, Spurs, Knicks, Cavs) circulating; Bobby Marks' free-agent rankings highlight available talent. Self-help execution critical.
 - **Jason Collins dies at 47** — NBA's first openly gay player and historic figure died 5/13/26 from Stage 4 glioblastoma. Nets legend (8 seasons, 2001–2008); [[Jason Kidd]] mourned him as a "pioneer." 2026 marks year-long tribute phase.
 - **MPJ'S PERSONAL CRISIS INTENSIFIES** — Podcast incident (5/2) + ex-girlfriend Madison Pettis public allegations (5/5) + public criticism of Cam Thomas (5/7-8) compound trade pressure. As of 5/14, remains one of Nets' most valuable assets.
 - **Josh Minott is the sleeper** — Acquired for nothing in February, NY Post says he may be the best young player in Brooklyn
