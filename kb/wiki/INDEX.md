@@ -1,6 +1,6 @@
 ---
-last_compiled: 2026-05-31
-raw_sources: 526
+last_compiled: 2026-06-01
+raw_sources: 539
 wiki_articles: 34
 ---
 

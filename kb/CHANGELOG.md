@@ -1,5 +1,11 @@
 # Knowledge Base Changelog
 
+## 2026-06-01
+- **2025-26 Season** — Added 2026-06-01 final roster snapshot and standings sources confirming season finalization (20-62 record, #3 lottery, 19-player roster). last_updated bumped to 2026-06-01
+- **2026 Draft Positioning** — Added 2026-06-01 offseason analysis confirmations. last_updated bumped to 2026-06-01
+- **INDEX.md** — Updated last_compiled to 2026-06-01 (raw_sources 539, wiki_articles 34); no new article additions
+- All 2026-06-01 raw sources processed: 11 beat-reporter articles (ESPN offseason analysis: free-agent rankings, team-building lessons, draft lottery reform, trade ideas, offseason previews; NY Post: Keaton Wagler draft option recirculation, Kyrie Irving Knicks Finals reaction, Mikie Sherrill New Jersey relocation commentary, prediction markets coverage, sports trivia), 2 stats files (roster snapshot: 19 players confirmed, standings: 20-62 record, #3 lottery confirmed). No new substantive Nets roster or strategic developments from 2026-05-31; content represents continuation of post-lottery offseason analysis phase with recycled articles and general NBA coverage.
+
 ## 2026-05-31
 - **Tank Math** — Added 2026-05-31 ESPN draft lottery reform sources (news digest, detailed reform analysis) confirming ongoing coverage of anti-tanking structural changes. last_updated bumped to 2026-05-31
 - **2026 Draft Positioning** — Added 2026-05-31 ESPN draft lottery reform source detailing Tim Bontemps' examination of structural changes and implications for rebuild strategy. last_updated bumped to 2026-05-31
