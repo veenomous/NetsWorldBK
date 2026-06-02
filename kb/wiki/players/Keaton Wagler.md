@@ -3,7 +3,7 @@ title: Keaton Wagler
 tags: [prospect, draft-2026, lottery-target]
 sources: [raw/beat-reporters/2026-05-28-rss-keaton-wagler-could-be-best-nets-draft-option-even-if-it-821.md, raw/beat-reporters/2026-05-29-rss-keaton-wagler-could-be-best-nets-draft-option-even-if-it-821.md]
 confidence: medium
-last_updated: 2026-05-29
+last_updated: 2026-06-02
 status: prospect
 ---
 

@@ -1,5 +1,12 @@
 # Knowledge Base Changelog
 
+## 2026-06-02
+- **2025-26 Season** — Updated last_updated to 2026-06-02; added 2026-06-02 final roster snapshot and standings sources confirming season finalization (19 players, 20-62 record, #3 lottery)
+- **2026 Draft Positioning** — Updated last_updated to 2026-06-02; added prediction markets data showing markets favor one-and-done point guard for #3 pick (as of 5/27/26 NY Post reporting). Keaton Wagler draft option confirmed, prediction market projection added to What We Know section
+- **Keaton Wagler** — Updated last_updated to 2026-06-02 
+- **INDEX.md** — Updated last_compiled to 2026-06-02 (raw_sources 552, wiki_articles 34); refreshed Key Themes with latest draft combine and offseason context; prediction markets and Keaton Wagler debate added
+- All 2026-06-02 raw sources processed: 13 beat-reporter articles (ESPN offseason news aggregation with links to draft lottery reform, free-agent rankings, team-building tips, offseason trade ideas; NY Post: Keaton Wagler draft option recirculation, Kyrie Irving Knicks Finals reaction, Mikie Sherrill New Jersey relocation commentary, prediction markets coverage, sports trivia), 2 stats files (roster snapshot: 19 players unchanged from 2026-06-01, standings: 20-62 record, #3 lottery confirmed). No new substantive Nets roster or strategic developments from 2026-06-02; content represents continuation of post-lottery offseason analysis phase with refined draft evaluation focus (BPA vs. fit debate with Keaton Wagler as case study; prediction markets favor point guard prospects).
+
 ## 2026-06-01
 - **2025-26 Season** — Added 2026-06-01 final roster snapshot and standings sources confirming season finalization (20-62 record, #3 lottery, 19-player roster). last_updated bumped to 2026-06-01
 - **2026 Draft Positioning** — Added 2026-06-01 offseason analysis confirmations. last_updated bumped to 2026-06-01
