@@ -1,9 +1,9 @@
 ---
 title: Nets vs Knicks
-tags: [rivalry, knicks, new-york, mikal-bridges, picks, entanglement]
-sources: [raw/transactions/2024-mikal-bridges-trade.md, raw/transactions/2025-nba-draft-results.md]
+tags: [rivalry, knicks, new-york, mikal-bridges, picks, entanglement, kyrie-irving]
+sources: [raw/transactions/2024-mikal-bridges-trade.md, raw/transactions/2025-nba-draft-results.md, raw/beat-reporters/2026-06-03-rss-kyrie-irving-reveals-how-he-feels-about-knicks-reaching-nba.md]
 confidence: high
-last_updated: 2026-04-11
+last_updated: 2026-06-03
 ---
 
 ## Summary
@@ -37,6 +37,9 @@ The Nets traded Bridges TO the Knicks, making them better short-term. But if the
 
 ### The Clowney Moment
 When [[Noah Clowney]] dropped a career-high 31 points with 7 threes against the Knicks on November 24, 2025, it was a small taste of what this rivalry could become. Brooklyn's young core torching New York in their own building, powered by picks the Knicks gave away.
+
+### Kyrie's 2026 Finals Run
+[[Kyrie Irving]], traded to Dallas in February 2023, revealed optimism about the Knicks reaching the 2026 NBA Finals (as of 5/30/26). This moment crystallizes the rivalry: the same team Kyrie helped eliminate from the Nets now competes for a championship, while Brooklyn enters its rebuild phase. The Knicks' early success validates their bet on the Bridges trade, but it also tightens the timeline on whether their picks will stay in the lottery or climb back to contention.
 
 ## Related
 - [[Kevin Durant Trade Tree]]
