@@ -1,5 +1,13 @@
 # Knowledge Base Changelog
 
+## 2026-06-04
+- **2025-26 Season** — Added 2026-06-04 roster snapshot and standings sources confirming final stats (19-player roster, 20-62 record, #3 lottery). last_updated bumped to 2026-06-04
+- **2026 Draft Positioning** — Added all 2026-06-04 beat-reporter and stats sources (ESPN offseason content on draft lottery reform, free-agent rankings, team-building tips, trade ideas; NY Post: Keaton Wagler draft option, Kyrie Irving Knicks Finals reaction, Mikie Sherrill relocation commentary, prediction markets, 1976 championship history). last_updated bumped to 2026-06-04
+- **Keaton Wagler** — Added 2026-06-04 recirculated source. last_updated bumped to 2026-06-04
+- **Nets vs Knicks** — Added 2026-06-04 Kyrie Irving source. last_updated bumped to 2026-06-04
+- **INDEX.md** — Updated last_compiled to 2026-06-04 (raw_sources 578, wiki_articles 34); no new articles added
+- All 2026-06-04 raw sources processed: 13 beat-reporter articles (ESPN offseason news digests and detailed articles on draft lottery reform, free-agent rankings, team-building tips, offseason trade ideas; NY Post: Keaton Wagler draft option, Kyrie Irving Knicks Finals reaction, Mikie Sherrill New Jersey relocation commentary, prediction markets coverage, 1976 championship history), 2 stats files (roster snapshot: 19 players confirmed, standings: 20-62 record, #3 lottery confirmed). No new substantive Nets roster or strategic developments from 2026-06-04; content represents continuation of post-lottery offseason analysis phase with recirculated articles and general NBA coverage.
+
 ## 2026-06-03
 - **2026 Draft Positioning** — Added 2026-06-03 recirculated sources (ESPN offseason articles on draft lottery reform, free-agent rankings, team-building tips, trade ideas; NY Post: Keaton Wagler draft option, Kyrie Irving Knicks Finals reaction, Mikie Sherrill relocation commentary, prediction markets coverage). last_updated bumped to 2026-06-03
 - **Keaton Wagler** — Added 2026-06-03 recirculated source. last_updated bumped to 2026-06-03
