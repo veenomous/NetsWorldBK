@@ -1,5 +1,12 @@
 # Knowledge Base Changelog
 
+## 2026-06-06
+- **2026 Draft Positioning** — Updated last_updated to 2026-06-06; added all 2026-06-06 raw sources (beat-reporter articles and stats snapshots)
+- **Keaton Wagler** — Updated last_updated to 2026-06-06; added 2026-06-06 recirculated source
+- **2025-26 Season** — Updated last_updated to 2026-06-06
+- **INDEX.md** — Updated last_compiled to 2026-06-06 (raw_sources 604, wiki_articles 34); no new articles added
+- All 2026-06-06 raw sources processed: 13 beat-reporter articles (ESPN offseason coverage on draft strategy, free-agency, trade ideas, team-building lessons, lottery reform, finals basketball stories; NY Post: Keaton Wagler draft option recirculation, Kyrie Irving Knicks Finals reaction, Mikie Sherrill relocation commentary, prediction markets, 1976 championship history), 2 stats files (roster snapshot: 19 players unchanged, standings: 20-62 record, #3 lottery unchanged). No new substantive Nets roster or strategic developments from 2026-06-06; content represents continuation of post-lottery offseason analysis phase with recycled articles and general NBA coverage.
+
 ## 2026-06-05
 - **Fan Pulse** — Auto-compiled with 2026-06-05 fan sentiment data (45 takes, 2225 agrees, 1017 disagrees). last_updated bumped to 2026-06-05
 - **INDEX.md** — Updated last_compiled to 2026-06-05 (raw_sources 591, wiki_articles 34); no new articles added
