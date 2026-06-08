@@ -1,9 +1,9 @@
 ---
 title: Tank Math
 tags: [concepts, tanking, lottery, odds, draft, strategy]
-sources: [raw/beat-reporters/nets-rebuild-timeline.md, raw/transactions/2025-nba-draft-results.md, raw/beat-reporters/2026-05-31-espn-news.md, raw/beat-reporters/2026-05-31-espn-the-pros-and-cons-of-the-new-nba-draft-lottery-reform.md]
+sources: [raw/beat-reporters/nets-rebuild-timeline.md, raw/transactions/2025-nba-draft-results.md, raw/beat-reporters/2026-05-31-espn-news.md, raw/beat-reporters/2026-05-31-espn-the-pros-and-cons-of-the-new-nba-draft-lottery-reform.md, raw/beat-reporters/2026-06-08-espn-the-pros-and-cons-of-the-new-nba-draft-lottery-reform.md]
 confidence: high
-last_updated: 2026-05-31
+last_updated: 2026-06-08
 ---
 
 ## Summary
