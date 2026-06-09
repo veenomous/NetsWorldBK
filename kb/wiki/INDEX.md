@@ -1,5 +1,5 @@
 ---
-last_compiled: 2026-06-08
+last_compiled: 2026-06-09
 raw_sources: 630
 wiki_articles: 34
 ---
@@ -64,7 +64,7 @@ wiki_articles: 34
 
 ## Key Themes
 - **The KD trade tree keeps growing** — Now extends to 2032 via Denver, with 9 FRPs + 2 swaps + MPJ
-- **Year Two complete at 20-62, lottery completed May 10** — Season ended April 13 vs. Toronto; lottery occurred 5/10 with Nets at #3 (Wizards #1, Pacers #2). Second consecutive lottery year without top-2 pick. Nets at draft combine (5/13-14) evaluating guard prospects.
+- **Year Two complete at 20-62 (confirmed 2026-06-09), lottery completed May 10** — Season ended April 13 vs. Toronto; lottery occurred 5/10 with Nets at #3 (Wizards #1, Pacers #2). Second consecutive lottery year without top-2 pick. Nets at draft combine (5/13-14) evaluating guard prospects.
 - **Marks enters critical offseason execution window (as of 6/2)** — Post-lottery phase in motion; NBA draft lottery reform approved with new anti-tanking measures (effective 2026); Keaton Wagler emerging as draft option debate (BPA vs. fit); prediction markets favor one-and-done point guard for #3 pick; team-building lessons from 2026 playoff finalists (Thunder, Spurs, Knicks, Cavs) available; Bobby Marks' free-agent rankings highlight available talent; final roster snapshot confirms 19 active players, 20-62 record locked. Self-help execution and draft evaluation critical.
 - **Jason Collins dies at 47** — NBA's first openly gay player and historic figure died 5/13/26 from Stage 4 glioblastoma. Nets legend (8 seasons, 2001–2008); [[Jason Kidd]] mourned him as a "pioneer." 2026 marks year-long tribute phase.
 - **MPJ'S PERSONAL CRISIS INTENSIFIES** — Podcast incident (5/2) + ex-girlfriend Madison Pettis public allegations (5/5) + public criticism of Cam Thomas (5/7-8) compound trade pressure. As of 5/14, remains one of Nets' most valuable assets.
