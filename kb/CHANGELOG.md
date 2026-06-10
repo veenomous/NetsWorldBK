@@ -1,5 +1,11 @@
 # Knowledge Base Changelog
 
+## 2026-06-10
+- **2025-26 Season** — Added 2026-06-10 roster snapshot and standings sources; all roster data now confirmed finalized (19 players, 20-62 record, #3 lottery). last_updated bumped to 2026-06-10
+- **2026 Draft Positioning** — Added 2026-06-10 beat-reporter articles (ESPN offseason coverage: draft lottery reform, Knicks-Spurs Finals context, offseason strategy; NY Post: Keaton Wagler draft option, Kyrie Irving Finals commentary, historical context) and stats files. last_updated bumped to 2026-06-10
+- **INDEX.md** — Updated last_compiled to 2026-06-10 (raw_sources 643, wiki_articles 34)
+- All 2026-06-10 raw sources processed: 11 beat-reporter articles (ESPN offseason news digest covering draft lottery reform approval, NBA Finals basketball preparation, team-building lessons, offseason strategy; NY Post: Keaton Wagler draft evaluation, Kyrie Irving Knicks Finals reaction, championship history context), 2 stats files (roster snapshot: 19 players confirmed, standings: 20-62 record confirmed, #3 lottery confirmed). No new substantive Nets roster or strategic developments from 2026-06-10; content represents conclusion of post-lottery offseason analysis phase leading into draft night preparation.
+
 ## 2026-06-08
 
 ## 2026-06-09
