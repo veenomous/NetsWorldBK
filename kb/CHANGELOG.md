@@ -1,5 +1,13 @@
 # Knowledge Base Changelog
 
+## 2026-06-11
+- **2025-26 Season** — Updated last_updated to 2026-06-11; added 2026-06-11 roster snapshot and standings sources confirming final season stats (19 players, 20-62 record, #3 lottery)
+- **2026 Draft Positioning** — Updated last_updated to 2026-06-11; added all 2026-06-11 beat-reporter articles (ESPN/NY Post offseason coverage: draft strategy, playoffs context, draft lottery reform, team-building lessons; Keaton Wagler draft option assessment, Kyrie Irving Finals commentary, historical championship context, prediction markets) and stats files
+- **Keaton Wagler** — Updated last_updated to 2026-06-11; added 2026-06-11 recirculated NY Post draft option source
+- **Salary Cap Situation** — Updated last_updated to 2026-06-11; added 2026-06-11 roster snapshot confirming 19-player roster with MPJ ($38.3M), Claxton ($25.4M), and rookie-scale contracts
+- **Nets vs Knicks** — Updated last_updated to 2026-06-11; added 2026-06-11 Kyrie Irving Finals commentary source
+- All 2026-06-11 raw sources processed: 11 beat-reporter articles (ESPN offseason news digest covering playoffs context, draft lottery reform, team-building lessons; NY Post recirculated content on Keaton Wagler draft option, Kyrie Irving Finals reaction, prediction markets, championship history), 2 stats files (roster snapshot: 19 players, standings: 20-62 final record, #3 lottery confirmed). No new substantive Nets roster or strategic developments; content represents post-lottery offseason analysis phase approaching draft night.
+
 ## 2026-06-10
 - **2025-26 Season** — Added 2026-06-10 roster snapshot and standings sources; all roster data now confirmed finalized (19 players, 20-62 record, #3 lottery). last_updated bumped to 2026-06-10
 - **2026 Draft Positioning** — Added 2026-06-10 beat-reporter articles (ESPN offseason coverage: draft lottery reform, Knicks-Spurs Finals context, offseason strategy; NY Post: Keaton Wagler draft option, Kyrie Irving Finals commentary, historical context) and stats files. last_updated bumped to 2026-06-10

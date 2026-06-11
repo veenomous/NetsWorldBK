@@ -1,9 +1,9 @@
 ---
 title: Nets vs Knicks
 tags: [rivalry, knicks, new-york, mikal-bridges, picks, entanglement, kyrie-irving]
-sources: [raw/transactions/2024-mikal-bridges-trade.md, raw/transactions/2025-nba-draft-results.md, raw/beat-reporters/2026-06-03-rss-kyrie-irving-reveals-how-he-feels-about-knicks-reaching-nba.md, raw/beat-reporters/2026-06-04-rss-kyrie-irving-reveals-how-he-feels-about-knicks-reaching-nba.md, raw/beat-reporters/2026-06-07-rss-kyrie-irving-reveals-how-he-feels-about-knicks-reaching-nba.md, raw/beat-reporters/2026-06-08-rss-kyrie-irving-reveals-how-he-feels-about-knicks-reaching-nba.md]
+sources: [raw/transactions/2024-mikal-bridges-trade.md, raw/transactions/2025-nba-draft-results.md, raw/beat-reporters/2026-06-03-rss-kyrie-irving-reveals-how-he-feels-about-knicks-reaching-nba.md, raw/beat-reporters/2026-06-04-rss-kyrie-irving-reveals-how-he-feels-about-knicks-reaching-nba.md, raw/beat-reporters/2026-06-07-rss-kyrie-irving-reveals-how-he-feels-about-knicks-reaching-nba.md, raw/beat-reporters/2026-06-08-rss-kyrie-irving-reveals-how-he-feels-about-knicks-reaching-nba.md, raw/beat-reporters/2026-06-11-rss-kyrie-irving-reveals-how-he-feels-about-knicks-reaching-nba.md]
 confidence: high
-last_updated: 2026-06-08
+last_updated: 2026-06-11
 ---
 
 ## Summary

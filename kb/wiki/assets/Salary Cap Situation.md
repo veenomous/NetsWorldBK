@@ -1,13 +1,13 @@
 ---
 title: Salary Cap Situation
 tags: [concepts, salary-cap, contracts, cap-space, cba]
-sources: [raw/stats/2026-04-10-roster-snapshot.md, raw/stats/2026-04-19-roster-snapshot.md, raw/stats/2026-05-12-roster-snapshot.md, raw/stats/2026-05-13-roster-snapshot.md, raw/stats/2026-05-17-roster-snapshot.md, raw/stats/2026-05-20-roster-snapshot.md, raw/stats/2026-05-25-roster-snapshot.md]
+sources: [raw/stats/2026-04-10-roster-snapshot.md, raw/stats/2026-04-19-roster-snapshot.md, raw/stats/2026-05-12-roster-snapshot.md, raw/stats/2026-05-13-roster-snapshot.md, raw/stats/2026-05-17-roster-snapshot.md, raw/stats/2026-05-20-roster-snapshot.md, raw/stats/2026-05-25-roster-snapshot.md, raw/stats/2026-06-11-roster-snapshot.md]
 confidence: medium
-last_updated: 2026-05-25
+last_updated: 2026-06-11
 ---
 
 ## Summary
-The Brooklyn Nets' salary cap situation is uniquely positioned for a rebuild: the roster is anchored by two significant contracts (Michael Porter Jr. at $38.3M and Nic Claxton at $25.4M) while the rest of the payroll is filled with rookie-scale deals from the 2025 draft class. As of May 25, 2026, the active roster contains 19 players. This structure gives the Nets flexibility — they can absorb salary in trades, create cap space when contracts expire, or extend young players as they prove themselves.
+The Brooklyn Nets' salary cap situation is uniquely positioned for a rebuild: the roster is anchored by two significant contracts (Michael Porter Jr. at $38.3M and Nic Claxton at $25.4M) while the rest of the payroll is filled with rookie-scale deals from the 2025 draft class. As of June 11, 2026, the active roster contains 19 players. This structure gives the Nets flexibility — they can absorb salary in trades, create cap space when contracts expire, or extend young players as they prove themselves.
 
 ## Key Insights
 - Two major contracts: MPJ ($38.3M) and Claxton ($25.4M) consume most of the cap
