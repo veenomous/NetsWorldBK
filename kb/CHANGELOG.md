@@ -1,5 +1,12 @@
 # Knowledge Base Changelog
 
+## 2026-06-12
+- **2026 Draft Positioning** — Updated last_updated to 2026-06-12; added all 2026-06-12 raw sources (ESPN/NY Post offseason coverage: draft trade ideas, Darius Acuff Jr. prospect profile, season predictions grades, offseason targets, Finals basketball context; prediction markets, Keaton Wagler evaluation, Kyrie Irving Finals reaction, championship history)
+- **Darius Acuff Jr.** — Updated last_updated to 2026-06-12; added 2026-06-12 ESPN source (Darius Acuff Jr. "wants to be the next Jalen Brunson" prospect profile)
+- **2025-26 Season** — Updated last_updated to 2026-06-12; added 2026-06-12 roster snapshot and standings sources confirming final season stats (19 players, 20-62 record, #3 lottery confirmed)
+- **INDEX.md** — Updated last_compiled to 2026-06-12 (raw_sources 669, wiki_articles 34); no new articles added
+- All 2026-06-12 raw sources processed: 11 beat-reporter articles (ESPN offseason coverage: draft trade ideas, Darius Acuff Jr. prospect profile, season predictions, offseason targets, Finals basketball; NY Post: Keaton Wagler draft option, Kyrie Irving Finals commentary, prediction markets, championship history), 2 stats files (roster snapshot: 19 players confirmed, standings: 20-62 record confirmed, #3 lottery confirmed). No new substantive Nets roster or strategic developments from 2026-06-12; content represents continuation of post-lottery offseason analysis phase with draft evaluation focus and historical context.
+
 ## 2026-06-11
 - **2025-26 Season** — Updated last_updated to 2026-06-11; added 2026-06-11 roster snapshot and standings sources confirming final season stats (19 players, 20-62 record, #3 lottery)
 - **2026 Draft Positioning** — Updated last_updated to 2026-06-11; added all 2026-06-11 beat-reporter articles (ESPN/NY Post offseason coverage: draft strategy, playoffs context, draft lottery reform, team-building lessons; Keaton Wagler draft option assessment, Kyrie Irving Finals commentary, historical championship context, prediction markets) and stats files

@@ -1,9 +1,9 @@
 ---
 title: Darius Acuff Jr.
 tags: [prospect, draft-2026, point-guard, lottery-target]
-sources: [raw/beat-reporters/2026-05-21-rss-darius-acuff-jr-bullish-he-can-be-8216-superstar-point-guard.md]
+sources: [raw/beat-reporters/2026-05-21-rss-darius-acuff-jr-bullish-he-can-be-8216-superstar-point-guard.md, raw/beat-reporters/2026-06-12-espn-darius-acuff-jr-wants-to-be-the-next-jalen-brunson-a-star-wi.md]
 confidence: medium
-last_updated: 2026-05-21
+last_updated: 2026-06-12
 status: prospect
 ---
 
