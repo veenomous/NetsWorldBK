@@ -1,5 +1,11 @@
 # Knowledge Base Changelog
 
+## 2026-06-13
+- **Darius Acuff Jr.** — Updated last_updated to 2026-06-13; added 2026-06-13 ESPN source; added Jalen Brunson comparison ("wants to be the next Jalen Brunson") and Key Comparison section detailing his positioning as a franchise player with bigger heart than height
+- **2026 Draft Positioning** — Updated last_updated to 2026-06-13; added all 2026-06-13 raw sources (beat-reporter articles on Darius Acuff Jr. prospect profile, ESPN news digest covering draft trade offers and season predictions, Keaton Wagler draft option evaluation, Kyrie Irving Finals reaction, prediction markets point guard projection; stats roster snapshot and standings)
+- **INDEX.md** — Updated last_compiled to 2026-06-13 (raw_sources now reflects 2026-06-13 additions; wiki_articles 34 unchanged)
+- All 2026-06-13 raw sources processed: 11 beat-reporter articles (ESPN: Darius Acuff Jr. prospect profile, news digest of draft trade offers and season prediction grades, Keaton Wagler draft evaluation, offseason coverage; NY Post/RSS: Keaton Wagler draft option, Kyrie Irving Finals commentary, prediction markets one-and-done point guard projection, basketball championship matchup what-if, 1976 championship history), 2 stats files (roster snapshot: 19 players confirmed, standings: 20-62 record confirmed, #3 lottery confirmed). No new substantive Nets roster or strategic developments from 2026-06-13; content represents continuation of post-lottery offseason analysis phase with draft evaluation focus and playoff context (Knicks-Spurs Finals in play).
+
 ## 2026-06-12
 - **2026 Draft Positioning** — Updated last_updated to 2026-06-12; added all 2026-06-12 raw sources (ESPN/NY Post offseason coverage: draft trade ideas, Darius Acuff Jr. prospect profile, season predictions grades, offseason targets, Finals basketball context; prediction markets, Keaton Wagler evaluation, Kyrie Irving Finals reaction, championship history)
 - **Darius Acuff Jr.** — Updated last_updated to 2026-06-12; added 2026-06-12 ESPN source (Darius Acuff Jr. "wants to be the next Jalen Brunson" prospect profile)
