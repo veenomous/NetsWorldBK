@@ -1,5 +1,14 @@
 # Knowledge Base Changelog
 
+## 2026-06-14
+- **2025-26 Season** — Updated last_updated to 2026-06-14; added offseason context (19 active players, enters 2026 NBA offseason with renewed focus on draft prospects and free agency). Final record: 20-62, #3 lottery confirmed.
+- **Darius Acuff Jr.** — Updated last_updated to 2026-06-14; added 2026-06-14 ESPN source ("wants to be the next Jalen Brunson" prospect profile); added scouting emphasis detail ("on a mission to prove that his size and true point guard skill set have a place in the NBA")
+- **Keaton Wagler** — Updated last_updated to 2026-06-14; added 2026-06-14 NY Post source (continued draft option evaluation)
+- **Nets vs Knicks** — Updated last_updated to 2026-06-14; added 2026-06-14 sources (Kyrie Irving Finals commentary and "Nets-Celtics Finals what-if" championship matchup article). Added section on post-Finals narrative (counterfactual Nets vs Celtics matchup discussion).
+- **2026 Draft Positioning** — Updated last_updated to 2026-06-14; added 2026-06-14 beat-reporter articles and stats files (ESPN draft trade offers post-Finals, power rankings for 2026-27, offseason targets for all 30 teams; NY Post free-agency questions for Nets linked to Austin Reaves and Jalen Duren). Added context on Spurs-Knicks Finals completion and six major lottery-pick trade offers in circulation.
+- **INDEX.md** — Updated last_compiled to 2026-06-14 (raw_sources incremented, wiki_articles 34 unchanged)
+- All 2026-06-14 raw sources processed: 11 beat-reporter articles (ESPN offseason coverage: post-Finals power rankings, draft trade offers, offseason targets, season prediction grades; NY Post: Nets' free-agency questions regarding Austin Reaves and Jalen Duren, Kyrie Irving Finals commentary, historical Nets championship context), 2 stats files (roster snapshot: 19 players confirmed, standings: 20-62 record confirmed, #3 lottery confirmed). No new substantive Nets roster moves, but offseason positioning clarified — team linked to free-agent targets and actively evaluating draft and trade options as offseason unfolds.
+
 ## 2026-06-13
 - **Darius Acuff Jr.** — Updated last_updated to 2026-06-13; added 2026-06-13 ESPN source; added Jalen Brunson comparison ("wants to be the next Jalen Brunson") and Key Comparison section detailing his positioning as a franchise player with bigger heart than height
 - **2026 Draft Positioning** — Updated last_updated to 2026-06-13; added all 2026-06-13 raw sources (beat-reporter articles on Darius Acuff Jr. prospect profile, ESPN news digest covering draft trade offers and season predictions, Keaton Wagler draft option evaluation, Kyrie Irving Finals reaction, prediction markets point guard projection; stats roster snapshot and standings)

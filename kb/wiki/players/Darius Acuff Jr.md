@@ -1,9 +1,9 @@
 ---
 title: Darius Acuff Jr.
 tags: [prospect, draft-2026, point-guard, lottery-target]
-sources: [raw/beat-reporters/2026-05-21-rss-darius-acuff-jr-bullish-he-can-be-8216-superstar-point-guard.md, raw/beat-reporters/2026-06-12-espn-darius-acuff-jr-wants-to-be-the-next-jalen-brunson-a-star-wi.md, raw/beat-reporters/2026-06-13-espn-darius-acuff-jr-wants-to-be-the-next-jalen-brunson-a-star-wi.md]
+sources: [raw/beat-reporters/2026-05-21-rss-darius-acuff-jr-bullish-he-can-be-8216-superstar-point-guard.md, raw/beat-reporters/2026-06-12-espn-darius-acuff-jr-wants-to-be-the-next-jalen-brunson-a-star-wi.md, raw/beat-reporters/2026-06-13-espn-darius-acuff-jr-wants-to-be-the-next-jalen-brunson-a-star-wi.md, raw/beat-reporters/2026-06-14-espn-darius-acuff-jr-wants-to-be-the-next-jalen-brunson-a-star-wi.md]
 confidence: medium
-last_updated: 2026-06-13
+last_updated: 2026-06-14
 status: prospect
 ---
 
@@ -14,8 +14,9 @@ Darius Acuff Jr. is a guard prospect being evaluated by the Brooklyn Nets as a p
 - **Position**: Point Guard
 - **Draft Class**: 2026 (eligible for #3 pick)
 - **Nets Interest**: High — featured in NY Post analysis of guard options at #3 (as of 5/21/26)
-- **Projection**: Aspirational ceiling: "superstar point guard" (per Acuff's own assessment); wants to be the next Jalen Brunson (as of 6/11/26)
+- **Projection**: Aspirational ceiling: "superstar point guard" (per Acuff's own assessment); wants to be the next Jalen Brunson (as of 6/11-6/14/26)
 - **Key Comparison**: Positioning himself as a franchise player with bigger heart than height, following Brunson's model
+- **Scouting Emphasis**: A projected lottery pick on a mission to prove that his size and true point guard skill set have a place in the NBA (ESPN, 6/14/26)
 
 ## Nets Context
 The Nets have explicitly positioned their #3 pick as an opportunity to find a franchise anchor — a guard with star potential to lead the rebuild. The 2026 draft class is guard-heavy, creating opportunity depth at the position. Acuff is one of several guard options the Nets evaluated during the draft combine phase.
