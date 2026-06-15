@@ -1,5 +1,10 @@
 # Knowledge Base Changelog
 
+## 2026-06-15
+- **2025-26 Season** — Updated last_updated to 2026-06-15; added 2026-06-15 final roster snapshot and standings sources (19 active players, 20-62 record, #3 lottery confirmed as of season conclusion)
+- **2026 Draft Positioning** — Updated last_updated to 2026-06-15; added 2026-06-15 final roster snapshot and standings confirmation to What We Know section
+- All 2026-06-15 raw sources processed: 8 beat-reporter articles (ESPN/NY Post offseason coverage: post-Finals power rankings, draft trade offers, championship odds projections, free-agency questions, prospect profiles, historical context), 2 stats files (final roster snapshot: 19 players confirmed, final standings: 20-62 record confirmed, #3 lottery confirmed). No new substantive Nets roster moves, strategic announcements, or draft positioning changes from 2026-06-15; content represents continuation of post-lottery offseason analysis phase with post-Finals landscape context (Spurs defeated Knicks in 2026 NBA Finals, power rankings updated, draft trade proposals active).
+
 ## 2026-06-14
 - **2025-26 Season** — Updated last_updated to 2026-06-14; added offseason context (19 active players, enters 2026 NBA offseason with renewed focus on draft prospects and free agency). Final record: 20-62, #3 lottery confirmed.
 - **Darius Acuff Jr.** — Updated last_updated to 2026-06-14; added 2026-06-14 ESPN source ("wants to be the next Jalen Brunson" prospect profile); added scouting emphasis detail ("on a mission to prove that his size and true point guard skill set have a place in the NBA")
