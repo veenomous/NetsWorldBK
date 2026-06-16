@@ -1,6 +1,6 @@
 ---
-last_compiled: 2026-06-15
-raw_sources: 701
+last_compiled: 2026-06-16
+raw_sources: 715
 wiki_articles: 34
 ---
 
@@ -65,7 +65,7 @@ wiki_articles: 34
 ## Key Themes
 - **The KD trade tree keeps growing** — Now extends to 2032 via Denver, with 9 FRPs + 2 swaps + MPJ
 - **Year Two complete at 20-62 (confirmed 2026-06-15), lottery completed May 10** — Season ended April 13 vs. Toronto; lottery occurred 5/10 with Nets at #3 (Wizards #1, Pacers #2). Second consecutive lottery year without top-2 pick. Nets at draft combine (5/13-14) evaluating guard prospects. Final 19-player roster confirmed as of 2026-06-15.
-- **Marks enters critical offseason execution window (as of 6/14)** — Post-lottery phase in motion; NBA draft lottery reform approved with new anti-tanking measures (effective 2026); Keaton Wagler emerging as draft option debate (BPA vs. fit); prediction markets favor one-and-done point guard for #3 pick; team-building lessons from 2026 playoff finalists (Thunder, Spurs, Knicks, Cavs) available; Spurs defeated Knicks in Finals (2026-06-14); six major lottery-pick trade offers circulating. Nets linked to free-agent targets Austin Reaves and Jalen Duren. Bobby Marks' free-agent rankings highlight available talent; final roster snapshot confirms 19 active players, 20-62 record locked. Self-help execution and draft evaluation critical.
+- **Marks enters critical offseason execution window (as of 6/16)** — Post-lottery phase in motion; NBA draft lottery reform approved with new anti-tanking measures (effective 2026); Keaton Wagler emerging as draft option debate (BPA vs. fit); prediction markets favor one-and-done point guard for #3 pick; team-building lessons from 2026 playoff finalists (Thunder, Spurs, Knicks, Cavs) available; Spurs defeated Knicks in Finals (2026-06-14); six major lottery-pick trade offers circulating featuring 11 lottery picks (ESPN, 6/12/26). **Free agency aggression signals (6/15-6/16)**: Nets among potential suitors for Lakers guard Austin Reaves alongside Detroit Pistons; Nets also linked to Jalen Duren as potential target. Multiple teams pursuing Reaves; insiders believe he stays in LA. Updated 2026 mock draft from ESPN (6/15/26) projects all 60 picks. Nets face draft trade decision: accumulate picks via trade-down or maintain #3 to select franchise guard. Bobby Marks' free-agent rankings highlight available talent; final roster snapshot confirms 19 active players, 20-62 record locked. Self-help execution and free agency aggressiveness critical.
 - **Jason Collins dies at 47** — NBA's first openly gay player and historic figure died 5/13/26 from Stage 4 glioblastoma. Nets legend (8 seasons, 2001–2008); [[Jason Kidd]] mourned him as a "pioneer." 2026 marks year-long tribute phase.
 - **MPJ'S PERSONAL CRISIS INTENSIFIES** — Podcast incident (5/2) + ex-girlfriend Madison Pettis public allegations (5/5) + public criticism of Cam Thomas (5/7-8) compound trade pressure. As of 5/14, remains one of Nets' most valuable assets.
 - **Josh Minott is the sleeper** — Acquired for nothing in February, NY Post says he may be the best young player in Brooklyn
