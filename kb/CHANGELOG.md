@@ -1,5 +1,11 @@
 # Knowledge Base Changelog
 
+## 2026-06-19
+- **2026 Draft Positioning** — Updated last_updated to 2026-06-19; added latest 2026-06-19 raw sources (ESPN/NY Post news digests covering mock draft projections, draft trade scenarios, 2027 championship odds, offseason targets, post-Finals power rankings; NY Post: Nets linked to Austin Reaves, questions facing Nets offseason). Final roster snapshot confirmed 19 players, 20-62 record, #3 lottery position. Updated "What We Know" with 2027 championship odds landscape (Spurs, Thunder, Celtics as favorites) and championship context affecting free agency and draft strategy. Updated timeline noting "one week until draft night" as of 6/19/26.
+- **Salary Cap Situation** — Updated last_updated to 2026-06-19; added 2026-06-19 roster snapshot source (19 players confirmed with current contract values: MPJ $38.3M, Claxton $25.4M, Mann $15.5M, rookies on cost-controlled deals).
+- **2025-26 Season** — Updated last_updated to 2026-06-19; added 2026-06-19 roster snapshot and standings sources. Updated summary to reflect post-Finals context: Spurs defeated Knicks in 2026 NBA Finals, resetting competitive expectations for 2026-27 season. 
+- All 2026-06-19 raw sources processed: 11 beat-reporter articles (ESPN: updated 2026 mock draft (all 60 picks), six big trade offers, 2027 championship odds, post-Finals power rankings, NBA offseason targets for all 30 teams; NY Post/RSS: Nets' questions facing free agency, Nets linked to Austin Reaves, Kyrie Irving Finals reaction, championship history, championship matchup what-if), 2 stats files (roster snapshot: 19 players confirmed, standings: 20-62 record, #3 lottery confirmed). Key developments: 2027 championship landscape established (Spurs favorites, Thunder/Celtics close behind); Nets one week from draft night with free agency interest in Austin Reaves heating up alongside draft evaluation.
+
 ## 2026-06-18
 - **2026 Draft Positioning** — Updated last_updated to 2026-06-18; added 2027 championship odds context (Spurs, Thunder, Celtics as favorites per ESPN 6/16/26) to What We Know section. Most recent roster and standings confirmed: 19 active players, 20-62 record, #3 lottery position.
 - **Salary Cap Situation** — Updated last_updated to 2026-06-18; roster snapshot confirmed 19 players with MPJ ($38.3M), Claxton ($25.4M), and rookie-scale contracts intact.
