@@ -1,5 +1,9 @@
 # Knowledge Base Changelog
 
+## 2026-06-21
+- **2025-26 Season** — Updated summary to reflect final 2026-06-21 roster snapshot (19 active players) and Spurs' Finals victory over Knicks with championship odds context (Spurs, Thunder, Celtics as favorites). Added "Final Roster (2026-06-21)" subsection with detailed player/salary breakdown. Confirmed the competitive landscape reset for 2026-27 offseason strategy.
+- All 2026-06-21 raw sources processed: 11 beat-reporter articles (ESPN: updated 2026 mock draft (all 60 picks), 2027 championship odds, post-Finals power rankings, NBA offseason coverage for all 30 teams; NY Post/RSS: Nets free-agency questions and Austin Reaves interest, Kyrie Irving Finals reaction, championship history context, championship matchup what-if), 2 stats files (final roster snapshot: 19 players confirmed with salary data, standings: 20-62 final record confirmed, #3 lottery confirmed). No new substantive Nets roster moves; content represents final pre-draft positioning with free agency interest (Austin Reaves, Jalen Duren) and 2027 championship landscape context.
+
 ## 2026-06-20
 - **2025-26 Season** — Updated last_updated to 2026-06-20; final regular season documentation complete with post-Finals context (Spurs defeated Knicks in 2026 NBA Finals)
 - **2026 Draft Positioning** — Updated last_updated to 2026-06-20; added "Free Agency Targets (Offseason Context)" section documenting Nets pursuit of Austin Reaves (Lakers G) and Jalen Duren alongside draft preparation. NY Post (6/15/26) reports Nets and Detroit Pistons as suitors; insiders believe Reaves stays in LA. Added final pre-draft landscape note: roster finalized at 19 players, draft night one week away, 2027 championship odds context (Spurs favorites post-Finals).
