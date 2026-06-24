@@ -1,7 +1,7 @@
 ---
-last_compiled: 2026-06-23
-raw_sources: 793
-wiki_articles: 35
+last_compiled: 2026-06-24
+raw_sources: 806
+wiki_articles: 37
 ---
 
 # BKGrit Knowledge Base — Index
@@ -10,6 +10,8 @@ wiki_articles: 35
 - [[Cameron Johnson]] — Traded to Denver (July 2025) for MPJ + 2032 first; the last KD trade return exits Brooklyn
 - [[Michael Porter Jr.]] — Acquired from Denver for Cam Johnson; 24.2 PPG veteran anchor; paired with [[Julius Randle]] for 2026-27
 - [[Julius Randle]] — Acquired June 23, 2026 from Timberwolves; All-Star forward, $30.9M, veteran leadership alongside young core
+- [[Mikel Brown Jr.]] — Star freshman from Louisville, drafted June 23, 2026; 18.2 PPG, 4.7 APG; highest-ceiling guard prospect
+- [[Joshua Jefferson]] — Iowa State All-American, drafted #28 June 23, 2026; 16.4 PPG, 7.4 RPG; versatile forward complement
 - [[Egor Demin]] — Franchise bet: 6'8" point guard, #8 pick, 10.3 PPG rookie season, set consecutive 3PT record
 - [[Nolan Traore]] — Explosive French point guard, #19 pick from Suns, G League development track
 - [[Noah Clowney]] — Year 2 leap: 12.5 PPG, career-high 31 vs. Knicks, switchable modern big
@@ -20,10 +22,8 @@ wiki_articles: 35
 - [[Nic Claxton]] — Traded to Bulls (June 23, 2026); was defensive anchor, $100M contract, longest-tenured Net through draft day
 - [[Jason Collins]] — Nets legend (8 seasons, 2001–2008); NBA's first openly gay player; died May 13, 2026 (age 47)
 
-## 2026 Draft Prospects
-- [[Keaton Wagler]] — "Best Nets draft option — even if it's not the best fit"; BPA vs. positional fit debate (as of 5/29/26)
-- [[Darius Acuff Jr.]] — Point guard prospect, #3 pick candidate; "superstar point guard" aspirations (as of 5/21/26)
-- [[Mikel Brown Jr.]] — Louisville guard prospect, #3 pick candidate; highest ceiling assessment per NY Post evaluation (as of 5/29/26)
+## Draft
+- [[2026 NBA Draft]] — June 23, 2026: Three-team trade acquired [[Julius Randle]] + #28 pick; drafted [[Mikel Brown Jr.]] and [[Joshua Jefferson]]; traded [[Nic Claxton]] to Bulls
 
 ## Seasons
 - [[The Superstar Era]] — KD, Kyrie, Harden: 16 games together, zero titles, but the exit funded the rebuild
@@ -39,7 +39,7 @@ wiki_articles: 35
 - [[Sean Marks Era|Sean Marks]] — From post-Billy King wasteland through the superstar gamble to Rebuild 2.0
 - [[Jordi Fernandez]] — First Spanish NBA head coach, development specialist, sports psychology background
 
-## Draft
+## Past Drafts
 - [[2025 NBA Draft]] — Five first-rounders in one draft: Demin, Traore, Powell, Saraf, Wolf
 
 ## Rivalries
@@ -56,18 +56,19 @@ wiki_articles: 35
 ## Community
 - [[Fan Pulse]] — Live fan sentiment from Wire takes, player ratings, and polls — auto-compiled
 
-## Rumor Mill
+## Rumor Mill & Live Events
 - [[MPJ Trade Buzz]] — **Status update (6/23)**: MPJ stays; roster pivots to Randle + MPJ scoring duo. Earlier escalation (5/2 podcast) resolved with acquisition of co-star.
-- [[2026 Draft Positioning]] — Draft night (6/23/26) complete: Nets executed three-team trade acquiring Julius Randle + #28 pick; traded Nic Claxton to Bulls; traded #33 pick to Timberwolves.
+- [[2026 Draft Positioning]] — **COMPLETE (6/24)**: Draft night (6/23/26) complete: Nets executed three-team trade acquiring [[Julius Randle]] + #28 pick; traded [[Nic Claxton]] to Bulls; drafted [[Mikel Brown Jr.]] (guard) and [[Joshua Jefferson]] (#28, forward).
 
 ---
 
 ## Key Themes
 - **The KD trade tree keeps growing** — Now extends to 2032 via Denver, with 9 FRPs + 2 swaps + MPJ
-- **Draft night pivots (2026-06-23)** — Three-team trade: Nets acquire [[Julius Randle]] ($30.9M) + #28 pick from Minnesota; trade [[Nic Claxton]] to Chicago Bulls; trade #33 pick to Minnesota. Shifts from defensive-anchor anchor (Claxton) to offensive-firepower approach (Randle + [[Michael Porter Jr.]]). Marks signals competitive intent; timeline accelerated toward 2026-27 or 2027-28 contention window.
+- **Draft night execution (2026-06-23/24)** — Three-team trade acquired [[Julius Randle]] ($30.9M) + #28 pick; traded [[Nic Claxton]] to Bulls; traded #33 to Minnesota. Drafted [[Mikel Brown Jr.]] (highest-ceiling guard, 20 y/o) and [[Joshua Jefferson]] (#28, All-American forward, 22 y/o). Philosophical shift from defensive anchor (Claxton) to offensive firepower (Randle + [[Michael Porter Jr.]]). ESPN/NY Post: draft picks represent "potential franchise-changing" moments with "genius or backfire" implications. Timeline accelerated to 2026-27 or 2027-28 competitive window.
 - **Jason Collins dies at 47** — NBA's first openly gay player and historic figure died 5/13/26 from Stage 4 glioblastoma. Nets legend (8 seasons, 2001–2008); [[Jason Kidd]] mourned him as a "pioneer." 2026 marks year-long tribute phase.
-- **MPJ STAYS** — Late May trade pressure (podcast 5/2, ex-girlfriend allegations 5/5) resolved; MPJ now co-star with [[Julius Randle]], anchoring scoring-forward pair alongside young guards ([[Egor Demin]], [[Nolan Traore]]).
+- **MPJ STAYS** — Late May trade pressure (podcast 5/2, ex-girlfriend allegations 5/5) resolved; MPJ now co-star with [[Julius Randle]], anchoring $69.2M scoring-forward pair alongside young guards ([[Egor Demin]], [[Nolan Traore]], [[Mikel Brown Jr.]]).
 - **Josh Minott is the sleeper** — Acquired for nothing in February, NY Post says he may be the best young player in Brooklyn
 - **Claxton era ends on draft day** — Defensive anchor traded to Bulls for cap flexibility and offensive upgrade. $25.4M contract exited; makes room for Randle's arrival.
 - **The superstar era's true legacy is the rebuild** — 16 games together, but the exits produced historic assets
 - **Fernandez extended through rebuild completion** — April 2026 multiyear extension signals confidence in development timeline; now managing accelerated competitive timeline
+- **Mikel Brown Jr. vs Darius Acuff Jr. debate will define draft legacy** — ESPN's Windy: "Nets taking Brown over Acuff will be the legacy of this draft" — positioning guard evaluation as defining competitive architecture choice
