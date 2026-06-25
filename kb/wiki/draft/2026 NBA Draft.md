@@ -3,11 +3,11 @@ title: 2026 NBA Draft
 tags: [draft, 2026, draft-night, transactions]
 sources: [raw/beat-reporters/2026-06-24-espn-2026-nba-draft-round-1-winners-surprise-picks-questions.md, raw/beat-reporters/2026-06-24-rss-nets-select-star-freshman-mikel-brown-jr-in-potential-franch.md, raw/beat-reporters/2026-06-24-rss-nets-go-big-with-iowa-state-all-american-josh-jefferson-at-n.md, raw/beat-reporters/2026-06-24-rss-2026-nba-draft-grades-how-each-team-fared-in-the-first-round.md, raw/beat-reporters/2026-06-24-rss-the-2026-nba-draft-gave-us-a-ton-of-moments-that-could-prove.md]
 confidence: high
-last_updated: 2026-06-24
+last_updated: 2026-06-25
 ---
 
 ## Summary
-The 2026 NBA Draft took place on June 23, 2026, marking a pivotal night for the Brooklyn Nets. Rather than using their #3 lottery pick solely on a prospect, the Nets executed a strategic three-team trade (with Minnesota Timberwolves and Chicago Bulls) that reshaped their roster for competitive acceleration. The Nets acquired [[Julius Randle]] ($30.9M, All-Star forward) and the #28 pick from Minnesota; traded #33 to Minnesota; and sent [[Nic Claxton]] to Chicago. With the acquired #28 pick, the Nets selected Joshua Jefferson (Iowa State). With their original assets (likely obtained through subsequent trades), the Nets selected [[Mikel Brown Jr.]] (Louisville).
+The 2026 NBA Draft took place on June 23, 2026, marking a pivotal night for the Brooklyn Nets. Rather than using their #3 lottery pick solely on a prospect, the Nets executed a strategic three-team trade (with Minnesota Timberwolves and Chicago Bulls) that reshaped their roster for competitive acceleration. The Nets acquired [[Julius Randle]] ($30.9M, All-Star forward) and the #28 pick from Minnesota; traded #33 to Minnesota; and sent [[Nic Claxton]] to Chicago. With the acquired #28 pick, the Nets selected [[Joshua Jefferson]] (Iowa State, #28). With their original assets (likely obtained through subsequent trades), the Nets selected [[Mikel Brown Jr.]] (Louisville). In the second round, the Nets selected [[Tyler Bilodeau]] (#43, UCLA) as a perimeter shooter to add offensive spacing.
 
 ## Nets Draft Strategy: Three-Team Architecture
 
@@ -39,6 +39,12 @@ The three-team structure allowed the Nets to:
 - **Assessment**: All-American versatile forward; more NBA-ready profile than freshman prospects
 - **Fit**: Secondary scoring and rebounding alongside [[Julius Randle]] ($30.9M) and [[Michael Porter Jr.]] ($38.3M)
 
+### Tyler Bilodeau — Forward (6'8", 228 lbs, age 22)
+- **Pick**: #43, second round
+- **College**: UCLA (senior)
+- **Assessment**: "One of the best shooters in the class"
+- **Fit**: Perimeter spacing and floor-stretching to complement scoring-forward duo
+
 ## Draft Context & League Narrative
 
 ### Nets' Draft Evaluation
@@ -60,6 +66,7 @@ The Randle acquisition (age 31, $30.9M) signals:
 ## Related
 - [[Mikel Brown Jr.]] — Selected by Nets, guard prospect
 - [[Joshua Jefferson]] — Selected by Nets, #28 pick
+- [[Tyler Bilodeau]] — Selected by Nets, #43 pick
 - [[Julius Randle]] — Acquired via three-team trade
 - [[Nic Claxton]] — Traded to Bulls
 - [[Michael Porter Jr.]] — Veteran co-star, scoring complement

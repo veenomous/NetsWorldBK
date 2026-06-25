@@ -1,5 +1,5 @@
 ---
-last_compiled: 2026-06-24
+last_compiled: 2026-06-25
 raw_sources: 806
 wiki_articles: 37
 ---
@@ -12,6 +12,7 @@ wiki_articles: 37
 - [[Julius Randle]] — Acquired June 23, 2026 from Timberwolves; All-Star forward, $30.9M, veteran leadership alongside young core
 - [[Mikel Brown Jr.]] — Star freshman from Louisville, drafted June 23, 2026; 18.2 PPG, 4.7 APG; highest-ceiling guard prospect
 - [[Joshua Jefferson]] — Iowa State All-American, drafted #28 June 23, 2026; 16.4 PPG, 7.4 RPG; versatile forward complement
+- [[Tyler Bilodeau]] — UCLA senior forward, drafted #43 June 23, 2026; elite shooter, floor-spacing forward
 - [[Egor Demin]] — Franchise bet: 6'8" point guard, #8 pick, 10.3 PPG rookie season, set consecutive 3PT record
 - [[Nolan Traore]] — Explosive French point guard, #19 pick from Suns, G League development track
 - [[Noah Clowney]] — Year 2 leap: 12.5 PPG, career-high 31 vs. Knicks, switchable modern big
@@ -23,7 +24,7 @@ wiki_articles: 37
 - [[Jason Collins]] — Nets legend (8 seasons, 2001–2008); NBA's first openly gay player; died May 13, 2026 (age 47)
 
 ## Draft
-- [[2026 NBA Draft]] — June 23, 2026: Three-team trade acquired [[Julius Randle]] + #28 pick; drafted [[Mikel Brown Jr.]] and [[Joshua Jefferson]]; traded [[Nic Claxton]] to Bulls
+- [[2026 NBA Draft]] — June 23, 2026: Three-team trade acquired [[Julius Randle]] + #28 pick; drafted [[Mikel Brown Jr.]], [[Joshua Jefferson]] (#28), and [[Tyler Bilodeau]] (#43); traded [[Nic Claxton]] to Bulls
 
 ## Seasons
 - [[The Superstar Era]] — KD, Kyrie, Harden: 16 games together, zero titles, but the exit funded the rebuild
