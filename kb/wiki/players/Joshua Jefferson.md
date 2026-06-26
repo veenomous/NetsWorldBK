@@ -1,9 +1,9 @@
 ---
 title: Joshua Jefferson
 tags: [player, forward, drafted-2026, iowa-state, current-roster]
-sources: [raw/beat-reporters/2026-06-24-rss-nets-go-big-with-iowa-state-all-american-josh-jefferson-at-n.md, raw/stats/2026-06-24-roster-snapshot.md]
+sources: [raw/beat-reporters/2026-06-24-rss-nets-go-big-with-iowa-state-all-american-josh-jefferson-at-n.md, raw/beat-reporters/2026-06-26-rss-nets-8217-first-rounder-believes-brooklyn-is-where-he-8216-n.md, raw/stats/2026-06-24-roster-snapshot.md, raw/stats/2026-06-26-roster-snapshot.md]
 confidence: high
-last_updated: 2026-06-24
+last_updated: 2026-06-26
 status: drafted
 ---
 
@@ -25,6 +25,7 @@ The #28 pick acquisition came as part of the three-team trade (Nets acquired #28
 - **Age-Experience Mix**: At 22 with four college seasons (senior status), Jefferson offers more immediate NBA readiness compared to freshman prospects
 - **Complementary Role**: With $30.9M allocated to [[Julius Randle]] and $38.3M to [[Michael Porter Jr.]], Jefferson's secondary role should allow his development and scoring touches to expand naturally in the rotation
 - **All-Around Ability**: 4.8 APG demonstrates forward playmaking; 7.4 RPG confirms glass presence; 16.4 PPG shows offensive autonomy
+- **Post-Draft Mindset** (6/25): In interviews following the draft, Jefferson expressed belief that Brooklyn is where he "needs to be," addressing skepticism around his older prospect profile and ankle sprain recovery. This suggests confidence in the Nets' development program and vision for his role.
 
 ## Related
 - [[Julius Randle]] — Veteran scoring forward, primary pick at #28 came with Randle acquisition

@@ -1,9 +1,9 @@
 ---
 title: Mikel Brown Jr.
 tags: [player, guard, drafted-2026, louisville, current-roster]
-sources: [raw/beat-reporters/2026-05-21-rss-mikel-brown-jr-has-the-chance-to-salvage-the-nets-8217-nba-d.md, raw/beat-reporters/2026-05-29-rss-mikel-brown-jr-has-the-chance-to-salvage-the-nets-8217-nba-d.md, raw/beat-reporters/2026-06-24-espn-what-mikel-brown-jr-brings-to-the-nets.md, raw/beat-reporters/2026-06-24-espn-windy-nets-taking-brown-over-acuff-will-be-the-legacy-of-thi.md, raw/beat-reporters/2026-06-24-rss-nets-select-star-freshman-mikel-brown-jr-in-potential-franch.md, raw/stats/2026-06-24-roster-snapshot.md]
+sources: [raw/beat-reporters/2026-05-21-rss-mikel-brown-jr-has-the-chance-to-salvage-the-nets-8217-nba-d.md, raw/beat-reporters/2026-05-29-rss-mikel-brown-jr-has-the-chance-to-salvage-the-nets-8217-nba-d.md, raw/beat-reporters/2026-06-24-espn-what-mikel-brown-jr-brings-to-the-nets.md, raw/beat-reporters/2026-06-24-espn-windy-nets-taking-brown-over-acuff-will-be-the-legacy-of-thi.md, raw/beat-reporters/2026-06-24-rss-nets-select-star-freshman-mikel-brown-jr-in-potential-franch.md, raw/beat-reporters/2026-06-26-rss-sean-marks-8217-nets-legacy-is-riding-on-massive-2026-nba-dr.md, raw/stats/2026-06-24-roster-snapshot.md, raw/stats/2026-06-26-roster-snapshot.md]
 confidence: high
-last_updated: 2026-06-24
+last_updated: 2026-06-26
 status: drafted
 ---
 
@@ -25,6 +25,7 @@ The Nets selected Brown with their draft pick on June 23, 2026, signaling confid
 - **Draft Day Commentary**: Brown's selection was framed as a defining moment of the 2026 draft, particularly in the context of guard evaluations and the Nets' competitive timeline shift with [[Julius Randle]] acquisition
 - **Ceiling Thesis**: Pre-draft NY Post assessment of "highest ceiling if he puts it all together" is now a Nets bet on development and progression
 - **Role**: As a 20-year-old with one college season, Brown represents a long-term investment paired with the veteran presence of [[Michael Porter Jr.]] ($38.3M) and [[Julius Randle]] ($30.9M) for immediate scoring
+- **Sean Marks' Legacy**: Post-draft coverage (6/25) positions Brown as central to [[Sean Marks]]' personal legacy as GM — "his legacy may well be remembered by the call he made Tuesday night" — signaling high stakes for the success/failure of this selection
 
 ## Related
 - [[Darius Acuff Jr.]] — Competing guard prospect, also draft target under evaluation
