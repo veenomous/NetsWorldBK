@@ -1,9 +1,9 @@
 ---
 title: Julius Randle
 tags: [player, forward, julius-randle, current-roster, veteran, acquired-2026]
-sources: [raw/beat-reporters/2026-06-23-espn-sources-wolves-to-trade-randle-to-nets-claxton-off-to-bulls.md, raw/beat-reporters/2026-06-23-rss-nets-trade-for-julius-randle-in-three-team-deal-in-pre-nba-d.md, raw/stats/2026-06-23-roster-snapshot.md]
+sources: [raw/beat-reporters/2026-06-23-espn-sources-wolves-to-trade-randle-to-nets-claxton-off-to-bulls.md, raw/beat-reporters/2026-06-23-rss-nets-trade-for-julius-randle-in-three-team-deal-in-pre-nba-d.md, raw/stats/2026-06-23-roster-snapshot.md, raw/stats/2026-06-27-roster-snapshot.md]
 confidence: high
-last_updated: 2026-06-23
+last_updated: 2026-06-27
 ---
 
 ## Summary

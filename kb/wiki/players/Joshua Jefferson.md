@@ -1,9 +1,9 @@
 ---
 title: Joshua Jefferson
 tags: [player, forward, drafted-2026, iowa-state, current-roster]
-sources: [raw/beat-reporters/2026-06-24-rss-nets-go-big-with-iowa-state-all-american-josh-jefferson-at-n.md, raw/beat-reporters/2026-06-26-rss-nets-8217-first-rounder-believes-brooklyn-is-where-he-8216-n.md, raw/stats/2026-06-24-roster-snapshot.md, raw/stats/2026-06-26-roster-snapshot.md]
+sources: [raw/beat-reporters/2026-06-24-rss-nets-go-big-with-iowa-state-all-american-josh-jefferson-at-n.md, raw/beat-reporters/2026-06-26-rss-nets-8217-first-rounder-believes-brooklyn-is-where-he-8216-n.md, raw/stats/2026-06-24-roster-snapshot.md, raw/stats/2026-06-26-roster-snapshot.md, raw/stats/2026-06-27-roster-snapshot.md]
 confidence: high
-last_updated: 2026-06-26
+last_updated: 2026-06-27
 status: drafted
 ---
 

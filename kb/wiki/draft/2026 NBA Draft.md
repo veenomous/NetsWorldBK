@@ -1,9 +1,9 @@
 ---
 title: 2026 NBA Draft
 tags: [draft, 2026, draft-night, transactions]
-sources: [raw/beat-reporters/2026-06-24-espn-2026-nba-draft-round-1-winners-surprise-picks-questions.md, raw/beat-reporters/2026-06-24-rss-nets-select-star-freshman-mikel-brown-jr-in-potential-franch.md, raw/beat-reporters/2026-06-24-rss-nets-go-big-with-iowa-state-all-american-josh-jefferson-at-n.md, raw/beat-reporters/2026-06-24-rss-2026-nba-draft-grades-how-each-team-fared-in-the-first-round.md, raw/beat-reporters/2026-06-24-rss-the-2026-nba-draft-gave-us-a-ton-of-moments-that-could-prove.md]
+sources: [raw/beat-reporters/2026-06-24-espn-2026-nba-draft-round-1-winners-surprise-picks-questions.md, raw/beat-reporters/2026-06-24-rss-nets-select-star-freshman-mikel-brown-jr-in-potential-franch.md, raw/beat-reporters/2026-06-24-rss-nets-go-big-with-iowa-state-all-american-josh-jefferson-at-n.md, raw/beat-reporters/2026-06-24-rss-2026-nba-draft-grades-how-each-team-fared-in-the-first-round.md, raw/beat-reporters/2026-06-24-rss-the-2026-nba-draft-gave-us-a-ton-of-moments-that-could-prove.md, raw/stats/2026-06-27-roster-snapshot.md, raw/stats/2026-06-27-standings.md]
 confidence: high
-last_updated: 2026-06-25
+last_updated: 2026-06-27
 ---
 
 ## Summary

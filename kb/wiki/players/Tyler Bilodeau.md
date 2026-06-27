@@ -1,9 +1,9 @@
 ---
 title: Tyler Bilodeau
 tags: [player, forward, drafted-2026, ucla, current-roster]
-sources: [raw/beat-reporters/2026-06-25-rss-nets-draft-ucla-star-tyler-bilodeau-to-add-offensive-upside.md, raw/beat-reporters/2026-06-25-rss-ucla-8217-s-tyler-bilodeau-goes-to-brooklyn-in-nba-draft-821.md, raw/stats/2026-06-25-roster-snapshot.md, raw/stats/2026-06-26-roster-snapshot.md]
+sources: [raw/beat-reporters/2026-06-25-rss-nets-draft-ucla-star-tyler-bilodeau-to-add-offensive-upside.md, raw/beat-reporters/2026-06-25-rss-ucla-8217-s-tyler-bilodeau-goes-to-brooklyn-in-nba-draft-821.md, raw/stats/2026-06-25-roster-snapshot.md, raw/stats/2026-06-26-roster-snapshot.md, raw/stats/2026-06-27-roster-snapshot.md]
 confidence: high
-last_updated: 2026-06-26
+last_updated: 2026-06-27
 status: drafted
 ---
 

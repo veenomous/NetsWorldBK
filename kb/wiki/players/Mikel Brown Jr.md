@@ -1,9 +1,9 @@
 ---
 title: Mikel Brown Jr.
 tags: [player, guard, drafted-2026, louisville, current-roster]
-sources: [raw/beat-reporters/2026-05-21-rss-mikel-brown-jr-has-the-chance-to-salvage-the-nets-8217-nba-d.md, raw/beat-reporters/2026-05-29-rss-mikel-brown-jr-has-the-chance-to-salvage-the-nets-8217-nba-d.md, raw/beat-reporters/2026-06-24-espn-what-mikel-brown-jr-brings-to-the-nets.md, raw/beat-reporters/2026-06-24-espn-windy-nets-taking-brown-over-acuff-will-be-the-legacy-of-thi.md, raw/beat-reporters/2026-06-24-rss-nets-select-star-freshman-mikel-brown-jr-in-potential-franch.md, raw/beat-reporters/2026-06-26-rss-sean-marks-8217-nets-legacy-is-riding-on-massive-2026-nba-dr.md, raw/stats/2026-06-24-roster-snapshot.md, raw/stats/2026-06-26-roster-snapshot.md]
+sources: [raw/beat-reporters/2026-05-21-rss-mikel-brown-jr-has-the-chance-to-salvage-the-nets-8217-nba-d.md, raw/beat-reporters/2026-05-29-rss-mikel-brown-jr-has-the-chance-to-salvage-the-nets-8217-nba-d.md, raw/beat-reporters/2026-06-24-espn-what-mikel-brown-jr-brings-to-the-nets.md, raw/beat-reporters/2026-06-24-espn-windy-nets-taking-brown-over-acuff-will-be-the-legacy-of-thi.md, raw/beat-reporters/2026-06-24-rss-nets-select-star-freshman-mikel-brown-jr-in-potential-franch.md, raw/beat-reporters/2026-06-26-rss-sean-marks-8217-nets-legacy-is-riding-on-massive-2026-nba-dr.md, raw/stats/2026-06-24-roster-snapshot.md, raw/stats/2026-06-26-roster-snapshot.md, raw/stats/2026-06-27-roster-snapshot.md]
 confidence: high
-last_updated: 2026-06-26
+last_updated: 2026-06-27
 status: drafted
 ---
 
