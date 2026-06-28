@@ -1,9 +1,9 @@
 ---
 title: Salary Cap Situation
 tags: [concepts, salary-cap, contracts, cap-space, cba]
-sources: [raw/stats/2026-04-10-roster-snapshot.md, raw/stats/2026-04-19-roster-snapshot.md, raw/stats/2026-05-12-roster-snapshot.md, raw/stats/2026-05-13-roster-snapshot.md, raw/stats/2026-05-17-roster-snapshot.md, raw/stats/2026-05-20-roster-snapshot.md, raw/stats/2026-05-25-roster-snapshot.md, raw/stats/2026-06-11-roster-snapshot.md, raw/stats/2026-06-19-roster-snapshot.md]
-confidence: medium
-last_updated: 2026-06-19
+sources: [raw/stats/2026-04-10-roster-snapshot.md, raw/stats/2026-04-19-roster-snapshot.md, raw/stats/2026-05-12-roster-snapshot.md, raw/stats/2026-05-13-roster-snapshot.md, raw/stats/2026-05-17-roster-snapshot.md, raw/stats/2026-05-20-roster-snapshot.md, raw/stats/2026-05-25-roster-snapshot.md, raw/stats/2026-06-11-roster-snapshot.md, raw/stats/2026-06-19-roster-snapshot.md, raw/beat-reporters/2026-06-28-espn-nba-free-agency-2026-how-much-all-30-teams-can-spend-this-su.md]
+confidence: high
+last_updated: 2026-06-28
 ---
 
 ## Summary
