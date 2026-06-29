@@ -1,7 +1,7 @@
 ---
-last_compiled: 2026-06-28
-raw_sources: 850
-wiki_articles: 37
+last_compiled: 2026-06-29
+raw_sources: 862
+wiki_articles: 38
 ---
 
 # BKGrit Knowledge Base — Index
@@ -21,6 +21,7 @@ wiki_articles: 37
 - [[Ben Saraf]] — Youngest Net at 19, crafty Israeli guard, #26 pick from Knicks via KD tree
 - [[Josh Minott]] — Acquired from Boston (Feb 2026), $2.4M forward; NY Post calls him potentially "the best player of the lot"
 - [[Nic Claxton]] — Traded to Bulls (June 23, 2026); was defensive anchor, $100M contract, longest-tenured Net through draft day
+- [[Ziaire Williams]] — Team option declined (June 29, 2026); career year performance, now unrestricted free agent
 - [[Jason Collins]] — Nets legend (8 seasons, 2001–2008); NBA's first openly gay player; died May 13, 2026 (age 47)
 
 ## Draft

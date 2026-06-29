@@ -1,9 +1,9 @@
 ---
 title: Sean Marks Era
 tags: [front-office, sean-marks, gm, rebuild, strategy]
-sources: [raw/beat-reporters/nets-rebuild-timeline.md, raw/transactions/2023-kd-trade.md, raw/transactions/2024-mikal-bridges-trade.md, raw/transactions/2025-cam-johnson-mpj-trade.md, raw/transactions/2025-nba-draft-results.md, raw/beat-reporters/2026-04-14-rss-sean-marks-leaves-nets-8217-rebuild-timeline-murky-8216-you.md, raw/beat-reporters/2026-04-14-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/beat-reporters/2026-04-19-rss-sean-marks-leaves-nets-8217-rebuild-timeline-murky-8216-you.md, raw/beat-reporters/2026-04-24-rss-sean-marks-leaves-nets-8217-rebuild-timeline-murky-8216-you.md, raw/beat-reporters/2026-04-28-espn-news.md, raw/beat-reporters/2026-05-11-rss-sean-marks-must-find-nets-savior-on-his-own-after-draft-lott.md, raw/beat-reporters/2026-05-12-espn-nba-offseason-draft-free-agency-trade-targets-for-eliminated.md]
+sources: [raw/beat-reporters/nets-rebuild-timeline.md, raw/transactions/2023-kd-trade.md, raw/transactions/2024-mikal-bridges-trade.md, raw/transactions/2025-cam-johnson-mpj-trade.md, raw/transactions/2025-nba-draft-results.md, raw/beat-reporters/2026-04-14-rss-sean-marks-leaves-nets-8217-rebuild-timeline-murky-8216-you.md, raw/beat-reporters/2026-04-14-rss-the-michael-porter-jr-conundrum-nets-face-this-summer-as-reb.md, raw/beat-reporters/2026-04-19-rss-sean-marks-leaves-nets-8217-rebuild-timeline-murky-8216-you.md, raw/beat-reporters/2026-04-24-rss-sean-marks-leaves-nets-8217-rebuild-timeline-murky-8216-you.md, raw/beat-reporters/2026-04-28-espn-news.md, raw/beat-reporters/2026-05-11-rss-sean-marks-must-find-nets-savior-on-his-own-after-draft-lott.md, raw/beat-reporters/2026-05-12-espn-nba-offseason-draft-free-agency-trade-targets-for-eliminated.md, raw/beat-reporters/2026-06-24-rss-sean-marks-8217-nets-legacy-is-riding-on-massive-2026-nba-dr.md]
 confidence: high
-last_updated: 2026-05-25
+last_updated: 2026-06-29
 ---
 
 ## Summary
@@ -39,6 +39,9 @@ The current phase. Five first-rounders drafted in 2025. MPJ acquired as the vete
 2. Decide when to flip remaining picks for established talent
 3. Manage the [[Salary Cap Situation]] to maintain flexibility
 4. Keep ownership patient through 2-3 more losing seasons
+
+### Draft Night Legacy Bet (June 23, 2026)
+On draft night, Marks executed a three-team trade acquiring [[Julius Randle]] ($30.9M) + #28 pick, signaling acceleration from pure rebuild to "win-now-plus-develop" hybrid. The centerpiece of his legacy: selecting [[Mikel Brown Jr.]] as the franchise's highest-ceiling prospect. Per NY Post (6/24): "Sean Marks' Nets legacy is riding on massive 2026 NBA Draft bet" — the framing captures the singular importance of this evaluation choice. Marks bet that a 20-year-old Louisville freshman with "highest ceiling if he puts it all together" represents better asset allocation than other prospects. Whether Brown develops into an All-Star or becomes a cautionary tale about high-variance projections will define this GM era's competitive success or failure.
 
 ### The "Murky Timeline" Problem (April 2026)
 After Year Two ended at 20-62, Nets fans want to know whether the team will accelerate the rebuild. Marks is deliberately noncommittal. Per NY Post (April 14, 2026): Marks "leaves Nets' rebuild timeline murky: 'You just never know.'" This is either a shrewd negotiating posture (keeping all options open heading into the offseason) or genuine uncertainty about the best path forward. The MPJ question sits at the center: NY Post noted that "what Nets GM Sean Marks wants is a mystery" — while Porter himself apparently has more clarity about his own situation. Marks has public accountability for three decisions arriving simultaneously:
