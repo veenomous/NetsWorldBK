@@ -44,8 +44,10 @@ The NY Post's April 14, 2026 piece represented a meaningful reassessment. With t
 - [[Sean Marks Era|Sean Marks]]
 - [[Rebuild Timeline]]
 
+## Contract Status
+As of June 29, 2026, the Nets agreed to a 2-year deal with Minott, confirming organizational confidence in his long-term role. The multi-year commitment contradicts the "easily waivable" narrative and signals that Marks views him as a legitimate core piece rather than depth.
+
 ## Open Questions
 - What were Minott's actual stats in Brooklyn after the February trade? (Not yet captured in raw sources)
-- Does Marks view him as a core piece or depth? His $2.4M deal makes him easily waivable.
 - Is the NY Post "best player of the lot" claim hyperbole or a genuine scouting read?
-- Does Minott get a contract extension, or does he play out the minimum and hit restricted free agency?
+- Does the 2-year deal include an extension option or standard salary progression?

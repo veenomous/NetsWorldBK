@@ -7,14 +7,14 @@ last_updated: 2026-05-29
 ---
 
 ## Summary
-The Brooklyn Nets rebuild is projected to turn competitive around 2027-28, roughly 4-5 years after the Kevin Durant trade that started it. The timeline is driven by three factors: when the young core matures (Demin will be 22, Clowney 24, Traore 22), when the remaining pick assets can be deployed, and when the salary cap creates space. The Nets are currently in Year 2 of the rebuild with the foundation laid — the question is how quickly the pieces come together.
+The Brooklyn Nets rebuild is projected to turn competitive around 2026-27 to 2027-28, roughly 3-4 years after the Kevin Durant trade. A major pivot occurred in June 2026: having completed the "asset accumulation" phase, the organization shifted from intentional tanking to competitive intent. Per NY Post (6/29/26): "the Nets enter free agency...to get better now" — no longer chasing future assets but adding win-now pieces like [[Julius Randle]]. The timeline is still driven by young core maturation (Demin, Clowney, Traore) and pick deployment, but the organization no longer views 2026-27 as a development year to tank through.
 
 ## Key Insights
 - **Year 1 (2024-25)**: Tank year. Bottom-3 record. Cam Thomas as the lead scorer. The "why" year.
-- **Year 2 (2025-26)**: Draft capital deployed. Five first-rounders. MPJ acquired. Final record: 20-62. #3 lottery slot. Season goals accomplished per NY Post (4/13/26). The "planting" year.
-- **Year 3 (2026-27)**: Expected inflection. Young players take bigger roles. Three more first-rounders arrive (Suns, Knicks, Mavs 2027 picks). The "growing" year. Sean Marks has deliberately left this year's direction unclear — "you just never know" (NY Post, 4/14/26).
+- **Year 2 (2025-26)**: Draft capital deployed. Five first-rounders. MPJ acquired. Final record: 20-62. #3 lottery slot. Season goals accomplished. The "planting" year. Included pivotal Josh Minott acquisition (Feb 5) and Julius Randle trade (June 23).
+- **Year 3 (2026-27)**: **Competitive pivot (as of 6/29/26)**. No longer tanking — Nets signed Josh Minott and Day'Ron Sharpe to multi-year deals and acquired Randle to add win-now talent. Expected to compete for play-in with young core + Randle + MPJ. The "build" year, not the "develop further" year.
 
-- **Year 4 (2027-28)**: Target competitive year. Demin at 22, Clowney at 24. Can package remaining picks for a star if needed. [[Nic Claxton]]'s prime years (28-29). The "prove it" year.
+- **Year 4 (2027-28)**: Still target competitive year. Demin at 22, Clowney at 24. Randle at 33-34 (veteran anchor). Can package remaining picks for a star if core shows promise. The "prove it" year.
 - **Year 5+ (2028-30)**: Contention window. Picks from Suns/Knicks (2029, 2031) provide ongoing ammo. The "win" years.
 
 ## Details

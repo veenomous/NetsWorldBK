@@ -1,7 +1,7 @@
 ---
-last_compiled: 2026-06-29
-raw_sources: 862
-wiki_articles: 38
+last_compiled: 2026-06-30
+raw_sources: 874
+wiki_articles: 39
 ---
 
 # BKGrit Knowledge Base — Index
@@ -19,7 +19,8 @@ wiki_articles: 38
 - [[Danny Wolf]] — 6'11" stretch big, #27 pick from Harden trade chain, 8.9 PPG rookie
 - [[Drake Powell]] — Two-way wing from UNC, #22 pick, defensive specialist
 - [[Ben Saraf]] — Youngest Net at 19, crafty Israeli guard, #26 pick from Knicks via KD tree
-- [[Josh Minott]] — Acquired from Boston (Feb 2026), $2.4M forward; NY Post calls him potentially "the best player of the lot"
+- [[Josh Minott]] — Acquired from Boston (Feb 2026), 2-year deal (signed 6/29/26), $2.4M forward; NY Post calls him potentially "the best player of the lot"
+- [[Day'Ron Sharpe]] — Center, 6'10", 265 lbs, age 24; 2-year deal (signed 6/29/26); interior defender, rim protector
 - [[Nic Claxton]] — Traded to Bulls (June 23, 2026); was defensive anchor, $100M contract, longest-tenured Net through draft day
 - [[Ziaire Williams]] — Team option declined (June 29, 2026); career year performance, now unrestricted free agent
 - [[Jason Collins]] — Nets legend (8 seasons, 2001–2008); NBA's first openly gay player; died May 13, 2026 (age 47)
@@ -65,6 +66,7 @@ wiki_articles: 38
 ---
 
 ## Key Themes
+- **Competitive pivot (2026-06-30)** — Major organizational shift from asset accumulation to "getting better now." Josh Minott and Day'Ron Sharpe sign 2-year deals (6/29/26); Ziaire Williams option declined. NY Post: "the Nets enter free agency with huge cache of salary cap space. But this time they won't be using it to get future assets, but to get better now." Focus on getting "bigger and bulkier" after watching Knicks win championship. Rebuilding timeline accelerated to 2026-27 competitive attempt instead of continued youth development.
 - **The KD trade tree keeps growing** — Now extends to 2032 via Denver, with 9 FRPs + 2 swaps + MPJ
 - **Draft night execution (2026-06-23/24)** — Three-team trade acquired [[Julius Randle]] ($30.9M) + #28 pick; traded [[Nic Claxton]] to Bulls; traded #33 to Minnesota. Drafted [[Mikel Brown Jr.]] (highest-ceiling guard, 20 y/o) and [[Joshua Jefferson]] (#28, All-American forward, 22 y/o). Philosophical shift from defensive anchor (Claxton) to offensive firepower (Randle + [[Michael Porter Jr.]]). ESPN/NY Post: draft picks represent "potential franchise-changing" moments with "genius or backfire" implications. Timeline accelerated to 2026-27 or 2027-28 competitive window.
 - **Jason Collins dies at 47** — NBA's first openly gay player and historic figure died 5/13/26 from Stage 4 glioblastoma. Nets legend (8 seasons, 2001–2008); [[Jason Kidd]] mourned him as a "pioneer." 2026 marks year-long tribute phase.

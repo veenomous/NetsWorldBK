@@ -7,27 +7,31 @@ last_updated: 2026-06-28
 ---
 
 ## Summary
-The Brooklyn Nets' salary cap situation is uniquely positioned for a rebuild: the roster is anchored by two significant contracts (Michael Porter Jr. at $38.3M and Nic Claxton at $25.4M) while the rest of the payroll is filled with rookie-scale deals from the 2025 draft class. As of June 19, 2026, the active roster contains 19 players including MPJ ($38.3M), Claxton ($25.4M), Terance Mann ($15.5M), and a collection of young players on cost-controlled deals. This structure gives the Nets flexibility — they can absorb salary in trades, create cap space when contracts expire, or extend young players as they prove themselves.
+The Brooklyn Nets' salary cap situation shifted dramatically on draft night (June 23, 2026): the Nets traded defensive anchor [[Nic Claxton]] ($25.4M) to Chicago and acquired All-Star forward [[Julius Randle]] ($30.9M) from Minnesota. The new structure is anchored by two win-now max contracts ([[Michael Porter Jr.]] at $38.3M and Randle at $30.9M) while the rest of the payroll is filled with rookie-scale deals from the 2025 draft class and proven role players. As of June 30, 2026, the active roster contains 22 players on a tight salary cap. This structure signals a shift from rebuild flexibility to competitive intent — the Nets are no longer hoarding cap space for assets, but deploying it to add win-now talent.
 
 ## Key Insights
-- Two major contracts: MPJ ($38.3M) and Claxton ($25.4M) consume most of the cap
-- Five rookie-scale contracts from the 2025 draft keep the rest of the payroll cheap
-- MPJ's contract is both a burden (expensive for a rebuilding team) and an asset (tradeable to contenders)
-- The Nets will have significant cap space opening up in 2027-28 as MPJ's deal winds down
+- **Draft Day Pivot (6/23/26)**: Nets traded Claxton ($25.4M) for Randle ($30.9M) — a $5.5M increase that signals competitive intent over rebuild flexibility
+- Two major contracts: MPJ ($38.3M) and Randle ($30.9M) consume most of the cap — $69.2M combined vs. $63.7M with Claxton
+- Five rookie-scale contracts from the 2025 draft keep secondary payroll cheap
+- MPJ's contract is both core scorer and tradeable asset; Randle is the anchor for 2026-27 competitive attempt
+- The Nets will have limited cap space for 2026-27 free agency due to Randle/MPJ commitments
 - Rookie extensions for Demin, Clowney, and others will start coming due in 2027-28
-- The CBA's second apron rules make it harder for luxury tax teams to trade for the Nets' picks — this could affect pick values
+- The CBA's second apron rules affect the value of the Nets' future picks from luxury tax teams
 
 ## Details
 
-### Current Major Contracts
+### Current Major Contracts (as of 6/30/26)
 | Player | Salary | Years Left | Notes |
 |--------|--------|-----------|-------|
-| [[Michael Porter Jr.]] | $38.3M | 1-2 years | Tradeable asset or keep as scorer |
-| [[Nic Claxton]] | $25.4M | 2 years (through 2027-28) | Locked in through competitive window |
-| Terance Mann | $15.5M | 1-2 years | Veteran, potential trade filler |
+| [[Michael Porter Jr.]] | $38.3M | 1-2 years | Core scorer, competitive window anchor |
+| [[Julius Randle]] | $30.9M | 4+ years | Acquired 6/23/26, veteran leader |
+| Terance Mann | $15.5M | 1-2 years | Veteran role player |
 | [[Egor Demin]] | $6.9M | 3 years (rookie scale) | Extension eligible ~2028 |
-| Ziaire Williams | $6.3M | 1 year | Expiring |
-| Day'Ron Sharpe | $6.3M | 1 year | Expiring |
+| Josh Minott | $2.4M | 2 years | Signed 6/29/26 multi-year deal |
+| Day'Ron Sharpe | $6.3M | 2 years | Signed 6/29/26 multi-year deal |
+| Ziaire Williams | TBD | UFA | Option declined 6/29/26 |
+
+**Traded (6/23/26)**: [[Nic Claxton]] ($25.4M) to Chicago Bulls
 
 ### Rookie Scale Advantages
 The five 2025 first-rounders (Demin $6.9M, Traore $3.8M, Powell $3.4M, Saraf $2.9M, Wolf $2.8M) are all on cost-controlled rookie deals for 3-4 years. This means:
