@@ -1,13 +1,13 @@
 ---
 title: Nolan Traore
 tags: [player, guard, nolan-traore, rookie, french, "2025-draft"]
-sources: [raw/transactions/2025-nba-draft-results.md]
+sources: [raw/transactions/2025-nba-draft-results.md, raw/beat-reporters/2026-07-01-rss-nolan-traore-out-for-nets-8217-summer-league-after-knee-surg.md]
 confidence: medium
-last_updated: 2026-04-11
+last_updated: 2026-07-01
 ---
 
 ## Summary
-Nolan Traore is a 19-year-old French point guard selected 19th overall in the [[2025 NBA Draft]] with the Nets' pick from the Phoenix Suns (via the [[Kevin Durant Trade Tree]]). The most explosive athlete in Brooklyn's rookie class, Traore brings electric speed and finishing ability but is the rawest of the five first-rounders. He spent part of his rookie season with the Long Island Nets in the G League, developing his half-court game while adjusting to the NBA.
+Nolan Traore is a 20-year-old French point guard selected 19th overall in the [[2025 NBA Draft]] with the Nets' pick from the Phoenix Suns (via the [[Kevin Durant Trade Tree]]). The most explosive athlete in Brooklyn's rookie class, Traore brings electric speed and finishing ability but is the rawest of the five first-rounders. He spent part of his rookie 2025-26 season with the Long Island Nets in the G League, developing his half-court game while adjusting to the NBA. As of July 1, 2026, Traore is recovering from knee surgery and will miss the 2026 Summer League.
 
 ## Key Insights
 - Drafted 19th overall via a multi-team pick chain (through Milwaukee, NYK, DET, POR, NOP)
@@ -45,7 +45,11 @@ The size differential (Demin 6'8" vs. Traore 6'3") actually makes them complemen
 - [[Kevin Durant Trade Tree]]
 - [[2025-26 Season]]
 
+## Recent Developments (2026-07-01)
+Traore had knee surgery and is sidelined for the 2026 Summer League. This setback adds to the development timeline pressure — the young point guard will miss crucial offseason reps but should be available for 2026-27 training camp pending recovery.
+
 ## Open Questions
-- When does Traore become a full-time NBA rotation player — Year 2 or Year 3?
-- Can he develop a reliable three-point shot to complement his driving game?
+- How does the knee surgery affect Traore's Year 2 development timeline for 2026-27?
+- When does Traore return to full participation after Summer League absence?
+- Will the injury delay his progression toward full-time NBA rotation role?
 - Is the Demin-Traore backcourt the long-term answer, or will one be traded?

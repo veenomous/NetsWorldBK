@@ -1,13 +1,13 @@
 ---
 title: Danny Wolf
 tags: [player, forward, danny-wolf, rookie, stretch-big, "2025-draft"]
-sources: [raw/transactions/2025-nba-draft-results.md, raw/stats/2026-04-10-roster-snapshot.md]
-confidence: medium
-last_updated: 2026-04-11
+sources: [raw/transactions/2025-nba-draft-results.md, raw/stats/2026-04-10-roster-snapshot.md, raw/beat-reporters/2026-07-01-rss-danny-wolf-ready-for-his-shot-to-fill-nets-8217-nic-claxton.md, raw/stats/2026-07-01-roster-snapshot.md]
+confidence: high
+last_updated: 2026-07-01
 ---
 
 ## Summary
-Danny Wolf is a 6'11" stretch big drafted 27th overall in the [[2025 NBA Draft]] with the pick that originated from the [[James Harden Trade]] (Houston's top-4 protected first that finally conveyed). An Israeli-American forward who played at Michigan, Wolf represents the modern NBA big: he can shoot from three, pass from the high post, and protect the rim. His rookie stats (8.9 PPG, 4.9 RPG) show a player who can contribute immediately.
+Danny Wolf is a 22-year-old, 6'11" stretch big drafted 27th overall in the [[2025 NBA Draft]] with the pick that originated from the [[James Harden Trade]] (Houston's top-4 protected first that finally conveyed). An Israeli-American forward who played at Michigan, Wolf represents the modern NBA big: he can shoot from three, pass from the high post, and protect the rim. His rookie 2025-26 stats (8.9 PPG, 4.9 RPG) show a player who can contribute immediately. With the trade of [[Nic Claxton]] to Chicago on draft night (June 23, 2026), Wolf is positioned as a central piece in the Nets' 2026-27 frontcourt, ready for an increased role and minutes.
 
 ## Key Insights
 - Drafted 27th overall — the Rockets pick from the Harden trade, top-4 protection lifted
@@ -15,7 +15,7 @@ Danny Wolf is a 6'11" stretch big drafted 27th overall in the [[2025 NBA Draft]]
 - Israeli national team player — brings international experience and IQ
 - 8.9 PPG, 4.9 RPG as a rookie — solid production for a late first-rounder
 - His passing ability from the high post creates offense for cutters and shooters
-- Paired with [[Nic Claxton]] gives the Nets a versatile frontcourt
+- **2026-27 opportunity**: With [[Nic Claxton]] traded (6/23/26), Wolf gets first chance to prove he can anchor the center role alongside [[Julius Randle]] ($30.9M) and [[Michael Porter Jr.]] ($38.3M)
 
 ## Details
 
@@ -26,7 +26,7 @@ Wolf is the prototypical modern big. At 6'11" he can:
 - Switch onto guards defensively (mobile for his size)
 - Rebound in traffic with his 250-lb frame
 
-He's not an elite rim protector like Claxton, but he doesn't need to be — his value is offensive versatility at the 4/5.
+He's not an elite rim protector like Claxton was, but he doesn't need to be — his value is offensive versatility at the 4/5. With Claxton now in Chicago and [[Julius Randle]] ($30.9M) and [[Michael Porter Jr.]] ($38.3M) anchoring the offense, Wolf will have an expanded role in Year 2.
 
 ### The Harden Trade Connection
 Wolf's draft slot has a poetic origin. The Rockets pick was the last remaining asset from the disastrous James Harden trade. After Ben Simmons flamed out, this pick was the one tangible return that actually worked. Houston's strong 2024-25 season meant the top-4 protection didn't apply, and the pick conveyed at #27 — where the Nets found a contributor.
@@ -39,6 +39,7 @@ Wolf's draft slot has a poetic origin. The Rockets pick was the last remaining a
 - [[2025-26 Season]]
 
 ## Open Questions
-- Can Wolf develop into a starting-caliber big, or is he a high-end backup?
-- How does he fit long-term alongside Clowney, who plays a similar position?
-- Will his three-point shooting hold up over a full NBA season?
+- With Claxton gone, can Wolf step into a starting/primary center role in 2026-27?
+- How will he fit alongside [[Julius Randle]] ($30.9M) in the frontcourt?
+- Can his three-point shooting hold up over a full NBA season?
+- Will his offensive-first skillset be sufficient in Year 2, or does he need to add a defensive dimension?
