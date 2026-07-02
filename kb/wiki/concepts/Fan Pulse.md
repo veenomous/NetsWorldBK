@@ -3,7 +3,7 @@ title: Fan Pulse
 tags: [fan-pulse, sentiment, community, wire, ratings]
 sources: []
 confidence: high
-last_updated: 2026-07-01
+last_updated: 2026-07-02
 ---
 
 ## Summary

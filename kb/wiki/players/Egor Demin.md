@@ -1,9 +1,9 @@
 ---
 title: Egor Demin
 tags: [player, guard, egor-demin, rookie, franchise-bet, "2025-draft"]
-sources: [raw/transactions/2025-nba-draft-results.md, raw/stats/2026-04-10-roster-snapshot.md]
+sources: [raw/transactions/2025-nba-draft-results.md, raw/stats/2026-04-10-roster-snapshot.md, raw/beat-reporters/2026-07-02-rss-egor-demin-seeks-to-make-quick-connection-with-nets-8217-202.md]
 confidence: high
-last_updated: 2026-04-11
+last_updated: 2026-07-02
 ---
 
 ## Summary
@@ -53,7 +53,11 @@ The Nets didn't get Cooper Flagg (#1 to Dallas), but Demin has a legitimate path
 - [[Michael Porter Jr.]]
 - [[Sean Marks Era|Sean Marks]]
 
+## Offseason Connection (2026-07-02)
+A NY Post report (published 7/2/26) noted Demin's offseason focus: "For Egor Dëmin, the offseason checklist is simple, if not easy" — emphasizing his commitment to building chemistry with new teammates. With the 2026 draft class additions ([[Mikel Brown Jr.]], [[Joshua Jefferson]], [[Tyler Bilodeau]]) and free-agent signings ([[Julius Randle]], [[Keon Ellis]]), Demin's leadership role in connecting the young core with veteran additions becomes central to 2026-27 execution.
+
 ## Open Questions
 - How does the plantar fasciitis affect his Year 2 development?
 - Can he become a 20+ PPG scorer, or is he more of a 15-and-8 facilitator?
 - How does he fit long-term with [[Nolan Traore]] — two point guards in the same backcourt?
+- What's his leadership role in integrating 2026 draft picks and [[Keon Ellis]] into the backcourt?
