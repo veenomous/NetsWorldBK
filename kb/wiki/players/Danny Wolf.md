@@ -1,9 +1,9 @@
 ---
 title: Danny Wolf
 tags: [player, forward, danny-wolf, rookie, stretch-big, "2025-draft"]
-sources: [raw/transactions/2025-nba-draft-results.md, raw/stats/2026-04-10-roster-snapshot.md, raw/beat-reporters/2026-07-01-rss-danny-wolf-ready-for-his-shot-to-fill-nets-8217-nic-claxton.md, raw/stats/2026-07-01-roster-snapshot.md]
+sources: [raw/transactions/2025-nba-draft-results.md, raw/stats/2026-04-10-roster-snapshot.md, raw/beat-reporters/2026-07-01-rss-danny-wolf-ready-for-his-shot-to-fill-nets-8217-nic-claxton.md, raw/stats/2026-07-01-roster-snapshot.md, raw/beat-reporters/2026-07-03-rss-nets-sign-moe-wagner-for-19-million-in-nba-free-agency.md, raw/stats/2026-07-03-roster-snapshot.md]
 confidence: high
-last_updated: 2026-07-01
+last_updated: 2026-07-03
 ---
 
 ## Summary
@@ -26,7 +26,7 @@ Wolf is the prototypical modern big. At 6'11" he can:
 - Switch onto guards defensively (mobile for his size)
 - Rebound in traffic with his 250-lb frame
 
-He's not an elite rim protector like Claxton was, but he doesn't need to be — his value is offensive versatility at the 4/5. With Claxton now in Chicago and [[Julius Randle]] ($30.9M) and [[Michael Porter Jr.]] ($38.3M) anchoring the offense, Wolf will have an expanded role in Year 2.
+He's not an elite rim protector like Claxton was, but he doesn't need to be — his value is offensive versatility at the 4/5. With Claxton now in Chicago and [[Julius Randle]] ($30.9M) and [[Michael Porter Jr.]] ($38.3M) anchoring the offense, Wolf has an expanded role in Year 2. The signing of [[Moritz Wagner]] (2-year, $19M, July 2026) as a complementary center provides depth and veteran playmaking, allowing Wolf to develop without the full load.
 
 ### The Harden Trade Connection
 Wolf's draft slot has a poetic origin. The Rockets pick was the last remaining asset from the disastrous James Harden trade. After Ben Simmons flamed out, this pick was the one tangible return that actually worked. Houston's strong 2024-25 season meant the top-4 protection didn't apply, and the pick conveyed at #27 — where the Nets found a contributor.
@@ -36,6 +36,9 @@ Wolf's draft slot has a poetic origin. The Rockets pick was the last remaining a
 - [[James Harden Trade]]
 - [[Nic Claxton]]
 - [[Noah Clowney]]
+- [[Moritz Wagner]] — Co-center option signed July 2026
+- [[Day'Ron Sharpe]] — Interior depth
+- [[Joshua Jefferson]] — Forward complement
 - [[2025-26 Season]]
 
 ## Open Questions

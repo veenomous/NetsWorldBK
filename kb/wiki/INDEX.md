@@ -1,7 +1,7 @@
 ---
-last_compiled: 2026-07-02
-raw_sources: 904
-wiki_articles: 40
+last_compiled: 2026-07-03
+raw_sources: 917
+wiki_articles: 41
 ---
 
 # BKGrit Knowledge Base — Index
@@ -9,6 +9,7 @@ wiki_articles: 40
 ## Players
 - [[Cameron Johnson]] — Traded to Denver (July 2025) for MPJ + 2032 first; the last KD trade return exits Brooklyn
 - [[Michael Porter Jr.]] — Acquired from Denver for Cam Johnson; 24.2 PPG veteran anchor; paired with [[Julius Randle]] for 2026-27
+- [[Moritz Wagner]] — Signed July 1, 2026; 6'11" floor-spacing center, 2-year $19M; completes center rotation with Wolf and Sharpe
 - [[Julius Randle]] — Acquired June 23, 2026 from Timberwolves; All-Star forward, $30.9M, veteran leadership alongside young core
 - [[Mikel Brown Jr.]] — Star freshman from Louisville, drafted June 23, 2026; 18.2 PPG, 4.7 APG; highest-ceiling guard prospect
 - [[Joshua Jefferson]] — Iowa State All-American, drafted #28 June 23, 2026; 16.4 PPG, 7.4 RPG; versatile forward complement
