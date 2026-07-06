@@ -1,9 +1,9 @@
 ---
 title: Moritz Wagner
 tags: [player, center, free-agent, frontcourt, 2026-offseason]
-sources: [raw/beat-reporters/2026-07-03-rss-nets-sign-moe-wagner-for-19-million-in-nba-free-agency.md, raw/stats/2026-07-03-roster-snapshot.md]
+sources: [raw/beat-reporters/2026-07-01-rss-nets-sign-moe-wagner-for-19-million-in-nba-free-agency.md, raw/beat-reporters/2026-07-03-rss-nets-sign-moe-wagner-for-19-million-in-nba-free-agency.md, raw/stats/2026-07-03-roster-snapshot.md, raw/stats/2026-07-06-roster-snapshot.md]
 confidence: high
-last_updated: 2026-07-03
+last_updated: 2026-07-06
 ---
 
 ## Summary

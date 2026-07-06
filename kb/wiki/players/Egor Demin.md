@@ -1,9 +1,9 @@
 ---
 title: Egor Demin
 tags: [player, guard, egor-demin, rookie, franchise-bet, "2025-draft"]
-sources: [raw/transactions/2025-nba-draft-results.md, raw/stats/2026-04-10-roster-snapshot.md, raw/beat-reporters/2026-07-02-rss-egor-demin-seeks-to-make-quick-connection-with-nets-8217-202.md]
+sources: [raw/transactions/2025-nba-draft-results.md, raw/stats/2026-04-10-roster-snapshot.md, raw/beat-reporters/2026-07-02-rss-egor-demin-seeks-to-make-quick-connection-with-nets-8217-202.md, raw/stats/2026-07-06-roster-snapshot.md]
 confidence: high
-last_updated: 2026-07-02
+last_updated: 2026-07-06
 ---
 
 ## Summary

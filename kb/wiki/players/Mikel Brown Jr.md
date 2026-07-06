@@ -1,14 +1,14 @@
 ---
 title: Mikel Brown Jr.
 tags: [player, guard, drafted-2026, louisville, current-roster]
-sources: [raw/beat-reporters/2026-05-21-rss-mikel-brown-jr-has-the-chance-to-salvage-the-nets-8217-nba-d.md, raw/beat-reporters/2026-05-29-rss-mikel-brown-jr-has-the-chance-to-salvage-the-nets-8217-nba-d.md, raw/beat-reporters/2026-06-24-espn-what-mikel-brown-jr-brings-to-the-nets.md, raw/beat-reporters/2026-06-24-espn-windy-nets-taking-brown-over-acuff-will-be-the-legacy-of-thi.md, raw/beat-reporters/2026-06-24-rss-nets-select-star-freshman-mikel-brown-jr-in-potential-franch.md, raw/beat-reporters/2026-06-26-rss-sean-marks-8217-nets-legacy-is-riding-on-massive-2026-nba-dr.md, raw/beat-reporters/2026-06-28-rss-nets-8217-first-round-pick-mikel-brown-jr-tells-the-post-he.md, raw/beat-reporters/2026-06-29-rss-nets-8217-first-round-pick-mikel-brown-jr-tells-the-post-he.md, raw/stats/2026-06-24-roster-snapshot.md, raw/stats/2026-06-26-roster-snapshot.md, raw/stats/2026-06-27-roster-snapshot.md, raw/stats/2026-06-28-roster-snapshot.md, raw/stats/2026-06-29-roster-snapshot.md]
+sources: [raw/beat-reporters/2026-05-21-rss-mikel-brown-jr-has-the-chance-to-salvage-the-nets-8217-nba-d.md, raw/beat-reporters/2026-05-29-rss-mikel-brown-jr-has-the-chance-to-salvage-the-nets-8217-nba-d.md, raw/beat-reporters/2026-06-24-espn-what-mikel-brown-jr-brings-to-the-nets.md, raw/beat-reporters/2026-06-24-espn-windy-nets-taking-brown-over-acuff-will-be-the-legacy-of-thi.md, raw/beat-reporters/2026-06-24-rss-nets-select-star-freshman-mikel-brown-jr-in-potential-franch.md, raw/beat-reporters/2026-06-26-rss-sean-marks-8217-nets-legacy-is-riding-on-massive-2026-nba-dr.md, raw/beat-reporters/2026-06-28-rss-nets-8217-first-round-pick-mikel-brown-jr-tells-the-post-he.md, raw/beat-reporters/2026-06-29-rss-nets-8217-first-round-pick-mikel-brown-jr-tells-the-post-he.md, raw/beat-reporters/2026-07-06-rss-nets-rookie-mikel-brown-jr-set-to-make-nba-summer-league-deb.md, raw/stats/2026-06-24-roster-snapshot.md, raw/stats/2026-06-26-roster-snapshot.md, raw/stats/2026-06-27-roster-snapshot.md, raw/stats/2026-06-28-roster-snapshot.md, raw/stats/2026-06-29-roster-snapshot.md]
 confidence: high
-last_updated: 2026-06-29
+last_updated: 2026-07-06
 status: drafted
 ---
 
 ## Summary
-Mikel Brown Jr., a star freshman from the University of Louisville, was selected by the Brooklyn Nets in the 2026 NBA Draft (June 23, 2026). The 20-year-old guard, standing 6'5" and weighing 180 lbs, averaged 18.2 PPG, 4.7 APG, and 3.3 RPG in his lone college season. NY Post and ESPN commentary frames the Nets' selection as potentially "franchise-changing" and a defining moment of the 2026 draft class, particularly in the broader debate between Brown and other high-ceiling prospects like Darius Acuff Jr.
+Mikel Brown Jr., a star freshman from the University of Louisville, was selected by the Brooklyn Nets in the 2026 NBA Draft (June 23, 2026). The 20-year-old guard, standing 6'5" and weighing 180 lbs, averaged 18.2 PPG, 4.7 APG, and 3.3 RPG in his lone college season. NY Post and ESPN commentary frames the Nets' selection as potentially "franchise-changing" and a defining moment of the 2026 draft class, particularly in the broader debate between Brown and other high-ceiling prospects like Darius Acuff Jr. In the 2026 Summer League (July 2026), Brown did not appear in the first two games (DNP), but was expected to make his NBA Summer League debut by July 7, 2026.
 
 ## Key Profile
 - **College**: University of Louisville (freshman)
@@ -36,10 +36,14 @@ The Nets selected Brown with their draft pick on June 23, 2026, signaling confid
 - [[2026 Draft]] — Draft night context and strategy
 - [[Jordi Fernandez]] — Development coach
 
+## Summer League Status (2026-07-06)
+After two Summer League games with two DNPs (Did Not Play), Brown was projected to make his NBA Summer League debut around July 7, 2026, per NY Post reporting on July 6. The limited minutes suggest a cautious development approach, likely allowing him to acclimate to the NBA environment and training staff before seeing game action.
+
 ## Open Questions
 - How quickly will Brown develop from college to NBA-ready rotation player?
 - Will his true point guard skills translate to the NBA, or does he project as more of a scoring wing?
 - What is the realistic timeline for Brown to impact winning in 2026-27 or 2027-28?
+- Why the DNPs in Summer League — injury concerns, rotation management, or coaching philosophy?
 
 ## Confidence Level
-**High** — Draft selection confirmed (June 23, 2026). College stats and physical profile documented. Long-term development trajectory remains speculative but draft night selection is definitive.
+**High** — Draft selection confirmed (June 23, 2026). College stats and physical profile documented. Summer League status (DNPs, expected debut) confirmed via NY Post (7/6/26). Long-term development trajectory remains speculative but draft night selection and current Summer League status are definitive.

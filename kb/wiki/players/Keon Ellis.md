@@ -1,9 +1,9 @@
 ---
 title: Keon Ellis
 tags: [player, guard, free-agent, defense, 2026-offseason]
-sources: [raw/beat-reporters/2026-07-01-espn-sources-keon-ellis-agrees-to-2-year-18m-deal-with-nets.md, raw/beat-reporters/2026-07-01-rss-nets-bolstering-backcourt-with-two-year-18-million-keon-elli.md, raw/stats/2026-07-01-roster-snapshot.md]
+sources: [raw/beat-reporters/2026-07-01-espn-sources-keon-ellis-agrees-to-2-year-18m-deal-with-nets.md, raw/beat-reporters/2026-07-01-rss-nets-bolstering-backcourt-with-two-year-18-million-keon-elli.md, raw/stats/2026-07-01-roster-snapshot.md, raw/stats/2026-07-06-roster-snapshot.md]
 confidence: high
-last_updated: 2026-07-01
+last_updated: 2026-07-06
 ---
 
 ## Summary
