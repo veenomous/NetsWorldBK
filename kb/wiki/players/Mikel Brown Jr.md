@@ -3,7 +3,7 @@ title: Mikel Brown Jr.
 tags: [player, guard, drafted-2026, louisville, current-roster]
 sources: [raw/beat-reporters/2026-05-21-rss-mikel-brown-jr-has-the-chance-to-salvage-the-nets-8217-nba-d.md, raw/beat-reporters/2026-05-29-rss-mikel-brown-jr-has-the-chance-to-salvage-the-nets-8217-nba-d.md, raw/beat-reporters/2026-06-24-espn-what-mikel-brown-jr-brings-to-the-nets.md, raw/beat-reporters/2026-06-24-espn-windy-nets-taking-brown-over-acuff-will-be-the-legacy-of-thi.md, raw/beat-reporters/2026-06-24-rss-nets-select-star-freshman-mikel-brown-jr-in-potential-franch.md, raw/beat-reporters/2026-06-26-rss-sean-marks-8217-nets-legacy-is-riding-on-massive-2026-nba-dr.md, raw/beat-reporters/2026-06-28-rss-nets-8217-first-round-pick-mikel-brown-jr-tells-the-post-he.md, raw/beat-reporters/2026-06-29-rss-nets-8217-first-round-pick-mikel-brown-jr-tells-the-post-he.md, raw/beat-reporters/2026-07-06-rss-nets-rookie-mikel-brown-jr-set-to-make-nba-summer-league-deb.md, raw/stats/2026-06-24-roster-snapshot.md, raw/stats/2026-06-26-roster-snapshot.md, raw/stats/2026-06-27-roster-snapshot.md, raw/stats/2026-06-28-roster-snapshot.md, raw/stats/2026-06-29-roster-snapshot.md]
 confidence: high
-last_updated: 2026-07-06
+last_updated: 2026-07-07
 status: drafted
 ---
 
@@ -36,8 +36,8 @@ The Nets selected Brown with their draft pick on June 23, 2026, signaling confid
 - [[2026 Draft]] — Draft night context and strategy
 - [[Jordi Fernandez]] — Development coach
 
-## Summer League Status (2026-07-06)
-After two Summer League games with two DNPs (Did Not Play), Brown was projected to make his NBA Summer League debut around July 7, 2026, per NY Post reporting on July 6. The limited minutes suggest a cautious development approach, likely allowing him to acclimate to the NBA environment and training staff before seeing game action.
+## Summer League Status (2026-07-07)
+After two Summer League games with two DNPs (Did Not Play), Brown made his NBA Summer League debut on July 7, 2026. In his debut appearance, he demonstrated advanced ball-handling and passing skills, including an impressive wraparound dime that showcased his court vision and creativity. The limited initial minutes suggest a cautious development approach, allowing him to acclimate to the NBA environment before ramping up his playing time.
 
 ## Open Questions
 - How quickly will Brown develop from college to NBA-ready rotation player?
