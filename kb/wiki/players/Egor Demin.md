@@ -53,8 +53,8 @@ The Nets didn't get Cooper Flagg (#1 to Dallas), but Demin has a legitimate path
 - [[Michael Porter Jr.]]
 - [[Sean Marks Era|Sean Marks]]
 
-## Offseason Development (2026-07-02 to 2026-07-07)
-A NY Post report (published 7/2/26) noted Demin's offseason focus: "For Egor Dëmin, the offseason checklist is simple, if not easy" — emphasizing his commitment to building chemistry with new teammates. An updated report (7/7/26) highlighted visible progress in his offseason training: Demin appeared noticeably more muscular in his summer outing, demonstrating he "understands his next Nets step" and is investing in the physical development needed to handle an expanded role post-plantar fasciitis. With the 2026 draft class additions ([[Mikel Brown Jr.]], [[Joshua Jefferson]], [[Tyler Bilodeau]]) and free-agent signings ([[Julius Randle]], [[Keon Ellis]]), Demin's leadership role in connecting the young core with veteran additions becomes central to 2026-27 execution.
+## Offseason Development (2026-07-02 to 2026-07-08)
+A NY Post report (published 7/2/26) noted Demin's offseason focus: "For Egor Dëmin, the offseason checklist is simple, if not easy" — emphasizing his commitment to building chemistry with new teammates. An updated report (7/7/26) highlighted visible progress in his offseason training: Demin appeared noticeably more muscular in his summer outing, demonstrating he "understands his next Nets step" and is investing in the physical development needed to handle an expanded role post-plantar fasciitis. The title captured the essence of his preparation: "Egor Dëmin's more muscular summer outing shows he understands his next Nets step." With the 2026 draft class additions ([[Mikel Brown Jr.]], [[Joshua Jefferson]], [[Tyler Bilodeau]]) and free-agent signings ([[Julius Randle]], [[Keon Ellis]]), Demin's leadership role in connecting the young core with veteran additions becomes central to 2026-27 execution. His visible commitment to physical conditioning suggests he is positioned to take a larger role beyond his promising rookie season.
 
 ## Open Questions
 - How does the plantar fasciitis affect his Year 2 development?

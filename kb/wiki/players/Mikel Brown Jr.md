@@ -36,8 +36,8 @@ The Nets selected Brown with their draft pick on June 23, 2026, signaling confid
 - [[2026 Draft]] — Draft night context and strategy
 - [[Jordi Fernandez]] — Development coach
 
-## Summer League Status (2026-07-07)
-After two Summer League games with two DNPs (Did Not Play), Brown made his NBA Summer League debut on July 7, 2026. In his debut appearance, he demonstrated advanced ball-handling and passing skills, including an impressive wraparound dime that showcased his court vision and creativity. The limited initial minutes suggest a cautious development approach, allowing him to acclimate to the NBA environment before ramping up his playing time.
+## Summer League Status (2026-07-08)
+After two Summer League games with two DNPs (Did Not Play), Brown made his NBA Summer League debut on July 7, 2026. In his debut appearance, he demonstrated advanced ball-handling and passing skills, including an impressive wraparound dime that showcased his court vision and creativity. ESPN featured the play as representative of Brown's elite court vision — "No. 6 pick Mikel Brown Jr. whips impressive wraparound dime" — demonstrating NBA-level playmaking skill. The NY Post noted his first appearance in a Nets uniform was "worth the wait." The limited initial minutes suggest a cautious development approach, allowing him to acclimate to the NBA environment before ramping up his playing time.
 
 ## Open Questions
 - How quickly will Brown develop from college to NBA-ready rotation player?
