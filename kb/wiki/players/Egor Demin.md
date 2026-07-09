@@ -1,9 +1,9 @@
 ---
 title: Egor Demin
 tags: [player, guard, egor-demin, rookie, franchise-bet, "2025-draft"]
-sources: [raw/transactions/2025-nba-draft-results.md, raw/stats/2026-04-10-roster-snapshot.md, raw/beat-reporters/2026-07-02-rss-egor-demin-seeks-to-make-quick-connection-with-nets-8217-202.md, raw/stats/2026-07-06-roster-snapshot.md]
+sources: [raw/transactions/2025-nba-draft-results.md, raw/stats/2026-04-10-roster-snapshot.md, raw/beat-reporters/2026-07-02-rss-egor-demin-seeks-to-make-quick-connection-with-nets-8217-202.md, raw/beat-reporters/2026-07-09-rss-egor-d-min-8217-s-more-muscular-summer-outing-shows-he-under.md, raw/beat-reporters/2026-07-09-rss-egor-demin-doing-what-he-can-to-shore-up-his-key-nets-weakne.md, raw/stats/2026-07-06-roster-snapshot.md, raw/stats/2026-07-09-roster-snapshot.md]
 confidence: high
-last_updated: 2026-07-07
+last_updated: 2026-07-09
 ---
 
 ## Summary
@@ -53,8 +53,12 @@ The Nets didn't get Cooper Flagg (#1 to Dallas), but Demin has a legitimate path
 - [[Michael Porter Jr.]]
 - [[Sean Marks Era|Sean Marks]]
 
-## Offseason Development (2026-07-02 to 2026-07-08)
-A NY Post report (published 7/2/26) noted Demin's offseason focus: "For Egor Dëmin, the offseason checklist is simple, if not easy" — emphasizing his commitment to building chemistry with new teammates. An updated report (7/7/26) highlighted visible progress in his offseason training: Demin appeared noticeably more muscular in his summer outing, demonstrating he "understands his next Nets step" and is investing in the physical development needed to handle an expanded role post-plantar fasciitis. The title captured the essence of his preparation: "Egor Dëmin's more muscular summer outing shows he understands his next Nets step." With the 2026 draft class additions ([[Mikel Brown Jr.]], [[Joshua Jefferson]], [[Tyler Bilodeau]]) and free-agent signings ([[Julius Randle]], [[Keon Ellis]]), Demin's leadership role in connecting the young core with veteran additions becomes central to 2026-27 execution. His visible commitment to physical conditioning suggests he is positioned to take a larger role beyond his promising rookie season.
+## Offseason Development (2026-07-02 to 2026-07-09)
+A NY Post report (published 7/2/26) noted Demin's offseason focus: "For Egor Dëmin, the offseason checklist is simple, if not easy" — emphasizing his commitment to building chemistry with new teammates. An updated report (7/7/26) highlighted visible progress in his offseason training: Demin appeared noticeably more muscular in his summer outing, demonstrating he "understands his next Nets step" and is investing in the physical development needed to handle an expanded role post-plantar fasciitis. The title captured the essence of his preparation: "Egor Dëmin's more muscular summer outing shows he understands his next Nets step." 
+
+Critically, a subsequent NY Post report (published 7/8/26, clipped 7/9/26) documented a specific offensive emphasis: "Egor Demin doing what he can to shore up his key Nets weakness — and it's already showing." The focus? Attacking the rim. The report noted: "Whatever happens for the Nets in summer league, good or bad, likely none of it will matter more than this: Egor Dëmin is going to the rim. Hard." This represents a deliberate developmental shift — from pure perimeter play and passing, Demin is committing to increased offensive aggressiveness and paint attacking, addressing what scouts identified as his primary weakness. The increased physical conditioning (muscular gains) directly supports this playstyle evolution.
+
+With the 2026 draft class additions ([[Mikel Brown Jr.]], [[Joshua Jefferson]], [[Tyler Bilodeau]]) and free-agent signings ([[Julius Randle]], [[Keon Ellis]]), Demin's leadership role in connecting the young core with veteran additions becomes central to 2026-27 execution. His visible commitment to both physical conditioning and tactical offensive aggression suggests he is positioned to take a larger role beyond his promising rookie season — potentially as a more aggressive, rim-attacking point guard rather than a pure facilitator.
 
 ## Open Questions
 - How does the plantar fasciitis affect his Year 2 development?
