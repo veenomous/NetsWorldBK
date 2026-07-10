@@ -1,9 +1,9 @@
 ---
 title: Tyler Bilodeau
 tags: [player, forward, drafted-2026, ucla, current-roster]
-sources: [raw/beat-reporters/2026-06-25-rss-nets-draft-ucla-star-tyler-bilodeau-to-add-offensive-upside.md, raw/beat-reporters/2026-06-25-rss-ucla-8217-s-tyler-bilodeau-goes-to-brooklyn-in-nba-draft-821.md, raw/stats/2026-06-25-roster-snapshot.md, raw/stats/2026-06-26-roster-snapshot.md, raw/stats/2026-06-27-roster-snapshot.md, raw/stats/2026-06-28-roster-snapshot.md]
+sources: [raw/beat-reporters/2026-06-25-rss-nets-draft-ucla-star-tyler-bilodeau-to-add-offensive-upside.md, raw/beat-reporters/2026-06-25-rss-ucla-8217-s-tyler-bilodeau-goes-to-brooklyn-in-nba-draft-821.md, raw/stats/2026-06-25-roster-snapshot.md, raw/stats/2026-06-26-roster-snapshot.md, raw/stats/2026-06-27-roster-snapshot.md, raw/stats/2026-06-28-roster-snapshot.md, raw/beat-reporters/2026-07-10-rss-nets-second-rounder-tyler-bilodeau-out-to-prove-he-8217-s-mo.md, raw/stats/2026-07-10-roster-snapshot.md]
 confidence: high
-last_updated: 2026-06-28
+last_updated: 2026-07-10
 status: drafted
 ---
 
@@ -34,10 +34,14 @@ The Nets selected Bilodeau in the second round with the #43 pick, filling out th
 - [[Joshua Jefferson]] — Drafted same night, forward prospect
 - [[2026 NBA Draft]] — Draft night strategy and context
 
+## Summer League Status (2026-07-10)
+Bilodeau is participating in the 2026 NBA Summer League with a specific developmental focus. NY Post coverage (published 7/9/26, clipped 7/10/26) frames his arc as "Nets second-rounder Tyler Bilodeau out to prove he's more than a one-trick pony." The article notes: "Nets' Tyler Bilodeau may be a one-trick pony, but that trick is key to basketball: shooting. Proving he can do anything else is his next test." This framing identifies a critical gap beyond elite shooting — the need to develop complementary skills (defense, versatility, secondary playmaking) to secure meaningful rotation minutes in the NBA. The Summer League serves as his proving ground to expand beyond the shooter archetype and demonstrate NBA-ready two-way play.
+
 ## Open Questions
 - Will Bilodeau's elite shooting translate to NBA efficiency, or will defensive adjustments neutralize the perimeter threat?
+- Can he develop beyond the shooter archetype to prove defensive versatility and complementary skills in Summer League?
 - How quickly will the Nets integrate Bilodeau into rotation minutes given the veteran forward depth already on roster?
 - What role do the Nets envision for Bilodeau in 2026-27: immediate contributor or developmental bench player?
 
 ## Confidence Level
-**High** — Draft selection confirmed (#43 pick, June 23, 2026). UCLA profile and shooting credentials documented. Role projection remains speculative pending training camp and preseason evaluation.
+**High** — Draft selection confirmed (#43 pick, June 23, 2026). UCLA profile and shooting credentials documented. Summer League development arc documented via NY Post (7/9/26) emphasizing need to expand beyond shooting. Role projection remains speculative pending training camp and preseason evaluation.

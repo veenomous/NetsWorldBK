@@ -1,9 +1,9 @@
 ---
 title: Julius Randle
 tags: [player, forward, julius-randle, current-roster, veteran, acquired-2026]
-sources: [raw/beat-reporters/2026-06-23-espn-sources-wolves-to-trade-randle-to-nets-claxton-off-to-bulls.md, raw/beat-reporters/2026-06-23-rss-nets-trade-for-julius-randle-in-three-team-deal-in-pre-nba-d.md, raw/stats/2026-06-23-roster-snapshot.md, raw/stats/2026-06-27-roster-snapshot.md]
+sources: [raw/beat-reporters/2026-06-23-espn-sources-wolves-to-trade-randle-to-nets-claxton-off-to-bulls.md, raw/beat-reporters/2026-06-23-rss-nets-trade-for-julius-randle-in-three-team-deal-in-pre-nba-d.md, raw/stats/2026-06-23-roster-snapshot.md, raw/stats/2026-06-27-roster-snapshot.md, raw/beat-reporters/2026-07-10-rss-julius-randle-can-help-bring-nets-back-to-respectability-jus.md, raw/stats/2026-07-10-roster-snapshot.md]
 confidence: high
-last_updated: 2026-06-27
+last_updated: 2026-07-10
 ---
 
 ## Summary
@@ -17,6 +17,9 @@ Julius Randle, a 31-year-old All-Star forward, was acquired by the Brooklyn Nets
 - **Timeline Implications:** At 31, his peak is likely 1-2 seasons; acquisition suggests accelerated competitive window (2026-27 or 2027-28)
 
 ## Details
+
+### Prior Success with Knicks
+Randle's most recent history illustrates his impact on rebuilding franchises. As a member of the New York Knicks from 2019 to 2024, he played a central role in elevating the organization from "terrible to competitive," according to NY Post analysis (7/9/26). During his five seasons in New York, Randle helped the Knicks transform from a lottery team into a playoff contender, demonstrating the type of veteran stabilizing influence the Nets hope to replicate. His proven ability to raise a franchise's competitive level positions him as a benchmark for what the Nets can achieve with his leadership and scoring presence.
 
 ### Trade Context
 The acquisition signals a strategic shift. Instead of building around defensive anchors like [[Nic Claxton]], the Nets are pairing young ball-handlers ([[Egor Demin]]) with scoring forwards ([[Michael Porter Jr.]], Randle). This three-team structure (Timberwolves send Randle+#28 to Nets; Nets send #33 to Wolves; Bulls get Claxton) allowed Minnesota to shed salary and consolidate assets, gave Chicago a defensive anchor, and allowed Brooklyn to upgrade at forward while adding a mid-first pick.
