@@ -1,9 +1,9 @@
 ---
 title: Drake Powell
 tags: [player, guard, drake-powell, rookie, defense, "2025-draft"]
-sources: [raw/transactions/2025-nba-draft-results.md, raw/stats/2026-04-10-roster-snapshot.md]
-confidence: medium
-last_updated: 2026-04-11
+sources: [raw/transactions/2025-nba-draft-results.md, raw/stats/2026-04-10-roster-snapshot.md, raw/beat-reporters/2026-07-11-rss-nets-8217-drake-powell-still-has-so-much-to-prove-as-offensi.md, raw/stats/2026-07-11-roster-snapshot.md]
+confidence: high
+last_updated: 2026-07-11
 ---
 
 ## Summary
@@ -24,6 +24,9 @@ Every championship team needs players who defend, don't need the ball, and make 
 
 ### Development Path
 The offensive game needs work. At UNC he was more of a slasher than a shooter, and the NBA three-point line is a step back from college. If he can develop a reliable corner three and improve his free throw shooting, his defensive value makes him a long-term rotation piece. If the shot doesn't come, he's a deep bench player.
+
+### Summer League Concerns (2026-07-11)
+Powell's 2026 Summer League performance has highlighted persistent offensive struggles. NY Post coverage (7/10/26, clipped 7/11/26) notes "Nets' Drake Powell still has so much to prove as offensive funk continues in Summer League." The offensive development gap — already identified as critical during his rookie year — remains his primary hurdle for securing meaningful rotation minutes. Summer League represents a crucial proving ground for demonstrating shooting improvement and offensive competency alongside his defensive strengths.
 
 ## Related
 - [[2025 NBA Draft]]
